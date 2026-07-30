@@ -3,7 +3,7 @@ import * as Highcharts from 'highcharts';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { headDesem1, tableOpts1,headDesem2,headDesem3,headDesem4 } from './desembolsos.util';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { ModSistematicaService } from '../compartido/servicios/mod-sistematica.service';
 import { SistematicaService } from '../compartido/servicios/sistematica.service';
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TblPickerDialogService } from "app/modules/shared/components/tbl-picker-dialog/tbl-picker-dialog.service";
+import { TblPickerDialogService } from "app/shared/services/tbl-picker-dialog.service";
 import { ReplaySubject } from "rxjs";
 import { chooserOpts } from "./incentivos-a.util";
 import { ModIncentivosAService } from "./mod-incentivos-a.service";

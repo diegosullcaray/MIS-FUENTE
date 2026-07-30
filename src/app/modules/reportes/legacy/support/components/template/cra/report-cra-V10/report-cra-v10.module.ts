@@ -11,8 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 const components = [
     ReportCraV10Component
   ]
@@ -30,8 +29,7 @@ const components = [
       MatButtonModule,
       FormsModule, ReactiveFormsModule,
       FlexLayoutModule,
-      SharedCWCModule,
-      SharedCMCModule
+      SharedModule,
     ],
     declarations: components,
     exports:components

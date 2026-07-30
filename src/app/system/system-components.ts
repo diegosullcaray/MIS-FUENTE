@@ -32,7 +32,7 @@ import { AdminDirectivesModule } from './admin/directives/admin-directives.modul
 import { LoginComponent } from './session/views/login/login.component';
 import { StartMenuComponent } from './admin/components/start-menu/start-menu.component';
 import { DesktopComponent } from './admin/views/desktop/desktop.component';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { LoginService } from './session/views/login/login.service';
 import { AltUserDialogComponent } from './admin/components/alt-user-dialog/alt-user-dialog.component';
 import { AdDialogComponent } from './admin/components/ad-dialog/ad-dialog.component';
@@ -79,7 +79,7 @@ const components = [
         AdminDirectivesModule,
         MaterialModule,
         //SwiperModule,
-        SharedCWCModule
+        SharedModule
     ],
     declarations: components,
     // entryComponents: [AppComfirmComponent, AppLoaderComponent, BottomSheetShareComponent],

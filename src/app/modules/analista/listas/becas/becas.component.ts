@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StgAppConfirmService } from 'app/core/screen/components/stg-app-confirm/stg-app-confirm.service';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { Subscription } from 'rxjs';

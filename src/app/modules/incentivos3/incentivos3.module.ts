@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PrincipalComponent } from './principal/principal.component';
 import { Incentivos3Component } from './incentivos3.component';
 import { Incentivos3RoutingModule } from './incentivos3-routing.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from '../shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AvancesComponent } from './avances/avances.component';
 import { ComposicionComponent } from './composicion/composicion.component';
@@ -15,7 +14,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { MonetizadoComponent } from './monetizado/monetizado.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { SelectorJerComponent } from './selector-jer/selector-jer.component';
-import { SecPickerDialog2Service } from '../shared/services/sec-picker-dialog2.service';
+import { SecPickerDialog2Service } from 'app/shared/services/sec-picker-dialog2.service';
 import { ModIncentivos3Service } from './compartido/servicios/mod-incentivos3.service';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { CalculadoraDialogComponent } from './calculadora/calculadora-dialog.component';
@@ -29,8 +28,7 @@ import { Incentivos3Service } from './compartido/servicios/incentivos3.service';
 @NgModule({
     imports: [
         Incentivos3RoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule
     ],
     declarations: [

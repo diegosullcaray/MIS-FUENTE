@@ -23,7 +23,7 @@ export const incentivos3IconSet = {
 };
 
 
-import { STG_GRID_STYLE } from "app/core/screen/components/stg-table/stg-table.util";
+import { STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
 
 export const loadingConf = {
     height: '307px'

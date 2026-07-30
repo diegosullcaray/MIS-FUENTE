@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { StgWindowConfig } from "app/core/screen/components/stg-window/stg-window.config";
+import { StgWindowConfig } from "app/shared/components/stg-window/stg-window.config";
 import { cloneObject, mergeObjects } from "app/core/shared/functions.util";
 import { Subject } from "rxjs";
-import { InFormDialogComponent } from "./in-form-dialog.component";
-import { defaultInFormDialogOptions, defaultInFormFormOptions } from "./in-form-dialog.util";
+import { InFormDialogComponent } from "app/shared/ui/in-form-dialog/in-form-dialog.component";
+import { defaultInFormDialogOptions, defaultInFormFormOptions } from "app/shared/ui/in-form-dialog/in-form-dialog.util";
 
 @Injectable()
 export class InFormDialogService {

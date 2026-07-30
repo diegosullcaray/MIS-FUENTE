@@ -3,8 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCWCModule } from '../../../core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from '../../shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { RegistroTransaccionRoutingModule } from './registro-transaccion-routing.module';
 import { ModAppService } from '../../../core/data/remote/instances/mod-app-service';
 //import { ModCorresponsalService } from '../servicio/mod-corresponsal.service';
@@ -40,8 +39,7 @@ import { RegistroTransaccionComponent } from './registro-transaccion.component';
     ReactiveFormsModule,
     CommonModule,//    
     FlexLayoutModule,//
-    SharedCWCModule,//
-    SharedCMCModule,//
+    SharedModule,//
     MaterialModule,
     FormsModule, ReactiveFormsModule,
     CommonModule,

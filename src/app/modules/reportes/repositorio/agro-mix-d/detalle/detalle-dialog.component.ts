@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild, ViewEncapsulation, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination } from 'app/core/screen/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { tblOptsModal } from '../agro-mix-d.util';
 import { cloneObject } from 'app/core/shared/functions.util';
 import * as L from 'leaflet';

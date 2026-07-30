@@ -3,7 +3,7 @@ import { Incentivos3Service } from '../compartido/servicios/incentivos3.service'
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { Detalle2DialogComponent } from '../detalle2/detalle2-dialog.component';
 import { DetalleDialogComponent } from '../detalle/detalle-dialog.component';
 

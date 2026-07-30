@@ -4,7 +4,7 @@ import { LocalStoreService } from "app/core/data/local/local-store.service";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { ModSysLoginService } from "app/core/data/remote/instances/mod-sys-login.service";
 import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { printLog } from "app/core/shared/debug.util";
 import { NavigationService } from "app/system/admin/services/navigation.service";
 import { UserService } from "app/system/admin/services/user.service";

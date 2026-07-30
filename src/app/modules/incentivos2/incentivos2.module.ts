@@ -3,9 +3,8 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { ModAppService } from "app/core/data/remote/instances/mod-app-service";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { Incentivos2RoutingModule } from "./incentivos2-routing.module";
 import { Incentivos2Component } from "./incentivos2.component";
 import { VariableComponent } from './variable/variable.component';
@@ -22,8 +21,7 @@ import { ClientesDialogComponent } from "./clientes/clientes-dialog.component";
 @NgModule({
     imports:[
         Incentivos2RoutingModule,
-        SharedCWCModule,
-        SharedCMCModule
+        SharedModule,
     ],
     declarations:[Incentivos2Component, VariableComponent, MonetizacionComponent, PerfilComponent, PrincipalComponent, 
         CalculadoraComponent,CalculadoraDialogComponent, ClientesComponent,ClientesDialogComponent],

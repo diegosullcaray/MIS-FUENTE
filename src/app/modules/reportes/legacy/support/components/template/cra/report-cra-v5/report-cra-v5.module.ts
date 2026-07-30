@@ -8,8 +8,7 @@ import { SelectModule } from '../../../select/select.module';
 import { TableModule } from '../../../table/table.module';
 import { GraphicModule } from '../../../graphic/graphic.module';
 
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 
 const components = [
@@ -24,8 +23,7 @@ const components = [
     TableModule,
     GraphicModule,
     //NgxPaginationModule,
-    SharedCWCModule,
-    SharedCMCModule
+    SharedModule,
   ],
   declarations: components,
   exports:components

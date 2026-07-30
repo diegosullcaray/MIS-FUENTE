@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { cloneObject, isNullOrUndefined, mergeObjects } from "app/core/shared/functions.util";
 import { ReplaySubject, Subject } from "rxjs";
-import { TblPickerDialogComponent } from "./tbl-picker-dialog.component";
-import { defaultTblPickerDialogOptions, defaultTblPickerTableOptions } from "./tbl-picker-dialog.util";
+import { TblPickerDialogComponent } from "app/shared/ui/tbl-picker-dialog/tbl-picker-dialog.component";
+import { defaultTblPickerDialogOptions, defaultTblPickerTableOptions } from "app/shared/ui/tbl-picker-dialog/tbl-picker-dialog.util";
 
 @Injectable()
 export class TblPickerDialogService {

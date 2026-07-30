@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
-import { StgAlertService } from 'app/core/screen/components/stg-alert/stg-alert.service';
+import { StgAlertService } from 'app/shared/components/stg-alert/stg-alert.service';
 import { cloneObject, isNullOrUndefined } from 'app/core/shared/functions.util';
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { UserService } from 'app/system/admin/services/user.service';

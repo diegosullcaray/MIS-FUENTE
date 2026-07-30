@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "../shared/shared-cmc.module";
-import { SecPickerDialog2Service } from "../shared/services/sec-picker-dialog2.service";
+import { SharedModule } from "app/shared/shared.module";
+import { SecPickerDialog2Service } from "app/shared/services/sec-picker-dialog2.service";
 import { AnalistaRoutingModule } from "./analista-routing.module";
 import { AnalistaComponent } from "./analista.component";
 import { AnalistaService } from "./compartido/servicios/analista.service";
@@ -12,8 +11,7 @@ import { HighchartsChartModule } from "highcharts-angular";
 @NgModule({
     imports:[
         AnalistaRoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule
     ],
     declarations:[AnalistaComponent,PrincipalComponent],

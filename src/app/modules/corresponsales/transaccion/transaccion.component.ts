@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 //import { tableHeaders, loadingConf, tableConf } from "./destino-credito.util";
-import { IStgTableHeader } from "app/core/screen/components/stg-table/stg-table.interface";
+import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 //import { DestinoCreditoPopupComponent } from '../../destino-credito-popup/destino-credito-popup.component';
 import { Subscription } from 'rxjs';
 import { baseAnimations } from "../../../core/screen/animations/animations.util";
 import { isNullOrUndefined } from 'app/core/shared/functions.util';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination, STG_GRID_STYLE } from "app/core/screen/components/stg-table/stg-table.util";
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination, STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
 import { DestinoCreditoPopupComponent } from '../../actividades/destino-credito/destino-credito-popup/destino-credito-popup.component';
 //import { tableHeaders, loadingConf, tableConf } from '../../actividades/destino-credito/destino-credito.util';
 //import { ModActividadesService } from '../../actividades/servicios/mod-actividades.service';

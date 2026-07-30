@@ -5,7 +5,7 @@ import { LayoutService } from 'app/system/admin/services/layout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CalculadoraDialogComponent } from '../calculadora/calculadora-dialog.component';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { stringToDate1 } from 'app/core/shared/functions.util';
 

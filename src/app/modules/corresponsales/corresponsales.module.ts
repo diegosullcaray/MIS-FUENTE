@@ -5,8 +5,7 @@ import { MaterialModule } from 'app/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout'; 
-import { SharedCMCModule } from '../shared/shared-cmc.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service'; 
 import { ModCorresponsalService } from './servicio/mod-corresponsal.service';
 import { CorresponsalesComponent } from './corresponsales.component';
@@ -32,8 +31,7 @@ const components =[
     RouterModule,
     FlexLayoutModule,
     MaterialModule,
-    SharedCWCModule,
-    SharedCMCModule,
+    SharedModule,
     
   ],
   providers: [ModAppService, ModCorresponsalService,ModSecService,ModRepService],

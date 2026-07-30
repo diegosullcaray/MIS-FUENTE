@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { InFormDialogService } from "app/modules/shared/components/in-form-dialog/in-form-dialog.service";
-import { SecPickerDialog2Service } from "app/modules/shared/services/sec-picker-dialog2.service";
+import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
+import { SecPickerDialog2Service } from "app/shared/services/sec-picker-dialog2.service";
 import { Subject } from "rxjs";
 
 @Injectable()

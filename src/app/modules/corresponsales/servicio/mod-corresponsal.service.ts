@@ -3,7 +3,7 @@ import { AntService } from "app/core/data/remote/ant/ant-service.class";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { WinderService } from "app/core/data/remote/winder/winder.service";
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { UserService } from "app/system/admin/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";

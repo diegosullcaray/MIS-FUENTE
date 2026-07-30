@@ -4,7 +4,7 @@ import { AdDialogComponent } from "../components/ad-dialog/ad-dialog.component";
 import { AltUserDialogComponent } from "../components/alt-user-dialog/alt-user-dialog.component";
 import { SessionEndDialogComponent } from "../components/session-end-dialog/session-end-dialog.component";
 import { UserService } from "./user.service";
-import { StgWindowConfig } from "app/core/screen/components/stg-window/stg-window.config";
+import { StgWindowConfig } from "app/shared/components/stg-window/stg-window.config";
 
 @Injectable({
     providedIn: 'root',

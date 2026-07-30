@@ -1,5 +1,5 @@
 import { Component, Input, Renderer2 } from '@angular/core';
-import { IChildItem } from '../../../../system/admin/services/navigation.service';
+import { IChildItem } from 'app/system/admin/services/navigation.service';
 
 @Component({
   selector: 'stg-hover-menu',

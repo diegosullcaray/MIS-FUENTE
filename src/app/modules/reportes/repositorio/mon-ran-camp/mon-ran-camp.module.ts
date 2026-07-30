@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";  
+import { SharedModule } from "app/shared/shared.module";
 import { HighchartsChartModule } from "highcharts-angular";
 import { MonRanCampComponent } from "./mon-ran-camp.component";
 import { PrincipalComponent } from "./principal/principal.component";
@@ -18,8 +17,7 @@ const components=[
 @NgModule({
     imports:[
         MonRanCampRoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule
     ],
     declarations:[components],

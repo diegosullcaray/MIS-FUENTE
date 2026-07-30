@@ -3,14 +3,14 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChi
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import {  principalConfig,  tableHeadersModal,  tblOpts } from './agro-mix-d.util';
 import { BehaviorSubject, combineLatest } from 'rxjs'; 
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import * as Highcharts from 'highcharts';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination } from 'app/core/screen/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { DetalleDialogComponent } from './detalle/detalle-dialog.component';
 import { MapaSimpleComponent } from './mapa-simple.component';
 @Component({

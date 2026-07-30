@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { StgFInputService } from "app/core/screen/components/stg-finput/stg-finput.service";
-import { InFormDialogService } from "app/modules/shared/components/in-form-dialog/in-form-dialog.service";
+import { StgFInputService } from "app/shared/components/stg-finput/stg-finput.service";
+import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
 import { Subject } from "rxjs";
 
 @Injectable()

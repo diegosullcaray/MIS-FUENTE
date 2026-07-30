@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { StgFormComponent } from "app/core/screen/components/stg-form/stg-form.component";
+import { StgFormComponent } from "app/shared/components/stg-form/stg-form.component";
 
 @Component({
     selector: 'in-form-dialog',

@@ -1,6 +1,6 @@
 import { ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Component } from "@angular/core";
-import { STG_GRID_STYLE } from "app/core/screen/components/stg-table/stg-table.util";
+import { STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
 import { cloneObject } from "app/core/shared/functions.util";
 import { ModBudgetService } from "app/modules/presupuesto/compartido/servicios/mod-budget.service";
 import moment from "moment";

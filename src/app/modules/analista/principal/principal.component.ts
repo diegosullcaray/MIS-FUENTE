@@ -2,14 +2,14 @@ import * as Highcharts from 'highcharts';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { isNullOrUndefined } from 'app/core/shared/functions.util';
 import { UserService } from 'app/system/admin/services/user.service';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { AnalistaService } from '../compartido/servicios/analista.service';
 import { ModSecService } from '../compartido/servicios/mod-sec.service';
 import { LayoutService } from 'app/system/admin/services/layout.service';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { DetalleDialogComponent } from '../detalle/detalle-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 

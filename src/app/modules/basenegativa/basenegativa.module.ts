@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { HighchartsChartModule } from "highcharts-angular";  
 import { BasenegativaRoutingModule } from './basenegativa-routing.module';
 import { BasenegativaComponent } from './basenegativa.component';
@@ -21,8 +20,7 @@ import { ModRepService } from "../reportes/compartido/servicios/mod-rep.service"
     FormsModule,
     FlexLayoutModule, 
     MaterialModule,
-    SharedCWCModule,
-    SharedCMCModule,
+    SharedModule,
     HighchartsChartModule // Importamos las rutas que creamos arriba
   ],
   declarations: [ 

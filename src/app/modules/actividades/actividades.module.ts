@@ -6,8 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActividadesComponent } from './actividades.component';
-import { SharedCMCModule } from '../shared/shared-cmc.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { ModActividadesService } from './servicios/mod-actividades.service';
 import { ModCorresponsalService } from '../corresponsales/servicio/mod-corresponsal.service';
@@ -29,8 +28,7 @@ import { ModRepService } from '../reportes/legacy/support/data/ant-mod-rep.servi
     RouterModule,
     FlexLayoutModule,
     MaterialModule,
-    SharedCWCModule,
-    SharedCMCModule
+    SharedModule,
   ],
   providers: [ModAppService, ModActividadesService,ModCorresponsalService,ComercialService,ModRepService],
   //exports: components

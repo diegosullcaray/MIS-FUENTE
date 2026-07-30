@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { cloneObject } from 'app/core/shared/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs';

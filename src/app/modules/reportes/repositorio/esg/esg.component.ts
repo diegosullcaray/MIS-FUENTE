@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { IStgTableHeader } from "app/core/screen/components/stg-table/stg-table.interface";
+import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf,tableConf2 } from "./esg.util";
 

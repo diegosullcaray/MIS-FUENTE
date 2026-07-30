@@ -2,9 +2,8 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { Kaypacha3RoutingModule } from "./kaypacha3-routing.module"; 
 import { HighchartsChartModule } from "highcharts-angular"; 
 import { Kaypacha3Component } from './kaypacha3.component'; 
@@ -19,8 +18,7 @@ import { ModFrameworkEsgService } from '../framework-esg/compartido/servicios/mo
         FormsModule,
         FlexLayoutModule,
         MaterialModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule    
     ],
     declarations: [Kaypacha3Component,BuscadorKaypachaComponent],

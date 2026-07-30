@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleBaseMComponent } from './detalle-base-m.component'; 
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';

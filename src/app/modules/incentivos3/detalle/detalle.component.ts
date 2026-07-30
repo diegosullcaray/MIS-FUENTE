@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleBaseComponent } from './detalle-base.component';
 import { Incentivos3Service } from '../compartido/servicios/incentivos3.service';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { ModIncentivos3Service } from '../compartido/servicios/mod-incentivos3.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { LayoutService } from 'app/system/admin/services/layout.service';

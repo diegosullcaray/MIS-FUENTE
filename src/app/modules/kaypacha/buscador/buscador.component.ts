@@ -1,10 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination, STG_GRID_STYLE } from 'app/core/screen/components/stg-table/stg-table.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination, STG_GRID_STYLE } from 'app/shared/components/stg-table/stg-table.util';
 import { printLog } from 'app/core/shared/debug.util';
-import { SecPickerDialogComponent } from 'app/modules/shared/components/sec-picker-dialog/sec-picker-dialog.component';
+import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
 import { ModKaypachaService } from '../compartido/servicio/mod-kaypacha.service';
 
 export interface DialogData {

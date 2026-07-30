@@ -23,7 +23,7 @@ import { ModRepService } from '../../reportes/legacy/support/data/ant-mod-rep.se
 import { SelectModule } from '../../reportes/legacy/support/components/select/select.module';
 import { TableModule } from '../../reportes/legacy/support/components/table/table.module';
 import { GraphicModule } from '../../reportes/legacy/support/components/graphic/graphic.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 //import { ProspectoModule } from '../../reportes/legacy/banca-electronica/gestion/prospecto/prospectos.module';
  
 @NgModule({
@@ -51,7 +51,7 @@ import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
     TableModule,
     GraphicModule,
     MaterialModule,
-    SharedCMCModule
+    SharedModule
   ],
   declarations: [ProspectoComponent],
   //providers:[WinderService,/*VacacionesService,*/ComercialService,ModRepService],

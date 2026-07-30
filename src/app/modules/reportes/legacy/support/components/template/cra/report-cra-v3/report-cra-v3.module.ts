@@ -4,8 +4,7 @@ import { ReportCraV3Component } from './report-cra-v3.component';
 import { SelectModule } from '../../../../components/select/select.module';
 import { GraphicModule } from '../../../../components/graphic/graphic.module';
 import { TableModule } from '../../../../components/table/table.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 const components = [
     ReportCraV3Component
   ]
@@ -16,8 +15,7 @@ const components = [
       SelectModule,
       GraphicModule,
       TableModule,
-      SharedCWCModule,
-      SharedCMCModule
+      SharedModule,
     ],
     declarations: components,
     exports:components

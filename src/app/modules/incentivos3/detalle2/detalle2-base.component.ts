@@ -1,4 +1,4 @@
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { Incentivos3Service } from "../compartido/servicios/incentivos3.service";
 import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
 import { ModIncentivos3Service } from "../compartido/servicios/mod-incentivos3.service";

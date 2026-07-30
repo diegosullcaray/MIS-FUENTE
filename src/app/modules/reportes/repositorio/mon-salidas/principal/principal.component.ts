@@ -7,7 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DetalleDialogComponent } from "../detalle/detalle-dialog.component";
-import { StgWindowConfig } from "app/core/screen/components/stg-window/stg-window.config";
+import { StgWindowConfig } from "app/shared/components/stg-window/stg-window.config";
 
 
 @Component({

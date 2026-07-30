@@ -3,7 +3,7 @@
 import { Component, Inject, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModRepService }  from "../../reportes/compartido/servicios/mod-rep.service";
-import { STG_GRID_STYLE, prepareDataForPagination } from 'app/core/screen/components/stg-table/stg-table.util';
+import { STG_GRID_STYLE, prepareDataForPagination } from 'app/shared/components/stg-table/stg-table.util';
 import { Subject } from 'rxjs'; //de RxJS para esperar a que el usuario deje de escribir por 300-500ms antes de disparar la petición.
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'; 
 

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
-import { InFormDialogService } from "app/modules/shared/components/in-form-dialog/in-form-dialog.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
+import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { ReplaySubject, Subject } from "rxjs";
 

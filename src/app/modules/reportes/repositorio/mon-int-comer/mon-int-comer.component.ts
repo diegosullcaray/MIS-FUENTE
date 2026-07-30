@@ -2,10 +2,10 @@ import * as moment from 'moment';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { tableConfOPTS } from './mon-int-comer.util';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 
 @Component({
     selector: 'app-mon-int-comer.component',

@@ -2,9 +2,8 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";   
 import { poblacionMisionalComponent } from "./poblacion-misional.component";
 import { poblacionMisionalRoutingModule } from "./poblacion-misional-routing.module";
 
@@ -15,8 +14,7 @@ import { poblacionMisionalRoutingModule } from "./poblacion-misional-routing.mod
         FormsModule,
         FlexLayoutModule,
         MaterialModule,
-        SharedCWCModule,
-        SharedCMCModule 
+        SharedModule,
     ],
     declarations:[poblacionMisionalComponent],
     //providers:[ModAppService]

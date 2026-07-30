@@ -6,8 +6,7 @@ import { SelectModule } from '../../../select/select.module';
 import { AutoCompleteModule } from '../../../auto-complete/auto-complete.module';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { MaterialModule } from 'app/material/material.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 const components = [
@@ -23,8 +22,7 @@ const components = [
       AutoCompleteModule,
       FlexLayoutModule,
       MaterialModule,
-      SharedCWCModule,
-      SharedCMCModule 
+      SharedModule,
     ],
     declarations: components,
     exports:components,

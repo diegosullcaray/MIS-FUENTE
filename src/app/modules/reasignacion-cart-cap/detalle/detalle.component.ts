@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModKaypachaService } from '../../kaypacha/compartido/servicio/mod-kaypacha.service';
 import { Subject } from 'rxjs';
 import { tableHeaders, tableOptions } from './detallek.util';
-import { StgAppLoaderService } from '../../../core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
  
 @Component({
   selector: 'app-detallek',

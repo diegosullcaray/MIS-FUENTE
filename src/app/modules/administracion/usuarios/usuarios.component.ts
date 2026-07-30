@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination } from 'app/core/screen/components/stg-paginator/stg-paginator.util';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { AdministracionService } from '../compartido/servicios/administracion.service';

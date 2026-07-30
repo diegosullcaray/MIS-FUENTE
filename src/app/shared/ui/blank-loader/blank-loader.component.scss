@@ -1,4 +1,4 @@
-@import "../../../../../assets/styles/scss/spinners/spinners";
+@import "/src/assets/styles/scss/spinners/spinners";
 
 .spinner{
     @include loader02($size: 64px);

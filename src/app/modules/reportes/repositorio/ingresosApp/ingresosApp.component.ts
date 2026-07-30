@@ -1,6 +1,6 @@
 import { OnInit, ChangeDetectorRef } from '@angular/core';
 import { Component } from "@angular/core";
-import { IStgTableHeader } from "app/core/screen/components/stg-table/stg-table.interface";
+import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import {  loadingConf, tableOptions, tableHeaders } from './ingresosApp.util'; 
 import { UserService } from '../../../../system/admin/services/user.service';

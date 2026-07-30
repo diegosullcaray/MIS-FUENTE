@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
 import { UserService } from "app/system/admin/services/user.service";
 import { MonImrAntService } from "./mon-imr-ant.service";

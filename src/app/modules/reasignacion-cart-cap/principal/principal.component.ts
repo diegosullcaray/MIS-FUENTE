@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {  Router,ActivatedRoute } from '@angular/router';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { cloneObject } from 'app/core/shared/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs'; 
 import { ModRepService } from '../../reportes/compartido/servicios/mod-rep.service';
-import { StgPaginatorComponent } from '../../../core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination } from '../../../core/screen/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 // import { UsuariosDialogComponent } from '../usuarios/usuarios-dialog.component'; 
 import { headOpt1, tblOpts1 } from './principal.util'; 
 import { UserService } from '../../../system/admin/services/user.service'; 
@@ -17,7 +17,7 @@ import { ReportesEService } from '../compartido/servicios/reportes-e.service';
 import { EditarDialogPmComponent } from '../editar/editar-dialog-pm.component';
 import { isNullOrUndefined } from '../../../core/shared/functions.util';
 import { GuardarDialogPmComponent } from '../guardar/guardar-dialog-pm.component';
-import { StgAppConfirmService } from '../../../core/screen/components/stg-app-confirm/stg-app-confirm.service';
+import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 
 @Component({
   selector: 'app-principal-reportes-k',

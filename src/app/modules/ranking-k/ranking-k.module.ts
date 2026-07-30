@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "../shared/shared-cmc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { PowerBIEmbedModule } from 'powerbi-client-angular'; 
 import { ModKaypachaService } from "../kaypacha/compartido/servicio/mod-kaypacha.service";
 import { RankingKRoutingModule } from "./ranking-k-routing.module";
@@ -22,8 +21,7 @@ import { RankingKComponent } from './ranking-k.component';
 @NgModule({
     imports:[  
         RankingKRoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         PowerBIEmbedModule    
     ],
     declarations:[RankingKComponent,PrincipalComponent,DetalleKComponent,FilterPeoplePipe ],

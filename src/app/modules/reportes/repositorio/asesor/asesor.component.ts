@@ -3,11 +3,11 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } fr
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { perfilConfig, tableConfOPTS, tblHeadersCategorizacion } from './asesor.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
-import { prepareDataForPagination } from 'app/core/screen/components/stg-paginator/stg-paginator.util';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
 
 type TabType = 'credito' | 'metrica' | 'seguros' | 'movilidad' | 'desembolsos' | 'efectividad' | 'categorizacion';

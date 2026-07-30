@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { ReplaySubject } from "rxjs";
-import { TblPickerDialogService } from "../components/tbl-picker-dialog/tbl-picker-dialog.service";
+import { TblPickerDialogService } from "app/shared/services/tbl-picker-dialog.service";
 
 const tableOptions={
     body:{

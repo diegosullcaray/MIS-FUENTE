@@ -1,6 +1,6 @@
 import { ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Component } from "@angular/core";
-import { STG_GRID_STYLE, STG_INPUT_TABLE_BACKGROUND } from "app/core/screen/components/stg-table/stg-table.util";
+import { STG_GRID_STYLE, STG_INPUT_TABLE_BACKGROUND } from "app/shared/components/stg-table/stg-table.util";
 import { printLog } from "app/core/shared/debug.util";
 import { cloneObject } from "app/core/shared/functions.util";
 import { ModBudgetService } from "app/modules/presupuesto/compartido/servicios/mod-budget.service";

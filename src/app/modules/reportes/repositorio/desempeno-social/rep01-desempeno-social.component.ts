@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { IStgTableHeader } from "app/core/screen/components/stg-table/stg-table.interface";
+import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf } from "./rep01-desempeno-social.util";

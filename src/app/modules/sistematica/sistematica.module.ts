@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "../shared/shared-cmc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { PrincipalComponent } from "./principal/principal.component";
 import { HighchartsChartModule } from "highcharts-angular";
 import { SistematicaRoutingModule } from "./sistematica-routing.module";
@@ -14,8 +13,7 @@ import { SistematicaService } from "./compartido/servicios/sistematica.service";
 @NgModule({
     imports:[
         SistematicaRoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule
     ],
     declarations:[SistematicaComponent,PrincipalComponent,

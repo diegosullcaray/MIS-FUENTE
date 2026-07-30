@@ -1,4 +1,4 @@
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
  
 //import { detalleConfig } from "./detalle.util";
 import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util"; 

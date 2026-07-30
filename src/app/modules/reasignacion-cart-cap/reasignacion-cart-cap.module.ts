@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "../shared/shared-cmc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { PowerBIEmbedModule } from 'powerbi-client-angular'; 
 import { ModKaypachaService } from "../kaypacha/compartido/servicio/mod-kaypacha.service"; 
 import { ModFrameworkEsgService } from '../framework-esg/compartido/servicios/mod-framework-esg.service';
@@ -17,8 +16,7 @@ import { ReasignacionCartCapComponent } from './reasignacion-cart-cap.component'
 @NgModule({ 
     imports:[  
         ReasignacionCartCapRoutingModule,
-        SharedCWCModule, 
-        SharedCMCModule      
+        SharedModule, 
     ],
     declarations:[ReasignacionCartCapComponent,PrincipalComponent ], 
     providers:[ModReportesEService,ModRepService,ReportesEService]

@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";
+import { SharedModule } from "app/shared/shared.module";
 import { GuardarDialogCorComponent } from './guardar-dialog-cor.component';
 import { GuardarRoutingCorModule } from "./guardar-routing-cor.module"; 
 import { GuardarCorComponent } from './guardar-cor.component';
@@ -12,8 +11,7 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 @NgModule({
     imports:[
         GuardarRoutingCorModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         RxReactiveFormsModule  
     ],
    

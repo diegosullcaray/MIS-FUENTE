@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DetalleBaseMComponent } from './detalle-base-m.component'; 
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
  
 import { animate, style, transition, trigger } from '@angular/animations';
 import { LayoutService } from 'app/system/admin/services/layout.service';
@@ -11,8 +11,8 @@ import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep
 //import { tableConfOPTS, tblHeaders } from '../usa_come.util';
 import { cloneObject } from 'app/core/shared/functions.util';
 import { tblHeaders } from '../detalle/detalle-m.util';
-import { prepareDataForPagination } from 'app/core/screen/components/stg-paginator/stg-paginator.util';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 
 @Component({

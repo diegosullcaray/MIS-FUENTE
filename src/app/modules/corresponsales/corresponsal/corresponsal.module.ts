@@ -24,7 +24,7 @@ import { MaterialModule } from 'app/material/material.module';
 import { ComercialService } from '../../reportes/legacy/comercial/comercial.service';
 import { ModRepService } from '../../reportes/legacy/support/data/ant-mod-rep.service';
 import { CorresponsalRoutingModule } from './corresponsal-routing.module';
-import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
  //import { CorresponsalModule } from '../../../reportes/legacy/banca-electronica/gestion/corresponsal/corresponsal.module';
  
 @NgModule({
@@ -41,7 +41,7 @@ import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
     TableModule,
     GraphicModule,
     MaterialModule,
-    SharedCMCModule
+    SharedModule
   ],
   declarations: [CorresponsalComponent],
   //providers:[WinderService,/*VacacionesService,*/ComercialService,ModRepService],

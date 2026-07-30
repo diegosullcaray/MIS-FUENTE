@@ -4,10 +4,10 @@ import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service'; 
 import { cloneObject, isNullOrUndefined } from 'app/core/shared/functions.util';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { tableConfOPTS, tblHeaders } from './carterizacion-cap-com.util';
 import { BehaviorSubject } from 'rxjs';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

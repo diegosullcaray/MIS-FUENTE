@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { CalculadoraDialogComponent } from '../calculadora/calculadora-dialog.component';

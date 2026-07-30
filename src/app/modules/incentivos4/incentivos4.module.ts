@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 import { PrincipalComponent } from './principal/principal.component';
 import { Incentivos4Component } from './incentivos4.component';
 import { Incentivos4RoutingModule } from './incentivos4-routing.module';
-import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedCMCModule } from '../shared/shared-cmc.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { AvancesComponent } from './avances/avances.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 //import { SelectorJerComponent } from './selector-jer/selector-jer.component';
-import { SecPickerDialog2Service } from '../shared/services/sec-picker-dialog2.service';
+import { SecPickerDialog2Service } from 'app/shared/services/sec-picker-dialog2.service';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { Detalle2Component } from './detalle2/detalle2.component';
@@ -23,8 +22,7 @@ import { DinamizadoresComponent } from './dinamizadores/dinamizadores.component'
 @NgModule({
     imports: [
         Incentivos4RoutingModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         HighchartsChartModule
     ],
     declarations: [

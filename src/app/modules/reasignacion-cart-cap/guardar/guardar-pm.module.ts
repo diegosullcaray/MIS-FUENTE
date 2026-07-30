@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
-import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedCMCModule } from "app/modules/shared/shared-cmc.module"; 
+import { SharedModule } from "app/shared/shared.module";
 import { FormsModule } from '@angular/forms';  
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -12,8 +11,7 @@ import { GuardarDialogPmComponent } from './guardar-dialog-pm.component';
 @NgModule({
     imports:[
         GuardarRoutingPmModule,
-        SharedCWCModule,
-        SharedCMCModule,
+        SharedModule,
         //RxReactiveFormsModule  
     ],
    

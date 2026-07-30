@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
-import { ClientSummaryService } from "./client-summary.service";
+import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
+import { ClientSummaryService } from "app/shared/services/client-summary.service";
 
 @Component({
   selector: 'client-summary',

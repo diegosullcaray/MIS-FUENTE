@@ -4,7 +4,7 @@ import { Router } from '@angular/router'; // 1. Importar Router
 import { BehaviorSubject } from 'rxjs';
 import { ModRepService } from "../reportes/compartido/servicios/mod-rep.service";
 import { UserService } from 'app/system/admin/services/user.service';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';
 import { take } from 'rxjs/operators';

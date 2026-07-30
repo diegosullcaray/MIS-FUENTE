@@ -1,5 +1,5 @@
 
-import { IStgTableHeader } from "app/core/screen/components/stg-table/stg-table.interface";
+import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { printLog } from "app/core/shared/debug.util";
 import { UserService } from "app/system/admin/services/user.service";
 import { ModBudgetService } from "../../servicios/mod-budget.service";

@@ -1,5 +1,5 @@
 import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
-import { InFormDialogService } from "app/modules/shared/components/in-form-dialog/in-form-dialog.service";
+import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
 import { Subscription } from "rxjs";
 import { ModReportesEService } from "../compartido/servicios/mod-reportes-e.service";
 import { ReportesEService } from "../compartido/servicios/reportes-e.service";

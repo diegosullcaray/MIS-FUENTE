@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StgAppLoaderService } from 'app/core/screen/components/stg-app-loader/stg-app-loader.service';
-import { StgWindowConfig } from 'app/core/screen/components/stg-window/stg-window.config';
+import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
+import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { cloneObject, isNullOrUndefined } from 'app/core/shared/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { UserService } from 'app/system/admin/services/user.service';
@@ -12,8 +12,8 @@ import { ProspectoCorService } from '../compartido/servicios/prospecto-cor.servi
 import { ModProspectoCorService } from '../compartido/servicios/mod-prospecto-cor.service';
 import { EditarDialogCorComponent } from '../editar/editar-dialog-cor.component';
 import { GuardarDialogCorComponent } from '../guardar/guardar-dialog-cor.component';
-import { StgPaginatorComponent } from '../../../../core/screen/components/stg-paginator/stg-paginator.component';
-import { prepareDataForPagination } from '../../../../core/screen/components/stg-paginator/stg-paginator.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 
 @Component({
   selector: 'app-principal-prospecto-cor',

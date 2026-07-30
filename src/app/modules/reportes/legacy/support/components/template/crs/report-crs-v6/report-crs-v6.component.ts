@@ -6,19 +6,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../../support/services/select.service';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog'; 
-import { SecPickerDialogComponent } from 'app/modules/shared/components/sec-picker-dialog/sec-picker-dialog.component';
+import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
 import { isNullOrUndefined } from 'app/core/shared/functions.util';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
-import { StgAlertService } from 'app/core/screen/components/stg-alert/stg-alert.service';
+import { StgAlertService } from 'app/shared/components/stg-alert/stg-alert.service';
 import { LayoutService } from 'app/system/admin/services/layout.service'; 
-  import { IStgTableHeader } from 'app/core/screen/components/stg-table/stg-table.interface';
+  import { IStgTableHeader } from 'app/shared/components/stg-table/stg-table.interface';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { loadingConf, tableConf } from 'app/modules/reportes/repositorio/movimiento-clientes/rep01-movimiento-clientes.util';
 import { tableHeadersCliente } from "./report-crs-v6.util";
-import { prepareDataForPagination, STG_GRID_STYLE } from 'app/core/screen/components/stg-table/stg-table.util';
-import { StgPaginatorComponent } from 'app/core/screen/components/stg-paginator/stg-paginator.component';
+import { prepareDataForPagination, STG_GRID_STYLE } from 'app/shared/components/stg-table/stg-table.util';
+import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 @Component({
   selector: 'app-report-crs-v6',
   templateUrl: './report-crs-v6.component.html',
