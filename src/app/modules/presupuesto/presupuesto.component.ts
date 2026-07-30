@@ -7,7 +7,7 @@ import { IMenuItem, NavigationService } from "app/system/admin/services/navigati
 import { UserService } from "app/system/admin/services/user.service";
 import { Subscription } from "rxjs";
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
 
 @Component({

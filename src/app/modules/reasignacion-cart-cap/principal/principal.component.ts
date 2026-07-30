@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {  Router,ActivatedRoute } from '@angular/router';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs'; 
 import { ModRepService } from '../../reportes/compartido/servicios/mod-rep.service';
@@ -15,7 +15,7 @@ import { UserService } from '../../../system/admin/services/user.service';
 import { ModReportesEService } from '../compartido/servicios/mod-reportes-e.service';
 import { ReportesEService } from '../compartido/servicios/reportes-e.service';
 import { EditarDialogPmComponent } from '../editar/editar-dialog-pm.component';
-import { isNullOrUndefined } from '../../../core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { GuardarDialogPmComponent } from '../guardar/guardar-dialog-pm.component';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 

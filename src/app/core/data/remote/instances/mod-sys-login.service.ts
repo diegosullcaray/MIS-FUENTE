@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { CypherService } from "app/core/shared/cypher.service";
-import { TokenService } from "app/core/shared/token.service";
+import { CypherService } from "app/core/services/cypher.service";
+import { TokenService } from "app/core/services/token.service";
 import { Observable } from "rxjs";
 import { AntService } from "../ant/ant-service.class";
 import { Strand } from "../winder/strand.class";

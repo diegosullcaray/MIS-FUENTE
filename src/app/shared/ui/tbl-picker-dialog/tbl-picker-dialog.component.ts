@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } fr
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
-import { printLog } from 'app/core/shared/debug.util';
+import { printLog } from 'app/core/helpers/debug.util';
 import { Subscription } from 'rxjs';
 import { TblPickerDialogService } from 'app/shared/services/tbl-picker-dialog.service';
 

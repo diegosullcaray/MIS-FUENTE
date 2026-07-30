@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MonSalidasService } from "../compartido/servicios/mon-salidas.service";
 import { formatNumber } from "@angular/common";
-import { cloneObject } from "app/core/shared/functions.util";
+import { cloneObject } from "app/core/helpers/functions.util";
 import { tblHeaders, tblOpts } from "./principal.util";
 import { MatDialog } from "@angular/material/dialog";
 import { LayoutService } from "app/system/admin/services/layout.service";

@@ -1,4 +1,4 @@
-import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
+import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
 import { Subscription } from "rxjs";
 import { ModReportesEService } from "../compartido/servicios/mod-reportes-e.service";

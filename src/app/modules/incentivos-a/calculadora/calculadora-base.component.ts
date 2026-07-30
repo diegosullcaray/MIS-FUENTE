@@ -1,4 +1,4 @@
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import { IncentivosAService } from '../compartido/servicios/incentivos-a.service';
 import { ModIncentivosAService } from '../compartido/servicios/mod-incentivos-a.service';
 

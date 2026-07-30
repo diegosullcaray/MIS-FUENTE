@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { bottomAlert } from "app/core/screen/animations/animations.util";
+import { bottomAlert } from "app/shared/animations/animations.util";
 import { AnalistaService } from "../compartido/servicios/analista.service";
 import { ModSecService } from "../compartido/servicios/mod-sec.service";
 import { DetalleBaseComponent } from "./detalle-base.component";

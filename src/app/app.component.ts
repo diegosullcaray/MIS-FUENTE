@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { RoutePartsService } from './core/screen/services/route-parts.service';
-import { UILibIconService } from './core/screen/services/ui-lib-icon.service';
+import { RoutePartsService } from 'app/core/services/route-parts.service';
+import { UILibIconService } from 'app/core/services/ui-lib-icon.service';
 import { filter } from 'rxjs/operators';
 import { LayoutService } from './system/admin/services/layout.service';
 import * as Highcharts from 'highcharts';

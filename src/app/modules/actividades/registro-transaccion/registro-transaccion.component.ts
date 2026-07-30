@@ -6,8 +6,8 @@ import { MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dial
 import { MatSnackBar } from '@angular/material/snack-bar';
 //import { DestinoCreditoPopupComponent } from '../../destino-credito-popup/destino-credito-popup.component';
 import { Subscription } from 'rxjs';
-import { baseAnimations } from "../../../core/screen/animations/animations.util";
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { baseAnimations } from "app/shared/animations/animations.util";
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { prepareDataForPagination, STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
 import { DestinoCreditoPopupComponent } from '../../actividades/destino-credito/destino-credito-popup/destino-credito-popup.component';

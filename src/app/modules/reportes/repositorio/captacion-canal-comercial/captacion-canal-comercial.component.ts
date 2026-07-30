@@ -6,7 +6,7 @@ import { prepareDataForPagination } from "app/shared/components/stg-table/stg-ta
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf /*, tableHeaders*/ } from "./captacion-canal-comercial.util";
-import { isNullOrUndefined } from '../../../../core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ReportT } from '../../legacy/support/services/report';
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
 import { UntypedFormGroup } from '@angular/forms';

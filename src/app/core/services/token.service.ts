@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { UserService } from "app/system/admin/services/user.service";
 import { CypherService } from "./cypher.service";
-import { isNullOrUndefined, onNullOrUndefined } from "./functions.util";
-import { printLog } from "./debug.util";
+import { isNullOrUndefined, onNullOrUndefined } from "../helpers/functions.util";
+import { printLog } from "../helpers/debug.util";
 import { AdminService } from "app/system/admin/services/admin.service";
 
 @Injectable({

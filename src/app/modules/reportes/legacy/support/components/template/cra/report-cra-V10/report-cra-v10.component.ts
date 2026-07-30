@@ -11,7 +11,7 @@ import { TableMHService } from '../../../../services/table.service';
 import { ComercialService } from 'app/modules/reportes/legacy/comercial/comercial.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { cra } from 'app/modules/reportes/legacy/comercial/rda/administracion/cra-map';
-import { isNull, isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 
 

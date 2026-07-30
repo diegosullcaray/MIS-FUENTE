@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { tblOptsModal } from '../agro-mix.util';
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import * as L from 'leaflet';
 import { LayerGroup } from 'leaflet'; 
 

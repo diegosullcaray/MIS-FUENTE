@@ -4,7 +4,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { UserService } from 'app/system/admin/services/user.service';
 import * as Highcharts from 'highcharts';
 import { ModRepService } from '../../compartido/servicios/mod-rep.service';
-import { cloneObject, isNullOrUndefined } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import moment from 'moment';
 import { principalConfig, tblOpts } from './banca-solidaria.util';

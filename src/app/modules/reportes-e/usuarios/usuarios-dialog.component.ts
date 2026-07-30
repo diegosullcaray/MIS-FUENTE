@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { bottomAlert } from "app/core/screen/animations/animations.util";
+import { bottomAlert } from "app/shared/animations/animations.util";
 import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
 import { ModReportesEService } from "../compartido/servicios/mod-reportes-e.service";
 import { ReportesEService } from "../compartido/servicios/reportes-e.service";

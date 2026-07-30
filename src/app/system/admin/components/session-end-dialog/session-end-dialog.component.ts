@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { LocalStoreService } from "app/core/data/local/local-store.service";
-import { TokenService } from "app/core/shared/token.service";
+import { TokenService } from "app/core/services/token.service";
 import { AuthService } from "app/system/session/authentication/auth.service";
 import { environment } from "environments/environment";
 

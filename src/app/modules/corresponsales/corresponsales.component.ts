@@ -4,7 +4,7 @@ import { LayoutService } from 'app/system/admin/services/layout.service';
 import { IMenuItem, NavigationService } from 'app/system/admin/services/navigation.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { Subscription } from 'rxjs';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
 @Component({
     selector: 'app-corresponsales',

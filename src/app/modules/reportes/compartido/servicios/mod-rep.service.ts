@@ -8,7 +8,7 @@ import { UserService } from "app/system/admin/services/user.service";
 import { Observable } from "rxjs";
 import { ReportType } from '../../legacy/support/data/ant-mod-rep.service';
 import { Strand } from 'app/core/data/remote/winder/strand.class';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { environment } from 'environments/environment';
 
 @Injectable()

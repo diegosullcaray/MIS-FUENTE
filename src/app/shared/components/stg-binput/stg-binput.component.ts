@@ -2,7 +2,7 @@ import { Input, OnInit } from "@angular/core";
 import { Component, forwardRef } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { StgWindowConfig } from "../stg-window/stg-window.config";
 import { StgBinputDialogComponent } from "./dialog/stg-binput-dialog.component";
 

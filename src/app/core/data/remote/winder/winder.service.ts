@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Strand } from './strand.class';
-import { CypherService } from 'app/core/shared/cypher.service';
+import { CypherService } from 'app/core/services/cypher.service';
 import { RESTService } from '../rest/rest.service';
 import { RESTPacket } from '../rest/rest-packet.class';
-//import { jsonStringifyIgnoringFields } from 'app/core/shared/functions.util';
+//import { jsonStringifyIgnoringFields } from 'app/core/helpers/functions.util';
 import { IWinderConnectionConf, IWinderRequestConfig, IWinderResponse } from './winder.interface';
-import { isNullOrUndefined, jsonStringifyIgnoringFields } from 'app/core/shared/functions.util';
-import { TokenService } from 'app/core/shared/token.service';
+import { isNullOrUndefined, jsonStringifyIgnoringFields } from 'app/core/helpers/functions.util';
+import { TokenService } from 'app/core/services/token.service';
 
 @Injectable()
 export class WinderService {

@@ -3,7 +3,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { UserService } from 'app/system/admin/services/user.service';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { AnalistaService } from '../compartido/servicios/analista.service';

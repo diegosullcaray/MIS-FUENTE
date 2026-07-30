@@ -1,6 +1,6 @@
 import { Input, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { copyFields } from "app/core/shared/functions.util";
+import { copyFields } from "app/core/helpers/functions.util";
 
 @Component({
     selector: 'stg-loading-1',

@@ -4,7 +4,7 @@ import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from "rxjs"
 import { filter, map,tap } from "rxjs/operators";
 import { OAuthErrorEvent, OAuthService } from 'angular-oauth2-oidc';
 import { gmailAuthConfig } from "./gmail.config";
-import { printError, printLog, printTable, printWarn } from "app/core/shared/debug.util";
+import { printError, printLog, printTable, printWarn } from "app/core/helpers/debug.util";
 import { environment } from "environments/environment";
 import { LocalStoreService } from "app/core/data/local/local-store.service";
 import { system_keys } from "../../system-keys.config";

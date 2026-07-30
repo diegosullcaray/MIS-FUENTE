@@ -7,7 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CalculadoraDialogComponent } from '../calculadora/calculadora-dialog.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { stringToDate1 } from 'app/core/shared/functions.util';
+import { stringToDate1 } from 'app/core/helpers/functions.util';
 
 @Component({
   selector: 'app-monetizado-incentivos3',

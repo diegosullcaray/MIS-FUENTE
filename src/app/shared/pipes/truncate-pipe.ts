@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
 @Pipe({
     name: 'truncate'

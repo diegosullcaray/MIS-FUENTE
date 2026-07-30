@@ -1,5 +1,5 @@
 import * as Highcharts from 'highcharts';
-import { copyFields, isNullOrUndefined } from "app/core/shared/functions.util";
+import { copyFields, isNullOrUndefined } from "app/core/helpers/functions.util";
 
 export class ChartOptionsManager {
     

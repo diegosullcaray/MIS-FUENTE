@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, AfterView
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
-import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
 import { formatNumber } from '@angular/common';
 import { Console } from 'console';
 import { tableConf3 } from '../esg/esg.util';

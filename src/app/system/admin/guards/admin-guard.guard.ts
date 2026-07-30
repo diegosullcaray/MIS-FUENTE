@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { printLog, printWarn } from 'app/core/shared/debug.util';
+import { printLog, printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
 import { AuthService } from '../../session/authentication/auth.service';
 

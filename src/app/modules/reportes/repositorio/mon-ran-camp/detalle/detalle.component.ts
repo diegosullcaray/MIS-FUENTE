@@ -4,7 +4,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { MonRanCampService } from '../compartido/servicios/mon-ran-camp.service';
 import { MonRanCampAntService } from '../compartido/servicios/mon-ran-camp-ant.service';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import { tableHeaders, tableOpts } from './detalle.util';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 

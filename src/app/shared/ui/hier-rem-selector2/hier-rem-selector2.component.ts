@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
 
 @Component({

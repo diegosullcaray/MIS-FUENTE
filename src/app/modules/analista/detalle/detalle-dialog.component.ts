@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
-import { bottomAlert } from "app/core/screen/animations/animations.util";
+import { bottomAlert } from "app/shared/animations/animations.util";
 import { AnalistaService } from "../compartido/servicios/analista.service";
 import { DetalleBaseComponent } from "./detalle-base.component";
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { bottomAlert } from "app/core/screen/animations/animations.util";
+import { bottomAlert } from "app/shared/animations/animations.util";
 import { AnalistaService } from "app/modules/analista/compartido/servicios/analista.service";
 import { ModSecService } from "app/modules/analista/compartido/servicios/mod-sec.service";
 import { DetalleBaseComponent } from "./detalle-base.component";

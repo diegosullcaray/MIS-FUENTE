@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "mcp__codegraph__*"
+      "mcp__codegraph__*",
+      "Bash(sort -u -t: -k1)",
+      "Bash(node \"C:/Users/24681/AppData/Local/Temp/claude/c--Users-24681-Videos-DD-MIS-FUENTE/91727a89-7362-4ce5-8ce3-63cc1d2e0de7/scratchpad/migrate-screen.js\" \"c:/Users/24681/Videos/DD/MIS-FUENTE\")",
+      "Bash(node \"C:/Users/24681/AppData/Local/Temp/claude/c--Users-24681-Videos-DD-MIS-FUENTE/91727a89-7362-4ce5-8ce3-63cc1d2e0de7/scratchpad/migrate-core-shared.js\" \"c:/Users/24681/Videos/DD/MIS-FUENTE\")",
+      "Bash(git log *)",
+      "Bash(mv src/app/shared/services/token.service.ts src/app/core/services/token.service.ts)",
+      "Bash(mv src/app/shared/services/cypher.service.ts src/app/core/services/cypher.service.ts)",
+      "Bash(mv src/app/shared/services/route-parts.service.ts src/app/core/services/route-parts.service.ts)",
+      "Bash(mv src/app/shared/services/match-media.service.ts src/app/core/services/match-media.service.ts)",
+      "Bash(mv src/app/shared/services/ui-lib-icon.service.ts src/app/core/services/ui-lib-icon.service.ts)"
     ]
   },
   "hooks": {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, UntypedFormBuilder } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
-import { bottomAlert } from "app/core/screen/animations/animations.util"; 
+import { bottomAlert } from "app/shared/animations/animations.util"; 
 import { ProspectoCorService } from '../compartido/servicios/prospecto-cor.service';
 import { ModProspectoCorService } from '../compartido/servicios/mod-prospecto-cor.service';
 import { EditarBaseCorComponent } from "./editar-base-cor.component";

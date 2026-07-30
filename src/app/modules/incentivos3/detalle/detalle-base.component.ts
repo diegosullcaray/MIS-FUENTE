@@ -1,7 +1,7 @@
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { Incentivos3Service } from "../compartido/servicios/incentivos3.service";
 import { detalleConfig } from "./detalle.util";
-import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
+import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { ModIncentivos3Service } from "../compartido/servicios/mod-incentivos3.service";
 import { formatNumber } from "@angular/common";
 import { LayoutService } from "app/system/admin/services/layout.service";

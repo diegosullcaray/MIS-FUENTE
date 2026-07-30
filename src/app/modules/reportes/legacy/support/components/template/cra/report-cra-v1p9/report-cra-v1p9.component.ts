@@ -10,7 +10,7 @@ import { TableMHService } from '../../../../services/table.service';
 import { ComercialService } from '../../../../../comercial/comercial.service';
 import { cra } from '../../../../../comercial/rda/administracion/cra-map';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { isNull, isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { UntypedFormControl } from '@angular/forms'; 
 @Component({
   selector: 'app-report-cra-v1p9',

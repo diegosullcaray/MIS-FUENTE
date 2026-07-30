@@ -2,7 +2,7 @@ import { formatNumber } from "@angular/common";
 import { Input, OnDestroy, OnInit } from "@angular/core";
 import { Component, forwardRef } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { isNullOrUndefined, round } from "app/core/shared/functions.util";
+import { isNullOrUndefined, round } from "app/core/helpers/functions.util";
 
 @Component({
     selector: 'stg-ninput',

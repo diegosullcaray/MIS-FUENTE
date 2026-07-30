@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { formatNumber } from "@angular/common";
-import { isNullOrUndefined } from 'app/core/shared/functions.util'; 
+import { isNullOrUndefined } from 'app/core/helpers/functions.util'; 
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 

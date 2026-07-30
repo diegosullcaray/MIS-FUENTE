@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { cloneObject, mergeObjects } from "app/core/shared/functions.util";
+import { cloneObject, mergeObjects } from "app/core/helpers/functions.util";
 import { Subject } from "rxjs";
 import { stgDefaultFormConfig } from "./stg-form.util";
 

@@ -1,6 +1,6 @@
 import * as Highcharts from 'highcharts';
 import { Component, Input, OnInit } from '@angular/core';
-import { cloneObject, copyFields } from 'app/core/shared/functions.util';
+import { cloneObject, copyFields } from 'app/core/helpers/functions.util';
 
 @Component({
   selector: 'app-dinamizadores-kaypacha',

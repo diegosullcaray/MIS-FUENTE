@@ -2,7 +2,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { EventEmitter, Input, OnInit, Output, SimpleChanges } from "@angular/core";
 import { OnChanges } from "@angular/core";
 import { Component } from "@angular/core";
-import { cloneObject, isNullOrUndefined, mergeObjects } from "app/core/shared/functions.util";
+import { cloneObject, isNullOrUndefined, mergeObjects } from "app/core/helpers/functions.util";
 import { Subject } from "rxjs";
 import { stgDefaultListConfig } from "./stg-list.util";
 

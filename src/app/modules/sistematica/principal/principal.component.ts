@@ -14,7 +14,7 @@ import { UserService } from 'app/system/admin/services/user.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { dsGraphDesem, dsMainCards } from './principal.util';
-import { round } from 'app/core/shared/functions.util';
+import { round } from 'app/core/helpers/functions.util';
 import { DesembolsosComponent } from '../desembolsos/desembolsos.component';
 import { SistematicaService } from '../compartido/servicios/sistematica.service';
 

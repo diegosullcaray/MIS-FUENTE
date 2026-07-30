@@ -11,7 +11,7 @@ import { Subject } from "rxjs";
 import { MatSidenav } from "@angular/material/sidenav";
 import { MediaObserver } from "@angular/flex-layout";
 import { AdminSidenavHelperService } from "./admin-sidenav-helper.service";
-import { MatchMediaService } from "app/core/screen/services/match-media.service";
+import { MatchMediaService } from "app/core/services/match-media.service";
 
 @Directive({
   selector: "[adminSidenavHelper]"

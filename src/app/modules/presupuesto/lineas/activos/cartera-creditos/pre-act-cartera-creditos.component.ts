@@ -5,7 +5,7 @@ import { ModBudgetService } from "app/modules/presupuesto/compartido/servicios/m
 import { UserService } from "app/system/admin/services/user.service";
 import { tableHeaders, tableHeaders2, tableHeaders3, tableConf } from "./pre-act-cartera-creditos.util";
 import { Subject } from "rxjs";
-import { cloneObject } from "app/core/shared/functions.util";
+import { cloneObject } from "app/core/helpers/functions.util";
 
 @Component({
     selector: 'app-pre-act-creditos-cartera',

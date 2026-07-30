@@ -1,7 +1,7 @@
 import * as Highcharts from 'highcharts';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Incentivos4Service } from "../compartido/servicios/incentivos4.service";
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 
 @Component({
     selector: 'app-avances-incentivos4',

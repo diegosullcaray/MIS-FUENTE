@@ -4,7 +4,7 @@ import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.inter
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf } from "./rep01-desempeno-social.util";
-import { isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
 import { formatNumber } from '@angular/common';
 
 @Component({

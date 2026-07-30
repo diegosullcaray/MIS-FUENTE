@@ -1,5 +1,5 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
-import { COLOR_BACKGROUND_1 } from "app/core/shared/variables.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
+import { COLOR_BACKGROUND_1 } from "app/shared/services/variables.util";
 
 export function prepareDataForPagination(pageLenght: number, dataSource: any[], pageKey?: string): void {
     let pk = isNullOrUndefined(pageKey) ? '__page__' : pageKey;

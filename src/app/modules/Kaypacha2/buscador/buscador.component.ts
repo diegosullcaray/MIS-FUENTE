@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { prepareDataForPagination, STG_GRID_STYLE } from 'app/shared/components/stg-table/stg-table.util';
-import { printLog } from 'app/core/shared/debug.util';
+import { printLog } from 'app/core/helpers/debug.util';
 import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
 import { ModKaypachaService } from '../../kaypacha/compartido/servicio/mod-kaypacha.service';
 

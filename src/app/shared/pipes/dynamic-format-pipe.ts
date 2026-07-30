@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { isNullOrUndefined, mergeObjects } from 'app/core/shared/functions.util';
+import { isNullOrUndefined, mergeObjects } from 'app/core/helpers/functions.util';
 
 
 @Pipe({

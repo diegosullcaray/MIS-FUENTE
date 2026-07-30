@@ -10,7 +10,7 @@ import { TableMHService } from '../../../../services/table.service';
 import { ComercialService } from 'app/modules/reportes/legacy/comercial/comercial.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { com } from 'app/modules/reportes/legacy/comercial/com-map.module';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 
 

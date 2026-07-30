@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { AnalistaService } from "app/modules/analista/compartido/servicios/analista.service";
 import { ModSecService } from "app/modules/analista/compartido/servicios/mod-sec.service";
 

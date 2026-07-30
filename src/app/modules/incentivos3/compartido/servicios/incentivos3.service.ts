@@ -4,7 +4,7 @@ import { tablaConfig } from '../../tabla/tabla.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
-import { cloneObject, isNullOrUndefined, round, stringToDate1 } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined, round, stringToDate1 } from 'app/core/helpers/functions.util';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectorJerComponent } from '../../selector-jer/selector-jer.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
@@ -25,7 +25,7 @@ import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { Subscription } from 'rxjs';
-import { printLog } from 'app/core/shared/debug.util';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class Incentivos3Service {

@@ -8,7 +8,7 @@ import { cra } from '../../../../../comercial/rma/administracion/cra-map';
 import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../services/select.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 @Component({

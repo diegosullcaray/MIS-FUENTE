@@ -2,7 +2,7 @@
   import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
   import { UserService } from "app/system/admin/services/user.service";
   import { ModRepService } from "../../compartido/servicios/mod-rep.service";
-  import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
+  import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
   import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
   import {  principalConfig,  tablaTab1,  tablaTab2,  tableHeadersModal,  tblOpts } from './gestion-comercial.util';
   import { BehaviorSubject, combineLatest } from 'rxjs'; 

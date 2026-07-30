@@ -9,7 +9,7 @@ import { SelectService } from 'app/modules/reportes/legacy/support/services/sele
 import { TableMHService } from 'app/modules/reportes/legacy/support/services/table.service';
 import { ComercialService } from '../../../comercial.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
 
 @Component({

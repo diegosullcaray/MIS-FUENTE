@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs';
 import { ModReportesEService } from '../compartido/servicios/mod-reportes-e.service';

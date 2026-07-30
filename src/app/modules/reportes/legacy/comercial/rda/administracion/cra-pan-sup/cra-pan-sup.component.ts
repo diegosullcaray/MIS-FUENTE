@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { ReportT } from 'app/modules/reportes/legacy/support/services/report';
 import { SelectService } from 'app/modules/reportes/legacy/support/services/select.service';

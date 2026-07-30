@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, UntypedFormBuilder } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
-import { bottomAlert } from "app/core/screen/animations/animations.util";  
+import { bottomAlert } from "app/shared/animations/animations.util";  
 import { GuardarBasePmComponent } from './guardar-base-pm.component';
 import { ModReportesEService } from '../compartido/servicios/mod-reportes-e.service';
 import { ReportesEService } from '../compartido/servicios/reportes-e.service';

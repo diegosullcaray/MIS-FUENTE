@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-//import { baseAnimations } from '../../../../../../../core/screen/animations/animations.util';
+//import { baseAnimations } from 'app/shared/animations/animations.util';
 //import { ReportT } from '../../../../support/services/report';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,14 +15,14 @@ import { Subject, ReplaySubject, Subscription,combineLatest } from 'rxjs';
 //import { TableMHService } from '../../../../support/services/table.service';
 import { takeUntil } from 'rxjs/operators';
 //import { GraphicService } from '../../../../support/services/graphic.service';
-import { baseAnimations } from '../../../core/screen/animations/animations.util';
+import { baseAnimations } from 'app/shared/animations/animations.util';
 import { ReportT } from '../../reportes/legacy/support/services/report';
 import { cra } from '../../reportes/legacy/comercial/rda/administracion/cra-map';
 import { ComercialService } from '../../reportes/legacy/comercial/comercial.service';
 import { TableMHService } from '../../reportes/legacy/support/services/table.service';
 import { GraphicService } from '../../reportes/legacy/support/services/graphic.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { SelectService } from 'app/modules/reportes/legacy/support/services/select.service';
 
 //const worldMap = require('@highcharts/map-collection/custom/world.geo.json');

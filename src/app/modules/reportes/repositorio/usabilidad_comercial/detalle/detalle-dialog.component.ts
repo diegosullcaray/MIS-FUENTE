@@ -9,7 +9,7 @@ import { Incentivos3Service } from 'app/modules/incentivos3/compartido/servicios
 import { ModIncentivos3Service } from 'app/modules/incentivos3/compartido/servicios/mod-incentivos3.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 //import { tableConfOPTS, tblHeaders } from '../usa_come.util';
-import { cloneObject } from 'app/core/shared/functions.util';
+import { cloneObject } from 'app/core/helpers/functions.util';
 import { tblHeaders } from '../detalle/detalle.util';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';

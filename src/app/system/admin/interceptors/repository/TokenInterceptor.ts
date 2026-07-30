@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { isNullOrUndefined } from "app/core/shared/functions.util";
-import { TokenService } from "app/core/shared/token.service";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
+import { TokenService } from "app/core/services/token.service";
 import { environment } from "environments/environment";
 import { EMPTY, Observable } from "rxjs";
 import { AdminService } from "../../services/admin.service";

@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import {LocalNumberPipe} from '../pipes/local-number.pipe';
 
 export class GraphicService {

@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 
 export const principalConfig = {
     loading: true,

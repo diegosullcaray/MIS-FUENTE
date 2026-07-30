@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStoreService } from 'app/core/data/local/local-store.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { AuthService } from 'app/system/session/authentication/auth.service';
 import { system_keys } from 'app/system/system-keys.config';
 import { BehaviorSubject } from 'rxjs';

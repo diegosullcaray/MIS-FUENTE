@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { incentivos3IconSet } from "../incentivos3.util";
 
 const ctFn=function(value:string,row:any){

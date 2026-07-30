@@ -3,7 +3,7 @@ import { EventEmitter, Host, OnInit, Output } from "@angular/core";
 import { Component, Input } from "@angular/core";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { Router } from "@angular/router";
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { IMenuItem } from "app/system/admin/services/navigation.service";
 

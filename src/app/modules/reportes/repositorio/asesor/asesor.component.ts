@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
-import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { perfilConfig, tableConfOPTS, tblHeadersCategorizacion } from './asesor.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';

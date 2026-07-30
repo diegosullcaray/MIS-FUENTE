@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { printWarn } from 'app/core/shared/debug.util';
+import { printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
 
 import { AuthService } from './auth.service';
-import { TokenService } from 'app/core/shared/token.service';
+import { TokenService } from 'app/core/services/token.service';
 import { AdminService } from 'app/system/admin/services/admin.service';
 
 @Injectable()

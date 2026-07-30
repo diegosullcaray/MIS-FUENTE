@@ -10,7 +10,7 @@ import { TableMHService } from '../../../../services/table.service';
 import { ComercialService } from '../../../../../comercial/comercial.service';
 import { cra } from '../../../../../comercial/rda/administracion/cra-map';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
 
 @Component({

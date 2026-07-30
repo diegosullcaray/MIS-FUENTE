@@ -1,4 +1,4 @@
-import { cloneObject, isNullOrUndefined } from "app/core/shared/functions.util";
+import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { Subscription } from "rxjs";
 import { FrameworkEsgService } from "../compartido/servicios/framework-esg.service";
 import { ModFrameworkEsgService } from "../compartido/servicios/mod-framework-esg.service";

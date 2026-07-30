@@ -2,7 +2,7 @@
 import * as moment from 'moment';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Incentivos4Service } from "../compartido/servicios/incentivos4.service";
-import { stringToDate1 } from 'app/core/shared/functions.util';
+import { stringToDate1 } from 'app/core/helpers/functions.util';
 
 @Component({
     selector: 'app-principal-incentivos4',

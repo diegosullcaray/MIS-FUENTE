@@ -1,4 +1,4 @@
-import { onNullOrUndefined } from "app/core/shared/functions.util";
+import { onNullOrUndefined } from "app/core/helpers/functions.util";
 import { Observable } from "rxjs";
 import { first } from "rxjs/operators";
 import { Strand } from "../winder/strand.class";

@@ -1,6 +1,6 @@
 import * as Highcharts from 'highcharts';
 import { AfterContentInit, Component, OnInit } from "@angular/core";
-import { cloneObject, isNullOrUndefined, onNullOrUndefined } from "app/core/shared/functions.util";
+import { cloneObject, isNullOrUndefined, onNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { ModKaypachaService } from "./compartido/servicio/mod-kaypacha.service";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';

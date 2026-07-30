@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { Incentivos2Service } from "../compartido/servicio/incentivos2.service";
 import { ModIncentivos2Service } from "../compartido/servicio/mod-incentivos2.service";
 

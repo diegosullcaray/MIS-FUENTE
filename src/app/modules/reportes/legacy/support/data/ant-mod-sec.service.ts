@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AntService } from 'app/core/data/remote/ant/ant-service.class';
 import { Strand } from 'app/core/data/remote/winder/strand.class';
 import { WinderService } from 'app/core/data/remote/winder/winder.service';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { UserService } from 'app/system/admin/services/user.service';
 import { environment } from 'environments/environment';
 

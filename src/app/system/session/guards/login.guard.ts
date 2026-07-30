@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStoreService } from 'app/core/data/local/local-store.service';
-import { printWarn } from 'app/core/shared/debug.util';
+import { printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
 import { system_keys } from '../../system-keys.config';
 

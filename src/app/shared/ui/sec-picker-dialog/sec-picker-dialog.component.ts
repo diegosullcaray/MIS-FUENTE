@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { StgPaginatorComponent } from "app/shared/components/stg-paginator/stg-paginator.component";
 import { prepareDataForPagination, STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
-import { printLog } from "app/core/shared/debug.util";
+import { printLog } from "app/core/helpers/debug.util";
 import { tableHeaders } from "./sec-picker-dialog.util";
 
 

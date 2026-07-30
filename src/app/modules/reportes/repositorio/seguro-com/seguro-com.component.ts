@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from "@a
 import { UserService } from "app/system/admin/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service'; 
-import { cloneObject, isNullOrUndefined } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { tableConfOPTS, tblHeaders } from './seguro-com.util';
 import { BehaviorSubject } from 'rxjs';

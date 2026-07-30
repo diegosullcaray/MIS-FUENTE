@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStoreService } from 'app/core/data/local/local-store.service';
-import { baseAnimations } from 'app/core/screen/animations/animations.util';
+import { baseAnimations } from 'app/shared/animations/animations.util';
 import { AuthService } from 'app/system/session/authentication/auth.service';
 import { system_keys } from 'app/system/system-keys.config';
 import * as uuid from 'uuid';
-import { printLog } from 'app/core/shared/debug.util';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-signin',

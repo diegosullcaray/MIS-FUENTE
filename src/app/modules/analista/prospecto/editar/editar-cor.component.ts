@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core"; 
 import { ActivatedRoute, Router } from "@angular/router";
-import { bottomAlert } from "app/core/screen/animations/animations.util"; 
+import { bottomAlert } from "app/shared/animations/animations.util"; 
 import { ProspectoCorService } from '../compartido/servicios/prospecto-cor.service';
 import { ModProspectoCorService } from '../compartido/servicios/mod-prospecto-cor.service';
 import { EditarBaseCorComponent } from "./editar-base-cor.component";

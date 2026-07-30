@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "app/core/shared/functions.util";
+import { isNullOrUndefined } from "app/core/helpers/functions.util";
 
 export function prepareDataForPagination(pageLenght: number, dataSource: any[], pageKey?: string): void {
     let pk = isNullOrUndefined(pageKey) ? '__page__' : pageKey;

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router"
 import { ClientService } from "app/core/data/remote/client.service";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
-import { printLog } from "app/core/shared/debug.util";
+import { printLog } from "app/core/helpers/debug.util";
 import { environment } from "environments/environment";
 import { UserService } from "./user.service";
 

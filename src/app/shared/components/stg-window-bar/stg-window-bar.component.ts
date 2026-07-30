@@ -1,7 +1,7 @@
 import { EventEmitter, Input, Output } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { cloneObject, mergeObjects, onNullOrUndefined } from "app/core/shared/functions.util";
+import { cloneObject, mergeObjects, onNullOrUndefined } from "app/core/helpers/functions.util";
 
 const defaultIconOptions = {
     style: {

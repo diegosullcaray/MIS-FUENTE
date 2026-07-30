@@ -1,10 +1,10 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { copyFields, isNullOrUndefined } from "app/core/shared/functions.util";
+import { copyFields, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { IStgTableHeader } from "./stg-table.interface";
-import { COLOR_BACKGROUND_1 } from "app/core/shared/variables.util";
+import { COLOR_BACKGROUND_1 } from "app/shared/services/variables.util";
 
 @Component({
     selector: 'stg-table',

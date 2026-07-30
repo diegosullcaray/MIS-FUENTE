@@ -3,7 +3,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { StgAppConfirmService } from "app/shared/components/stg-app-confirm/stg-app-confirm.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
-import { isNullOrUndefined, mergeObjects } from "app/core/shared/functions.util";
+import { isNullOrUndefined, mergeObjects } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
 import { UserService } from "app/system/admin/services/user.service";
 import { Subscription } from "rxjs";

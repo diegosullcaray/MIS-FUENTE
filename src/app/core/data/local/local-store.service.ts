@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CypherService } from 'app/core/shared/cypher.service';
-import { printLog } from 'app/core/shared/debug.util';
+import { CypherService } from 'app/core/services/cypher.service';
+import { printLog } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
 
 @Injectable({

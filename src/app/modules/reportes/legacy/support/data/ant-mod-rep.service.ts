@@ -7,7 +7,7 @@ import { Strand } from 'app/core/data/remote/winder/strand.class';
 import { IWinderResponse } from 'app/core/data/remote/winder/winder.interface';
 import { UserService } from 'app/system/admin/services/user.service';
 import { AntService } from 'app/core/data/remote/ant/ant-service.class';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { environment } from 'environments/environment';
 
 export enum ReportType {

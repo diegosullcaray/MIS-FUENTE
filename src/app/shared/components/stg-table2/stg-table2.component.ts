@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { cloneObject, isNullOrUndefined, mergeObjects } from 'app/core/shared/functions.util';
+import { cloneObject, isNullOrUndefined, mergeObjects } from 'app/core/helpers/functions.util';
 import { Subject } from 'rxjs';
 import { stgDefaultTable2Config } from './stg-table2.util';
 import { style } from '@angular/animations';

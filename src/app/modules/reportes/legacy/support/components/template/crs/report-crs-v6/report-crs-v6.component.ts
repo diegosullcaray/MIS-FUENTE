@@ -7,7 +7,7 @@ import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../../support/services/select.service';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog'; 
 import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
-import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';

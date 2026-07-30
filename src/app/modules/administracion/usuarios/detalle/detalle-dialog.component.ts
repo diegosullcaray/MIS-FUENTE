@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
-import { bottomAlert } from "app/core/screen/animations/animations.util";
+import { bottomAlert } from "app/shared/animations/animations.util";
 import { AdministracionService } from "../../compartido/servicios/administracion.service";
 import { ModAdminService } from "../../compartido/servicios/mod-admin.service";
 import { DetalleBaseComponent } from "./detalle-base.component";
