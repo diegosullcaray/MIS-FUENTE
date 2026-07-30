@@ -40,7 +40,6 @@ import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
     SelectModule,
     TableModule,
     GraphicModule,
-    //AgmCoreModule.forRoot({ apiKey: 'AIzaSyAbboTmP7QZMKmyLzwaibF6GsnWJfo2SoE' }),
     SharedMaterialModule,
     SharedCMCModule
   ],

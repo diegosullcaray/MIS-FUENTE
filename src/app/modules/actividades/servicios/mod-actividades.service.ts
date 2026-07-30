@@ -6,6 +6,7 @@ import { WinderService } from "app/core/data/remote/winder/winder.service";
 import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
 import { UserService } from "app/system/admin/services/user.service";
 import { Observable } from "rxjs";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class ModActividadesService extends AntService {
@@ -17,7 +18,7 @@ export class ModActividadesService extends AntService {
     constructor(private winderService: WinderService, private user: UserService, private antAdmin: ModSysAdminService, private loader: StgAppLoaderService) {
         super({
             port: 6302,
-            secret: "CCAFE0F473E9B66F2EA57D46C5C3047E",
+            secret: environment.moduleSecrets.app,
             appId: "app"
         }, winderService);
         let profile = this.user.get('profile');

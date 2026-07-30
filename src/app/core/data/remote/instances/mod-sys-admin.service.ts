@@ -5,13 +5,14 @@ import { AntService } from "../ant/ant-service.class";
 import { Strand } from "../winder/strand.class";
 import { IWinderRequestConfig, IWinderResponse } from "../winder/winder.interface";
 import { WinderService } from "../winder/winder.service";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class ModSysAdminService extends AntService{
     constructor(private winderService: WinderService) {
         super({
             port: 6301,
-            secret: "29A832E1F8C68ECB46E7C89716BB68E2",
+            secret: environment.moduleSecrets.admin,
             appId: "admin"
         },winderService);
      }

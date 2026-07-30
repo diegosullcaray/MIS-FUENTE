@@ -4,6 +4,7 @@ import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { WinderService } from "app/core/data/remote/winder/winder.service";
 import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/stg-app-loader.service";
 import { Observable } from "rxjs";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class ModIncentivosAService extends AntService {
@@ -12,7 +13,7 @@ export class ModIncentivosAService extends AntService {
     constructor(private winderService: WinderService, private loader: StgAppLoaderService) {
         super({
             port: 6302,
-            secret: "CCAFE0F473E9B66F2EA57D46C5C3047E",
+            secret: environment.moduleSecrets.app,
             appId: "app"
         }, winderService);
     }

@@ -3,13 +3,14 @@ import { Observable } from "rxjs";
 import { AntService } from "../ant/ant-service.class";
 import { IWinderResponse } from "../winder/winder.interface";
 import { WinderService } from "../winder/winder.service";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class ModAppService extends AntService {
    constructor(private winderService: WinderService) {
       super({
          port: 6302,
-         secret: "CCAFE0F473E9B66F2EA57D46C5C3047E",
+         secret: environment.moduleSecrets.app,
          appId: "app"
       }, winderService);
    }

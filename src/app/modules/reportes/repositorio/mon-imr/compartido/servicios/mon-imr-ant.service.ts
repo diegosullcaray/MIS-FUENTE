@@ -6,6 +6,7 @@ import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { UserService } from "app/system/admin/services/user.service";
 import { Observable, of, timer } from "rxjs";
 import { map } from "rxjs/operators";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class MonImrAntService extends AntService {
@@ -17,7 +18,7 @@ export class MonImrAntService extends AntService {
     constructor(private winderService: WinderService, private user: UserService, private antAdmin: ModSysAdminService) {
         super({
             port: 6304,
-            secret: "8982D9BA889F825E1360E0C594653C68",
+            secret: environment.moduleSecrets.rep2,
             appId: "rep2"
         }, winderService);
         let profile = this.user.get('profile');

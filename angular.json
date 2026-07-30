@@ -39,7 +39,14 @@
               "crossvent",
               "@mattlewis92/dom-autoscroller",
               "dom-plane",
-              "dom-set"
+              "dom-set",
+              "bezier-easing",
+              "highcharts",
+              "file-saver",
+              "lodash",
+              "powerbi-client",
+              "leaflet",
+              "moment"
             ],
             "outputPath": "dist/stg-app-mis-r22",
             "index": "src/index.html",

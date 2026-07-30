@@ -4,6 +4,7 @@ import { Strand } from 'app/core/data/remote/winder/strand.class';
 import { WinderService } from 'app/core/data/remote/winder/winder.service';
 import { isNullOrUndefined } from 'app/core/shared/functions.util';
 import { UserService } from 'app/system/admin/services/user.service';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ModSecService extends AntService {
@@ -11,7 +12,7 @@ export class ModSecService extends AntService {
     constructor(private winderService: WinderService, private userService: UserService) {
         super({
             port: 5301,
-            secret: "D4305E5943A377227C6BF78C8E3278AD",
+            secret: environment.moduleSecrets.secciones,
             appId: "secciones",
         },winderService);
     }

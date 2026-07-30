@@ -7,6 +7,7 @@ import { cloneObject } from "app/core/shared/functions.util";
 import { UserService } from "app/system/admin/services/user.service";
 import { Observable, timer } from "rxjs";
 import { map } from "rxjs/operators";
+import { environment } from "environments/environment";
 
 @Injectable()
 export class ClientSummaryAntService extends AntService {
@@ -21,7 +22,7 @@ export class ClientSummaryAntService extends AntService {
         private antAdmin: ModSysAdminService) {
         super({
             port: 6302,
-            secret: "CCAFE0F473E9B66F2EA57D46C5C3047E",
+            secret: environment.moduleSecrets.app,
             appId: "app"
         }, winderService);
         let profile = this.user.get('profile');

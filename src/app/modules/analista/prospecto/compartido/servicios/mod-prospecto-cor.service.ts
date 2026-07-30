@@ -6,7 +6,8 @@ import { StgAppLoaderService } from "app/core/screen/components/stg-app-loader/s
 import { isNullOrUndefined } from "app/core/shared/functions.util";
 import { ReportType } from "app/modules/reportes/legacy/support/data/ant-mod-rep.service";
 import { UserService } from "app/system/admin/services/user.service";
-import { Observable } from "rxjs";  
+import { Observable } from "rxjs";
+import { environment } from "environments/environment";  
 import { ModRepService } from '../../../../reportes/compartido/servicios/mod-rep.service';
 
 @Injectable()
@@ -17,7 +18,7 @@ export class ModProspectoCorService extends AntService {
     constructor(private winderService: WinderService, private user: UserService, private loader: StgAppLoaderService, private datosReporte: ModRepService) {
         super({ 
             port: 5301,
-            secret: "D4305E5943A377227C6BF78C8E3278AD",
+            secret: environment.moduleSecrets.secciones,
             appId: "secciones"
         }, winderService);
         let profile = this.user.get('profile');

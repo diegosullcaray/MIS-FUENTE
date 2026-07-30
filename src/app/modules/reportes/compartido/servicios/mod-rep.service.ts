@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 import { ReportType } from '../../legacy/support/data/ant-mod-rep.service';
 import { Strand } from 'app/core/data/remote/winder/strand.class';
 import { isNullOrUndefined } from 'app/core/shared/functions.util';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ModRepService extends AntService {
@@ -20,7 +21,7 @@ export class ModRepService extends AntService {
     constructor(private winderService: WinderService, private user: UserService, private antAdmin: ModSysAdminService) {
         super({
             port: 5304,
-            secret: "B0ECE459601D3577F7408D5C8DEA314A",
+            secret: environment.moduleSecrets.reporting,
             appId: "reporting"
         }, winderService);
         let profile = this.user.get('profile');
