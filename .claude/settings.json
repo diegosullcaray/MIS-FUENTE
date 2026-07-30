@@ -10,7 +10,16 @@
       "Bash(mv src/app/shared/services/cypher.service.ts src/app/core/services/cypher.service.ts)",
       "Bash(mv src/app/shared/services/route-parts.service.ts src/app/core/services/route-parts.service.ts)",
       "Bash(mv src/app/shared/services/match-media.service.ts src/app/core/services/match-media.service.ts)",
-      "Bash(mv src/app/shared/services/ui-lib-icon.service.ts src/app/core/services/ui-lib-icon.service.ts)"
+      "Bash(mv src/app/shared/services/ui-lib-icon.service.ts src/app/core/services/ui-lib-icon.service.ts)",
+      "Bash(awk '{print $1}')",
+      "Bash(git ls-tree *)",
+      "Bash(git branch *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('name:',p.name\\); console.log\\('angular:',p.dependencies['@angular/core']\\); console.log\\('deps count:', Object.keys\\(p.dependencies\\).length\\); console.log\\('devDeps count:', Object.keys\\(p.devDependencies\\).length\\);\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.scripts,null,2\\)\\)\")",
+      "mcp__codegraph__codegraph_explore",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('cli:',p.devDependencies['@angular/cli']\\); console.log\\('devkit:',p.devDependencies['@angular-devkit/build-angular']\\)\")",
+      "PowerShell(cd \"C:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\"; New-Item -ItemType Directory -Force -Path \"backups\\\\modules\" | Out-Null; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos-a\" -Destination \"backups\\\\modules\\\\incentivos-a\" -ErrorAction Stop; \"OK\" } catch { \"ERR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(cd \"C:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\"; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos2\" -Destination \"backups\\\\modules\\\\incentivos2\" -ErrorAction Stop; \"OK incentivos2\" } catch { \"ERR incentivos2: $\\($_.Exception.Message\\)\" }; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos4\" -Destination \"backups\\\\modules\\\\incentivos4\" -ErrorAction Stop; \"OK incentivos4\" } catch { \"ERR incentivos4: $\\($_.Exception.Message\\)\" })"
     ]
   },
   "hooks": {

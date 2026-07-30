@@ -10,7 +10,7 @@ import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs';
 // import { ReportesEService } from '../compartido/servicios/reportes-e.service';
 // import { UsuariosDialogComponent } from '../usuarios/usuarios-dialog.component';
 import { tableHeaders, tableOptions } from './principal.util';
-import { ModKaypachaService } from '../../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { UserService } from '../../../system/admin/services/user.service';
 import { ReportesEService } from '../compartido/servicios/reportes-e.service';
 

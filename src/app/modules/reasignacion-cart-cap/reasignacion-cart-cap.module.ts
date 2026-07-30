@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "app/shared/shared.module";
 import { PowerBIEmbedModule } from 'powerbi-client-angular'; 
-import { ModKaypachaService } from "../kaypacha/compartido/servicio/mod-kaypacha.service"; 
+import { ModKaypachaService } from "app/core/data/remote/instances/mod-kaypacha.service"; 
 import { ModFrameworkEsgService } from '../framework-esg/compartido/servicios/mod-framework-esg.service';
 import { PrincipalComponent } from "./principal/principal.component";  
 import { FilterPeoplePipe } from "./detalle/filter.pipe"; 

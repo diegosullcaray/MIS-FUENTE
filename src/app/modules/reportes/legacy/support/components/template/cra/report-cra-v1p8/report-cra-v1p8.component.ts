@@ -17,7 +17,6 @@ import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { UserService } from 'app/system/admin/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BuscadorKaypachaComponent } from 'app/modules/Kaypacha2/buscador/buscador.component';
 
 
 @Component({

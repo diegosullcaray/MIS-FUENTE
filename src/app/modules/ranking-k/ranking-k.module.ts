@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "app/shared/shared.module";
 import { PowerBIEmbedModule } from 'powerbi-client-angular'; 
-import { ModKaypachaService } from "../kaypacha/compartido/servicio/mod-kaypacha.service";
+import { ModKaypachaService } from "app/core/data/remote/instances/mod-kaypacha.service";
 import { RankingKRoutingModule } from "./ranking-k-routing.module";
 import { RankingKComponent } from './ranking-k.component'; 
 import {  FilterPeoplePipe } from './detallek/filter.pipe';

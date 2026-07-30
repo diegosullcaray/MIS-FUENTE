@@ -7,7 +7,7 @@ import { AuthLayoutComponent } from './system/session/views/auth-layout/auth-lay
 import { LoginComponent } from './system/session/views/login/login.component';
 import { DesktopComponent } from './system/admin/views/desktop/desktop.component';
 import { DummyComponent } from './modules/reportes/components/dummy/dummy.component';
-import { RouteGuard } from './system/admin/guards/route-guard.guard';  
+import { RouteGuard } from './system/admin/guards/route-guard.guard';
 
 const routes: Routes = [
   {
@@ -39,8 +39,6 @@ const routes: Routes = [
   {
     path: 'app',
     canActivate: [AuthGuard],
-    //canLoad:[AuthGuard],
-    //canActivateChild:[AuthGuard],
     component: AdminLayoutComponent,
     children: [
       {
@@ -56,16 +54,6 @@ const routes: Routes = [
       {
         path: 'incentivos3',
         loadChildren: () => import('app/modules/incentivos3/incentivos3.module').then(m => m.Incentivos3Module),
-        data: { title: 'Incentivos' }
-      },
-      {
-        path: 'incentivos4',
-        loadChildren: () => import('app/modules/incentivos4/incentivos4.module').then(m => m.Incentivos4Module),
-        data: { title: 'Incentivos' }
-      },
-      {
-        path: 'incentivos-a',
-        loadChildren: () => import('app/modules/incentivos-a/incentivos-a.module').then(m => m.IncentivosAModule),
         data: { title: 'Incentivos' }
       },
       {
@@ -92,28 +80,16 @@ const routes: Routes = [
         data: { title: 'Actividades' }
       },
       {
-        path: 'kaypacha',
-        //canActivate:[RouteGuard],
-        loadChildren: () => import('app/modules/kaypacha/kaypacha.module').then(m => m.KaypachaModule),
-        data: { title: 'Kaypacha' }
-      },
-      {
         path: 'administracion',
         loadChildren: () => import('app/modules/administracion/administracion.module').then(m => m.AdministracionModule),
         data: { title: 'Administracion' }
-      },
-      {
-        path: 'Kaypacha_',
-        // canActivate:[RouteGuard],
-        loadChildren: () => import('app/modules/Kaypacha2/kaypacha2.module').then(m => m.Kaypacha2Module),
-        data: { title: 'Kaypacha' }
       },
       {
         path: 'Kaypacha__',
         // canActivate:[RouteGuard],
         loadChildren: () => import('app/modules/Kaypacha3/kaypacha3.module').then(m => m.Kaypacha3Module),
         data: { title: 'Kaypacha' }
-      },  
+      },
       {
         path: 'cons_base_negativa',
         // canActivate:[RouteGuard],
@@ -127,7 +103,7 @@ const routes: Routes = [
       {
         path: 'ranking-k',
         loadChildren: () => import('app/modules/ranking-k/ranking-k.module').then(m=> m.RankingKModule)
-      }, 
+      },
       {
         path: 'esg',
         loadChildren: () => import('app/modules/framework-esg/framework-esg.module').then(m=> m.FrameworkEsgModule)
@@ -144,11 +120,11 @@ const routes: Routes = [
         path: 'prospecto',
         loadChildren: () => import('app/modules/analista/prospecto/prospecto-cor.module').then(m=> m.ProspectoCorModule)
       },
-      { 
+      {
         path: 'reasignacion-cart-cap',
         loadChildren: () => import('app/modules/reasignacion-cart-cap/reasignacion-cart-cap.module').then(m=> m.ReasignacionCartCapModule)
       },
-       
+
     ]
   },
 ];

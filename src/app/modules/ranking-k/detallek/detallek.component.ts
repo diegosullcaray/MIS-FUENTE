@@ -3,7 +3,7 @@ import { models } from 'powerbi-client';
 import { ReportesEService } from '../compartido/servicios/reportes-e.service';
 //import { ModReportesEService } from '../compartido/servicios/mod-reportes-e.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModKaypachaService } from '../../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { Subject } from 'rxjs';
 import { tableHeaders, tableOptions } from './detallek.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';

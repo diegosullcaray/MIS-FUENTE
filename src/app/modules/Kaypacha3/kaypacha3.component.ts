@@ -3,7 +3,7 @@ import { LayoutService } from "app/system/admin/services/layout.service";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
 import { UserService } from 'app/system/admin/services/user.service';
 import { tableConf, tableOptions, tableHeaders,  tableHeaders2 } from './kaypacha3.util';
-import { ModKaypachaService } from '../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';  
 import { BehaviorSubject, Subject } from 'rxjs'; 
 
