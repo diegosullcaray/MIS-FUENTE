@@ -7,7 +7,7 @@ import { MaterialModule } from 'app/material/material.module';
 import { Kaypacha2RoutingModule } from "./kaypacha2-routing.module"; 
 import { HighchartsChartModule } from "highcharts-angular"; 
 import { Kaypacha2Component } from './kaypacha2.component'; 
-import { ModKaypachaService } from '../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { HistoricoKaypachaComponent } from './historico/historico.component'; 
 import { BuscadorKaypachaComponent } from "./buscador/buscador.component";
 import { VariableKaypachaComponent } from './variable/variable.component';

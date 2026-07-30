@@ -5,7 +5,7 @@ import { LayoutService } from "app/system/admin/services/layout.service";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
 import { UserService } from 'app/system/admin/services/user.service';
 import { bonosConfig, cabeceraConfig, desempenioConfig, baseDinamizadoresConfig, preguntasConfig, historicoConfig } from './kaypacha2.util';
-import { ModKaypachaService } from '../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';
 
 @Component({

@@ -5,7 +5,7 @@ import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-p
 import { prepareDataForPagination, STG_GRID_STYLE } from 'app/shared/components/stg-table/stg-table.util';
 import { printLog } from 'app/core/helpers/debug.util';
 import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
-import { ModKaypachaService } from '../../kaypacha/compartido/servicio/mod-kaypacha.service';
+import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 
 export interface DialogData {
   filtro: string;

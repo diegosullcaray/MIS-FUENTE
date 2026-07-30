@@ -2,7 +2,7 @@ import * as Highcharts from 'highcharts';
 import { AfterContentInit, Component, OnInit } from "@angular/core";
 import { cloneObject, isNullOrUndefined, onNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/system/admin/services/layout.service";
-import { ModKaypachaService } from "./compartido/servicio/mod-kaypacha.service";
+import { ModKaypachaService } from "app/core/data/remote/instances/mod-kaypacha.service";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';
 import { UserService } from 'app/system/admin/services/user.service';

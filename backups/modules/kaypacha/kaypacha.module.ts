@@ -12,7 +12,7 @@ import { DesempenioKaypachaComponent } from './desempenio/desempenio.component';
 import { DinamizadoresKaypachaComponent } from './dinamizadores/dinamizadores.component';
 import { BonosKaypachaComponent } from './bonos/bonos.component';
 import { HighchartsChartModule } from "highcharts-angular";
-import { ModKaypachaService } from "./compartido/servicio/mod-kaypacha.service";
+import { ModKaypachaService } from "app/core/data/remote/instances/mod-kaypacha.service";
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';
 
 @NgModule({
