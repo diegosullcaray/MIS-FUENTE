@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { Kaypacha3RoutingModule } from "./kaypacha3-routing.module"; 
 import { HighchartsChartModule } from "highcharts-angular"; 
@@ -18,7 +18,7 @@ import { ModFrameworkEsgService } from '../framework-esg/compartido/servicios/mo
         CommonModule,
         FormsModule,
         FlexLayoutModule,
-        SharedMaterialModule,
+        MaterialModule,
         SharedCWCModule,
         SharedCMCModule,
         HighchartsChartModule    

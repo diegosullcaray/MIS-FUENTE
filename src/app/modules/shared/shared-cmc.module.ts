@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedMaterialModule } from 'app/core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { HierRemSelectorComponent } from './components/hier-rem-selector/hier-rem-selector.component';
 import { TblPickerDialogComponent } from './components/tbl-picker-dialog/tbl-picker-dialog.component';
 import { SecPickerDialogComponent } from './components/sec-picker-dialog/sec-picker-dialog.component';
@@ -43,7 +43,7 @@ const services = [
         CommonModule,
         RouterModule,
         FlexLayoutModule,
-        SharedMaterialModule,
+        MaterialModule,
         SharedCWCModule,
         GoogleMapsModule
         

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-//import { SharedMaterialModule } from '../../../../../../../core/screen/components/shared-material.module';
+//import { MaterialModule } from 'app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { ComercialService } from '../../../../comercial/comercial.service';
 //import { ModRepService } from '../../../../support/data/ant-mod-rep.service';
@@ -20,7 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SelectModule } from '../../reportes/legacy/support/components/select/select.module';
 import { TableModule } from '../../reportes/legacy/support/components/table/table.module';
 import { GraphicModule } from '../../reportes/legacy/support/components/graphic/graphic.module';
-import { SharedMaterialModule } from '../../../core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { ComercialService } from '../../reportes/legacy/comercial/comercial.service';
 import { ModRepService } from '../../reportes/legacy/support/data/ant-mod-rep.service';
 import { CorresponsalRoutingModule } from './corresponsal-routing.module';
@@ -40,7 +40,7 @@ import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
     SelectModule,
     TableModule,
     GraphicModule,
-    SharedMaterialModule,
+    MaterialModule,
     SharedCMCModule
   ],
   declarations: [CorresponsalComponent],

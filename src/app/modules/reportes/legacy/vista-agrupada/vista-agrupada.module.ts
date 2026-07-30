@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedMaterialModule } from 'app/core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { VistaAgrupadaRoutingModule } from './vista-agrupada-routing.module';
 import { DummyComponent } from './dummy/dummy.component';
 
@@ -10,7 +10,7 @@ import { DummyComponent } from './dummy/dummy.component';
   imports: [
     CommonModule,
     VistaAgrupadaRoutingModule,
-    SharedMaterialModule
+    MaterialModule
   ]
 })
 export class VistaAgrupadaModule { }

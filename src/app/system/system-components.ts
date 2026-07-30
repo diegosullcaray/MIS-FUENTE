@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedMaterialModule } from '../core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 //import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -77,7 +77,7 @@ const components = [
         NgScrollbarModule,
         //SharedPipesModule,
         AdminDirectivesModule,
-        SharedMaterialModule,
+        MaterialModule,
         //SwiperModule,
         SharedCWCModule
     ],

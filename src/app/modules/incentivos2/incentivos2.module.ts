@@ -4,7 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { ModAppService } from "app/core/data/remote/instances/mod-app-service";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { Incentivos2RoutingModule } from "./incentivos2-routing.module";
 import { Incentivos2Component } from "./incentivos2.component";

@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";
 import { agendacomercialRoutingModule } from "./agenda-comercial-routing.module";
 import { agendacomercialComponent } from "./agenda-comercial.component";
@@ -14,7 +14,7 @@ import { agendacomercialComponent } from "./agenda-comercial.component";
         CommonModule,
         FormsModule,
         FlexLayoutModule,
-        SharedMaterialModule,
+        MaterialModule,
         SharedCWCModule,
         SharedCMCModule
     ],

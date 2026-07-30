@@ -4,7 +4,7 @@ import { DestinoCreditoRoutingModule } from './destino-credito-routing.module';
 import { DestinoCreditoComponent } from './destino-credito.component';
 import { SharedCMCModule } from 'app/modules/shared/shared-cmc.module';
 import { SharedCWCModule } from 'app/core/screen/components/shared-cwc.module';
-import { SharedMaterialModule } from 'app/core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { DestinoCreditoPopupComponent } from './destino-credito-popup/destino-credito-popup.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     DestinoCreditoRoutingModule,
-    SharedMaterialModule,
+    MaterialModule,
     SharedCWCModule,
     SharedCMCModule,
     FlexLayoutModule

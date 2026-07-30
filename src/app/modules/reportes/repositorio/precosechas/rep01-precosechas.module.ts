@@ -4,7 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { ModAppService } from "app/core/data/remote/instances/mod-app-service";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";
 import { ComercialService } from "../../legacy/comercial/comercial.service";
 import { SelectModule } from "../../legacy/support/components/select/select.module";

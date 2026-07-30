@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 //import { ActividadesRoutingModule } from './actividades-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -31,7 +31,7 @@ const components =[
     FormsModule,
     RouterModule,
     FlexLayoutModule,
-    SharedMaterialModule,
+    MaterialModule,
     SharedCWCModule,
     SharedCMCModule,
     

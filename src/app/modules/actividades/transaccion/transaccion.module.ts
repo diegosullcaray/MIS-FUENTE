@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedMaterialModule } from '../../../core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCWCModule } from '../../../core/screen/components/shared-cwc.module';
 import { SharedCMCModule } from '../../shared/shared-cmc.module';
 import { TransaccionRoutingModule } from './transaccion-routing.module';
@@ -33,14 +33,14 @@ import { ModRepService } from '../../reportes/compartido/servicios/mod-rep.servi
 @NgModule({
   imports: [ 
     TransaccionRoutingModule,
-    SharedMaterialModule, //
+    MaterialModule, //
     FormsModule, //
     ReactiveFormsModule,
     CommonModule,//    
     FlexLayoutModule,//
     SharedCWCModule,//
     SharedCMCModule,//
-    SharedMaterialModule,
+    MaterialModule,
     FormsModule, ReactiveFormsModule,
     CommonModule,
     MatIconModule,

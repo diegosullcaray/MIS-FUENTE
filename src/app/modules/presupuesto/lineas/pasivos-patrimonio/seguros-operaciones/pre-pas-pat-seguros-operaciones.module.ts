@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "app/modules/shared/shared-cmc.module";
 import { PrePasPatSegurosOperacionesRoutingModule } from "./pre-pas-pat-seguros-operaciones-routing.module";
 import { PrePasPatSegurosOperacionesComponent } from "./pre-pas-pat-seguros-operaciones.component";
@@ -14,7 +14,7 @@ import { PrePasPatSegurosOperacionesComponent } from "./pre-pas-pat-seguros-oper
         CommonModule,
         FormsModule,
         FlexLayoutModule,
-        SharedMaterialModule,
+        MaterialModule,
         SharedCWCModule,
         SharedCMCModule
     ],

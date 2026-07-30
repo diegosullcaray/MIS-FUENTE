@@ -4,7 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { ModAppService } from "app/core/data/remote/instances/mod-app-service";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { ModBudgetService } from "./compartido/servicios/mod-budget.service";
 import { PresupuestoRoutingModule } from "./presupuesto-routing.module";
@@ -16,7 +16,7 @@ import { PresupuestoComponent } from "./presupuesto.component";
         CommonModule,
         FormsModule,
         FlexLayoutModule,
-        SharedMaterialModule,
+        MaterialModule,
         SharedCWCModule,
         SharedCMCModule
     ],

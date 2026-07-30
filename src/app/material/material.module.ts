@@ -40,11 +40,11 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 @NgModule({
   exports: [
     MatCheckboxModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
@@ -78,4 +78,4 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatDividerModule
   ]
 })
-export class SharedMaterialModule {}
+export class MaterialModule { }

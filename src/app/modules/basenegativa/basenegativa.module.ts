@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { SharedCWCModule } from "app/core/screen/components/shared-cwc.module";
-import { SharedMaterialModule } from "app/core/screen/components/shared-material.module";
+import { MaterialModule } from 'app/material/material.module';
 import { SharedCMCModule } from "../shared/shared-cmc.module";
 import { HighchartsChartModule } from "highcharts-angular";  
 import { BasenegativaRoutingModule } from './basenegativa-routing.module';
@@ -20,7 +20,7 @@ import { ModRepService } from "../reportes/compartido/servicios/mod-rep.service"
     CommonModule,
     FormsModule,
     FlexLayoutModule, 
-    SharedMaterialModule,
+    MaterialModule,
     SharedCWCModule,
     SharedCMCModule,
     HighchartsChartModule // Importamos las rutas que creamos arriba

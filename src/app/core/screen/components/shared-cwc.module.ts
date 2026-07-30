@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { StgHoverMenuComponent } from './stg-hover-menu/stg-hover-menu.component';
-import { SharedMaterialModule } from './shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 import { StgTableComponent } from './stg-table/stg-table.component';
 import { StgLoading1 } from './stg-loading-1/stg-loading-1.component';
 import { StgWindowBarComponent } from './stg-window-bar/stg-window-bar.component';
@@ -73,7 +73,7 @@ const libraries = [
     RouterModule,
     FlexLayoutModule,
     NgScrollbarModule,
-    SharedMaterialModule,
+    MaterialModule,
     RxReactiveFormsModule,
     ScrollingModule
 ]

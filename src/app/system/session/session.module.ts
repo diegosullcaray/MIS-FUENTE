@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 //import { TranslateModule } from '@ngx-translate/core';
 import { SigninComponent } from './views/signin/signin.component';
 import { SessionRoutes } from './session-routing.module';
-import { SharedMaterialModule } from 'app/core/screen/components/shared-material.module';
+import { MaterialModule } from 'app/material/material.module';
 
 // import { CommonDirectivesModule } from './sdirectives/common/common-directives.module';
 
@@ -18,7 +18,7 @@ import { SharedMaterialModule } from 'app/core/screen/components/shared-material
     FormsModule,
     //TranslateModule,
     ReactiveFormsModule,
-    SharedMaterialModule,
+    MaterialModule,
     FlexLayoutModule,
     RouterModule.forChild(SessionRoutes)
   ],
