@@ -1,6 +1,15 @@
 <div class="header-topnav mat-elevation-z2">
   <div class="container">
     <div class="topnav">
+      <!-- Desktop/home icon: far left -->
+      <div style="padding-left: 5px;padding-top: 5px;" *ngIf="!isDesktopHome">
+        <button mat-icon-button matTooltip="Ir al inicio" (click)="showDesktop()">
+          <mat-icon>desktop_windows</mat-icon>
+        </button>
+      </div>
+
+      <span fxFlex></span>
+
       <!-- Sidebar header: brand/title, aligned to the sidebar's width when a module is open -->
       <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '300px' : 'auto'}">
         <button class="btn-start-adj btn-start-mob" mat-icon-button (click)="toggleSidenav()"
@@ -14,12 +23,14 @@
         </button>
       </div>
 
-      <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits between the sidebar header and the main header -->
+      <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits next to the sidebar header -->
       <div style="padding-left: 5px;" *ngIf="moduleSidenav.active">
-        <button mat-icon-button matTooltip="Mostrar/ocultar menú" (click)="moduleSidenav.toggle()">
-          <mat-icon>dehaze</mat-icon>
+        <button mat-icon-button class="module-sidenav-toggle-btn" matTooltip="Mostrar/ocultar menú" (click)="moduleSidenav.toggle()">
+          <mat-icon>{{ moduleSidenav.isOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
         </button>
       </div>
+
+      <span fxFlex></span>
 
       <mat-menu class="full" #startMenu="matMenu">
         <!--<mat-grid-list class="theme-list" cols="2" rowHeight="48px">
@@ -81,18 +92,11 @@
       </ul>
       <span fxFlex></span>
        End Navigation -->
-      <span fxFlex></span>
 
       <!-- App Logo
       <div class="topbar-branding">
         <img src="assets/images/fc/inicio.png" alt="" class="app-logo">
       </div>-->
-
-      <div style="padding-left: 5px;padding-top: 5px;" *ngIf="!isDesktopHome">
-        <button mat-icon-button matTooltip="Ir al inicio" (click)="showDesktop()">
-          <mat-icon>desktop_windows</mat-icon>
-        </button>
-      </div>
 
       <!-- Language Switcher
       <mat-select *ngIf="!layoutConf.isMobile" placeholder="" id="langToggle" [style.width]="'auto'" name="currentLang"

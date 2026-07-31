@@ -39,21 +39,24 @@ export class Rep01Component implements OnInit, OnDestroy {
             let b: any = items.filter(e => e.cod === 'A_MOD_RCOM')[0];
             this.menuItems = b.sub;
         });
-        this.moduleSidenav.register();
+        this.moduleSidenav.register(this.layout.isMobile ? this.openExplorerMob : this.openExplorerDesk);
         this.moduleSidenavSub = this.moduleSidenav.toggle$.subscribe(() => this.toggleExplorer());
     }
 
     hideExplorer(evt) {
         if (evt) {
             this.openExplorerMob = false;
+            this.moduleSidenav.setOpen(false);
         }
     }
 
     toggleExplorer() {
         if (!this.layout.isMobile) {
             this.openExplorerDesk = !this.openExplorerDesk;
+            this.moduleSidenav.setOpen(this.openExplorerDesk);
         } else {
             this.openExplorerMob = !this.openExplorerMob;
+            this.moduleSidenav.setOpen(this.openExplorerMob);
         }
 
     }

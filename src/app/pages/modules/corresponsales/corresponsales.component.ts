@@ -44,7 +44,7 @@ export class CorresponsalesComponent implements OnInit, OnDestroy {
             this.menuItems = lin.sub;
 
         });
-        this.moduleSidenav.register();
+        this.moduleSidenav.register(this.layout.isMobile ? this.openExplorerMob : this.openExplorerDesk);
         this.moduleSidenavSub = this.moduleSidenav.toggle$.subscribe(() => this.toggleExplorer());
     }
 
@@ -62,14 +62,17 @@ export class CorresponsalesComponent implements OnInit, OnDestroy {
     selectSec(evt) {
         if (this.layout.isMobile) {
             this.openExplorerMob = false;
+            this.moduleSidenav.setOpen(false);
         }
     }
 
     toggleExplorer() {
         if (!this.layout.isMobile) {
             this.openExplorerDesk = !this.openExplorerDesk;
+            this.moduleSidenav.setOpen(this.openExplorerDesk);
         } else {
             this.openExplorerMob = !this.openExplorerMob;
+            this.moduleSidenav.setOpen(this.openExplorerMob);
         }
 
     }
