@@ -1,5 +1,5 @@
 <ng-scrollbar>
-    <div #desktop [fxLayout]="mainLayout()" fxLayoutAlign="start start" fxLayoutGap="15px" class="desktop-base">
+    <div #desktop id="desktop-tour-shortcuts" [fxLayout]="mainLayout()" fxLayoutAlign="start start" fxLayoutGap="15px" class="desktop-base">
 
         <ng-container *ngIf="!layout.isMobile">
             <ng-container *ngFor="let b of counter(sizeDist);let bi = index;">

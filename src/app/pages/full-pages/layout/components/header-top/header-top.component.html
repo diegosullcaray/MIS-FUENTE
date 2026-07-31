@@ -8,7 +8,7 @@
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
         </button>
         <button mat-icon-button id="schemeToggle" [style.overflow]="'visible'" matTooltip="Inicio"
-          [matMenuTriggerFor]="startMenu" class="btn-start-adj" *ngIf="!layoutConf.isMobile">
+          [matMenuTriggerFor]="startMenu" class="btn-start-adj tour-start-menu-btn" *ngIf="!layoutConf.isMobile">
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
           Inicio
         </button>
@@ -117,15 +117,20 @@
           </mat-grid-tile>
         </mat-grid-list>
       </mat-menu>-->
+      <!-- Help / system tour -->
+      <button *ngIf="isDesktopHome" mat-icon-button matTooltip="Ayuda" (click)="startSystemTour()"
+        class="topbar-button-right tour-help-btn">
+        <mat-icon>help_outline</mat-icon>
+      </button>
       <!-- Notification toggle button -->
       <span *ngIf="user.isDev && !layout.isMobile" style="font-weight:500;">[{{user.email}}]</span>
       <button mat-icon-button matTooltip="Notifications" (click)="toggleNotific()" [style.overflow]="'visible'"
-        class="topbar-button-right">
+        class="topbar-button-right tour-notifications-btn">
         <mat-icon>notifications</mat-icon>
         <!--<span class="notification-number mat-bg-warn">3</span>-->
       </button>
       <!-- Top right user menu -->
-      <button *ngIf="!layoutConf.isMobile" mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right mr-16 img-button">
+      <button *ngIf="!layoutConf.isMobile" mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right mr-16 img-button tour-profile-btn">
         <img *ngIf="!user.isAlt" src="{{user.pictureURL}}" alt="" referrerpolicy="no-referrer">
         <mat-icon class="material-icons-outlined" *ngIf="user.isAlt">supervised_user_circle</mat-icon>
       </button>
