@@ -7,11 +7,10 @@
           *ngIf="layoutConf.isMobile">
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
         </button>
-        <button mat-icon-button id="schemeToggle" [style.overflow]="'visible'" matTooltip="Inicio"
-          [matMenuTriggerFor]="startMenu" class="btn-start-adj tour-start-menu-btn" *ngIf="!layoutConf.isMobile">
+        <div class="btn-start-adj system-brand tour-start-menu-btn" *ngIf="!layoutConf.isMobile">
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
-          Inicio
-        </button>
+          MIS
+        </div>
       </div>
 
       <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits right at the border between the sidebar header and the layout header -->
@@ -29,10 +28,6 @@
       </div>
 
       <span fxFlex></span>
-
-      <mat-menu class="full" #startMenu="matMenu">
-        <app-start-menu></app-start-menu>
-      </mat-menu>
 
       <!--<ul class="menu" *ngIf="!layoutConf.isMobile">
         <li *ngFor="let item of menuItems; let i = index;">
@@ -136,6 +131,15 @@
         <button mat-menu-item disabled class="account-menu-username">
           <mat-icon>account_circle</mat-icon>
           <span>{{user.name}}</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngIf="!user.isAlt" [disabled]="admin.disableAltUserBtn()" (click)="admin.openAltUserDialog()">
+          <mat-icon>people_alt</mat-icon>
+          <span>Cambiar Usuario</span>
+        </button>
+        <button mat-menu-item *ngIf="user.isAlt" (click)="login.onOriLogin()">
+          <mat-icon>person</mat-icon>
+          <span>Mi Usuario</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="confirmLogout()" class="account-menu-logout">

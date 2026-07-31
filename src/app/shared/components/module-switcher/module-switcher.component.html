@@ -1,0 +1,12 @@
+<button mat-button class="module-switcher-trigger" [matMenuTriggerFor]="moduleMenu">
+  <mat-icon *ngIf="currentModule?.icon" class="module-switcher-icon">{{ currentModule.icon }}</mat-icon>
+  <span class="module-switcher-label">{{ currentModule?.name || 'Módulos' }}</span>
+  <span fxFlex></span>
+  <mat-icon class="module-switcher-caret">unfold_more</mat-icon>
+</button>
+<mat-menu #moduleMenu="matMenu" class="module-switcher-menu">
+  <button mat-menu-item *ngFor="let m of modules" [routerLink]="'/' + m.state">
+    <mat-icon *ngIf="m.icon">{{ m.icon }}</mat-icon>
+    <span>{{ m.name }}</span>
+  </button>
+</mat-menu>

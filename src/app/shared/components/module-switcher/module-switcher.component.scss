@@ -1,0 +1,39 @@
+.module-switcher-trigger {
+  width: calc(100% - 16px);
+  margin: 8px;
+  padding: 0 10px;
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  text-align: left;
+  line-height: normal;
+
+  ::ng-deep .mat-button-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.module-switcher-icon {
+  margin-right: 8px;
+  color: #8990a2;
+}
+
+.module-switcher-label {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module-switcher-caret {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: #8990a2;
+}
