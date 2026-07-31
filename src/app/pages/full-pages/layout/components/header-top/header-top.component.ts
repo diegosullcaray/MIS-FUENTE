@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, OnDestroy, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { ThemeService } from 'app/pages/full-pages/layout/services/theme.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { environment } from 'environments/environment';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 
@@ -27,6 +28,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     code: 'es',
   }]
   @Input() notificPanel;
+  isDesktopHome: boolean = false;
+  private routerEventsSub: Subscription;
   constructor(
     public layout: LayoutService,
     public themeService: ThemeService,
@@ -54,12 +57,20 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.layoutConf = this.layout.layoutConf;
     this.egretThemes = this.themeService.themes;
+    this.isDesktopHome = this.router.url === environment.homePage;
+    this.routerEventsSub = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isDesktopHome = event.urlAfterRedirects === environment.homePage;
+    });
   }
   ngOnDestroy() {
     if(this.menuItemSub){
       this.menuItemSub.unsubscribe()
     }
-
+    if(this.routerEventsSub){
+      this.routerEventsSub.unsubscribe()
+    }
   }
   setLang() {
     //this.translate.use(this.currentLang)
