@@ -3,6 +3,7 @@ import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { IMenuItem, NavigationService } from 'app/pages/full-pages/layout/services/navigation.service';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
+import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/module-sidenav.service';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 
@@ -19,14 +20,16 @@ export class CorresponsalesComponent implements OnInit, OnDestroy {
     activeGes:boolean;
 
     private menuItemsSub: Subscription;
+    private moduleSidenavSub: Subscription;
 
-    
+
 
     constructor(
-        private nav: NavigationService, 
+        private nav: NavigationService,
         public layout: LayoutService,
         private antApp: ModAppService,
-        public user: UserService
+        public user: UserService,
+        private moduleSidenav: ModuleSidenavService
     ) { }
 
     ngOnInit(): void {
@@ -38,14 +41,20 @@ export class CorresponsalesComponent implements OnInit, OnDestroy {
             let b: any = items.filter(e => e.cod === 'A_MOD_CORRE')[0];
             //this.menuItems = b.sub;
             let lin = b.sub[0];
-            this.menuItems = lin.sub; 
-            
+            this.menuItems = lin.sub;
+
         });
+        this.moduleSidenav.register(this.layout.isMobile ? this.openExplorerMob : this.openExplorerDesk);
+        this.moduleSidenavSub = this.moduleSidenav.toggle$.subscribe(() => this.toggleExplorer());
     }
 
     ngOnDestroy(): void {
         if (this.menuItemsSub) {
             this.menuItemsSub.unsubscribe();
+        }
+        this.moduleSidenav.unregister();
+        if (this.moduleSidenavSub) {
+            this.moduleSidenavSub.unsubscribe();
         }
     }
 
@@ -53,14 +62,17 @@ export class CorresponsalesComponent implements OnInit, OnDestroy {
     selectSec(evt) {
         if (this.layout.isMobile) {
             this.openExplorerMob = false;
+            this.moduleSidenav.setOpen(false);
         }
     }
 
     toggleExplorer() {
         if (!this.layout.isMobile) {
             this.openExplorerDesk = !this.openExplorerDesk;
+            this.moduleSidenav.setOpen(this.openExplorerDesk);
         } else {
             this.openExplorerMob = !this.openExplorerMob;
+            this.moduleSidenav.setOpen(this.openExplorerMob);
         }
 
     }
