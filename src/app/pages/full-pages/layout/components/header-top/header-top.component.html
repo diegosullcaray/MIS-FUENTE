@@ -1,15 +1,6 @@
 <div class="header-topnav mat-elevation-z2">
   <div class="container">
     <div class="topnav">
-      <!-- Desktop/home icon: far left -->
-      <div style="padding-left: 5px;padding-top: 5px;" *ngIf="!isDesktopHome">
-        <button mat-icon-button matTooltip="Ir al inicio" (click)="showDesktop()">
-          <mat-icon>desktop_windows</mat-icon>
-        </button>
-      </div>
-
-      <span fxFlex></span>
-
       <!-- Sidebar header: brand/title, aligned to the sidebar's width when a module is open -->
       <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '300px' : 'auto'}">
         <button class="btn-start-adj btn-start-mob" mat-icon-button (click)="toggleSidenav()"
@@ -23,10 +14,17 @@
         </button>
       </div>
 
-      <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits next to the sidebar header -->
+      <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits right at the border between the sidebar header and the layout header -->
       <div style="padding-left: 5px;" *ngIf="moduleSidenav.active">
         <button mat-icon-button class="module-sidenav-toggle-btn" matTooltip="Mostrar/ocultar menú" (click)="moduleSidenav.toggle()">
           <mat-icon>{{ moduleSidenav.isOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        </button>
+      </div>
+
+      <!-- Desktop/home icon: left side, right after the sidebar toggle -->
+      <div style="padding-left: 5px;padding-top: 5px;" *ngIf="!isDesktopHome">
+        <button mat-icon-button matTooltip="Ir al inicio" (click)="showDesktop()">
+          <mat-icon>desktop_windows</mat-icon>
         </button>
       </div>
 
