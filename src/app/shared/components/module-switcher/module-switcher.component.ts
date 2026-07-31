@@ -36,7 +36,7 @@ export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.menuItemsSub = this.nav.menuItems$.subscribe(items => {
-      this.modules = (items || []).filter(i => !!i.state);
+      this.modules = items || [];
       this.updateCurrentModule();
     });
     this.routerEventsSub = this.router.events.pipe(

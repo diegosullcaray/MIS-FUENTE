@@ -39,7 +39,18 @@
 }
 
 .module-switcher-icon-trigger {
+  width: auto !important;
+  height: 40px;
+  padding: 0 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: visible;
+
+  ::ng-deep .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .module-switcher-panel {
