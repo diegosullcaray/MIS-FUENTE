@@ -9,13 +9,13 @@
         <ng-container *ngIf="menuChilds!==undefined && menuChilds.length>0">
             <ng-container *ngFor="let item of menuChilds;let i = index">
                 <li *ngIf="item.type!=='dropDown'" mat-menu-item [routerLink]="item.state">
-                    <mat-icon>{{item.icon}}</mat-icon>
+                    <mat-icon>{{item.icon || 'assessment'}}</mat-icon>
                     <span>{{item.name}}</span>
                 </li>
                 <ng-container *ngIf="item.type==='dropDown'">
                     <li mat-menu-item #levelTwoTrigger="matMenuTrigger" [matMenuTriggerFor]="levelTwo">
                         <mat-icon>
-                            {{item.icon}}
+                            {{item.icon || 'folder'}}
                         </mat-icon>
                         <span>{{item.name}}</span>
                     </li>
@@ -25,7 +25,7 @@
                             <ng-container *ngFor="let item2 of item.sub;let i2 = index">
                                 <li *ngIf="item2.type!=='dropDown'" mat-menu-item [routerLink]="item2.state">
                                     <mat-icon>
-                                        {{item2.icon}}
+                                        {{item2.icon || 'assessment'}}
                                     </mat-icon>
                                     <span>{{item2.name}}</span>
                                 </li>
@@ -33,7 +33,7 @@
                                     <li mat-menu-item #levelThreeTrigger="matMenuTrigger"
                                         [matMenuTriggerFor]="levelThree">
                                         <mat-icon>
-                                            {{item2.icon}}
+                                            {{item2.icon || 'folder'}}
                                         </mat-icon>
                                         <span>{{item2.name}}</span>
                                     </li>
@@ -43,7 +43,7 @@
                                             <ng-container *ngFor="let item3 of item2.sub">
                                                 <li mat-menu-item [routerLink]="item3.state">
                                                     <mat-icon>
-                                                        {{item3.icon}}
+                                                        {{item3.icon || 'assessment'}}
                                                     </mat-icon>
                                                     <span>{{item3.name}} </span>
                                                 </li>
