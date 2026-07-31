@@ -92,6 +92,6 @@ export class PresupuestoComponent implements OnInit, OnDestroy {
     }
 
     calcWidth(): string {
-        return this.layout.isMobile ? "width: 100%;" : "width: 300px";
+        return this.layout.isMobile ? "width: 100%;" : "width: 260px";
     }
 }

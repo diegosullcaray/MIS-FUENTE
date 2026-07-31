@@ -38,10 +38,13 @@
   color: #8990a2;
 }
 
+// Misma ubicacion/margenes/tamaño que .system-brand: sin alto ni padding
+// propios, se apoya en el padding/margin de .topbar-branding (contenedor
+// compartido) y en el alto real del logo.
 .module-switcher-icon-trigger {
   width: auto !important;
-  height: 40px;
-  padding: 0 8px !important;
+  height: auto;
+  padding: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
