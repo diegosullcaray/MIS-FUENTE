@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './pages/full-pages/auth/auth.module';
 import { LayoutModule } from './pages/full-pages/layout/layout.module';
+import { SharedModule } from './shared/shared.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './pages/full-pages/layout/interceptors/http-interceptors';
@@ -25,6 +26,7 @@ import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin
     BrowserAnimationsModule,  
     AuthModule,
     LayoutModule,
+    SharedModule,
     HttpClientModule,
     AppRoutingModule
   ],

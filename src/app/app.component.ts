@@ -5,6 +5,7 @@ import { RoutePartsService } from 'app/core/services/route-parts.service';
 import { UILibIconService } from 'app/core/services/ui-lib-icon.service';
 import { filter } from 'rxjs/operators';
 import { LayoutService } from './pages/full-pages/layout/services/layout.service';
+import { SessionLoaderService } from 'app/shared/services/session-loader.service';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -33,7 +34,8 @@ export class AppComponent {
     private activeRoute: ActivatedRoute,
     private routePartsService: RoutePartsService,
     private layoutService: LayoutService,
-    private iconService: UILibIconService
+    private iconService: UILibIconService,
+    public sessionLoader: SessionLoaderService
   ) {
     Highcharts.setOptions(this.highchartsLocalLangOptions);
     this.iconService.init()

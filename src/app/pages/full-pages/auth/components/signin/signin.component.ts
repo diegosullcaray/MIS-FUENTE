@@ -3,6 +3,7 @@ import { LocalStoreService } from 'app/core/data/local/local-store.service';
 import { baseAnimations } from 'app/shared/animations/animations.util';
 import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
 import { system_keys } from 'app/pages/full-pages/system-keys.config';
+import { SessionLoaderService } from 'app/shared/services/session-loader.service';
 import * as uuid from 'uuid';
 import { printLog } from 'app/core/helpers/debug.util';
 
@@ -19,12 +20,14 @@ export class SigninComponent implements OnInit {
   constructor(
     //private fb: FormBuilder
     private authService: AuthService,
-    private lsService: LocalStoreService
+    private lsService: LocalStoreService,
+    private sessionLoader: SessionLoaderService
   ) {
     this.authService.configure();
    }
 
   ngOnInit() {
+    setTimeout(() => this.sessionLoader.hide(), 700);
 
     /*const password = new FormControl('', Validators.required);
     const confirmPassword = new FormControl('', CustomValidators.equalTo(password));

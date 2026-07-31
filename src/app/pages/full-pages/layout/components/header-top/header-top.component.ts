@@ -9,6 +9,9 @@ import { Router, NavigationEnd } from '@angular/router';
 import { environment } from 'environments/environment';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/module-sidenav.service';
+import { TourService } from 'app/shared/services/tour.service';
+import { SessionLoaderService } from 'app/shared/services/session-loader.service';
+import { DriveStep } from 'driver.js';
 
 @Component({
   selector: 'app-header-top',
@@ -18,7 +21,7 @@ import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/modul
 export class HeaderTopComponent implements OnInit, OnDestroy {
   layoutConf: any;
   menuItems: any;
-  menuItemSub: Subscription;
+  menuItemSub!: Subscription;
   egretThemes: any[] = [];
   currentLang = 'en';
   availableLangs = [{
@@ -30,7 +33,7 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   }]
   @Input() notificPanel;
   isDesktopHome: boolean = false;
-  private routerEventsSub: Subscription;
+  private routerEventsSub!: Subscription;
   constructor(
     public layout: LayoutService,
     public themeService: ThemeService,
@@ -38,7 +41,9 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     public router:Router,
     private confirm: StgAppConfirmService,
-    public moduleSidenav: ModuleSidenavService
+    public moduleSidenav: ModuleSidenavService,
+    private tour: TourService,
+    private sessionLoader: SessionLoaderService
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService
@@ -51,9 +56,61 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   confirmLogout() {
     this.confirm.open('¿Está seguro que desea cerrar sesión?').subscribe(x => {
       if (x.result == 1) {
+        this.sessionLoader.show('Cerrando sesión...');
         this.auth.logout();
       }
     });
+  }
+
+  startSystemTour() {
+    const steps: DriveStep[] = [
+      {
+        element: '.tour-start-menu-btn',
+        popover: {
+          title: 'Menú de módulos',
+          description: 'Desde acá accedés al listado de todos los módulos del sistema.',
+          side: 'bottom',
+          align: 'start'
+        }
+      },
+      {
+        element: '.tour-help-btn',
+        popover: {
+          title: 'Ayuda',
+          description: 'Este botón inicia el recorrido guiado que estás viendo ahora.',
+          side: 'bottom',
+          align: 'end'
+        }
+      },
+      {
+        element: '.tour-notifications-btn',
+        popover: {
+          title: 'Notificaciones',
+          description: 'Acá se muestran los avisos y notificaciones del sistema.',
+          side: 'bottom',
+          align: 'end'
+        }
+      },
+      {
+        element: '.tour-profile-btn',
+        popover: {
+          title: 'Tu perfil',
+          description: 'Mostrá tu usuario, cambiá de usuario alterno o cerrá sesión desde acá.',
+          side: 'bottom',
+          align: 'end'
+        }
+      },
+      {
+        element: '#desktop-tour-shortcuts',
+        popover: {
+          title: 'Accesos directos',
+          description: 'Acá encontrás los accesos directos a los módulos y reportes del sistema.',
+          side: 'top',
+          align: 'start'
+        }
+      }
+    ];
+    this.tour.start(steps);
   }
 
   ngOnInit() {

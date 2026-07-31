@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { MaterialModule } from 'app/material/material.module';
+import { SharedModule } from 'app/shared/shared.module';
 import { ModSysLoginService } from 'app/core/data/remote/instances/mod-sys-login.service';
 
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
@@ -28,6 +29,7 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     FlexLayoutModule,
     RouterModule,
     OAuthModule.forRoot()
