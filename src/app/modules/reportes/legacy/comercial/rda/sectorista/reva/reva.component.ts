@@ -6,7 +6,6 @@ import {baseAnimations} from 'app/shared/animations/animations.util'
 import {WinderService} from '../../../../../../../core/data/remote/winder/winder.service';
 import { Strand } from '../../../../../../../core/data/remote/winder/strand.class';
 import { IWinderConfig } from '../../../../../../../core/data/remote/winder/winder-bearer.interface';
-//import { secStructureConfig } from 'app/system/session/session-structure.config';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 import { ActivatedRoute } from '@angular/router';
 
