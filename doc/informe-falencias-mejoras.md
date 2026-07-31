@@ -52,7 +52,8 @@
      directo en vez de `environments/environment`, así que siempre usa el secreto de prod
      independientemente del build. Vale la pena confirmarlo con quien mantiene ese servicio.
 
-3. **Adjunto del header `Authorization` deshabilitado (código muerto) en dos lugares clave.**
+3. **🟡 ANALIZADO (2026-07-30), sin cambios de código — decisión del usuario.** Adjunto del
+   header `Authorization` deshabilitado (código muerto) en dos lugares clave.
    `pages/full-pages/layout/interceptors/token.interceptor.ts` (ex
    `system/admin/interceptors/repository/TokenInterceptor.ts`, movido en la migración a
    `pages/full-pages/`) y `core/data/remote/winder/winder.service.ts:64-68` tienen comentado el
@@ -63,6 +64,18 @@
    una feature de seguridad a medio implementar y olvidada. Vale la pena confirmarlo con quien
    diseñó el protocolo Winder antes de tocarlo — no es un fix mecánico, es una pregunta de
    arquitectura de seguridad.
+
+   **Análisis con CodeGraph (2026-07-30):** el mecanismo de autenticación real hoy no es un
+   `Authorization` header sino el header `Winder-Params`, generado en
+   `WinderService.winderConfig()` (`winder.service.ts:119-122`) cifrando con AES un payload que
+   incluye `key: conn.secret` (el secreto por-módulo de `environment.moduleSecrets`, ver punto
+   2). `TokenService`/`updateToken()` no es validado por el backend — es un temporizador
+   client-side que solo dispara el diálogo de "sesión expirada" (`SessionEndDialogComponent`) vía
+   `AdminService.openSessionEndDialog()`. Todo indica que el `Authorization` header comentado es
+   un diseño anterior o alternativo, superado por el esquema de `Winder-Params` cifrado por
+   módulo — no parece un bug de seguridad activo. El usuario decidió, con esta lectura, no tocar
+   el código y dejarlo documentado (sigue sin confirmarse formalmente con quien diseñó el
+   protocolo Winder si se necesita certeza total).
 
 ## Duplicación estructural (deuda técnica)
 
@@ -166,7 +179,7 @@
 | 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | No | 🟡 Extraído a gitignore; rotación y pipeline externo pendientes |
 | 9 | Poblar o borrar `core/guards|interceptors|interfaces` | Bajo | Medio (claridad) | No | ✅ Resuelto (2026-07-30) — se optó por borrar |
 | 10 | Renombrar `modules/shared/` | Bajo | Bajo (claridad) | No | ✅ Obsoleto — ya no existe `modules/shared/` |
-| 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad | Pendiente |
+| 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad | 🟡 Analizado, sin evidencia de bug activo; sin cambios de código |
 | 4 | Consolidar `stg-table` v1-v4 | Alto | Alto (mantenibilidad) | No, pero requiere inventario cuidadoso | Pendiente |
 | 15 | Elevar cobertura de tests en capa `core`/`pages` | Alto | Alto (habilita todo lo demás) | No | Pendiente |
 | 5, 6 | Confirmar con negocio que `incentivos3`/`Kaypacha3` son la única versión vigente (ya se archivaron las otras) | Medio | Alto | Sí — vigencia de cada versión | Pendiente |
