@@ -2,19 +2,13 @@
     <div fxFlex style="overflow-y: auto;height: 100%;">
         <mat-sidenav-container style="height: 100%;">
             <mat-sidenav [style]="calcWidth()" mode="side" [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk" >
-                <mat-tab-group fxFlex style="overflow-y: auto;">
-                    <mat-tab label="Lineas">
-                        <ng-template matTabContent>
-                            <stg-basic-tree-sidenav [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
-                        </ng-template>
-                    </mat-tab>
-                    <mat-tab label="Gestión" *ngIf="activeGes">
-                        <ng-template matTabContent>
-                            <stg-basic-tree-sidenav [menuItems]="menuItems2" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
-                        </ng-template>
-                    </mat-tab>
-                </mat-tab-group>
-                
+                <app-module-switcher currentModuleCod="A_MOD_PRES"></app-module-switcher>
+                <div class="sidenav-section-title">Líneas</div>
+                <stg-basic-tree-sidenav class="sidenav-section-tree" [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
+                <ng-container *ngIf="activeGes">
+                    <div class="sidenav-section-title">Gestión</div>
+                    <stg-basic-tree-sidenav class="sidenav-section-tree" [menuItems]="menuItems2" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
+                </ng-container>
             </mat-sidenav>
 
             <mat-sidenav-content>

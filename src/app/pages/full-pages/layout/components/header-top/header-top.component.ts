@@ -11,6 +11,8 @@ import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-
 import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/module-sidenav.service';
 import { TourService } from 'app/shared/services/tour.service';
 import { SessionLoaderService } from 'app/shared/services/session-loader.service';
+import { AdminService } from 'app/pages/full-pages/layout/services/admin.service';
+import { LoginService } from 'app/pages/full-pages/auth/services/login.service';
 import { DriveStep } from 'driver.js';
 
 @Component({
@@ -43,7 +45,9 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     private confirm: StgAppConfirmService,
     public moduleSidenav: ModuleSidenavService,
     private tour: TourService,
-    private sessionLoader: SessionLoaderService
+    private sessionLoader: SessionLoaderService,
+    public admin: AdminService,
+    public login: LoginService
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService
@@ -67,8 +71,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
       {
         element: '.tour-start-menu-btn',
         popover: {
-          title: 'Menú de módulos',
-          description: 'Desde acá accedés al listado de todos los módulos del sistema.',
+          title: 'Módulos',
+          description: 'Hacé clic acá para ver el listado de módulos del sistema y saltar a cualquiera. Dentro de un módulo vas a encontrar este mismo selector arriba del menú lateral.',
           side: 'bottom',
           align: 'start'
         }

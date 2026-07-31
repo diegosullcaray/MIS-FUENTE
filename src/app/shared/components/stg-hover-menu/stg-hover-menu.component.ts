@@ -49,7 +49,7 @@ export class StgHoverMenuComponent {
   levelLeave(lvl:string,...trigger){
     let idx = this.repoLvl.indexOf(lvl);
     setTimeout(() => {
-      
+
       let nm = this.repoIn[idx+1];
       if(nm){
         this.repoReIn[idx]=false;
@@ -76,13 +76,13 @@ export class StgHoverMenuComponent {
       if (this.timedOutCloser) {
         clearTimeout(this.timedOutCloser);
       }
- 
+
       trigger.openMenu();
     }
-  
+
     mouseLeave(trigger,lvl) {
       this.timedOutCloser = setTimeout(() => {
- 
+
         trigger.closeMenu();
       }, 10);
     }*/

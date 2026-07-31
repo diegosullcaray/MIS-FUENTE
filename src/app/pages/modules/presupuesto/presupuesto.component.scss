@@ -1,0 +1,19 @@
+// Secciones "Líneas"/"Gestión" apiladas una debajo de otra (sin tabs: con
+// mat-tab-group, en un sidebar tan angosto, Material activa sus flechas de
+// paginación en vez de mostrar ambas etiquetas).
+.sidenav-section-title {
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #8990a2;
+}
+
+// Sin esto, el arbol de "Lineas" ocupa toda su altura de contenido y empuja
+// "Gestión" muy abajo. Se limita cada arbol a una altura razonable con su
+// propio scroll interno (sin usar flex).
+.sidenav-section-tree {
+  display: block;
+  max-height: 260px;
+  overflow-y: auto;
+}

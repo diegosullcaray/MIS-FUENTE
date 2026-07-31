@@ -4,6 +4,18 @@
     margin-left: 16px;
 }
 
+.system-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+
+    .app-logo {
+        margin-right: 6px;
+    }
+}
+
 .btn-start-mob{
     width: 40px !important;
 }

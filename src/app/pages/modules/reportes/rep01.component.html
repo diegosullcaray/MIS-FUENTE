@@ -4,6 +4,7 @@
         <mat-sidenav-container style="height: 100%;">
             <mat-sidenav [style]="calcWidth()" mode="side" [opened]="layout.isMobile ? openExplorerMob : openExplorerDesk" (openedChange)="layout.isMobile ? (openExplorerMob = $event) : (openExplorerDesk = $event)">
                 <!--(closed)="msg('close!')" (opened)="msg('open!')"-->
+                <app-module-switcher currentModuleCod="A_MOD_RCOM"></app-module-switcher>
                 <mod-rep-sidenav [menuItems]="menuItems" (onSelectMenuItem)="hideExplorer($event)"></mod-rep-sidenav>
             </mat-sidenav>
 

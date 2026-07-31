@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { StgHoverMenuComponent } from './components/stg-hover-menu/stg-hover-menu.component';
 import { MaterialModule } from 'app/material/material.module';
+import { StgHoverMenuComponent } from './components/stg-hover-menu/stg-hover-menu.component';
 import { StgTableComponent } from './components/stg-table/stg-table.component';
 import { StgLoading1 } from './components/stg-loading-1/stg-loading-1.component';
 import { StgWindowBarComponent } from './components/stg-window-bar/stg-window-bar.component';
@@ -43,6 +43,7 @@ import { InFormDialogComponent } from './ui/in-form-dialog/in-form-dialog.compon
 import { BlankLoaderComponent } from './ui/blank-loader/blank-loader.component';
 import { ClientSummaryComponent } from './ui/client-summary/client-summary.component';
 import { SessionLoaderComponent } from './components/session-loader/session-loader.component';
+import { ModuleSwitcherComponent } from './components/module-switcher/module-switcher.component';
 import { TblPickerDialogService } from './services/tbl-picker-dialog.service';
 import { SecPickerDialog2Service } from './services/sec-picker-dialog2.service';
 import { InFormDialogService } from './services/in-form-dialog.service';
@@ -82,7 +83,8 @@ const components = [
     InFormDialogComponent,
     BlankLoaderComponent,
     ClientSummaryComponent,
-    SessionLoaderComponent
+    SessionLoaderComponent,
+    ModuleSwitcherComponent
 ];
 
 const pipes = [

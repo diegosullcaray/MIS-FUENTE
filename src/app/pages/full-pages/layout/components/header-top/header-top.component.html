@@ -2,16 +2,15 @@
   <div class="container">
     <div class="topnav">
       <!-- Sidebar header: brand/title, aligned to the sidebar's width when a module is open -->
-      <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '285px' : 'auto', display: moduleSidenav.active ? 'flex' : 'block', 'justify-content': 'center'}">
+      <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '285px' : '220px', display: 'flex', 'justify-content': 'center'}">
         <button class="btn-start-adj btn-start-mob" mat-icon-button (click)="toggleSidenav()"
           *ngIf="layoutConf.isMobile">
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
         </button>
-        <button mat-icon-button id="schemeToggle" [style.overflow]="'visible'" matTooltip="Inicio"
-          [matMenuTriggerFor]="startMenu" class="btn-start-adj tour-start-menu-btn" *ngIf="!layoutConf.isMobile">
-          <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
-          Inicio
-        </button>
+        <div class="system-brand tour-start-menu-btn" *ngIf="!layoutConf.isMobile && moduleSidenav.active">
+          <img style="height: 30px;width: auto;" src="assets/images/fc/logos/fc_blank.png" alt="" class="app-logo">
+        </div>
+        <app-module-switcher class="tour-start-menu-btn" [iconOnly]="true" *ngIf="!layoutConf.isMobile && !moduleSidenav.active"></app-module-switcher>
       </div>
 
       <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits right at the border between the sidebar header and the layout header -->
@@ -29,10 +28,6 @@
       </div>
 
       <span fxFlex></span>
-
-      <mat-menu class="full" #startMenu="matMenu">
-        <app-start-menu></app-start-menu>
-      </mat-menu>
 
       <!--<ul class="menu" *ngIf="!layoutConf.isMobile">
         <li *ngFor="let item of menuItems; let i = index;">
@@ -136,6 +131,15 @@
         <button mat-menu-item disabled class="account-menu-username">
           <mat-icon>account_circle</mat-icon>
           <span>{{user.name}}</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngIf="!user.isAlt" [disabled]="admin.disableAltUserBtn()" (click)="admin.openAltUserDialog()">
+          <mat-icon>people_alt</mat-icon>
+          <span>Cambiar Usuario</span>
+        </button>
+        <button mat-menu-item *ngIf="user.isAlt" (click)="login.onOriLogin()">
+          <mat-icon>person</mat-icon>
+          <span>Mi Usuario</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="confirmLogout()" class="account-menu-logout">

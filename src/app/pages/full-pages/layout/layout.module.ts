@@ -11,7 +11,6 @@ import { HeaderTopComponent } from './components/header-top/header-top.component
 import { SidebarTopComponent } from './components/sidebar-top/sidebar-top.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-import { StartMenuComponent } from './components/start-menu/start-menu.component';
 import { AltUserDialogComponent } from './components/alt-user-dialog/alt-user-dialog.component';
 import { AdDialogComponent } from './components/ad-dialog/ad-dialog.component';
 import { SessionEndDialogComponent } from './components/session-end-dialog/session-end-dialog.component';
@@ -31,7 +30,6 @@ const components = [
     SidebarTopComponent,
     SidenavComponent,
     NotificationsComponent,
-    StartMenuComponent,
     AltUserDialogComponent,
     AdDialogComponent,
     SessionEndDialogComponent,
