@@ -22,7 +22,7 @@ import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,  
     AuthModule,
     LayoutModule,
     HttpClientModule,
