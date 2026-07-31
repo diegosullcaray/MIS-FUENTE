@@ -5,7 +5,11 @@
 .mat-menu-content{
     padding: 0px !important;
 }
-.mat-menu-panel.full{ max-width: 600px !important; }
+.mat-menu-panel.full{
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
 
 .mat-menu-panel.start-menu-node {
     margin-top: -36px;
