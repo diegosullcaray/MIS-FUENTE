@@ -20,7 +20,7 @@ import { DriveStep } from 'driver.js';
 export class HeaderTopComponent implements OnInit, OnDestroy {
   layoutConf: any;
   menuItems: any;
-  menuItemSub: Subscription;
+  menuItemSub!: Subscription;
   egretThemes: any[] = [];
   currentLang = 'en';
   availableLangs = [{
@@ -32,7 +32,7 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   }]
   @Input() notificPanel;
   isDesktopHome: boolean = false;
-  private routerEventsSub: Subscription;
+  private routerEventsSub!: Subscription;
   constructor(
     public layout: LayoutService,
     public themeService: ThemeService,
