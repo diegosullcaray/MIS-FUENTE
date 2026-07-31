@@ -3,7 +3,7 @@
         <mat-sidenav-container style="height: 100%;">
             <mat-sidenav [style]="calcWidth()" mode="side"
                 [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk">
-                <app-module-switcher></app-module-switcher>
+                <app-module-switcher currentModuleCod="A_MOD_TAR"></app-module-switcher>
                 <stg-basic-tree-sidenav [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)">
                 </stg-basic-tree-sidenav>
             </mat-sidenav>

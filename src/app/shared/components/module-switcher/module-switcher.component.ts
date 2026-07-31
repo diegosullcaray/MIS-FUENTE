@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -9,7 +9,11 @@ import { IMenuItem, NavigationService } from 'app/pages/full-pages/layout/servic
   templateUrl: './module-switcher.component.html',
   styleUrls: ['./module-switcher.component.scss']
 })
-export class ModuleSwitcherComponent implements OnInit, OnDestroy {
+export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
+  // Cod del modulo actual (ej. 'A_MOD_RCOM' para reportes). Si se pasa, se usa
+  // para identificar el modulo activo en vez de intentar adivinarlo por la URL.
+  @Input() currentModuleCod: string;
+
   modules: IMenuItem[] = [];
   currentModule: IMenuItem;
 
@@ -28,6 +32,10 @@ export class ModuleSwitcherComponent implements OnInit, OnDestroy {
     ).subscribe(() => this.updateCurrentModule());
   }
 
+  ngOnChanges(): void {
+    this.updateCurrentModule();
+  }
+
   ngOnDestroy(): void {
     if (this.menuItemsSub) {
       this.menuItemsSub.unsubscribe();
@@ -38,6 +46,10 @@ export class ModuleSwitcherComponent implements OnInit, OnDestroy {
   }
 
   private updateCurrentModule(): void {
+    if (this.currentModuleCod) {
+      this.currentModule = this.modules.find(m => m.cod === this.currentModuleCod) || null;
+      return;
+    }
     const url = this.router.url;
     this.currentModule = this.modules.find(m => url.indexOf('/' + m.state) !== -1) || null;
   }
