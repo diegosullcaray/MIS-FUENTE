@@ -2,6 +2,7 @@ import { OnDestroy, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { IMenuItem, NavigationService } from "app/pages/full-pages/layout/services/navigation.service";
+import { ModuleSidenavService } from "app/pages/full-pages/layout/services/module-sidenav.service";
 import { Subscription } from "rxjs";
 
 
@@ -16,12 +17,17 @@ export class Rep01Component implements OnInit, OnDestroy {
     menuItems: IMenuItem[];
 
     private menuItemsSub: Subscription;
+    private moduleSidenavSub: Subscription;
 
-    constructor(private nav: NavigationService, public layout: LayoutService) { }
+    constructor(private nav: NavigationService, public layout: LayoutService, private moduleSidenav: ModuleSidenavService) { }
 
     ngOnDestroy(): void {
         if (this.menuItemsSub) {
             this.menuItemsSub.unsubscribe();
+        }
+        this.moduleSidenav.unregister();
+        if (this.moduleSidenavSub) {
+            this.moduleSidenavSub.unsubscribe();
         }
     }
 
@@ -33,6 +39,8 @@ export class Rep01Component implements OnInit, OnDestroy {
             let b: any = items.filter(e => e.cod === 'A_MOD_RCOM')[0];
             this.menuItems = b.sub;
         });
+        this.moduleSidenav.register();
+        this.moduleSidenavSub = this.moduleSidenav.toggle$.subscribe(() => this.toggleExplorer());
     }
 
     hideExplorer(evt) {
