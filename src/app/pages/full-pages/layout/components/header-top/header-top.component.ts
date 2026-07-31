@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
+import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 
 @Component({
   selector: 'app-header-top',
@@ -31,7 +32,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     public themeService: ThemeService,
     public user: UserService,
     public auth: AuthService,
-    public router:Router
+    public router:Router,
+    private confirm: StgAppConfirmService
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService
@@ -39,6 +41,14 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
 
   showDesktop(){
     this.router.navigateByUrl(environment.homePage);
+  }
+
+  confirmLogout() {
+    this.confirm.open('¿Está seguro que desea cerrar sesión?').subscribe(x => {
+      if (x.result == 1) {
+        this.auth.logout();
+      }
+    });
   }
 
   ngOnInit() {

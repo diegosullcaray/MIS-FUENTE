@@ -118,8 +118,8 @@
         <mat-icon>notifications</mat-icon>
         <!--<span class="notification-number mat-bg-warn">3</span>-->
       </button>
-      <!-- Top left user menu -->
-      <button *ngIf="!layoutConf.isMobile" mat-icon-button class="topbar-button-right mr-16 img-button">
+      <!-- Top right user menu -->
+      <button *ngIf="!layoutConf.isMobile" mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right mr-16 img-button">
         <img *ngIf="!user.isAlt" src="{{user.pictureURL}}" alt="" referrerpolicy="no-referrer">
         <mat-icon class="material-icons-outlined" *ngIf="user.isAlt">supervised_user_circle</mat-icon>
       </button>
@@ -128,25 +128,20 @@
           <img *ngIf="!user.isAlt" src="{{user.pictureURL}}" alt="" referrerpolicy="no-referrer">
           <mat-icon class="material-icons-outlined" *ngIf="user.isAlt">supervised_user_circle</mat-icon>
         </button>
-        <mat-menu #accountMenu="matMenu">
-          <mat-divider></mat-divider>
-          <!--<button mat-menu-item [routerLink]="['/profile/settings']">
-            <mat-icon>settings</mat-icon>
-            <span>Account Settings</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
-          </button>-->
-          <!--<button mat-menu-item (click)="jwtAuth.signout()">-->
-          <button mat-menu-item (click)="auth.logout()">
-            <mat-icon style="font-size: 18px;">
-              logout
-            </mat-icon>
-            <span>Cerrar Sesion</span>
-          </button>
-        </mat-menu>
       </ng-container>
+      <mat-menu #accountMenu="matMenu">
+        <button mat-menu-item disabled class="account-menu-username">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{user.name}}</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="confirmLogout()" class="account-menu-logout">
+          <mat-icon style="font-size: 18px;">
+            logout
+          </mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
 
       <!-- Mobile screen menu toggle 
       <button mat-icon-button class="mr-16" (click)="toggleSidenav()" *ngIf="layoutConf.isMobile">
