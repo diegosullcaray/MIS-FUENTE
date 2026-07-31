@@ -65,3 +65,6 @@ docs
 
 # superpowers subagent-driven-development scratch workspace
 /.superpowers
+
+# secretos de cifrado (no commitear); copiar desde environment.secrets.example.ts
+/src/environments/environment.secrets.ts
