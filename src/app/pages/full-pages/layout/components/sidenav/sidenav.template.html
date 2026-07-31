@@ -55,6 +55,8 @@
 
             <!--<a routerLink="{{item.state ? '/'+item.state : ''}}/{{itemLvL2.state}}" appDropdownToggle *ngIf="itemLvL2.type !== 'dropDown'"-->
             <a [routerLink]="itemLvL2.state ? itemLvL2.state : null" appDropdownToggle *ngIf="itemLvL2.type !== 'dropDown'" matRipple>
+              <mat-icon *ngIf="itemLvL2.icon" class="sidenav-mat-icon">{{itemLvL2.icon}}</mat-icon>
+              <mat-icon *ngIf="itemLvL2.svgIcon" [svgIcon]="itemLvL2.svgIcon" class="svgIcon"></mat-icon>
               <span class="item-name lvl2">{{itemLvL2.name}}</span>
               <span fxFlex></span>
             </a>
@@ -70,6 +72,8 @@
               <li *ngFor="let itemLvL3 of itemLvL2.sub" appDropdownLink routerLinkActive="open">
                 <!--<a routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}" appDropdownToggle-->
                 <a [routerLink]="itemLvL3.state ? itemLvL3.state : null" appDropdownToggle *ngIf="itemLvL3.type !== 'dropDown'" matRipple>
+                  <mat-icon *ngIf="itemLvL3.icon" class="sidenav-mat-icon">{{itemLvL3.icon}}</mat-icon>
+                  <mat-icon *ngIf="itemLvL3.svgIcon" [svgIcon]="itemLvL3.svgIcon" class="svgIcon"></mat-icon>
                   <span class="item-name lvl3">{{itemLvL3.name}}</span>
                 </a>
 
@@ -84,6 +88,8 @@
                   <li *ngFor="let itemLvL4 of itemLvL3.sub" appDropdownLink routerLinkActive="open">
                     <!--<a routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}" appDropdownToggle-->
                     <a [routerLink]="itemLvL4.state ? itemLvL4.state : null" appDropdownToggle matRipple>
+                      <mat-icon *ngIf="itemLvL4.icon" class="sidenav-mat-icon">{{itemLvL4.icon}}</mat-icon>
+                      <mat-icon *ngIf="itemLvL4.svgIcon" [svgIcon]="itemLvL4.svgIcon" class="svgIcon"></mat-icon>
                       <span class="item-name lvl4">{{itemLvL4.name}}</span>
                     </a>
                   </li>
