@@ -1,7 +1,8 @@
 # Informe de falencias y oportunidades de mejora — MIS-FUENTE
 
-> Basado en el estado real de `main` (commit `3c7f132`), verificado con CodeGraph y lectura
-> directa del código, no en documentación heredada. Complementa `doc/arquitectura.md`.
+> Basado en el estado real de `main` (commit `f0ca213`, 2026-07-30), actualizado sobre la
+> versión anterior de este informe (commit `3c7f132`) tras verificar con CodeGraph los commits
+> posteriores. Complementa `doc/arquitectura.md`.
 
 ## Seguridad
 
@@ -32,8 +33,10 @@
    historial de git aunque se borren del archivo actual).
 
 3. **Adjunto del header `Authorization` deshabilitado (código muerto) en dos lugares clave.**
-   `system/admin/interceptors/repository/TokenInterceptor.ts` y
-   `core/data/remote/winder/winder.service.ts:64-68` tienen comentado el bloque que setea el
+   `pages/full-pages/layout/interceptors/token.interceptor.ts` (ex
+   `system/admin/interceptors/repository/TokenInterceptor.ts`, movido en la migración a
+   `pages/full-pages/`) y `core/data/remote/winder/winder.service.ts:64-68` tienen comentado el
+   bloque que setea el
    header `Authorization`/adjunta el token a la request saliente. Hoy el interceptor solo llama
    `tokenService.updateToken()` como efecto secundario, sin adjuntar nada a la petición. Esto
    puede ser intencional (el backend valida por otra vía, p. ej. cookie de sesión) o puede ser
@@ -50,16 +53,19 @@
    sola versión es la limpieza de mayor payback en `shared/`, pero requiere inventariar
    consumidores de cada una antes de tocar nada (no es un rename mecánico).
 
-5. **Cuatro módulos `incentivos*` en paralelo:** `incentivos-a/`, `incentivos2/`, `incentivos3/`,
-   `incentivos4/`, cada uno con su propio `Mod*Service` (`ModIncentivosAService`,
-   `ModIncentivos2Service`, `ModIncentivos3Service`, `ModIncentivos4Service`). Sin conversación
-   con negocio es imposible saber cuáles siguen vigentes y cuáles son generaciones anteriores
-   sin retirar — es la clase de decisión que no se puede tomar solo desde el código (perfiles de
-   usuario por módulo, vigencia de cada campaña/modelo).
+5. **RESUELTO PARCIALMENTE (esta sesión): de los cuatro módulos `incentivos*`, tres se movieron
+   a `backups/modules/`.** `incentivos-a/`, `incentivos2/` e `incentivos4/` ya no están en
+   `modules/` — solo queda vivo `incentivos3/` con su `ModIncentivos3Service`. Esto no es lo
+   mismo que haber resuelto H-08 con negocio (no se fusionó código, no se decidió cuál es la
+   versión "correcta" a futuro): es sacar del árbol activo generaciones que no tenían ruta o
+   consumidores cruzados, sin tocar la lógica de cálculo de incentivos. Sigue pendiente
+   confirmar con negocio si `incentivos3` (y su campaña 2025/2026) es realmente la única
+   vigente antes de dar el tema por cerrado.
 
-6. **Tres variantes de un mismo módulo `kaypacha`:** `kaypacha/`, `Kaypacha2/`, `Kaypacha3/`
-   (nótese además la inconsistencia de mayúsculas en el nombre de carpeta). Mismo patrón que
-   incentivos — candidato a auditoría de vigencia con negocio antes de consolidar.
+6. **RESUELTO PARCIALMENTE (esta sesión): de las tres variantes de `kaypacha`, dos se movieron a
+   `backups/modules/`.** `kaypacha/` y `Kaypacha2/` ya no están en `modules/` — solo queda vivo
+   `Kaypacha3/`. Mismo comentario que el punto 5: es limpieza de árbol, no una decisión de
+   negocio confirmada sobre cuál versión es la vigente a largo plazo.
 
 7. **`modules/reportes/legacy/` con 157 archivos activos** (34% de `reportes/`). El nombre
    "legacy" ya declara la intención, pero sigue siendo 1 de cada 3 archivos de todo el árbol de
@@ -72,11 +78,13 @@
 
 ## Organización / nombres
 
-9. **`core/guards/`, `core/interceptors/`, `core/interfaces/` están vacíos.** El nombre de la
-   carpeta promete una capa que no existe — los guards e interceptors reales viven en
-   `system/admin/guards|interceptors` y `system/session/guards`. O se puebla `core/` con lo que
-   ya existe en `system/admin` (consolidando la capa transversal real en un solo lugar), o se
-   borran esas 3 carpetas vacías para no confundir a quien llegue nuevo al repo.
+9. **`core/guards/`, `core/interceptors/`, `core/interfaces/` siguen vacías tras la migración de
+   `system/` a `pages/full-pages/`.** El nombre de la carpeta promete una capa que no existe —
+   los guards e interceptors reales viven ahora en `pages/full-pages/layout/guards|interceptors`
+   y `pages/full-pages/auth/guards`. La migración fue una oportunidad natural para resolver esto
+   (mover a `core/` en vez de a otra carpeta de features) y no se aprovechó. O se puebla `core/`
+   con lo que ya existe en `pages/full-pages/layout` (consolidando la capa transversal real en un
+   solo lugar), o se borran esas 3 carpetas vacías para no confundir a quien llegue nuevo al repo.
 
 10. **`modules/shared/` (1 archivo: `modules-key.config.ts`) vs. `app/shared/` (26+9
     subcarpetas).** El nombre `modules/shared/` sugiere lo mismo que `app/shared/` pero es un
@@ -129,15 +137,17 @@
 | 10 | Renombrar `modules/shared/` | Bajo | Bajo (claridad) | No |
 | 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad |
 | 4 | Consolidar `stg-table` v1-v4 | Alto | Alto (mantenibilidad) | No, pero requiere inventario cuidadoso |
-| 15 | Elevar cobertura de tests en capa `core`/`system` | Alto | Alto (habilita todo lo demás) | No |
-| 5, 6 | Consolidar `incentivos*` / `kaypacha*` | Muy alto | Alto | Sí — vigencia de cada versión |
+| 15 | Elevar cobertura de tests en capa `core`/`pages` | Alto | Alto (habilita todo lo demás) | No |
+| 5, 6 | Confirmar con negocio que `incentivos3`/`Kaypacha3` son la única versión vigente (ya se archivaron las otras) | Medio | Alto | Sí — vigencia de cada versión |
 | 7 | Retirar/migrar `reportes/legacy/` | Muy alto | Alto | Parcial |
 | 13, 14 | Migrar a ESLint / actualizar Angular | Alto | Medio-alto (largo plazo) | No |
 
 ## Nota
 
-Ya existe un intento previo y más avanzado de abordar varios de estos puntos (consolidación de
-`stg-table`, limpieza de imports muertos, inventario completo de los 337 módulos) en la rama
-recuperada `recovered/fase-1-higiene` — ver la nota final de `doc/arquitectura.md`. Antes de
-arrancar cualquiera de los ítems de "Alto esfuerzo" de la tabla, vale la pena revisar si esa
-rama ya resolvió el punto, para no duplicar trabajo.
+Ya existe un intento previo y más avanzado de abordar el punto 4 (consolidación de `stg-table`
+v1-v4 en una sola versión) y parte del punto 15 (limpieza de imports muertos en NgModules, H-16)
+en una rama hoy huérfana — ver la nota final de `doc/arquitectura.md` (§8) para cómo recuperarla
+(`git branch <nombre> 3631e60`, mientras el reflog no la purgue). Los puntos 5 y 6 (familias
+`incentivos*`/`kaypacha*`) ya se resolvieron parcialmente de forma independiente en esta sesión
+(archivado a `backups/`, sin necesidad de recuperar la rama). Antes de arrancar el punto 4 desde
+cero, vale la pena revisar si la rama huérfana ya lo resolvió, para no duplicar trabajo.

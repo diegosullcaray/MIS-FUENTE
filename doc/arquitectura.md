@@ -1,8 +1,10 @@
 # Arquitectura de MIS-FUENTE (stg-app-mis-r22)
 
-> Estado analizado: rama `main`, commit `3c7f132` (2026-07-30). Generado con ayuda de CodeGraph
-> sobre el árbol de trabajo actual, no sobre documentación previa (ver nota al final sobre la
-> rama huérfana `recovered/fase-1-higiene`, que describe un estado distinto de este mismo repo).
+> Estado analizado: rama `main`, commit `f0ca213` (2026-07-30). Actualizado sobre la versión
+> anterior de este documento (commit `3c7f132`) tras verificar con CodeGraph los cambios de
+> commits posteriores: consolidación de módulos huérfanos en `backups/` y migración de
+> `system/` a `pages/full-pages/{auth,layout}`. Ver nota al final sobre la rama huérfana
+> `recovered/fase-1-higiene`, que describe un estado distinto de este mismo repo.
 
 ## 1. Qué es
 
@@ -29,9 +31,18 @@ independientes, en su mayoría cargados con lazy-loading.
 core/       infraestructura transversal (parcialmente poblada, ver §6)
 material/   un solo archivo: material.module.ts (reexport de Angular Material)
 modules/    los módulos de negocio (49% del código vive bajo modules/reportes)
+pages/      full-pages/{auth,layout}: shell de la app (ex `system/`, migrado 2026-07-30)
 shared/     componentes, servicios, pipes y utilidades reutilizables entre módulos
-system/     shell de la aplicación: sesión, autenticación, administración, layout
 ```
+
+`system/` ya no existe como carpeta de primer nivel — se migró completa a
+`pages/full-pages/` (commits `896a664`, `4e7116c`, `f0ca213`), ver §3.2.
+
+Además, 8 módulos de negocio sin ruta activa o sin consumidores cruzados se movieron de
+`modules/` a `backups/modules/` en esta misma sesión de trabajo: `administracion`,
+`incentivos-a`, `incentivos2`, `incentivos4`, `kaypacha`, `Kaypacha2`, `reasignacion-cart-cap`,
+`sistematica` (commits `610ff29`, `f381402`, `25623fd`, `7a1cd64`). De la familia `incentivos*`
+y `kaypacha*` solo quedan **vivos en `modules/`**: `incentivos3` y `Kaypacha3`.
 
 ### 3.1 `core/`
 
@@ -52,22 +63,28 @@ core/interfaces/            vacío
 de `shared/services` que eran infraestructura transversal en vez de features de UI. `core/guards`,
 `core/interceptors` e `core/interfaces` siguen vacíos — ver hallazgo en el informe de falencias.
 
-### 3.2 `system/`
+### 3.2 `pages/full-pages/` (ex `system/`)
 
 ```
-system/session/authentication/   AuthService, auth.guard.ts
-system/session/guards/           login.guard.ts
-system/session/views/            login, signin
-system/admin/guards/             admin-guard, dummy-guard, route-guard
-system/admin/interceptors/       TokenInterceptor (repository/)
-system/admin/services/           UserService, AdminService, RouteTrackerService
-system/admin/components/         header-top, start-menu, session-end-dialog, notifications...
-system/admin/views/              layout de la shell autenticada
+pages/full-pages/system-keys.config.ts   config compartido entre auth y layout
+pages/full-pages/auth/services/          AuthService, LoginService
+pages/full-pages/auth/guards/            auth.guard.ts, login.guard.ts
+pages/full-pages/auth/components/        auth-layout, login, signin
+pages/full-pages/layout/guards/          admin-guard, dummy-guard, route-guard
+pages/full-pages/layout/interceptors/    token.interceptor.ts, http-interceptors.ts
+pages/full-pages/layout/services/        UserService, AdminService (ex admin.service),
+                                          RouteTrackerService, NavigationService, ThemeService,
+                                          LayoutService, AdminSidenavHelperService
+pages/full-pages/layout/components/      header-top, sidebar-top, sidenav, start-menu,
+                                          session-end-dialog, notifications, admin-layout, desktop
+pages/full-pages/layout/interfaces/      layout-conf, menu-item, shortcut, theme
 ```
 
-Los guards e interceptors **reales** de la aplicación viven acá, no en `core/guards`/
-`core/interceptors` (que están vacíos). Es la implementación de facto del layer que `core/`
-sugiere por nombre pero no contiene.
+Los guards e interceptors **reales** de la aplicación siguen viviendo acá (ex `system/admin`,
+`system/session`), no en `core/guards`/`core/interceptors` (que siguen vacíos tras la
+migración). Es la implementación de facto del layer que `core/` sugiere por nombre pero no
+contiene — la migración a `pages/full-pages/` reorganizó y renombró, pero no resolvió este
+hallazgo (ver informe de falencias, punto 9).
 
 ### 3.3 `shared/`
 
@@ -89,22 +106,19 @@ shared/animations/, shared/base/, shared/constants/, shared/interfaces/
 | `reportes/` | 462 | dominante — ver desglose abajo |
 | `analista/` | 51 | |
 | `presupuesto/` | 44 | |
-| `incentivos3/` | 38 | |
+| `incentivos3/` | 38 | único módulo vivo de la familia `incentivos*` |
 | `actividades/` | 23 | |
-| `reasignacion-cart-cap/` | 20 | |
-| `incentivos4/` | 19 | |
-| `incentivos-a/` | 18 | |
 | `framework-esg/` | 17 | |
-| `incentivos2/` | 16 | |
 | `corresponsales/` | 16 | |
-| `administracion/` | 15 | |
-| `reportes-e/` | 13 | |
-| `sistematica/`, `kaypacha/` | 11 c/u | |
+| `reportes-e/` | 13 | ruta activa `/app/dashboards`, sin uso cruzado — candidato a mover, sin confirmar |
 | `ranking-k/` | 10 | usa `eval()` sobre respuesta del backend |
-| `Kaypacha2/` | 8 | |
 | `basenegativa/` | 6 | |
-| `Kaypacha3/` | 5 | |
+| `Kaypacha3/` | 5 | único módulo vivo de la familia `kaypacha*` |
 | `shared/` | 1 | solo `modules-key.config.ts` — nombre choca con `app/shared/` real |
+
+`administracion`, `incentivos-a`, `incentivos2`, `incentivos4`, `kaypacha`, `Kaypacha2`,
+`reasignacion-cart-cap` y `sistematica` ya no están en esta tabla — se movieron a
+`backups/modules/` (ver §3, arriba).
 
 Desglose de `modules/reportes/` (462 archivos):
 
@@ -135,8 +149,8 @@ es simétrico (AES, `CypherService`), no HTTPS-only con token bearer estándar.
 ## 5. Sesión y autenticación
 
 ```
-TokenService (core/services)  — genera/valida un token cifrado guardado vía UserService
-AuthService (system/session)  — login/logout, estado de sesión
+TokenService (core/services)          — genera/valida un token cifrado guardado vía UserService
+AuthService (pages/full-pages/auth)  — login/logout, estado de sesión
 TokenInterceptor              — intercepta requests al dominio Ant y llama a
                                  tokenService.updateToken() en cada request
 auth.guard / login.guard      — protegen rutas de la shell autenticada / de login
@@ -161,12 +175,21 @@ lejos, el routing module más grande del repo.
 
 ## 8. Nota sobre el historial de git
 
-Existe una rama recuperada localmente, `recovered/fase-1-higiene` (commit `f1096e5`), que
-contiene ~57 commits de un esfuerzo de refactorización previo (limpieza de código muerto,
-consolidación de `stg-table` v1-v4 en una sola versión, cierre de duplicados `ModReportesEService`,
-inventario completo de los 337 `*.module.ts`, y una carpeta `doc/` propia con arquitectura y
-hallazgos H-01..H-24). Esa rama **diverge de `main`** en el commit `f34f81f` y nunca se fusionó —
-`main` siguió un camino distinto (migración de componentes/UI). Este documento describe el
-estado real de `main` tal como está hoy, que en varios puntos es *anterior* al trabajo ya hecho
-(y perdido de `main`) en esa rama — por ejemplo, `stg-table` v1-v4 siguen duplicados acá aunque
-ya se habían consolidado allá. Decisión de qué hacer con esa rama: pendiente, del usuario.
+Hubo una rama de un esfuerzo de refactorización previo, `refactor/fase-1-higiene`, que llegó a
+~57 commits (limpieza de código muerto, consolidación de `stg-table` v1-v4 en una sola versión,
+cierre de duplicados `ModReportesEService`, inventario completo de los 337 `*.module.ts`, y una
+carpeta `doc/` propia con arquitectura y hallazgos H-01..H-24). Esa rama diverge de `main` en el
+commit `f34f81f`; **hoy no existe como rama** (`git branch -a` solo muestra `main`) — su último
+commit (`3631e60`) sigue vivo únicamente en el reflog local y no es ancestro de `main`, por lo
+que se perderá si el reflog expira sin que alguien lo referencie de nuevo
+(`git branch <nombre> 3631e60` lo recupera mientras siga en el reflog).
+
+Parte de ese trabajo se re-hizo de forma independiente sobre `main` en esta sesión (mover
+`administracion`/`incentivos-a`/`incentivos2`/`incentivos4`/`kaypacha`/`Kaypacha2`/
+`reasignacion-cart-cap`/`sistematica` a `backups/`, exactamente el mismo conjunto que aquella
+rama había movido). **Lo que NO se re-hizo todavía en `main`:** la consolidación de `stg-table`
+v1-v4 en una sola versión y la limpieza de imports muertos en NgModules (H-16) — ambas siguen
+resueltas solo en la rama huérfana. Antes de repetir ese trabajo desde cero, vale la pena
+recuperar `3631e60` y revisar si conviene reaplicarlo (cherry-pick) en vez de rehacerlo.
+Decisión de qué hacer con esa rama: pendiente, del usuario (ver memoria de sesión — confirmó
+"ignorarla, seguir en main" el 2026-07-30, sin descartar retomarla más adelante).
