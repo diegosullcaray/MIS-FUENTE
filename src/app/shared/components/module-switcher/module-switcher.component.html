@@ -1,6 +1,6 @@
 <button *ngIf="iconOnly" mat-icon-button matTooltip="Inicio" class="module-switcher-icon-trigger"
   [matMenuTriggerFor]="moduleMenu">
-  <img style="height: 20px;width: auto;" src="assets/images/fc/logos/fc_blank.png" alt="" class="app-logo">
+  <img style="height: 30px;width: auto;" src="assets/images/fc/logos/fc_blank.png" alt="" class="app-logo">
 </button>
 <button *ngIf="!iconOnly" mat-button class="module-switcher-trigger" [matMenuTriggerFor]="moduleMenu">
   <mat-icon *ngIf="currentModule?.icon" class="module-switcher-icon">{{ currentModule.icon }}</mat-icon>
