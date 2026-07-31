@@ -4,14 +4,8 @@
             <mat-sidenav-container style="height: 100%;">
                 <mat-sidenav fxLayout="column" [style]="calcWidth()" mode="side" [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk" >
                     <app-module-switcher currentModuleCod="A_MOD_CORRE"></app-module-switcher>
-                    <mat-tab-group fxFlex style="overflow-y: auto;min-height: 0;">
-                        <mat-tab label="Corresponsales">
-                            <ng-template matTabContent>
-                                <stg-basic-tree-sidenav [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
-                            </ng-template>
-                        </mat-tab>
-                    </mat-tab-group>
-                    
+                    <stg-basic-tree-sidenav fxFlex style="overflow-y: auto;min-height: 0;" [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
+
                 </mat-sidenav>
     
                 <mat-sidenav-content>
