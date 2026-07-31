@@ -6,8 +6,8 @@
                 <mat-card-title>Menú</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <div fxLayout="row" fxFill>
-                    <div fxFlex="70">
+                <div fxLayout="row">
+                    <div fxFlex>
                         <mat-nav-list style="padding: 0px;">
                             <ng-container *ngFor="let item of menuItems; let i = index">
                                 <!--routerLinkActive="list-item-active"-->
@@ -26,7 +26,7 @@
                             </ng-container>
                         </mat-nav-list>
                     </div>
-                    <mat-list fxLayout="column" fxLayoutGap="5px" fxFlex
+                    <mat-list fxLayout="column" fxLayoutGap="5px" fxFlex="0 0 200px"
                         style="border-left-style: groove;padding: 5px;">
                         <button mat-stroked-button style="font-size: 12px;" *ngIf="!user.isAlt"
                             [disabled]="admin.disableAltUserBtn()" fxLayoutAlign="start center"
