@@ -2,7 +2,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { Inject, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { LoginService } from "app/system/session/views/login/login.service";
+import { LoginService } from "app/pages/full-pages/auth/services/login.service";
 
 @Component({
     selector: 'app-alt-user',

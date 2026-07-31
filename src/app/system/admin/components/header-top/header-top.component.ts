@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { LayoutService } from 'app/system/admin/services/layout.service';
 import { ThemeService } from 'app/system/admin/services/theme.service';
 import { UserService } from '../../services/user.service';
-import { AuthService } from 'app/system/session/authentication/auth.service';
+import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
 

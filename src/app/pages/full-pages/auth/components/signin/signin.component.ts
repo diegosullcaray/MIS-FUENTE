@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStoreService } from 'app/core/data/local/local-store.service';
 import { baseAnimations } from 'app/shared/animations/animations.util';
-import { AuthService } from 'app/system/session/authentication/auth.service';
-import { system_keys } from 'app/system/system-keys.config';
+import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
+import { system_keys } from 'app/pages/full-pages/system-keys.config';
 import * as uuid from 'uuid';
 import { printLog } from 'app/core/helpers/debug.util';
 
@@ -52,7 +52,7 @@ export class SigninComponent implements OnInit {
 
   onSignin(){
     this.lsService.setItem(system_keys.act_lp,true);
-    
+
     this.authService.login();
   }
 

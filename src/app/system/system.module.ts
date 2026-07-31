@@ -3,13 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from 'app/system/admin/services/theme.service';
 import { NavigationService } from 'app/system/admin/services/navigation.service';
 import { RoutePartsService } from 'app/core/services/route-parts.service';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { AdminDirectivesModule } from './admin/directives/admin-directives.module';
 import { SystemComponentsModule } from './system-components';
-import { AuthGuard } from './session/authentication/auth.guard';
 import { AdminGuard } from './admin/guards/admin-guard.guard';
-import { LoginGuard } from './session/guards/login.guard';
-import { ModSysLoginService } from 'app/core/data/remote/instances/mod-sys-login.service';
 import { WinderService } from 'app/core/data/remote/winder/winder.service';
 import { CypherService } from 'app/core/services/cypher.service';
 import { RESTService } from 'app/core/data/remote/rest/rest.service';
@@ -22,13 +18,9 @@ import { TokenService } from 'app/core/services/token.service';
   imports: [
     CommonModule,
     SystemComponentsModule,
-    //SharedPipesModule,
-    AdminDirectivesModule,
-    OAuthModule.forRoot()
+    AdminDirectivesModule
   ],
   providers: [
-    AuthGuard,
-    LoginGuard,
     AdminGuard,
     RouteGuard,
 
@@ -42,7 +34,6 @@ import { TokenService } from 'app/core/services/token.service';
     CypherService,
     TokenService,
     RESTService,
-    ModSysLoginService,
     ModSysAdminService
   ]
 })

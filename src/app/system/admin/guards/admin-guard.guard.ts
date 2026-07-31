@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { printLog, printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
-import { AuthService } from '../../session/authentication/auth.service';
+import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

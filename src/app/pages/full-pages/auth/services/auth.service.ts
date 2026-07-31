@@ -7,7 +7,7 @@ import { gmailAuthConfig } from "./gmail.config";
 import { printError, printLog, printTable, printWarn } from "app/core/helpers/debug.util";
 import { environment } from "environments/environment";
 import { LocalStoreService } from "app/core/data/local/local-store.service";
-import { system_keys } from "../../system-keys.config";
+import { system_keys } from "app/pages/full-pages/system-keys.config";
 import { Buffer } from 'buffer';
 
 
@@ -186,7 +186,7 @@ export class AuthService {
         return this.oauthService.loadDiscoveryDocument();
     }
 
-    public logout() { 
+    public logout() {
         this.oauthService.logOut();
         this.router.navigateByUrl(environment.rootPage);
 

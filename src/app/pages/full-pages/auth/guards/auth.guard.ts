@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 import { TokenService } from 'app/core/services/token.service';
 import { AdminService } from 'app/system/admin/services/admin.service';
 

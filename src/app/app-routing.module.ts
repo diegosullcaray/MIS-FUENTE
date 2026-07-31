@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './system/admin/views/admin-layout/admin-layout.component';
-import { AuthGuard } from './system/session/authentication/auth.guard';
-import { LoginGuard } from './system/session/guards/login.guard';
-import { AuthLayoutComponent } from './system/session/views/auth-layout/auth-layout.component';
-import { LoginComponent } from './system/session/views/login/login.component';
+import { AuthGuard } from './pages/full-pages/auth/guards/auth.guard';
+import { LoginGuard } from './pages/full-pages/auth/guards/login.guard';
+import { AuthLayoutComponent } from './pages/full-pages/auth/components/auth-layout/auth-layout.component';
+import { LoginComponent } from './pages/full-pages/auth/components/login/login.component';
+import { SigninComponent } from './pages/full-pages/auth/components/signin/signin.component';
 import { DesktopComponent } from './system/admin/views/desktop/desktop.component';
 import { DummyComponent } from './modules/reportes/components/dummy/dummy.component';
 import { RouteGuard } from './system/admin/guards/route-guard.guard';
@@ -21,7 +22,18 @@ const routes: Routes = [
     children: [
       {
         path: 'session',
-        loadChildren: () => import('./system/session/session.module').then(m => m.SessionModule),
+        children: [
+          {
+            path: '',
+            redirectTo: 'signin',
+            pathMatch: 'full'
+          },
+          {
+            path: 'signin',
+            component: SigninComponent,
+            data: { title: 'Inicio Sesion' }
+          }
+        ],
         data: { title: 'Session' }
       }
     ]

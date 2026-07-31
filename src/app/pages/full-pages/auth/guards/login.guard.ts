@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { LocalStoreService } from 'app/core/data/local/local-store.service';
 import { printWarn } from 'app/core/helpers/debug.util';
 import { environment } from 'environments/environment';
-import { system_keys } from '../../system-keys.config';
+import { system_keys } from 'app/pages/full-pages/system-keys.config';
 
 @Injectable()
 export class LoginGuard implements CanActivate {

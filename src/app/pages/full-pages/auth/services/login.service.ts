@@ -8,10 +8,10 @@ import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-ap
 import { printLog } from "app/core/helpers/debug.util";
 import { NavigationService } from "app/system/admin/services/navigation.service";
 import { UserService } from "app/system/admin/services/user.service";
-import { system_keys } from "app/system/system-keys.config";
+import { system_keys } from "app/pages/full-pages/system-keys.config";
 import { environment } from "environments/environment";
 import { Observable } from "rxjs";
-import { AuthService } from "../../authentication/auth.service";
+import { AuthService } from "./auth.service";
 import { TokenService } from "app/core/services/token.service";
 
 @Injectable()

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SystemModule } from './system/system.module';
+import { AuthModule } from './pages/full-pages/auth/auth.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './system/admin/interceptors/http-interceptors';
@@ -17,6 +18,7 @@ import { DatePipe } from '@angular/common';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AuthModule,
     SystemModule,
     HttpClientModule,
     AppRoutingModule

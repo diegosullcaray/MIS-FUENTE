@@ -27,13 +27,10 @@ import { SidebarTopComponent } from './admin/components/sidebar-top/sidebar-top.
 import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { NotificationsComponent } from './admin/components/notifications/notifications.component';
 import { AdminLayoutComponent } from './admin/views/admin-layout/admin-layout.component';
-import { AuthLayoutComponent } from './session/views/auth-layout/auth-layout.component';
 import { AdminDirectivesModule } from './admin/directives/admin-directives.module';
-import { LoginComponent } from './session/views/login/login.component';
 import { StartMenuComponent } from './admin/components/start-menu/start-menu.component';
 import { DesktopComponent } from './admin/views/desktop/desktop.component';
 import { SharedModule } from 'app/shared/shared.module';
-import { LoginService } from './session/views/login/login.service';
 import { AltUserDialogComponent } from './admin/components/alt-user-dialog/alt-user-dialog.component';
 import { AdDialogComponent } from './admin/components/ad-dialog/ad-dialog.component';
 import { SessionEndDialogComponent } from './admin/components/session-end-dialog/session-end-dialog.component';
@@ -62,9 +59,7 @@ const components = [
     //SidebarSideComponent,
     //HeaderSideComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
 
-    LoginComponent,
     DesktopComponent
 ]
 
@@ -84,6 +79,6 @@ const components = [
     declarations: components,
     // entryComponents: [AppComfirmComponent, AppLoaderComponent, BottomSheetShareComponent],
     exports: components,
-    providers:[LoginService]
+    providers:[]
 })
 export class SystemComponentsModule { }
