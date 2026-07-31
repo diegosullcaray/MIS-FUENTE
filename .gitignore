@@ -60,11 +60,3 @@ Thumbs.db
 /src/app/modules/reportes/repositorio/fondeo-estable/compartido/servicios/fondeo-estable.service.ts
 /src/app/modules/reportes/repositorio/fondeo-estable/compartido/
 
-#documnetacion
-docs
-
-# superpowers subagent-driven-development scratch workspace
-/.superpowers
-
-# secretos de cifrado (no commitear); copiar desde environment.secrets.example.ts
-/src/environments/environment.secrets.ts

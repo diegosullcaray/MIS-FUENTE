@@ -1,11 +1,6 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-//
-// cypherSecret/moduleSecrets viven en environment.secrets.ts (gitignored, no se commitea).
-// Copiar environment.secrets.example.ts a environment.secrets.ts y completar los valores
-// reales antes de compilar. El pipeline de build/deploy debe proveer ese archivo.
-import { environmentSecrets } from './environment.secrets';
 
 export const environment = {
   production: false,
@@ -13,8 +8,16 @@ export const environment = {
   devTracing: false,
   devAd: false,
   ipProvider: 'http://api.ipify.org/?format=json',
-  cypherSecret: environmentSecrets.cypherSecret,
-  moduleSecrets: environmentSecrets.moduleSecrets,
+  cypherSecret: '85A99A2F37313C9B921BCC827AB7FC67',
+  moduleSecrets: {
+    session: '8A9ABC5A76E1A86B26402C32DD355394',
+    app: 'CCAFE0F473E9B66F2EA57D46C5C3047E',
+    sis: 'AF2D32E4D26CCDCCE753ABA562C41D67',
+    admin: '29A832E1F8C68ECB46E7C89716BB68E2',
+    secciones: 'D4305E5943A377227C6BF78C8E3278AD',
+    reporting: 'B0ECE459601D3577F7408D5C8DEA314A',
+    rep2: '8982D9BA889F825E1360E0C594653C68',
+  },
   rootPage: '/session/signin',
   rootDomain: 'http://localhost:4200',
   homePage: '/app/desktop',
