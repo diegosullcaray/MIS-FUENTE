@@ -4,9 +4,25 @@
     background-color: #1d396e;
 }
 
+.wait-logo-wrap {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .wait-logo {
     width: 140px;
     height: auto;
+    z-index: 1;
+}
+
+.wait-logo-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .loader-text {
