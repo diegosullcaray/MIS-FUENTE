@@ -2,7 +2,7 @@
   <div class="container">
     <div class="topnav">
       <!-- Sidebar header: brand/title, aligned to the sidebar's width when a module is open -->
-      <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '300px' : 'auto'}">
+      <div class="topbar-branding" [ngStyle]="{width: moduleSidenav.active ? '300px' : 'auto', display: moduleSidenav.active ? 'flex' : 'block', 'justify-content': 'center'}">
         <button class="btn-start-adj btn-start-mob" mat-icon-button (click)="toggleSidenav()"
           *ngIf="layoutConf.isMobile">
           <img style="width: 36px;height: 24px;" src="assets/images/fc/logos/mis_white.png" alt="" class="app-logo">
@@ -15,7 +15,7 @@
       </div>
 
       <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits right at the border between the sidebar header and the layout header -->
-      <div style="padding-left: 5px;" *ngIf="moduleSidenav.active">
+      <div style="margin-left: -8px;" *ngIf="moduleSidenav.active">
         <button mat-icon-button class="module-sidenav-toggle-btn" matTooltip="Mostrar/ocultar menú" (click)="moduleSidenav.toggle()">
           <mat-icon>{{ moduleSidenav.isOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
         </button>
