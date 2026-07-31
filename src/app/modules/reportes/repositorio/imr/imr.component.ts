@@ -8,6 +8,7 @@ import { filter1, tableConfOPTS, tableConfOPTS2 } from './imr.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-imr.component',
@@ -73,7 +74,7 @@ export class imrComponent implements OnInit {
         this.loader.open()
         let profile = this.user.get('profile');
         this.currentDate = moment(profile.curr_fec).format("YYYY-MM-DD");
-        console.log(this.currentDate)
+        printLog(this.currentDate)
         this.activeHier = false;
         this.loading = true;
         this.Opts = tableConfOPTS;

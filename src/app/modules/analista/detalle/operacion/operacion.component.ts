@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AnalistaService } from "../../compartido/servicios/analista.service";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-operacion-detalle-analista',
@@ -16,6 +17,6 @@ export class OperacionDetalleComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('hola?')
+        printLog('hola?')
     }
 }

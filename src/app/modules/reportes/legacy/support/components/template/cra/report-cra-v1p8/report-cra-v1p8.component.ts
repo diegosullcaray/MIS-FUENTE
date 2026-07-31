@@ -17,6 +17,7 @@ import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { printLog } from 'app/core/helpers/debug.util';
 
 
 @Component({
@@ -83,11 +84,11 @@ export class ReportCraV1p8Component implements OnInit, OnDestroy {
 
   private iniHierarchy() {
     let cfg = this.antRep.getHierarchyConfig(this.report.getJerar());
-    console.log(cfg)//{code: 4, max_lvl: 1}
+    printLog(cfg)//{code: 4, max_lvl: 1}
     this.antRep.getBaseHierarchy(cfg.code).subscribe(
       x => {
         let bh: any = x.body.base_hierarchy;
-        console.log(bh)
+        printLog(bh)
         this.confHier1 = {
           roots: bh, 
           cod_hier: cfg.code, 
@@ -116,7 +117,7 @@ export class ReportCraV1p8Component implements OnInit, OnDestroy {
     .subscribe(([filter])=>{ 
       this.configT.forEach((find,index)=>{ 
         let datoUsuario = this.user.get("profile");  
-        console.log(datoUsuario)
+        printLog(datoUsuario)
         let params={}
         params={...filter} 
         params = { 
@@ -127,7 +128,7 @@ export class ReportCraV1p8Component implements OnInit, OnDestroy {
           Ter: filter['Ter'],
           fec: filter['fec']
         }
-        console.log(params)
+        printLog(params)
         this.renderTable(params,{find:find,index:index})
       })
     })

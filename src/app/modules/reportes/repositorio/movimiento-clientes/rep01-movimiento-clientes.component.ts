@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf,tableConf2 } from "./rep01-movimiento-clientes.util";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-rep01-movimiento-clientes',
@@ -68,8 +69,8 @@ export class Rep01MovimientoClientesComponent implements OnInit{
                 
                 this.headerDefs =JSON.parse(h);
                 
-                console.log(JSON.parse(h)); 
-                console.log(h);
+                printLog(JSON.parse(h)); 
+                printLog(h);
 
 
                 this.dataSource1 = d.filter(x => x.gru === 1);

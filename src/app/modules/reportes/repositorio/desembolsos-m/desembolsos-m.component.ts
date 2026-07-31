@@ -14,6 +14,7 @@ import { prepareDataForPagination } from 'app/shared/components/stg-paginator/st
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatDialog } from '@angular/material/dialog';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-desembolsos-m.component',
@@ -172,17 +173,17 @@ export class DesembolsosMComponent implements OnInit, AfterViewInit {
 
         // Solo abrir si tip_cod es 17
         if (this.ftipCod !== 17) {
-            console.log('Modal bloqueado: tip_cod != 17');
+            printLog('Modal bloqueado: tip_cod != 17');
             return;
         }
 
         // No abrir si es el primer registro
         if (evt.row.fila === 1) {
-            console.log('Modal bloqueado: es el primer registro');
+            printLog('Modal bloqueado: es el primer registro');
             return;
         }
 
-        console.log('Abriendo modal:', evt);
+        printLog('Abriendo modal:', evt);
 
         this.varsDataRows = evt;
         this.pointer += 1;
@@ -283,7 +284,7 @@ export class DesembolsosMComponent implements OnInit, AfterViewInit {
             this.dataSource = r.data;
             this.headerDefs = JSON.parse(r.headers);
 
-            console.log(this.selector1)
+            printLog(this.selector1)
  
             this.processHeaders();
             
@@ -341,7 +342,7 @@ export class DesembolsosMComponent implements OnInit, AfterViewInit {
 
     private createCellRenderer(columnKey: string) {
         return (row: any, column: string, value: any) => {
-            console.log(`CellRenderer para ${columnKey}:`, { 
+            printLog(`CellRenderer para ${columnKey}:`, { 
                 IDRango: row?.IDRango, 
                 column, 
                 value 

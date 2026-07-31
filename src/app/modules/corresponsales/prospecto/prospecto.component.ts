@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { baseAnimations } from 'app/shared/animations/animations.util';
 //import { ReportT } from '../../../../support/services/report';
 import { ActivatedRoute } from '@angular/router';
@@ -194,7 +195,7 @@ onMouseOver(infoWindow, gm) {
             global.push(confG);
           })
           this.config_graphic_g4 = global;
-          console.log(this.config_graphic_g4)
+          printLog(this.config_graphic_g4)
           this.cdr.detectChanges();
 
         },
@@ -213,13 +214,13 @@ onMouseOver(infoWindow, gm) {
     confG.results(true, true, false);
     this.config_graphic_tcorr = [confG, confG, confG, confG, confG, confG, confG, confG];
     const params = { ...confG.getParamsAdd(), ...r };
-    console.log(params);
+    printLog(params);
     this.cs.getGraphicData(report, params)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data) => {
           let result = data.body['result'];
-          console.log(result);
+          printLog(result);
           let global: GraphicService[] = [];
           result.forEach((gf) => {
             const confG = new GraphicService(graphic);
@@ -230,11 +231,11 @@ onMouseOver(infoWindow, gm) {
             confG.setTitle(gf.graphName);
             confG.setsubTitle(gf.graphSubName);
             confG.setTitleyAxis(gf.getUnitGraph);
-            console.log(gf.getUnitGraph)
+            printLog(gf.getUnitGraph)
             global.push(confG);
           })
           this.config_graphic_tcorr = global;
-          console.log(this.config_graphic_tcorr)
+          printLog(this.config_graphic_tcorr)
           this.cdr.detectChanges();
 
         },
@@ -242,7 +243,7 @@ onMouseOver(infoWindow, gm) {
           const confG = new GraphicService();
           confG.results(true, false, true);
           this.config_graphic_tcorr = [confG, confG, confG, confG, confG, confG, confG, confG, confG];
-          console.log(this.config_graphic_tcorr)
+          printLog(this.config_graphic_tcorr)
           this.cdr.detectChanges();
         });
   }
@@ -254,7 +255,7 @@ onMouseOver(infoWindow, gm) {
     confG.results(true, true, false);
     this.config_graphic_tteri = [confG, confG, confG, confG, confG, confG, confG, confG];
     const params = { ...confG.getParamsAdd(), ...r };
-    console.log(params);
+    printLog(params);
     this.cs.getGraphicData(report, params)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -292,7 +293,7 @@ onMouseOver(infoWindow, gm) {
     confG.results(true, true, false);
     this.config_graphic9 = [confG, confG, confG, confG, confG, confG, confG, confG];
     const params = { ...confG.getParamsAdd(), ...r };
-    console.log(params);
+    printLog(params);
     this.cs.getGraphicData(report, params)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -311,7 +312,7 @@ onMouseOver(infoWindow, gm) {
             global.push(confG);
           })
           this.config_graphic9 = global;
-          console.log(this.config_graphic9)
+          printLog(this.config_graphic9)
           this.cdr.detectChanges();
  
         },
@@ -340,7 +341,7 @@ onMouseOver(infoWindow, gm) {
           this.jsonmap = this.jsonmap[0].TCAD;
           //this.jsonmap = JSON.parse(JSON.stringify(this.jsonmap))
              
-          let obj = eval(this.jsonmap)
+          let obj = JSON.parse(this.jsonmap)
            
 
 
@@ -372,7 +373,7 @@ onMouseOver(infoWindow, gm) {
  
           
           let opts = this.mapsschartOptions;
-          console.log(opts);
+          printLog(opts);
           let e = document.createElement('div');
       
           this.chartEl.nativeElement.appendChild(e);
@@ -405,7 +406,7 @@ onMouseOver(infoWindow, gm) {
           this.jsonmap4 = result.body;  
           this.jsonmap4 = this.jsonmap4[0].TCAD; 
              
-          let obj2 = eval(this.jsonmap4)
+          let obj2 = JSON.parse(this.jsonmap4)
          
 
 
@@ -436,7 +437,7 @@ onMouseOver(infoWindow, gm) {
  
           
           let opts = this.mapsschartOptions;
-          console.log(opts);
+          printLog(opts);
           let e = document.createElement('div');
       
           this.chartE2.nativeElement.appendChild(e);
@@ -494,7 +495,7 @@ onMouseOver(infoWindow, gm) {
           this.config_table[add.index] = confT;
           this.cdr.detectChanges();
         });
-        console.log(this.CorresponsalStock)
+        printLog(this.CorresponsalStock)
   }
 
   private renderTable6(r, add): void {
@@ -625,7 +626,7 @@ onMouseOver(infoWindow, gm) {
   
 
   setChartColor(theme) {
-    console.log(theme);
+    printLog(theme);
   }
   
 

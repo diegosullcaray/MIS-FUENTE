@@ -15,6 +15,7 @@ import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-p
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalleDialogMComponent } from './detalle/detalle-dialog-m.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({  
     selector: 'app-usa-come-m.component',
@@ -119,7 +120,7 @@ export class UsaComeMComponent implements OnInit {
         }
     }
     onFechaChange(item: any) {
-        console.log('Fecha seleccionada:', item);
+        printLog('Fecha seleccionada:', item);
         // Tu lógica existente (eventFilter)
         this.eventFilter({
           source: {
@@ -234,17 +235,17 @@ export class UsaComeMComponent implements OnInit {
     
         // Solo abrir si tip_cod es 17
         if (this.ftipCod !== 17) {
-            console.log('Modal bloqueado: tip_cod != 17');
+            printLog('Modal bloqueado: tip_cod != 17');
             return;
         }
      
         // No abrir si es el primer registro (ajusta esto según el log)
         if (evt.row.fila === 1) {
-            console.log('Modal bloqueado: es el primer registro');
+            printLog('Modal bloqueado: es el primer registro');
             return;
         }
     
-        console.log('Abriendo modal:', evt);
+        printLog('Abriendo modal:', evt);
     
         this.varsDataRows = evt;
         this.pointer += 1;
@@ -316,7 +317,7 @@ export class UsaComeMComponent implements OnInit {
 
         //this.load3.next(true);
         this.preLoad();
-        console.log(this.fechaMensual.val)
+        printLog(this.fechaMensual.val)
         //console.log({ "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate})
         this.antRep.getRegularTableResult("RS_TAB_COM_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.fechaMensual.val}).subscribe(
 

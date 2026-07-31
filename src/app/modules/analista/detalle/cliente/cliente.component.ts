@@ -3,6 +3,7 @@ import { OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AnalistaService } from "../../compartido/servicios/analista.service";
 import { ModSecService } from "../../compartido/servicios/mod-sec.service";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-cliente-detalle-analista',
@@ -23,7 +24,7 @@ export class ClienteDetalleComponent implements OnInit {
         this.loading=true;
         let sr = this.analista.selectedRow;
         this.antSec.getDetalleCliente(this.analista.cod_bt,sr.num_doc,sr.tip_doc,sr.pais).subscribe(x=>{
-            console.log(x);
+            printLog(x);
             let body = x.body.resultado;
             this.dataSource=body.prof;
             this.loading=false;

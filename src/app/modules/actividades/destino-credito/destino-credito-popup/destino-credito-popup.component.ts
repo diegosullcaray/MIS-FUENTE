@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { ModActividadesService } from '../../servicios/mod-actividades.service';
 import moment, { Moment } from 'moment';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-destino-credito-popup',
@@ -62,7 +63,7 @@ export class DestinoCreditoPopupComponent implements OnInit {
 
       if (v) {
         this.payload = { cod_ope: cod_ope, fec_vis: fec_vis, is_valid: is_valid };
-        console.log(this.payload);
+        printLog(this.payload);
         this.resObs().subscribe(x => {
           this.data.data1['HFECVIS'] = moment(fec_vis).format("yyyy-MM-DD");
           this.data.data1['HCUMPLDC'] = is_valid;

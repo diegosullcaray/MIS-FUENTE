@@ -7,6 +7,7 @@ import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-ap
 import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class   ModCorresponsalService extends AntService {
@@ -45,9 +46,9 @@ export class   ModCorresponsalService extends AntService {
     }
 
     public postRegResultadosProsp(ov: any): Observable<any> {
-        console.log(ov);
+        printLog(ov);
         let params = { ov_json: JSON.stringify(ov) };
-        console.log(params);
+        printLog(params);
         return this.postSimpleResponseString("corresponsal.post_transac", params);
     }
 

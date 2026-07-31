@@ -12,6 +12,7 @@ import {  tableConfOPTS } from './seguros-pasivos.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-seguros-pasivos.component',
@@ -98,7 +99,7 @@ export class SegurosPasivosComponent implements OnInit {
             x => {
 
                 let bh: any = x.body.base_hierarchy;
-                console.log(bh)
+                printLog(bh)
                 this.confHier1 = {
                     roots: bh, //antes r_tip_cod: bh.tip_cod,
                     cod_hier: code,

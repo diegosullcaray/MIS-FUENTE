@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 import moment, { Moment } from 'moment';
 import { ModCorresponsalService } from '../../../corresponsales/servicio/mod-corresponsal.service';
@@ -205,7 +206,7 @@ export class TransaccionPopupComponent implements OnInit {
   ngOnInit() {
     this.renderSlcAgencia(); 
     this.buildItemForm(this.data.data1); 
-    console.log(this.data.data1)
+    printLog(this.data.data1)
     
   }
   buildItemForm(item) {
@@ -284,7 +285,7 @@ export class TransaccionPopupComponent implements OnInit {
 
      this.getEstadoCorr.valueChanges
      .subscribe((r)=>{
-       console.log(r)
+       printLog(r)
        if(r =='Solicito cancelacion'){ 
          this.isInputShown=true;
          this.setValidador(this.getFecCancelac,true);
@@ -300,7 +301,7 @@ export class TransaccionPopupComponent implements OnInit {
   }
   get agenciaF(){ 
     let respuesta = this.itemForm.controls.HDESAGE as UntypedFormControl 
-    console.log(respuesta); 
+    printLog(respuesta); 
     return respuesta
   }
   get getEstadoCorr(){ return this.itemForm.controls.HESTDCORE as UntypedFormControl  }
@@ -377,7 +378,7 @@ export class TransaccionPopupComponent implements OnInit {
       let direccion= this.rowSource['HDIREC'];//this.itemForm.value['direc'];
       //let nomcomercial = this.itemForm.value['nomComerc']
 
-      console.log(nomcomercial);
+      printLog(nomcomercial);
 
       if(Array.isArray(this.itemForm.value['nomComerc'])) {
         var nomcomercial = this.itemForm.value['nomComerc'][0]
@@ -479,7 +480,7 @@ export class TransaccionPopupComponent implements OnInit {
           codasesorasign:codasesorasign,asesorasign:asesorasign,vinculofamiliar:vinculofamiliar,
           tipovinculofamiliar:tipovinculofamiliar,idcorresponsal:idcorresponsal,fecCancelado:fecCancelado
         };
-        console.log(this.payload);
+        printLog(this.payload);
         this.resObs().subscribe(x => {
           this.refresh$.next(true);
            

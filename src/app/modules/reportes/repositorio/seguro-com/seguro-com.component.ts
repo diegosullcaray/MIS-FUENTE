@@ -9,6 +9,7 @@ import { tableConfOPTS, tblHeaders } from './seguro-com.util';
 import { BehaviorSubject } from 'rxjs';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { MatDialog } from '@angular/material/dialog';
+import { printError } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-seguro-com.component',
@@ -66,7 +67,7 @@ export class SeguroComComponent implements OnInit {
         try {
             await this.getBaseHierAsync();
         } catch (error) {
-            console.error("Error crítico al inicializar la pantalla:", error);
+            printError("Error crítico al inicializar la pantalla:", error);
             this.cerrarCargando();
         }
     } 
@@ -106,7 +107,7 @@ export class SeguroComComponent implements OnInit {
                                 }
                             },
                             error: (err) => {
-                                console.error(err);
+                                printError(err);
                                 this.cerrarCargando();
                                 resolve();
                             }
@@ -117,7 +118,7 @@ export class SeguroComComponent implements OnInit {
                     }
                 },
                 error: (err) => {
-                    console.error(err);
+                    printError(err);
                     this.cerrarCargando();
                     resolve();
                 }
@@ -251,11 +252,11 @@ export class SeguroComComponent implements OnInit {
                     }
                     
                 } catch (e) {
-                    console.error("Error procesando los datos de la tabla:", e);
+                    printError("Error procesando los datos de la tabla:", e);
                 }
             },
             error: (err) => {
-                console.error("Error en la petición a la BD:", err);
+                printError("Error en la petición a la BD:", err);
                 this.cerrarCargando(); 
             },
             complete: () => {

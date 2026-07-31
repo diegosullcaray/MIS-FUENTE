@@ -14,6 +14,7 @@ import { prepareDataForPagination } from 'app/shared/components/stg-paginator/st
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatDialog } from '@angular/material/dialog';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-carterizacion.component',
@@ -112,17 +113,17 @@ export class CarterizacionComponent implements OnInit {
 
         // Solo abrir si tip_cod es 17
         if (this.ftipCod !== 17) {
-            console.log('Modal bloqueado: tip_cod != 17');
+            printLog('Modal bloqueado: tip_cod != 17');
             return;
         }
 
         // No abrir si es el primer registro
         if (evt.row.fila === 1) {
-            console.log('Modal bloqueado: es el primer registro');
+            printLog('Modal bloqueado: es el primer registro');
             return;
         }
 
-        console.log('Abriendo modal:', evt);
+        printLog('Abriendo modal:', evt);
 
         this.varsDataRows = evt;
         this.pointer += 1;
@@ -183,7 +184,7 @@ export class CarterizacionComponent implements OnInit {
             "codrel": codrel,
             "fecha":  this.currentDate
         }).subscribe(x => {
-            console.log('Datos recibidos:', x.body.resultado);
+            printLog('Datos recibidos:', x.body.resultado);
             let r = x.body.resultado;
             this.dataSource = r.data;
             this.headerDefs = tblHeaders // JSON.parse(r.headers); 

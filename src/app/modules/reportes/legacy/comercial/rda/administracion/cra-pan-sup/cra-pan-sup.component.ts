@@ -10,6 +10,7 @@ import { combineLatest, Subject, Subscription, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ComercialService } from '../../../comercial.service';
 import { cra } from '../cra-map';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-cra-pan-sup',
@@ -206,7 +207,7 @@ export class CraPanSupComponent implements OnInit {
           confT.addColumns(result.headers);
           confT.addELEMENT_DATA(result.body);
           this.config_table[add.index] = confT;
-          console.log(this.config_table)
+          printLog(this.config_table)
           this.cdr.detectChanges();
         },
         () => {

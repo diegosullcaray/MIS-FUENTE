@@ -7,6 +7,7 @@ import {  loadingConf, tableOptions, headerDef, } from './usabilidadMis.util';
 import { UserService } from '../../../../pages/full-pages/layout/services/user.service';
 import { Subject } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-usabilidadMis',
@@ -63,11 +64,11 @@ export /*abstract*/ class usabilidadMisComponent {
 
         this.antRep.getRegularData("USABIL_01",{tip_cod: '2', cod_rel: '3'}).subscribe(
             x => {
-                console.log(x);
+                printLog(x);
                 this.dataSource = x.body.resultado.data;
                 //
-                console.log(x.body.resultado);
-                console.log(x.body.resultado.data);
+                printLog(x.body.resultado);
+                printLog(x.body.resultado.data);
                 this.loadingObs = true;
             }
         );
@@ -85,12 +86,12 @@ export /*abstract*/ class usabilidadMisComponent {
         this.currentDate_ = this.user.get('profile').curr_fec;
         this.headers = headerDef;
         this.options = tableOptions;
-        console.log(lv);
+        printLog(lv);
         this.antRep.getRegularTableResult("USABIL_01",{tip_cod: lv.tip_cod, cod_rel: lv.cod_rel, fec: this.currentDate_}).subscribe(
             x => {
                 this.dataSource = x.body.resultado.data;
                 //
-                console.log(this.dataSource);
+                printLog(this.dataSource);
                 this.loadingObs = false;
             }
         );

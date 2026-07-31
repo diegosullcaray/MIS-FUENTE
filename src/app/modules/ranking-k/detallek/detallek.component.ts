@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { models } from 'powerbi-client';
 import { ReportesEService } from '../compartido/servicios/reportes-e.service';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { ModReportesEService } from '../compartido/servicios/mod-reportes-e.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
@@ -53,9 +54,9 @@ export class DetalleKComponent implements OnInit {
         let r = x.body.resultado;   
         this.letfortable=r.datTable 
         this.fechaMax=this.letfortable[0].fechaMax
-        this.isTable =  (eval(r.datTable)).length
+        this.isTable =  (JSON.parse(r.datTable)).length
         //console.log((eval(r.datTable)).length) 
-        this.dataSource=eval(r.list[0].JSONLIST)
+        this.dataSource=JSON.parse(r.list[0].JSONLIST)
         //console.log(this.dataSource)
         this.dataSourceByHdester = this.GroupBy(this.dataSource , 'hdester')
         this.loader.close()
@@ -117,12 +118,12 @@ export class DetalleKComponent implements OnInit {
       return salmo.hdester === tipoSalmo
     });
 
-    console.log(oraciones)
+    printLog(oraciones)
     
      
     this.dataSourceObtenido=oraciones; 
-    console.log(Array.from(new Set(this.dataSourceObtenido)))
-    console.log(this.dataSourceObtenido)
+    printLog(Array.from(new Set(this.dataSourceObtenido)))
+    printLog(this.dataSourceObtenido)
     return oraciones;
   }
 }

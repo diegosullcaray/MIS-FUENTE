@@ -10,6 +10,7 @@ import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ReportT } from '../../legacy/support/services/report';
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
 import { UntypedFormGroup } from '@angular/forms';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-captacion-canal-comercial-rep',
@@ -99,7 +100,7 @@ export class CaptacionCanalComercialComponent implements OnInit {
     }
     public selectHier(evt: any) {  
         this.onSelectItem("")
-        console.log(this.currLvl.prod)
+        printLog(this.currLvl.prod)
         let lv: any = evt[0];
         this.currentDate_ = this.user.get('profile').curr_fec;
         this.loadingObs = true;

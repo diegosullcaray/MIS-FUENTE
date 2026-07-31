@@ -13,6 +13,7 @@ import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import { StgAlertService } from 'app/shared/components/stg-alert/stg-alert.service';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service'; 
+import { printLog } from 'app/core/helpers/debug.util';
   import { IStgTableHeader } from 'app/shared/components/stg-table/stg-table.interface';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { loadingConf, tableConf } from 'app/modules/reportes/repositorio/movimiento-clientes/rep01-movimiento-clientes.util';
@@ -204,7 +205,7 @@ filterss(evt: any) {
 
   private router():void{
     this.route.data.subscribe(d =>{
-      console.log(d)
+      printLog(d)
       /*this.report=new ReportT(crs(d.report));
       this.title_module=d.title;*/
       this.config=this.report.getCount();  

@@ -1,3 +1,4 @@
+import { printError, printLog } from 'app/core/helpers/debug.util';
   import * as moment from 'moment';
   import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
   import { UserService } from "app/pages/full-pages/layout/services/user.service";
@@ -199,7 +200,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
       const dataToFilter = this.detailDataMap.get(chartIdentifier);
       
       if (!dataToFilter) {
-        console.error(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
+        printError(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
         return;
       }
       
@@ -437,7 +438,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
         this.isChartReady = true;
 
       } catch (error) {
-        console.error("Falló la carga de uno o más gráficos", error);
+        printError("Falló la carga de uno o más gráficos", error);
       } finally {
         this.loader.close();
       }
@@ -542,7 +543,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
 
               resolve();
             } catch (e) {
-              console.error("Error en Ingresos/Salidas:", e);
+              printError("Error en Ingresos/Salidas:", e);
               resolve();
             }
           },
@@ -650,7 +651,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
 
               resolve();
             } catch (e) {
-              console.error("Error en Ingresos/Salidas:", e);
+              printError("Error en Ingresos/Salidas:", e);
               resolve();
             }
           },
@@ -749,7 +750,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
 
               resolve();
             } catch (e) {
-              console.error("Error parseando Variacion:", e);
+              printError("Error parseando Variacion:", e);
               resolve();
             }
           },
@@ -888,7 +889,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
     
               resolve();
             } catch (e) {
-              console.error("Error procesando Variación Clientes:", e);
+              printError("Error procesando Variación Clientes:", e);
               reject(e);
             }
           },
@@ -1002,7 +1003,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
 
               resolve();
             } catch (e) {
-              console.error("Error parseando Variacion:", e);
+              printError("Error parseando Variacion:", e);
               resolve();
             }
           },
@@ -1134,7 +1135,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
 
               resolve();
             } catch (e) {
-              console.error("Error procesando Cartera Vigente:", e);
+              printError("Error procesando Cartera Vigente:", e);
               reject(e);
             }
           },
@@ -1144,8 +1145,8 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
     }
 
     prepareResumenChart(tip_cod: any, cod_rel: any, fecha: any): Promise<void> {
-      console.log(fecha)
-      console.log("Cargando ResumenChart para fecha:", fecha);
+      printLog(fecha)
+      printLog("Cargando ResumenChart para fecha:", fecha);
       return new Promise((resolve, reject) => {
         this.antRep.getRegularTableResult("GRAF_GEST_COM_01", {
           "tip_cod": tip_cod,
@@ -1314,7 +1315,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
         // Mostramos el loader de carga
         this.preLoad();
         
-        console.log('🚀 Actualizando TODO el dashboard para la fecha:', this.currentDate);
+        printLog('🚀 Actualizando TODO el dashboard para la fecha:', this.currentDate);
         
         // Llamamos a setDs, que se encargará de actualizar las 3 tablas y TODOS los gráficos
         this.setDs(this.tip_cod, this.cod_rel);
@@ -1375,7 +1376,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
         this.dataSource = r.data;
         this.dataSource3 = r.data; 
         this.setKpiValues(r.data);
-        console.log("piero")
+        printLog("piero")
         this.prepareResumenChart(tip_cod, cod_rel, this.currentDate);
         this.prepareSaldoCarteraVigente(tip_cod, cod_rel, this.currentDate);
         this.prepareVariacionStockChart(tip_cod, cod_rel, this.currentDate);
@@ -1612,7 +1613,7 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
                     let cl = lh[0];
                     this.saveBuffer({ tip_cod: cl.tip_cod, cod_rel: cl.cod_rel, des_rel: cl.des_rel });
                     this.tip_cod = h[0].tip_cod;
-                    console.log(this.currentDate)
+                    printLog(this.currentDate)
                     // --- TABLA 01 ---
                     this.antRep.getRegularTableResult("RS_GEST_COM_01", {
                       "tip_cod": this.tip_cod,
@@ -1620,13 +1621,13 @@ import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';
                       "fecha":  this.currentDate 
                     }).subscribe(x => {
                       let r = x.body.resultado;  
-                      console.log(r)
+                      printLog(r)
                       this.setKpiValues(r.data);
                       this.dataSource = r.data;
                       this.dataSource3 = r.data; 
                       this.headerDefs = tablaTab1;
                       this.headerDefs3  = tablaTab2;
-                      console.log(this.currentDate)
+                      printLog(this.currentDate)
                       this.prepareResumenChart(this.tip_cod,this.cod_rel,this.currentDate);
                       this.prepareSaldoCarteraVigente(this.tip_cod,this.cod_rel,this.currentDate);
                       this.prepareVariacionStockChart(this.tip_cod,this.cod_rel,this.currentDate);
@@ -1718,7 +1719,7 @@ this.antRep.getRegularTableResult("RS_GEST_COM_03", {
        this.headerDefs5 = headersParseados5; 
     }
   },
-  error: (err) => console.error("Error en tabla 03", err)
+  error: (err) => printError("Error en tabla 03", err)
 });
     
                     resolve();

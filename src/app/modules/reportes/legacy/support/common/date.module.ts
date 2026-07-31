@@ -1,12 +1,13 @@
 import * as Moments from 'moment';
 import { extendMoment } from 'moment-range';
 import { isUndefined } from 'util';
+import { printLog } from 'app/core/helpers/debug.util';
 const mo = extendMoment(Moments);
 
 
 export function dateArray(now_start, now_end,config?:IDate) {
     if(!config){
-        console.log('no hay config');
+        printLog('no hay config');
     }
     let data = [];
     const range = mo.range(now_start, now_end);

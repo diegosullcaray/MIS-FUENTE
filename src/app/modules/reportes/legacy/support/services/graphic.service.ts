@@ -1,5 +1,6 @@
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import {LocalNumberPipe} from '../pipes/local-number.pipe';
+import { printLog } from 'app/core/helpers/debug.util';
 
 export class GraphicService {
   private title:string;
@@ -66,7 +67,7 @@ export class GraphicService {
         }
       }
     }else{
-      console.log('Register Config Graphic');
+      printLog('Register Config Graphic');
     }
   }
 

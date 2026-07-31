@@ -10,6 +10,7 @@ import { ReportType } from '../../legacy/support/data/ant-mod-rep.service';
 import { Strand } from 'app/core/data/remote/winder/strand.class';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { environment } from 'environments/environment';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class ModRepService extends AntService {
@@ -67,7 +68,7 @@ export class ModRepService extends AntService {
     public getRegularTableResult(codRep:string,params: any): Observable<IWinderResponse>{
         
        params["cod_rep"]=codRep;
-       console.log(params)
+       printLog(params)
        //console.log(this.getSimpleResponseString("table.regular", params, "resultado"))
        return this.getSimpleResponseString("table.regular", params, "resultado");
     }

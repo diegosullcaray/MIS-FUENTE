@@ -12,6 +12,7 @@ import { ModFrameworkEsgService } from '../compartido/servicios/mod-framework-es
 import { EditarDialogComponent } from '../editar/editar-dialog.component';
 import { tblOpts1, tblOpts2, headOpt1, headOpt2 } from '../framework-esg.util';
 import { UsuariosDialogComponent } from '../usuarios/usuarios-dialog.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-principal-framework-esg',
@@ -117,7 +118,7 @@ export class PrincipalComponent implements OnInit {
         return {id:x.cod_met,name:x.des_met+' ('+x.des_med+')'};
       });
       this.esgService.metsLists[cod_cat+'']=mds;
-      console.log(d)
+      printLog(d)
       load.next(true);
     });
   }

@@ -7,6 +7,7 @@ import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-ap
 import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class ModBudgetService extends AntService {
@@ -65,7 +66,7 @@ export class ModBudgetService extends AntService {
 
     //Graba Cartera Creditos
     public postResCarCreditos(tip_cod: number, cod_rel: string, ov: any): Observable<any> {
-        console.log(JSON.stringify(ov))
+        printLog(JSON.stringify(ov))
         let params = { cod_bt: this.cod_bt, tip_cod: tip_cod, cod_rel: cod_rel, ov_json: JSON.stringify(ov) };
         return this.postSimpleResponseString("presupuesto.post_car_cre", params);
     }

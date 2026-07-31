@@ -1,3 +1,4 @@
+import { printError, printLog } from 'app/core/helpers/debug.util';
   import * as moment from 'moment';
   import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
   import { UserService } from "app/pages/full-pages/layout/services/user.service";
@@ -213,7 +214,7 @@ public isMapaCalorReady: boolean = false;
       const dataToFilter = this.detailDataMap.get(chartIdentifier);
       
       if (!dataToFilter) {
-        console.error(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
+        printError(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
         return;
       }
       
@@ -454,7 +455,7 @@ public isMapaCalorReady: boolean = false;
         this.isChartReady = true;
 
       } catch (error) {
-        console.error("Falló la carga de uno o más gráficos", error);
+        printError("Falló la carga de uno o más gráficos", error);
       } finally {
         this.loader.close();
       }
@@ -579,7 +580,7 @@ public isMapaCalorReady: boolean = false;
     
               resolve();
             } catch (e) {
-              console.error("Error en Concentración de Saldos:", e);
+              printError("Error en Concentración de Saldos:", e);
               resolve();
             }
           },
@@ -687,7 +688,7 @@ public isMapaCalorReady: boolean = false;
 
               resolve();
             } catch (e) {
-              console.error("Error en Ingresos/Salidas:", e);
+              printError("Error en Ingresos/Salidas:", e);
               resolve();
             }
           },
@@ -786,7 +787,7 @@ public isMapaCalorReady: boolean = false;
 
               resolve();
             } catch (e) {
-              console.error("Error parseando Variacion:", e);
+              printError("Error parseando Variacion:", e);
               resolve();
             }
           },
@@ -911,7 +912,7 @@ public isMapaCalorReady: boolean = false;
     
               resolve();
             } catch (e) {
-              console.error("Error procesando Mapa de Calor:", e);
+              printError("Error procesando Mapa de Calor:", e);
               reject(e);
             }
           },
@@ -1028,7 +1029,7 @@ public isMapaCalorReady: boolean = false;
     
               resolve();
             } catch (e) {
-              console.error("Error procesando Gráfico de Donut:", e);
+              printError("Error procesando Gráfico de Donut:", e);
               reject(e);
             }
           },
@@ -1142,7 +1143,7 @@ public isMapaCalorReady: boolean = false;
 
               resolve();
             } catch (e) {
-              console.error("Error parseando Variacion:", e);
+              printError("Error parseando Variacion:", e);
               resolve();
             }
           },
@@ -1274,7 +1275,7 @@ public isMapaCalorReady: boolean = false;
 
               resolve();
             } catch (e) {
-              console.error("Error procesando Cartera Vigente:", e);
+              printError("Error procesando Cartera Vigente:", e);
               reject(e);
             }
           },
@@ -1284,8 +1285,8 @@ public isMapaCalorReady: boolean = false;
     }
 
     prepareResumenChart(tip_cod: any, cod_rel: any, fecha: any): Promise<void> {
-      console.log(fecha)
-      console.log("Cargando ResumenChart para fecha:", fecha);
+      printLog(fecha)
+      printLog("Cargando ResumenChart para fecha:", fecha);
       return new Promise((resolve, reject) => {
         this.antRep.getRegularTableResult("GRAF_GEST_COM_01", {
           "tip_cod": tip_cod,
@@ -1454,7 +1455,7 @@ public isMapaCalorReady: boolean = false;
         // Mostramos el loader de carga
         this.preLoad();
         
-        console.log('🚀 Actualizando TODO el dashboard para la fecha:', this.currentDate);
+        printLog('🚀 Actualizando TODO el dashboard para la fecha:', this.currentDate);
         
         // Llamamos a setDs, que se encargará de actualizar las 3 tablas y TODOS los gráficos
         this.setDs(this.tip_cod, this.cod_rel);
@@ -1515,7 +1516,7 @@ public isMapaCalorReady: boolean = false;
         this.dataSource = r.data;
         this.dataSource3 = r.data; 
         this.setKpiValues(r.data);
-        console.log("piero")
+        printLog("piero")
         this.prepareResumenChart(tip_cod, cod_rel, this.currentDate);
         this.prepareSaldoCarteraVigente(tip_cod, cod_rel, this.currentDate);
         this.prepareVariacionStockChart(tip_cod, cod_rel, this.currentDate);
@@ -1724,7 +1725,7 @@ public isMapaCalorReady: boolean = false;
             setTimeout(() => { this.updateFlagCeroCuotas1 = true; }, 100);
             resolve();
           } catch (e) {
-            console.error("Error Cero Cuotas 01:", e);
+            printError("Error Cero Cuotas 01:", e);
             resolve();
           }
         },
@@ -1772,7 +1773,7 @@ public isMapaCalorReady: boolean = false;
             setTimeout(() => { this.updateFlagCeroCuotas2 = true; }, 100);
             resolve();
           } catch (e) {
-            console.error("Error Cero Cuotas 02:", e);
+            printError("Error Cero Cuotas 02:", e);
             resolve();
           }
         },
@@ -1885,7 +1886,7 @@ public isMapaCalorReady: boolean = false;
                     let cl = lh[0];
                     this.saveBuffer({ tip_cod: cl.tip_cod, cod_rel: cl.cod_rel, des_rel: cl.des_rel });
                     this.tip_cod = h[0].tip_cod;
-                    console.log(this.currentDate)
+                    printLog(this.currentDate)
                     // --- TABLA 01 ---
                     this.antRep.getRegularTableResult("RS_GEST_COM_01", {
                       "tip_cod": this.tip_cod,
@@ -1893,13 +1894,13 @@ public isMapaCalorReady: boolean = false;
                       "fecha":  this.currentDate 
                     }).subscribe(x => {
                       let r = x.body.resultado;  
-                      console.log(r)
+                      printLog(r)
                       this.setKpiValues(r.data);
                       this.dataSource = r.data;
                       this.dataSource3 = r.data; 
                       this.headerDefs = tablaTab1;
                       this.headerDefs3  = tablaTab2;
-                      console.log(this.currentDate) //
+                      printLog(this.currentDate) //
                       this.prepareResumenChart(this.tip_cod,this.cod_rel,this.currentDate);
                       this.prepareSaldoCarteraVigente(this.tip_cod,this.cod_rel,this.currentDate);
                       this.prepareVariacionStockChart(this.tip_cod,this.cod_rel,this.currentDate);
@@ -1994,7 +1995,7 @@ this.antRep.getRegularTableResult("RS_GEST_COM_03", {
        this.headerDefs5 = headersParseados5; 
     }
   },
-  error: (err) => console.error("Error en tabla 03", err)
+  error: (err) => printError("Error en tabla 03", err)
 });
     
                     resolve();

@@ -12,6 +12,7 @@ import { crs } from '../crs-map';
 import { TableMHService } from '../../../../support/services/table.service';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { printLog } from 'app/core/helpers/debug.util';
 @Component({
   selector: "hello",
   templateUrl: './add-prospe.component.html',
@@ -292,15 +293,15 @@ export class AddProspecomponent implements OnDestroy,OnInit {
     let cod_bt = p.cod_bt;
     //console.log(JSON.stringify(cod_bt))
     this.data = ({HCODSEC: JSON.stringify(cod_bt)})
-    console.log({params: JSON.stringify(cod_bt)});
+    printLog({params: JSON.stringify(cod_bt)});
     const params={...this.data,...this.formG.getRawValue()}
     const report='ADD_PROS_CORRE_01';
     this.selected=0;
-    console.log(params)
-    console.log(JSON.stringify(params)) 
-  console.log(this.formG.getRawValue());
-  console.log(this.formG.value['HAPENOMB']);
-  console.log(this.data2)
+    printLog(params)
+    printLog(JSON.stringify(params)) 
+  printLog(this.formG.getRawValue());
+  printLog(this.formG.value['HAPENOMB']);
+  printLog(this.data2)
      
 
      this.cs.postRegularUpdate(report,{json:JSON.stringify(params)})
@@ -358,7 +359,7 @@ export class AddProspecomponent implements OnDestroy,OnInit {
     });   
     this.ctaLicenciaF.valueChanges
      .subscribe((r)=>{
-       console.log(r)
+       printLog(r)
        if(r =='SI'){ 
          this.isInputShown=true;
          this.setValidador(this.LicenciaF,true);

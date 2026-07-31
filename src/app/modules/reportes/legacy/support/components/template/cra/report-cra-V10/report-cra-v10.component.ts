@@ -13,6 +13,7 @@ import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { cra } from 'app/modules/reportes/legacy/comercial/rda/administracion/cra-map';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
+import { printLog } from 'app/core/helpers/debug.util';
 
 
 @Component({
@@ -112,7 +113,7 @@ export class ReportCraV10Component implements OnInit, OnDestroy {
     combineLatest([this.page$,this.filter$, this.level$]).subscribe(([page,filter, level]) => {
       let lp = { tip_cod: level.tip_cod, cod_rel: level.cod_rel };
       let params={...page,...filter,...level}
-      console.log(params)
+      printLog(params)
       this.renderTable(params,{find:'_01',index:0})
     });
   }
@@ -124,7 +125,7 @@ export class ReportCraV10Component implements OnInit, OnDestroy {
     confT.results(true,true,false);
     this.config_table_ajax=confT;
     const params={...confT.getParamsAdd(),...r}
-    console.log(params);
+    printLog(params);
     const reportType=this.report.getReportType();
     this.cs.getMixData(report,reportType,params)
     .pipe(takeUntil(this.destroy$))

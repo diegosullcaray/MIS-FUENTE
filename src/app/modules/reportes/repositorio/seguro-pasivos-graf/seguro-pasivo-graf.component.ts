@@ -13,6 +13,7 @@ import { GraphicService } from '../../legacy/support/services/graphic.service';
 import { takeUntil } from 'rxjs/operators';
 import { ComercialService } from '../../legacy/comercial/comercial.service';
 import * as Highcharts from "highcharts";  
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-seguro-pasivo-graf.component',
@@ -253,7 +254,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
               let result = data.body['result'];
               this.var615 = result.body[0].result615
               this.var616 = result.body[0].result616
-               console.log(result.body[0].series)
+               printLog(result.body[0].series)
               let categoriesT = result.body[0].categories 
                
               this.mapsschartOptions = { 
@@ -267,7 +268,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
                     enabled: false
                   },
                 xAxis: {
-                  categories: eval(categoriesT)//['30', '35', '40', '45', '50', '55']
+                  categories: JSON.parse(categoriesT)//['30', '35', '40', '45', '50', '55']
                 },
                 yAxis: { 
                   title: {
@@ -275,7 +276,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
                        
                   }
               },
-                series: eval(result.body[0].series) 
+                series: JSON.parse(result.body[0].series)
                /* [{
                   name: 'Polizas',
                   data: [12,50,20,40,60,120],
@@ -321,7 +322,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
             (data) => {
               let result = data.body['result']; 
               let categoriesT = result.body[0].categories 
-              console.log(result.body[0].series)
+              printLog(result.body[0].series)
               this.mapsschartOptions = { 
                 chart: {
                   type: "column"  
@@ -333,7 +334,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
                     enabled: false
                   },
                 xAxis: {
-                  categories: eval(categoriesT)//['30', '35', '40', '45', '50', '55']
+                  categories: JSON.parse(categoriesT)//['30', '35', '40', '45', '50', '55']
                 },
                 yAxis: { 
                   title: {
@@ -341,8 +342,8 @@ export class SeguroPasivoGrafComponent implements OnInit {
                        
                   }
               },
-                series: eval(result.body[0].series)  
-              } 
+                series: JSON.parse(result.body[0].series)
+              }
     
               let opts = this.mapsschartOptions;  
               let e = document.createElement('div');

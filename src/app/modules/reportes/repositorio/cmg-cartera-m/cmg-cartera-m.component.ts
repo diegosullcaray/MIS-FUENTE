@@ -8,6 +8,7 @@ import { filter1, tableConfOPTS, tableConfOPTS2, trafficFnMap } from './cmg-cart
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-cmg-cartera-m.component',
@@ -484,7 +485,7 @@ reiniciarAnimaciones() {
 
     }
     onFechaChange(item: any) {
-      console.log('Fecha seleccionada:', item);
+      printLog('Fecha seleccionada:', item);
       // Tu lógica existente (eventFilter)
       this.eventFilter({
         source: {
@@ -548,10 +549,10 @@ loadData() {
     this.preLoad();
   this.mostrarCard= false;
 
-  console.log(tipcod)
-  console.log(codrel)
-  console.log(this.fechaMensual.val )
-  console.log(fase)
+  printLog(tipcod)
+  printLog(codrel)
+  printLog(this.fechaMensual.val )
+  printLog(fase)
 
     this.antRep.getRegularTableResult("CMG_CARTERA_01", {
       codrel: codrel,
@@ -562,16 +563,16 @@ loadData() {
     }).subscribe(x => {
       const r = x.body.resultado;
       const semaforoKeys = ["8", "10","12"]; 
-      console.log(r.data) 
+      printLog(r.data) 
       this.saldoCartera=r.data[18][6]  //saldomediocierreayer
       this.metasaldoCartera=r.data[18][5]  ?? 0//saldomediomesante 
-      console.log(r.data[18][6])
-      console.log(r.data[18][5])
+      printLog(r.data[18][6])
+      printLog(r.data[18][5])
       this.varsaldomediovigente= ((Number((r.data[18][6] || '0').toString().replace(/,/g, '')) - 
       Number((r.data[18][5] || '0').toString().replace(/,/g, ''))) )
       .toLocaleString('en-US', { maximumFractionDigits: 3 });//r.data[18][9]  ?? 0
-      console.log(this.saldoCartera)
-      console.log(this.metasaldoCartera)
+      printLog(this.saldoCartera)
+      printLog(this.metasaldoCartera)
       this.dataSaldoMedioVigente=this.saldoCartera > this.metasaldoCartera ? 1 : -1;
       //console.log(this.dataSaldoMedioVigente)
       this.getTrendClass(this.dataSaldoMedioVigente)
@@ -655,7 +656,7 @@ loadData() {
       const headersProcesados = parsedHeaders.filter(
         h => !(h.cellStyle?.display?.toLowerCase() === 'none')
       );
-      console.log(headersProcesados)
+      printLog(headersProcesados)
       this.headerDefs = headersProcesados; 
       this.load2.next(true);
     });

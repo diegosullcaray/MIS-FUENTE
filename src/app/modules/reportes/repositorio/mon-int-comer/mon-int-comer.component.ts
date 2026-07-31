@@ -6,6 +6,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { tableConfOPTS } from './mon-int-comer.util';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printError } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-mon-int-comer.component',
@@ -176,13 +177,13 @@ export class MonIntComerComponent implements OnInit {
                         this.dashboardData = [];
                     }
                 } catch (error) {
-                    console.error("Error al convertir el JSON del dashboard:", error);
+                    printError("Error al convertir el JSON del dashboard:", error);
                     this.dashboardData = [];
                 }
                 this.load0.next(true);
             },
             error => {
-                console.error("Error en la petición:", error);
+                printError("Error en la petición:", error);
                 this.load0.next(true); 
             }
         );

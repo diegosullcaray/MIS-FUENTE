@@ -9,6 +9,7 @@ import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../services/select.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 @Component({
@@ -114,7 +115,7 @@ export class ReportCraV2Component implements  OnInit,OnDestroy {
     confT.results(true,true,false);
     this.config_table[add.index]=confT;
     const params={...confT.getParamsAdd(),...r};
-    console.log(params)
+    printLog(params)
     this.cs.getReportData(report,params)
     .pipe(takeUntil(this.destroy$))
     .subscribe(

@@ -8,6 +8,7 @@ import { filter1, tableConfOPTS, tableConfOPTS2 } from './tablero-digital.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-tablero-digital.component',
@@ -225,7 +226,7 @@ export class tableroDigitalComponent implements OnInit {
             x => {
                 let r = x.body.resultado;
                 
-                 console.log((r.headers))
+                 printLog((r.headers))
                 this.dataSource = r.data;
                 this.headerDefs = JSON.parse(r.headers);
                 this.load0.next(true);

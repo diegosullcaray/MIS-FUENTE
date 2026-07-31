@@ -1,5 +1,6 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
+import { printWarn, printLog } from 'app/core/helpers/debug.util';
 
 
 @Injectable({ providedIn: 'root' })
@@ -9,7 +10,7 @@ export class LoggerService {
 
   log(value: any, ...rest: any[]) {
     if (!environment.production) {
-      console.log(value, ...rest);
+      printLog(value, ...rest);
     }
   }
 
@@ -19,7 +20,7 @@ export class LoggerService {
 
   warn(value: any, ...rest: any[]) {
     if (!environment.production) {
-      console.warn(value, ...rest);
+      printWarn(value, ...rest);
     }
   }
 

@@ -8,6 +8,7 @@ import { filter1, tablaTab1, tableConfOPTS, tableConfOPTS2, trafficFnMap } from 
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-ranking-comercial.component',
@@ -324,7 +325,7 @@ reiniciarAnimaciones() {
         this.loader.open()
         let profile = this.user.get('profile');
         this.currentDate = moment(profile.curr_fec).format("YYYY-MM-DD");// moment().add(-1, 'days').format("YYYY-MM-DD");   
-        console.log(this.currentDate)
+        printLog(this.currentDate)
         this.activeHier = false;
         this.loading = true;
         this.Opts = tableConfOPTS;

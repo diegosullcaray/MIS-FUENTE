@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { printError, printLog } from 'app/core/helpers/debug.util';
 // Ensure LeafletModule is imported either here (if standalone)
 // or in the NgModule that declares this component.
 
@@ -55,7 +56,7 @@ export class MapaSimpleComponent implements OnInit {
    * Called once when the Leaflet map is initialized.
    */
   onMapReady(map: L.Map) {
-    console.log('PRUEBA AGRESIVA: onMapReady triggered');
+    printLog('PRUEBA AGRESIVA: onMapReady triggered');
     this.map = map;
 
     // Add the base map tile layer manually
@@ -65,49 +66,49 @@ export class MapaSimpleComponent implements OnInit {
     }).addTo(map);
 
     // --- AGGRESSIVE INVALIDATESIZE SEQUENCE ---
-    console.log('PRUEBA AGRESIVA: Starting invalidateSize sequence...');
+    printLog('PRUEBA AGRESIVA: Starting invalidateSize sequence...');
 
     // Attempt 1: Immediately (might read incorrect size)
     try {
       this.map?.invalidateSize();
-      console.log('PRUEBA AGRESIVA: invalidateSize (immediate) - OK');
+      printLog('PRUEBA AGRESIVA: invalidateSize (immediate) - OK');
     } catch (e) {
-      console.error('PRUEBA AGRESIVA: invalidateSize (immediate) - FAILED', e);
+      printError('PRUEBA AGRESIVA: invalidateSize (immediate) - FAILED', e);
     }
 
     // Attempt 2: After a short delay (100ms)
     setTimeout(() => {
-      console.log('PRUEBA AGRESIVA: invalidateSize (100ms)');
+      printLog('PRUEBA AGRESIVA: invalidateSize (100ms)');
       try {
         this.map?.invalidateSize();
-        console.log('PRUEBA AGRESIVA: invalidateSize (100ms) - OK');
+        printLog('PRUEBA AGRESIVA: invalidateSize (100ms) - OK');
       } catch (e) {
-        console.error('PRUEBA AGRESIVA: invalidateSize (100ms) - FAILED', e);
+        printError('PRUEBA AGRESIVA: invalidateSize (100ms) - FAILED', e);
       }
     }, 100);
 
     // Attempt 3: After modal should be stable (400ms)
     setTimeout(() => {
-      console.log('PRUEBA AGRESIVA: invalidateSize (400ms)');
+      printLog('PRUEBA AGRESIVA: invalidateSize (400ms)');
       try {
         this.map?.invalidateSize();
-        console.log('PRUEBA AGRESIVA: invalidateSize (400ms) - OK');
+        printLog('PRUEBA AGRESIVA: invalidateSize (400ms) - OK');
       } catch (e) {
-        console.error('PRUEBA AGRESIVA: invalidateSize (400ms) - FAILED', e);
+        printError('PRUEBA AGRESIVA: invalidateSize (400ms) - FAILED', e);
       }
     }, 400);
 
     // Attempt 4: Long after everything should be settled (1000ms)
     setTimeout(() => {
-      console.log('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms)');
+      printLog('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms)');
       try {
         this.map?.invalidateSize();
-        console.log('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms) - OK');
-        console.log('PRUEBA AGRESIVA: Sequence finished.');
+        printLog('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms) - OK');
+        printLog('PRUEBA AGRESIVA: Sequence finished.');
         // Optional: Center the map here if tiles are now correct
         // this.map?.setView([-9.18, -75.01], 6);
       } catch (e) {
-        console.error('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms) - FAILED', e);
+        printError('PRUEBA AGRESIVA: invalidateSize FINAL (1000ms) - FAILED', e);
       }
     }, 1000); // 1 second delay
   }

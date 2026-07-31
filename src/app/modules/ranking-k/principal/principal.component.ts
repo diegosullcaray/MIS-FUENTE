@@ -44,7 +44,7 @@ export class PrincipalComponent implements OnInit {
         let r = x.body.resultado;    
         //console.log(r.list[0].JSONLIST)
         //console.log(eval(r.list[0].JSONLIST))
-        this.dataSource=eval(r.list[0].JSONLIST)
+        this.dataSource=JSON.parse(r.list[0].JSONLIST)
         });  
     }
     actionLink(evt: any) {

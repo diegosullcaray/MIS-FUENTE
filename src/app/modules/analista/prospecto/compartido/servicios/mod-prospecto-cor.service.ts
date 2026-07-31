@@ -9,6 +9,7 @@ import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";  
 import { ModRepService } from '../../../../reportes/compartido/servicios/mod-rep.service';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class ModProspectoCorService extends AntService {
@@ -36,12 +37,12 @@ export class ModProspectoCorService extends AntService {
     }// 
     
     public postActualizaCor(cod_numdoc:number,cfg:any): Observable<IWinderResponse> {
-        console.log(this.cod_bt,cod_numdoc,JSON.stringify(cfg))
+        printLog(this.cod_bt,cod_numdoc,JSON.stringify(cfg))
         return this.postSimpleResponseString("corresponsal.act_corr", { cod_bt: this.cod_bt,cod_numdoc:cod_numdoc,cfg:JSON.stringify(cfg) });
     }//
 
     public postAddUsuarioCor(cod_numdoc:number,cfg:any): Observable<IWinderResponse> {
-        console.log(this.cod_bt,cod_numdoc,JSON.stringify(cfg))
+        printLog(this.cod_bt,cod_numdoc,JSON.stringify(cfg))
         return this.postSimpleResponseString("corresponsal.add_asesor", { cod_bt: this.cod_bt,cod_numdoc:cod_numdoc,cfg:JSON.stringify(cfg) });
     } //
 

@@ -14,6 +14,7 @@ import { EditarDialogCorComponent } from '../editar/editar-dialog-cor.component'
 import { GuardarDialogCorComponent } from '../guardar/guardar-dialog-cor.component';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-principal-prospecto-cor',
@@ -85,7 +86,7 @@ export class PrincipalComponent implements OnInit {
 
    this.antService.getConfiguracionMod().subscribe(x => {
     let r = x.body.resultado;  
-    console.log(r)
+    printLog(r)
     this.esgService.dep = JSON.parse(r.dep.Departamento); 
     this.esgService.prov = JSON.parse(r.provincia.Provincia); 
     this.esgService.dist = JSON.parse(r.distrito.Distrito);  
@@ -111,7 +112,7 @@ export class PrincipalComponent implements OnInit {
     this.antService.getRegResultadosListProsp(profile.cod_bt).subscribe(x => { 
         let r = x.body.resultado;     
       this.dataSources = r.result;
-      console.log(this.dataSources)
+      printLog(this.dataSources)
       this.dataSourceLenght=r.result.length;
       this.originalDataSource = r.result;
       this.currentDataSource = r.result;
@@ -194,11 +195,11 @@ export class PrincipalComponent implements OnInit {
     }
     filter(evt: any) {
       let v = evt.target.value.toLowerCase();
-      console.log(v)
+      printLog(v)
       if (v === "") {
         this.currentDataSource = this.originalDataSource;
       } else {
-        console.log(this.originalDataSource)
+        printLog(this.originalDataSource)
         this.currentDataSource = this.originalDataSource.filter(x => x.HFECPRO?.toString().toLowerCase().includes(v)|| x.HAPENOMB.toLowerCase().includes(v) || x.HNUMDOC.toString().toLowerCase().includes(v) || x.HNOMCOM.toLowerCase().includes(v)|| x.HESTDCORE?.toLowerCase().includes(v) || x.HFECESTA?.toString().toLowerCase().includes(v) || x.HCANACAP?.toLowerCase().includes(v) || x.HDESTER?.toLowerCase().includes(v) || x.HDESCOR?.toLowerCase().includes(v)  || x.HDESAGE?.toLowerCase().includes(v) )//x => x.HFECPRO.toLowerCase().includes(v) || x.HAPENOMB.toLowerCase().includes(v)|| x.HNUMDOC.toLowerCase().includes(v)|| x.HNOMCOM.toLowerCase().includes(v)|| x.HESTDCORE.toLowerCase().includes(v)  || x.HFECINSTAL.toLowerCase().includes(v)  || x.HCANACAP.toLowerCase().includes(v)  || x.HDESTER.toLowerCase().includes(v) || x.HDESCOR.toLowerCase().includes(v) || x.HDESAGE.toLowerCase().includes(v));
       }
       this.prepPagination();

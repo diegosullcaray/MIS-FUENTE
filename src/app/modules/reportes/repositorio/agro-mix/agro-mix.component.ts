@@ -13,6 +13,7 @@ import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-p
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { DetalleDialogComponent } from './detalle/detalle-dialog.component';
 import { MapaSimpleComponent } from './mapa-simple.component';
+import { printLog, printError } from 'app/core/helpers/debug.util';
 @Component({
     selector: 'app-agro-mix.component',
     templateUrl: './agro-mix.component.html',
@@ -119,7 +120,7 @@ showDetailsPopup(category: string, chartIdentifier: string): void {
   const dataToFilter = this.detailDataMap.get(chartIdentifier);
   
   if (!dataToFilter) {
-    console.error(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
+    printError(`No se encontraron datos de detalle para el gráfico: ${chartIdentifier}`);
     return;
   }
    
@@ -319,7 +320,7 @@ ddHier(evt: any) {
   let key = evt.key; 
   let tip_cod = evt.row.htipcod;
   
-  console.log(evt)
+  printLog(evt)
   
    
   if(key =='EXTE' ||key =='HCCLI'||key =='HSALCAPMN' ||key =='HSALVEMN'){
@@ -360,7 +361,7 @@ async loadAllChartsData(): Promise<void> {
     this.isChartReady = true;
 
   } catch (error) {
-    console.error("Falló la carga de uno o más gráficos", error);
+    printError("Falló la carga de uno o más gráficos", error);
   } finally {
     this.loader.close();
   }
@@ -833,13 +834,13 @@ prepareChartData(): void {
         this.isChartReady = true;
 
       } catch (e) {
-        console.error("Error al procesar la respuesta del gráfico:", e);
+        printError("Error al procesar la respuesta del gráfico:", e);
       } finally {
         this.loader.close();
       }
     },
     error: (err) => {
-      console.error("Error en la llamada al servicio del gráfico:", err);
+      printError("Error en la llamada al servicio del gráfico:", err);
       this.loader.close();
     }
   });
@@ -901,7 +902,7 @@ private setDs(tip_cod: number, cod_rel: string) {
 }).subscribe(x => { 
     let r = x.body.resultado;
     this.dataSource = r.data;
-    console.log(this.dataSource)
+    printLog(this.dataSource)
     this.headerDefs = JSON.parse(r.headers);
     this.saldoCarteraMA = r.meta1[0]["HSALCAPMN"]
     this.saldoVencidoMA = r.meta1[0]["HSALVEMN"]
@@ -971,7 +972,7 @@ private getBaseHierAsync(): Promise<void> {
                                 this.extMA = r.meta1[0]["EXTE"] 
 
                                 this.dataSource = r.data;
-                                console.log(this.dataSource)
+                                printLog(this.dataSource)
                                 this.TsaldoCapital = this.dataSource[0].HSALCAPMN
                                 this.TsaldoVencido = this.dataSource[0].HSALVEMN
                                 this.TNumCliente = this.dataSource[0].HCCLI

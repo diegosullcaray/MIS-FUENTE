@@ -10,6 +10,7 @@ import { SelectService } from '../../../../support/services/select.service';
 import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, FormArray, Validators } from '@angular/forms';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 @Component({
   selector: 'app-crs-cap-ret',
@@ -340,7 +341,7 @@ export class CrsCapRetComponent implements OnDestroy,OnInit {
       //const emailF= this.formG.controls.email as FormControl;
       let reaccion=isNullOrUndefined(r.row.reaccion)?'{}':r.row.reaccion;
       const reaccionJ:{}=JSON.parse(reaccion);
-      console.log(reaccionJ)
+      printLog(reaccionJ)
       //const reaccion:{}=JSON.parse(r.row.reaccion);
       this.formG.reset();
       this.formG.patchValue(reaccionJ)
@@ -365,7 +366,7 @@ export class CrsCapRetComponent implements OnDestroy,OnInit {
     const report='UPD_CAPRET_01';
     this.selected=0;
     //console.log({json:this.formG.getRawValue()})
-    console.log(JSON.stringify(params))
+    printLog(JSON.stringify(params))
     //console.log(params)
     this.cs.postRegularUpdate(report,{json:JSON.stringify(params)})
     .subscribe(r=>{

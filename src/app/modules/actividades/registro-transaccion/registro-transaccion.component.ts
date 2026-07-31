@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 //import { tableHeaders, loadingConf, tableConf } from "./destino-credito.util";
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
@@ -175,7 +176,7 @@ export class RegistroTransaccionComponent implements OnInit {
       for (let i = 0, max = ss.length; i < max; i += 1) {
         task_names.push(ss[i].HCONSRCC);
     }
-    console.log(task_names)
+    printLog(task_names)
        //console.log(ss[5].HCONSRCC)
       this.dataSource = this.currentDataSource.filter(x => x.pk === p);
     }

@@ -8,6 +8,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';
 import { take } from 'rxjs/operators';
+import { printError, printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-basenegativa',
@@ -49,7 +50,7 @@ export class BasenegativaComponent implements OnInit {
     //dialogRef.afterClosed().subscribe(v => {
       // 'v' es el objeto que seleccionaste en el buscador
       if (v) {
-        console.log("Seleccionado en buscador:", v);
+        printLog("Seleccionado en buscador:", v);
         // IMPORTANTE: Usa la propiedad correcta de tu SQL. Ej: v.HCTACLI o v.cod_bt
         const codigoParaSP = v.HCTACLI || v.cod_bt || v.nom; 
         this.loadData(codigoParaSP); 
@@ -70,7 +71,7 @@ export class BasenegativaComponent implements OnInit {
         this.loader.close();
         if (x && x.body && x.body.resultado) {
           let r = x.body.resultado;
-          console.log("Datos recibidos del SQL:", r.data); // REVISA ESTO EN CONSOLA
+          printLog("Datos recibidos del SQL:", r.data); // REVISA ESTO EN CONSOLA
           
           this.dataSource = r.data;
           
@@ -86,7 +87,7 @@ export class BasenegativaComponent implements OnInit {
       },
       error => {
         this.loader.close();
-        console.error("Error en loadData:", error);
+        printError("Error en loadData:", error);
         this.loading = false;
         // Opcional: Redirigir también en caso de error crítico
         this.router.navigate(['app/desktop']);

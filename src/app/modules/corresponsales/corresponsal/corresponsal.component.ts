@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener, OnDestroy } from '@angular/core';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { baseAnimations } from 'app/shared/animations/animations.util';
 //import { ReportT } from '../../../../support/services/report';
 import { ActivatedRoute } from '@angular/router';
@@ -637,7 +638,7 @@ selectHier(evt: any) {
   
 
   setChartColor(theme) {
-    console.log(theme);
+    printLog(theme);
   }
   
 

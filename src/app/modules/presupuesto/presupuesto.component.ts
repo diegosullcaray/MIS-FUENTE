@@ -8,6 +8,7 @@ import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Subscription } from "rxjs";
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
+import { printLog } from 'app/core/helpers/debug.util';
 
 
 @Component({
@@ -44,8 +45,8 @@ export class PresupuestoComponent implements OnInit, OnDestroy {
             let lin = b.sub[0];
             let ges = b.sub[1];
             this.menuItems = lin.sub;
-            console.log(lin)
-            console.log(this.menuItems)
+            printLog(lin)
+            printLog(this.menuItems)
             if(!isNullOrUndefined(ges)){
                 this.activeGes=true;
                 this.menuItems2 = ges.sub;

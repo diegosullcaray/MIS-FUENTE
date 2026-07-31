@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ComercialService } from '../../../comercial.service';
 import { cra } from '../cra-map';
 import { SelectService } from 'app/modules/reportes/legacy/support/services/select.service';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-cra-top-efec',
@@ -81,7 +82,7 @@ export class CraTopEfecComponent implements OnInit {
     confT.results(true,true,false);
     this.config_table[add.index]=confT;
     const params={...confT.getParamsAdd(),...r};
-    console.log(params);
+    printLog(params);
     this.cs.getRegularData(report,params)
     .pipe(takeUntil(this.destroy$))
     .subscribe(

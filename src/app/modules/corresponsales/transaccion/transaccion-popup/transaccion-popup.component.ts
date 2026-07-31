@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 import moment, { Moment } from 'moment';
 import { ModCorresponsalService } from '../../servicio/mod-corresponsal.service';
@@ -108,7 +109,7 @@ export class TransaccionPopupComponent implements OnInit {
 
       if (v) {
         this.payload = { dni: dni, instalado: instalado, prospecto: prospecto,aperturacta: aperturacta,latitud:latitud, longitud:longitud };
-        console.log(this.payload);
+        printLog(this.payload);
         this.resObs().subscribe(x => {
           // this.data.data1['HFECVIS'] = moment(fec_vis).format("yyyy-MM-DD");
           // this.data.data1['HCUMPLDC'] = is_valid;

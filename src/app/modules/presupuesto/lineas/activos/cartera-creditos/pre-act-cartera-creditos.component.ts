@@ -6,6 +6,7 @@ import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { tableHeaders, tableHeaders2, tableHeaders3, tableConf } from "./pre-act-cartera-creditos.util";
 import { Subject } from "rxjs";
 import { cloneObject } from "app/core/helpers/functions.util";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-pre-act-creditos-cartera',
@@ -70,7 +71,7 @@ export class PreActCarteraCreditosComponent extends PreLineaSimpleComponent impl
 
     public editCell(evt: any) {
         //console.log(evt.row.ord)
-        console.log(evt);
+        printLog(evt);
         let idx = evt.row.ord - 1;
         //if (evt.key == 'ase_nue') {
         if (evt.key == 'b1') {
@@ -139,9 +140,9 @@ export class PreActCarteraCreditosComponent extends PreLineaSimpleComponent impl
         let rat_can: number = +this.wsSource[idx]['c1'];
         let mon_can: number = sal_ini * rat_can;
         this.wsSource[idx]['c2'] = mon_can;
-        console.log(sal_ini+' sal_ini');
-        console.log(rat_can);
-        console.log(mon_can);
+        printLog(sal_ini+' sal_ini');
+        printLog(rat_can);
+        printLog(mon_can);
 
 
         let sal_cas: number = +this.wsSource[idx]['a2'];

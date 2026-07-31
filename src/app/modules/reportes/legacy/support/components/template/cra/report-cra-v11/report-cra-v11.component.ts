@@ -15,6 +15,7 @@ import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-report-cra-v11',
@@ -79,7 +80,7 @@ export class ReportCraV11Component implements OnInit, OnDestroy {
     this.route.data.subscribe(d => {
      
       this.report = new ReportT(com(d.report));
-      console.log(this.report)
+      printLog(this.report)
       this.iniHierarchy();
       this.mergeParams();
       this.rendererSync(); 
@@ -93,7 +94,7 @@ export class ReportCraV11Component implements OnInit, OnDestroy {
 
   private iniHierarchy() {
     let cfg = this.antRep.getHierarchyConfig(this.report.getJerar());
-    console.log(cfg)
+    printLog(cfg)
     this.antRep.getBaseHierarchy(cfg.code).subscribe(
       x => {
         let bh: any = x.body.base_hierarchy;
@@ -204,7 +205,7 @@ export class ReportCraV11Component implements OnInit, OnDestroy {
     confT.results(true, true, false);
     this.config_table[add.index] = confT;
     const params = { ...confT.getParamsAdd(), ...r };
-    console.log(params)
+    printLog(params)
     this.cs.getRegularData(report, params)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -238,14 +239,14 @@ export class ReportCraV11Component implements OnInit, OnDestroy {
         map(([page, level, filter, filterA]) => {
           const find = '_03'
           const index = 1
-          console.log(find)
+          printLog(find)
           const table = this.report.getTableFind(index);
           const report: string = this.report.getRNameCompleted(find);
           const confT = new TableMHService(table);
           confT.results(true, true, false);
           this.config_table_ajax = confT;
           const params = { ...confT.getParamsAdd(), ...page, ...level, ...filter, ...filterA};
-          console.log(params)
+          printLog(params)
           return { params: params, report: report }
         }),
         switchMap((r) => this.cs.getRegularData(r.report, r.params)),
@@ -264,7 +265,7 @@ export class ReportCraV11Component implements OnInit, OnDestroy {
   }
  
   private rendererFilterT(findT: string) {
-    console.log(findT)
+    printLog(findT)
     const filters: any = this.report.getFiltersTableFind(findT);
    // console.log(filters)
     filters.forEach(f => {

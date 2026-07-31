@@ -12,6 +12,7 @@ import { cra } from '../../../../../comercial/rda/administracion/cra-map';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { UntypedFormControl } from '@angular/forms'; 
+import { printLog } from 'app/core/helpers/debug.util';
 @Component({
   selector: 'app-report-cra-v1p9',
   templateUrl: './report-cra-v1p9.component.html',
@@ -143,7 +144,7 @@ export class ReportCraV1p9Component implements OnInit, OnDestroy {
     this.config_table[add.index] = confT;
     //const params = { ...confT.getParamsAdd(), ...r};
     const params={...confT.getParamsAdd(),...r};
-    console.log(params);
+    printLog(params);
     const reportType = this.report.getReportType();
     this.cs.getMixData(report, reportType, params)
       .pipe(takeUntil(this.destroy$))

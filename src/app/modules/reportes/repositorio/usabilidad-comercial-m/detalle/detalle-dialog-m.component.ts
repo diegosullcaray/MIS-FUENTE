@@ -8,6 +8,7 @@ import { LayoutService } from 'app/pages/full-pages/layout/services/layout.servi
 import { Incentivos3Service } from 'app/modules/incentivos3/compartido/servicios/incentivos3.service';
 import { ModIncentivos3Service } from 'app/modules/incentivos3/compartido/servicios/mod-incentivos3.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { tableConfOPTS, tblHeaders } from '../usa_come.util';
 import { cloneObject } from 'app/core/helpers/functions.util';
 import { tblHeaders } from '../detalle/detalle-m.util';
@@ -76,7 +77,7 @@ headerDefs: any;
   this.tip_cod = this.data?.tip_cod;
   this.cod_rel = this.data?.cod_rel;
   this.des_rel = this.data?.des_rel;
-  console.log(this.vars)
+  printLog(this.vars)
 
   this.showVars = true; // Activar visibilidad
 this.datas = this.vars.row.cod_ugru
@@ -86,7 +87,7 @@ this.enrolado = this.vars.row.num_enro_2
 this.usabilidad = this.vars.row.num_usab_2
 this.fechaConsulta = this.vars.row.fec
 
-console.log(this.fechaConsulta)
+printLog(this.fechaConsulta)
 
 //console.log(this.vars)
  // console.log("Datos recibidos en el hijo:", this.vars.row.cod_ugru);

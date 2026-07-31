@@ -7,6 +7,7 @@ import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-ap
 import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class ModActividadesService extends AntService {
@@ -41,13 +42,13 @@ export class ModActividadesService extends AntService {
     }
 
     public getRegResultadosDestCred(): Observable<IWinderResponse> {
-        console.log(this.cod_bt)
+        printLog(this.cod_bt)
         return this.getSimpleResponseString("actividades.get_dest_cre", { cod_bt: this.cod_bt }, "resultado");
     }
 
     public postRegResultadosDestCred(ov: any): Observable<any> {
         let params = { ov_json: JSON.stringify(ov) };
-        console.log(params);
+        printLog(params);
         return this.postSimpleResponseString("actividades.post_dest_cre", params);
     }
 

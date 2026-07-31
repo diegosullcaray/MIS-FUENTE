@@ -15,6 +15,7 @@ import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-p
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalleDialogComponent } from './detalle/detalle-dialog.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({  
     selector: 'app-usa-come.component',
@@ -141,17 +142,17 @@ export class UsaComeComponent implements OnInit {
     
         // Solo abrir si tip_cod es 17
         if (this.ftipCod !== 17) {
-            console.log('Modal bloqueado: tip_cod != 17');
+            printLog('Modal bloqueado: tip_cod != 17');
             return;
         }
      
         // No abrir si es el primer registro (ajusta esto según el log)
         if (evt.row.fila === 1) {
-            console.log('Modal bloqueado: es el primer registro');
+            printLog('Modal bloqueado: es el primer registro');
             return;
         }
     
-        console.log('Abriendo modal:', evt);
+        printLog('Abriendo modal:', evt);
     
         this.varsDataRows = evt;
         this.pointer += 1;

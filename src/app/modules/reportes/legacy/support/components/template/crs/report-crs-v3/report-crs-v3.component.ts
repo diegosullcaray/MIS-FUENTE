@@ -7,6 +7,7 @@ import { takeUntil, startWith, switchMap, map, tap } from 'rxjs/operators';
 import { ReportT } from '../../../../services/report';
 import { crs } from '../../../../../comercial/rda/sectorista/crs-map';
 import { SelectService } from '../../../../services/select.service';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 /*import { com } from 'app/modules/comercial/com-map.module';
@@ -126,7 +127,7 @@ export class ReportCrsV3Component implements OnDestroy,OnInit {
     //this.config_table[add.index]=confT;
     this.config_table_ajax=confT;
     const params={...confT.getParamsAdd(),...r}
-    console.log(params);
+    printLog(params);
     const reportType=this.report.getReportType();
     this.cs.getMixData(report,reportType,params)
     .pipe(takeUntil(this.destroy$))

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
+import { printLog } from 'app/core/helpers/debug.util';
 /*import { IWinderResponse, IWinderConfig } from '../../../../core/data/remote/winder/winder-bearer.interface';
 import { Strand } from '../../../../core/data/remote/winder/strand.class';
 import { WinderService } from '../../../../core/data/remote/winder/winder.service';*/
@@ -57,7 +58,7 @@ export class ControlCargasComponent implements OnInit {
     confT.results(true, true, false);
     this.config_table_sum = confT;
     const params = { ...confT.getParamsAdd() };
-    console.log(params);
+    printLog(params);
     this.cs.getRegularData('RS_MON_CAR_01'/*report*/, { opt: 1 })
       .pipe(takeUntil(this.destroy$))
       .subscribe(
@@ -85,7 +86,7 @@ export class ControlCargasComponent implements OnInit {
     confT.results(true, true, false);
     this.config_table_prod = confT;
     const params = { ...confT.getParamsAdd() };
-    console.log(params);
+    printLog(params);
     this.cs.getRegularData('RS_MON_CAR_01'/*report*/, { opt: 2 })
       .pipe(takeUntil(this.destroy$))
       .subscribe(

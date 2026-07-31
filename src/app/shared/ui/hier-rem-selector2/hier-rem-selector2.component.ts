@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'hier-rem-selector2',
@@ -38,7 +39,7 @@ export class HierRemSelector2Component implements OnInit {
         roots.forEach(x => {
             crls.push(x.cod_rel);
         });
-        console.log(roots)
+        printLog(roots)
         this.getData(roots[0].tip_cod, crls, roots[0].lvl);
 
     }

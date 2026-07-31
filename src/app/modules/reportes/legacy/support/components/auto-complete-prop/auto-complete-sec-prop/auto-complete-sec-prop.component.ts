@@ -4,6 +4,7 @@ import { tap, startWith, map, takeUntil } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { ModSecService } from '../../../data/ant-mod-sec.service';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-auto-complete-sec-prop',
@@ -30,7 +31,7 @@ export class AutoCompleteSecPropComponent implements OnInit,OnDestroy {
   private renderAsesores():void{
 
     let email=this.us.email;
-    console.log(this.us.get('profile').tip_use)
+    printLog(this.us.get('profile').tip_use)
     //console.log("hola")
     this.ant.getSecListMov(email)
     .pipe(
@@ -65,7 +66,7 @@ export class AutoCompleteSecPropComponent implements OnInit,OnDestroy {
   }
   
   ngOnInit() {
-    console.log(this.us.get('profile').tip_use);
+    printLog(this.us.get('profile').tip_use);
     this.profile==this.us.get('profile');
      
 
@@ -82,8 +83,8 @@ export class AutoCompleteSecPropComponent implements OnInit,OnDestroy {
     }
 
     //console.log(this.profile);
-    console.log(this.isSectorista);
-    console.log(this.isAdministrador);
+    printLog(this.isSectorista);
+    printLog(this.isAdministrador);
     if(this.isSectorista || this.isAdministrador){
       let params={tip_cod:2,cod_rel:this.us.get('profile').num_doc}
       setTimeout(() =>this.refresh.emit(params), 1000);
@@ -96,7 +97,7 @@ export class AutoCompleteSecPropComponent implements OnInit,OnDestroy {
  
   private _filterStates(value: string){
     const filterValue = value.toLowerCase();
-    console.log(filterValue);
+    printLog(filterValue);
     return this.data.result.filter(r => r.name.toLowerCase().includes(filterValue));
   }
 

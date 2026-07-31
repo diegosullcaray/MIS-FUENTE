@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 import moment, { Moment } from 'moment';
 import { ModCorresponsalService } from '../../../corresponsales/servicio/mod-corresponsal.service';
@@ -262,7 +263,7 @@ export class RegistroTransaccionPopupComponent implements OnInit {
     });   
      this.ctaLicenciaF.valueChanges
      .subscribe((r)=>{
-       console.log(r)
+       printLog(r)
        if(r =='SI'){ 
          this.isInputShown=true;
          this.setValidador(this.LicenciaF,true);
@@ -327,7 +328,7 @@ export class RegistroTransaccionPopupComponent implements OnInit {
 
   
   private resObs() {
-    console.log(this.payload);
+    printLog(this.payload);
     return this.antApp.postRegResultadosProsp(this.payload);
   }
 
@@ -372,15 +373,15 @@ export class RegistroTransaccionPopupComponent implements OnInit {
     let cod_bt = p.cod_bt;
     //console.log(JSON.stringify(cod_bt))
     this.data = ({HCODSEC: JSON.stringify(cod_bt)})
-    console.log({params: JSON.stringify(cod_bt)});
+    printLog({params: JSON.stringify(cod_bt)});
     const params={...this.data,...this.itemForm.getRawValue()}
     const report='ADD_PROS_CORRE_01';
     this.selected=0;
-    console.log(params)
-    console.log(JSON.stringify(params)) 
-  console.log(this.itemForm.getRawValue());
+    printLog(params)
+    printLog(JSON.stringify(params)) 
+  printLog(this.itemForm.getRawValue());
   //console.log(this.itemForm.value['HAPENOMB']);
-  console.log(this.itemForm)
+  printLog(this.itemForm)
      
 
      this.cs.postRegularUpdate(report,{json:JSON.stringify(params)})

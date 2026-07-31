@@ -8,6 +8,7 @@ import { filter1, tableConfOPTS, tableConfOPTS2, trafficFnMap } from './cmg-cart
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-cmg-cartera.component',
@@ -322,7 +323,7 @@ reiniciarAnimaciones() {
         this.loader.open()
         let profile = this.user.get('profile');
         this.currentDate = moment(profile.curr_fec).format("YYYY-MM-DD");// moment().add(-1, 'days').format("YYYY-MM-DD");   
-        console.log(this.currentDate)
+        printLog(this.currentDate)
         this.activeHier = false;
         this.loading = true;
         this.Opts = tableConfOPTS;
@@ -466,16 +467,16 @@ loadData() {
     }).subscribe(x => {
       const r = x.body.resultado;
       const semaforoKeys = ["8", "10","12"]; 
-      console.log(r.data) 
+      printLog(r.data) 
       this.saldoCartera=r.data[18][6]  //saldomediocierreayer
       this.metasaldoCartera=r.data[18][5]  ?? 0//saldomediomesante 
-      console.log(r.data[18][6])
-      console.log(r.data[18][5])
+      printLog(r.data[18][6])
+      printLog(r.data[18][5])
       this.varsaldomediovigente= ((Number((r.data[18][6] || '0').toString().replace(/,/g, '')) - 
       Number((r.data[18][5] || '0').toString().replace(/,/g, ''))) )
       .toLocaleString('en-US', { maximumFractionDigits: 3 });//r.data[18][9]  ?? 0
-      console.log(this.saldoCartera)
-      console.log(this.metasaldoCartera)
+      printLog(this.saldoCartera)
+      printLog(this.metasaldoCartera)
       this.dataSaldoMedioVigente=this.saldoCartera > this.metasaldoCartera ? 1 : -1;
       //console.log(this.dataSaldoMedioVigente)
       this.getTrendClass(this.dataSaldoMedioVigente)
@@ -559,7 +560,7 @@ loadData() {
       const headersProcesados = parsedHeaders.filter(
         h => !(h.cellStyle?.display?.toLowerCase() === 'none')
       );
-      console.log(headersProcesados)
+      printLog(headersProcesados)
       this.headerDefs = headersProcesados; 
       this.load2.next(true);
     });

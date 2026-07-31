@@ -9,6 +9,7 @@ import { tableConf, loadingConf, tableHeaders } from "./captacion-canal-operacio
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ReportT } from '../../legacy/support/services/report';
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
     selector: 'app-captacion-canal-operacion-rep',
@@ -48,7 +49,7 @@ export class CaptacionCanalOperacionComponent implements OnInit {
         this.report = new ReportT(cra('LST_AUT'));
 
         let cfg = this.antRep.getHierarchyConfig(this.report.getJerar());
-        console.log(cfg.code)
+        printLog(cfg.code)
     this.antRep.getBaseHierarchy(12).subscribe(
       x => {
         let bh: any = x.body.base_hierarchy;

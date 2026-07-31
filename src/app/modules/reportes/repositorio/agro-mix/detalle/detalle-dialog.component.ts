@@ -6,6 +6,7 @@ import { tblOptsModal } from '../agro-mix.util';
 import { cloneObject } from 'app/core/helpers/functions.util';
 import * as L from 'leaflet';
 import { LayerGroup } from 'leaflet'; 
+import { printLog, printWarn, printError } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'app-detalle-dialog',
@@ -81,7 +82,7 @@ export class DetalleDialogComponent implements OnInit, AfterViewInit {
                 }
             }
         } catch (error) {
-            console.error('❌ Error al aplicar estilo manualmente a la barra:', error);
+            printError('❌ Error al aplicar estilo manualmente a la barra:', error);
         }
     }, 0); 
   }
@@ -120,7 +121,7 @@ export class DetalleDialogComponent implements OnInit, AfterViewInit {
     const name = evt.row.HDESCLI || evt.row.HCTACLI || 'Ubicación';
 
     if (isNaN(lat) || isNaN(lng)) {
-      console.error("❌ Coordenadas inválidas:", evt.row);
+      printError("❌ Coordenadas inválidas:", evt.row);
       return;
     }
       
@@ -134,11 +135,11 @@ export class DetalleDialogComponent implements OnInit, AfterViewInit {
  
   private setupMap(): void {
     if (!this.isMapReady || !this.map || !this.dataParaMapa) {
-      console.warn("⏳ Mapa no listo o sin datos, esperando...");
+      printWarn("⏳ Mapa no listo o sin datos, esperando...");
       return;
     }
 
-    console.log('🗺️ Configurando mapa (setupMap)...');
+    printLog('🗺️ Configurando mapa (setupMap)...');
     const { lat, lng, name } = this.dataParaMapa;
  
     this.map.invalidateSize();
@@ -163,12 +164,12 @@ export class DetalleDialogComponent implements OnInit, AfterViewInit {
     this.filterValue = inputValue;
 
     const v = inputValue.toString().toLowerCase();  
-    console.log('Buscando:', v);
+    printLog('Buscando:', v);
 
     if (v === "") { 
       this.dataSource3Page = [...this.originalDataSource];  
     } else { 
-      console.log(this.dataSource3Page)  
+      printLog(this.dataSource3Page)  
       this.dataSource3Page = this.originalDataSource.filter(x => {
          
         const cli= (x.HDESCLI ?? '').toLowerCase();

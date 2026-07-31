@@ -70,11 +70,11 @@ export class Kaypacha3Component implements OnInit {
             // if ( r.puntos.HACTBOTON == "1" || profile.tip_use == 0 ) {
             //     this.boton = true;
             // }   
-            this.headers =  eval(r.cab1[0].JSONNHEAD1) ; 
-            this.headers1_1 =  eval(r.cab1_1[0].JSONNHEAD1) ; 
-            this.dataSources =r.res1   
-            this.headers2 =  eval(r.cab2[0].JSONNHEAD1) ; 
-            this.headers2_2 =  eval(r.cab2_2[0].JSONNHEAD1) ; 
+            this.headers =  JSON.parse(r.cab1[0].JSONNHEAD1) ;
+            this.headers1_1 =  JSON.parse(r.cab1_1[0].JSONNHEAD1) ;
+            this.dataSources =r.res1
+            this.headers2 =  JSON.parse(r.cab2[0].JSONNHEAD1) ;
+            this.headers2_2 =  JSON.parse(r.cab2_2[0].JSONNHEAD1) ;
             this.dataSources2 =r.res2   
             this.puntajeFinal=r.puntos.HPUNTAFINAL;
             this.posicion=r.puntos.HDESPOS;

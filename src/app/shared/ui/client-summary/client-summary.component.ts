@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { ClientSummaryService } from "app/shared/services/client-summary.service";
+import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({
   selector: 'client-summary',
@@ -28,7 +29,7 @@ export class ClientSummaryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.config = this.cliSum.config;
-    console.log(this.config);
+    printLog(this.config);
     this.cliSum.loadData();
   }
 

@@ -11,6 +11,7 @@ import { ComercialService } from '../../../../../comercial/comercial.service';
 import { cra } from '../../../../../comercial/rda/administracion/cra-map';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
+import { printLog } from 'app/core/helpers/debug.util';
 
 
 @Component({
@@ -112,7 +113,7 @@ export class ReportCraV1p6Component implements  OnInit,OnDestroy {
       })
       this.configT.forEach((find,index)=>{
         let params={...filter,...level}
-        console.log(params);
+        printLog(params);
         this.renderTable(params,{find:find,index:index})
       })
     })
@@ -124,10 +125,10 @@ export class ReportCraV1p6Component implements  OnInit,OnDestroy {
     //console.log(this.report);
     const confT= new TableMHService(table);
     confT.results(true,true,false);
-    console.log(confT);
+    printLog(confT);
     this.config_table[add.index]=confT;
     const params={...confT.getParamsAdd(),...r};
-    console.log(params);
+    printLog(params);
     const reportType=this.report.getReportType();
     this.cs.getMixData(report,reportType,params)
     .pipe(takeUntil(this.destroy$))
@@ -158,7 +159,7 @@ export class ReportCraV1p6Component implements  OnInit,OnDestroy {
     confG.results(true,true,false);
     this.config_graphic=[confG,confG,confG,confG,confG,confG,confG,confG];*/
     const params={...r};
-    console.log(params);
+    printLog(params);
     this.cs.getGraphicData(report,params)
     .pipe(takeUntil(this.destroy$))
     .subscribe(

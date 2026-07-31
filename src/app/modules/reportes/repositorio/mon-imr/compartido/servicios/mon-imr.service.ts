@@ -9,6 +9,7 @@ import { MonImrAntService } from "./mon-imr-ant.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { principalConfig, filter1 } from "../../principal/principal.util";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { printError } from 'app/core/helpers/debug.util';
 
 @Injectable()
 export class MonImrService {
@@ -76,7 +77,7 @@ export class MonImrService {
                 await this.getBaseHierAsync();
             }
         } catch (error) {
-            console.error('Error loading data:', error);
+            printError('Error loading data:', error);
         } finally {
             this.isLoading = false;
             this.loader.close();
@@ -608,7 +609,7 @@ export class MonImrService {
                 this.principal.loading = false;
                 // ✅ Cerrar loader también en caso de error
                 this.loader.close();
-                console.error('Error in setDs:', error);
+                printError('Error in setDs:', error);
             }
         }); 
     }

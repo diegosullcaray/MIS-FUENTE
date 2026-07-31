@@ -11,6 +11,7 @@ import * as Moments from 'moment';
 import { dateArray, IDate } from '../../../../support/common/date.module'
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
+import { printLog } from 'app/core/helpers/debug.util';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 @Component({
@@ -210,7 +211,7 @@ export class CrsReproPdmComponent implements OnInit, OnDestroy {
     this.selected = 0;
     const report = 'UP_REPRO_02';
     const json = { ...this.math, ...{ tip_base: this.tipForm }, ...this.form.getRawValue() }
-    console.log(JSON.stringify(json))
+    printLog(JSON.stringify(json))
     this.cs.postRegularUpdate(report, { json: JSON.stringify(json) })
       .subscribe(r => {
         this.refresh$.next(true);

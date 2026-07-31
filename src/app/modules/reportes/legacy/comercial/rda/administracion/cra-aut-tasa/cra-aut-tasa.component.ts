@@ -11,6 +11,7 @@ import { cra } from '../cra-map';
 import { ActivatedRoute } from '@angular/router';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
+import { printLog } from 'app/core/helpers/debug.util';
 @Component({
   selector: 'app-cra-aut-tasa',
   templateUrl: './cra-aut-tasa.component.html',
@@ -114,7 +115,7 @@ export class CraAutTasaComponent implements OnInit, OnDestroy {
     confT.results(true, true, false);
     this.config_table[add.index] = confT;
     const params = { ...confT.getParamsAdd(), ...r };
-    console.log(params); 
+    printLog(params); 
     const reportType=this.report.getReportType();
     this.cs.getMixData(report,reportType,params)
       .pipe(takeUntil(this.destroy$))

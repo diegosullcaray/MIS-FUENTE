@@ -9,6 +9,7 @@ import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
+import { printLog } from 'app/core/helpers/debug.util';
 
 type TabType = 'credito' | 'metrica' | 'seguros' | 'movilidad' | 'desembolsos' | 'efectividad' | 'categorizacion';
 
@@ -150,7 +151,7 @@ export class AsesorComponent implements OnInit {
     }
 
     public chartClicked({ event, active }: { event: any, active: {}[] }): void {
-        console.log('Chart clicked:', event, active);
+        printLog('Chart clicked:', event, active);
     }
 
     public chartHovered({ event, active }: { event: any, active: {}[] }): void {
@@ -400,7 +401,7 @@ export class AsesorComponent implements OnInit {
             const indexes = config.dataIndexes;
             
             if (config.storedProc === 'Tab_Dig_Com_A_01') {
-                console.log(r)
+                printLog(r)
                 this.VariableCard1 = r.meta1[0]["meta"]
                 this.VariableCard2 = r.meta1[0]["carteraCount"]
                 this.VariableCard3 = r.meta1[0]["enroladoCount"]

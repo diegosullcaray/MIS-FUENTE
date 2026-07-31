@@ -1,3 +1,4 @@
+import { printError } from 'app/core/helpers/debug.util';
 // buscador.component.ts revisado
 
 import { Component, Inject, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef,ChangeDetectionStrategy } from '@angular/core';
@@ -85,7 +86,7 @@ fetchData(termino: string = "") {
         this.changeDetectorRef.detectChanges();
       },
       err => {
-        console.error("Error al filtrar en SQL:", err);
+        printError("Error al filtrar en SQL:", err);
         this.dataLoadObs = false;
       }
     );

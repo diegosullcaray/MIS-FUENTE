@@ -16,6 +16,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
+import { printLog } from 'app/core/helpers/debug.util';
 import { AddProspecomponent } from './add-prospe.component'; 
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 export interface DialogData {
@@ -243,7 +244,7 @@ export class CrsProspeComponent implements OnDestroy,OnInit {
 
     public submit() {
         this.dataSaved = true;
-        console.log(this.nn.desc);
+        printLog(this.nn.desc);
         this.close();
     }
    
@@ -334,20 +335,20 @@ export class CrsProspeComponent implements OnDestroy,OnInit {
 
   public update(r){
     let p = this.us.get('profile');
-    console.log(p);
+    printLog(p);
     let v = p.tip_use;
     let n = p.num_doc;
     if(1==1 || this.tUser==0 || (v===1 && n == r.row.num_doc_sec)){
       this.cliente=r.row.nom_cli;
       delete r.row.nom_cli;
       this.data={...r.row};
-      console.log(this.data)
+      printLog(this.data)
       this.selected=1;
 
       //const emailF= this.formG.controls.email as FormControl;
       let reaccion=isNullOrUndefined(r.row.reaccion)?'{}':r.row.reaccion;
       const reaccionJ:{}=JSON.parse(reaccion);
-      console.log(reaccionJ)
+      printLog(reaccionJ)
       //const reaccion:{}=JSON.parse(r.row.reaccion);
       this.formG.reset();
       this.formG.patchValue(reaccionJ)
