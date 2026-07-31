@@ -10,6 +10,7 @@ import { environment } from 'environments/environment';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/module-sidenav.service';
 import { TourService } from 'app/shared/services/tour.service';
+import { SessionLoaderService } from 'app/shared/services/session-loader.service';
 import { DriveStep } from 'driver.js';
 
 @Component({
@@ -41,7 +42,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     public router:Router,
     private confirm: StgAppConfirmService,
     public moduleSidenav: ModuleSidenavService,
-    private tour: TourService
+    private tour: TourService,
+    private sessionLoader: SessionLoaderService
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService
@@ -54,6 +56,7 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   confirmLogout() {
     this.confirm.open('¿Está seguro que desea cerrar sesión?').subscribe(x => {
       if (x.result == 1) {
+        this.sessionLoader.show('Cerrando sesión...');
         this.auth.logout();
       }
     });

@@ -1,1 +1,4 @@
+<div class="global-session-loader" *ngIf="sessionLoader.visible$ | async">
+  <app-session-loader [message]="sessionLoader.message"></app-session-loader>
+</div>
 <router-outlet></router-outlet>
