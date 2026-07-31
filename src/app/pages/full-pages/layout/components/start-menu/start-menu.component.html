@@ -11,14 +11,14 @@
                         <!--routerLinkActive="list-item-active"-->
                         <stg-hover-menu *ngIf="item.type==='dropDown'" [childs]="item.sub">
                             <mat-list-item class="no-rpad" trigger [routerLink]="item.state?item.state:null">
-                                <mat-icon>{{item.icon}}</mat-icon>
+                                <mat-icon>{{item.icon || 'folder'}}</mat-icon>
                                 <div fxFlex class="adj-name">{{item.name}}</div>
                                 <mat-icon class="dd-icon">play_arrow</mat-icon>
                             </mat-list-item>
                         </stg-hover-menu>
                         <mat-list-item *ngIf="item.type!=='dropDown'" class="no-rpad"
                             style="font-size: 12px;height: 32px;" [routerLink]="item.state">
-                            <mat-icon>{{item.icon}}</mat-icon>
+                            <mat-icon>{{item.icon || 'assessment'}}</mat-icon>
                             <div fxFlex style="margin-left: 10px;">{{item.name}}</div>
                         </mat-list-item>
                     </ng-container>
