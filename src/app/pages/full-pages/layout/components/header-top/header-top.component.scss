@@ -7,3 +7,16 @@
 .btn-start-mob{
     width: 40px !important;
 }
+
+.account-menu-username {
+    opacity: 1 !important;
+    font-weight: 500;
+}
+
+.account-menu-logout {
+    color: #f44336;
+
+    mat-icon {
+        color: #f44336;
+    }
+}
