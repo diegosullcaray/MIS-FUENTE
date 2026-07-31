@@ -7,7 +7,7 @@ import { AuthLayoutComponent } from './pages/full-pages/auth/components/auth-lay
 import { LoginComponent } from './pages/full-pages/auth/components/login/login.component';
 import { SigninComponent } from './pages/full-pages/auth/components/signin/signin.component';
 import { DesktopComponent } from './pages/full-pages/layout/components/desktop/desktop.component';
-import { DummyComponent } from './modules/reportes/components/dummy/dummy.component';
+import { DummyComponent } from './pages/modules/reportes/components/dummy/dummy.component';
 import { RouteGuard } from './pages/full-pages/layout/guards/route-guard.guard';
 
 const routes: Routes = [
@@ -60,25 +60,25 @@ const routes: Routes = [
       },
       {
         path: 'reportes',
-        loadChildren: () => import('app/modules/reportes/rep01.module').then(m => m.Rep01Module),
+        loadChildren: () => import('app/pages/modules/reportes/rep01.module').then(m => m.Rep01Module),
         data: { title: 'Reportes' }
       },
       {
         path: 'incentivos3',
-        loadChildren: () => import('app/modules/incentivos3/incentivos3.module').then(m => m.Incentivos3Module),
+        loadChildren: () => import('app/pages/modules/incentivos3/incentivos3.module').then(m => m.Incentivos3Module),
         data: { title: 'Incentivos' }
       },
       {
         path: 'ranking-k',
-        loadChildren: () => import('app/modules/ranking-k/ranking-k.module').then(m => m.RankingKModule)
+        loadChildren: () => import('app/pages/modules/ranking-k/ranking-k.module').then(m => m.RankingKModule)
       },
       {
         path: 'dashboards',
-        loadChildren: () => import('app/modules/reportes-e/reportes-e.module').then(m => m.ReportesEModule)
+        loadChildren: () => import('app/pages/modules/reportes-e/reportes-e.module').then(m => m.ReportesEModule)
       },
       {
         path: 'esg',
-        loadChildren: () => import('app/modules/framework-esg/framework-esg.module').then(m => m.FrameworkEsgModule)
+        loadChildren: () => import('app/pages/modules/framework-esg/framework-esg.module').then(m => m.FrameworkEsgModule)
       },
       {
         path: 'imparables',
@@ -86,42 +86,42 @@ const routes: Routes = [
       },
       {
         path: 'analista',
-        loadChildren: () => import('app/modules/analista/analista.module').then(m => m.AnalistaModule)
+        loadChildren: () => import('app/pages/modules/analista/analista.module').then(m => m.AnalistaModule)
       },
       //categorizacion
       {
         path: 'presupuesto',
         canActivate: [RouteGuard],
-        loadChildren: () => import('app/modules/presupuesto/presupuesto.module').then(m => m.PresupuestoModule),
+        loadChildren: () => import('app/pages/modules/presupuesto/presupuesto.module').then(m => m.PresupuestoModule),
         data: { title: 'Presupuesto' }
       },
       {
         path: 'cons_base_negativa',
-        loadChildren: () => import('app/modules/basenegativa/basenegativa.module').then(m => m.BaseNegativaModule),
+        loadChildren: () => import('app/pages/modules/basenegativa/basenegativa.module').then(m => m.BaseNegativaModule),
         data: { title: 'Kaypacha' }
       },
       {
         path: 'actividades',
         canActivate: [RouteGuard],
-        loadChildren: () => import('app/modules/actividades/actividades.module').then(m => m.ActividadesModule),
+        loadChildren: () => import('app/pages/modules/actividades/actividades.module').then(m => m.ActividadesModule),
         data: { title: 'Actividades' }
       },
       {
         path: 'Kaypacha__',
         // canActivate:[RouteGuard],
-        loadChildren: () => import('app/modules/Kaypacha3/kaypacha3.module').then(m => m.Kaypacha3Module),
+        loadChildren: () => import('app/pages/modules/Kaypacha3/kaypacha3.module').then(m => m.Kaypacha3Module),
         data: { title: 'Kaypacha' }
       },
       {
         path: 'corresponsales',
         //canActivate: [AuthGuard],
-        //loadChildren: () => import('app/modules/reportes/legacy/banca-electronica/banca-electronica.module').then(m => m.BancaElectronicaModule),
-        loadChildren: () => import('app/modules/corresponsales/corresponsales.module').then(m => m.CorresponsalesModule),
+        //loadChildren: () => import('app/pages/modules/reportes/legacy/banca-electronica/banca-electronica.module').then(m => m.BancaElectronicaModule),
+        loadChildren: () => import('app/pages/modules/corresponsales/corresponsales.module').then(m => m.CorresponsalesModule),
         data: { title: 'Corresponsales' }
       },
       {
         path: 'prospecto',
-        loadChildren: () => import('app/modules/analista/prospecto/prospecto-cor.module').then(m => m.ProspectoCorModule)
+        loadChildren: () => import('app/pages/modules/analista/prospecto/prospecto-cor.module').then(m => m.ProspectoCorModule)
       },
 
     ]

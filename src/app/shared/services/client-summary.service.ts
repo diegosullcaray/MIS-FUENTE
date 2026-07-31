@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ClientSummaryAntService } from "./client-summary-ant.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
-import { loadingConf } from 'app/modules/actividades/transaccion/transaccion.util';
+import { loadingConf } from 'app/pages/modules/actividades/transaccion/transaccion.util';
 
 @Injectable()
 export class ClientSummaryService {
