@@ -45,6 +45,7 @@ export class PresupuestoComponent implements OnInit, OnDestroy {
         this.menuItemsSub = this.nav.menuItems$.subscribe(items => {
             let b: any = items.filter(e => e.cod === 'A_MOD_PRES')[0];
             //this.menuItems = b.sub;
+            printLog('[presupuesto] hijos de A_MOD_PRES (b.sub):', (b.sub || []).map(s => ({ cod: s.cod, name: s.name })));
             let lin = b.sub[0];
             let ges = b.sub[1];
             this.menuItems = lin.sub;
