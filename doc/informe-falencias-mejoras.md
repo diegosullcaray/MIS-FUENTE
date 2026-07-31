@@ -6,7 +6,7 @@
 
 ## Seguridad
 
-1. **`eval()` sobre datos que vienen del backend, en 6 archivos activos.**
+1. **✅ RESUELTO (2026-07-30).** `eval()` sobre datos que vienen del backend, en 6 archivos activos.
    - `modules/corresponsales/prospecto/prospecto.component.ts:343,408`
    - `modules/Kaypacha3/kaypacha3.component.ts:73,74,76,77`
    - `modules/ranking-k/detallek/detallek.component.ts:58`
@@ -14,23 +14,43 @@
    - `modules/reasignacion-cart-cap/detalle/detalle.component.ts:58`
    - `modules/reportes/repositorio/seguro-pasivos-graf/seguro-pasivo-graf.component.ts:270,278,336,344`
 
-   Todos ejecutan `eval()` sobre strings JSON devueltos por el backend (`r.list[0].JSONLIST`,
+   Todos ejecutaban `eval()` sobre strings JSON devueltos por el backend (`r.list[0].JSONLIST`,
    `r.cab1[0].JSONNHEAD1`, etc.) en vez de `JSON.parse`. Si el backend o cualquier capa
-   intermedia queda comprometida, es ejecución de código arbitrario en el cliente. Reemplazo
-   directo por `JSON.parse` — no hay razón funcional visible para usar `eval` en vez de parse
-   de JSON. Bajo esfuerzo, alto impacto.
+   intermedia queda comprometida, es ejecución de código arbitrario en el cliente. Se
+   reemplazaron los 5 archivos que seguían activos en `src/app/` por `JSON.parse` (verificado con
+   `tsc --noEmit`, sin errores nuevos).
+   - Nota (verificado con CodeGraph al implementar): el 6to archivo listado originalmente,
+     `modules/reasignacion-cart-cap/detalle/detalle.component.ts:58`, ya no vive en
+     `src/app/modules/` — está en `backups/modules/reasignacion-cart-cap/` (movido en una
+     limpieza previa, ver puntos 5/6) y nada bajo `src/` lo importa, por lo que no compila ni se
+     sirve. No se tocó (es código muerto archivado, no "activo").
    - Nota: hay 2 usos más de `eval()` en el repo (`reasignacion-cart-cap/principal.component.ts`
      y `shared/pipes/dynamic-format-pipe.ts`) pero están comentados (código muerto), no
-     ejecutan hoy.
+     ejecutan hoy. No se tocaron.
 
-2. **Secretos de cifrado hardcodeados y commiteados en texto plano.**
-   `src/environments/environment.ts` (y `environment.prod.ts`) tienen `cypherSecret` y 7 claves
+2. **🟡 PARCIALMENTE RESUELTO (2026-07-30).** Secretos de cifrado hardcodeados y commiteados en
+   texto plano.
+   `src/environments/environment.ts` (y `environment.prod.ts`) tenían `cypherSecret` y 7 claves
    más en `moduleSecrets` como strings hex literales, trackeados en git (no hay excepción en
    `.gitignore`). Cualquiera con acceso al repo (o su historial) tiene las claves de cifrado de
    producción. Un commit previo ("corrección de llaves secretas") sugiere que ya se intentó
-   atender esto parcialmente, pero las claves siguen en el archivo. Recomendado: mover a
-   variables de entorno de build / vault, y rotar las claves actuales (ya están expuestas en el
-   historial de git aunque se borren del archivo actual).
+   atender esto parcialmente, pero las claves seguían en el archivo.
+
+   Se extrajeron los valores a `src/environments/environment.secrets.ts` (nuevo, agregado a
+   `.gitignore`, mismos valores — no se rotó nada) y se dejó `environment.secrets.example.ts`
+   commiteado como plantilla. `environment.ts`/`environment.prod.ts` ahora importan de ahí.
+   **Pendiente, no hecho en esta sesión (requiere coordinación externa):**
+   - No hay pipeline CI/CD en este repo (no se encontró `.github/workflows`, `Jenkinsfile`, etc.)
+     — el build/deploy vive en un sistema externo. Ese sistema debe empezar a proveer
+     `environment.secrets.ts` (o las env vars equivalentes) antes de cada `ng build`, o el build
+     va a fallar por el import faltante. Esto no se puede verificar ni resolver desde el repo.
+   - **Rotar las claves actuales sigue pendiente** — ya están expuestas en el historial de git
+     aunque se hayan sacado del archivo actual, y rotarlas requiere coordinar con el backend
+     (Winder/`ModSysLoginService` y afines usan estos mismos secretos del lado servidor).
+   - Nota aparte detectada al revisar esto (no arreglada, fuera de alcance): `CypherService`
+     (`src/app/core/services/cypher.service.ts:3`) importa `environments/environment.prod`
+     directo en vez de `environments/environment`, así que siempre usa el secreto de prod
+     independientemente del build. Vale la pena confirmarlo con quien mantiene ese servicio.
 
 3. **Adjunto del header `Authorization` deshabilitado (código muerto) en dos lugares clave.**
    `pages/full-pages/layout/interceptors/token.interceptor.ts` (ex
@@ -78,27 +98,38 @@
 
 ## Organización / nombres
 
-9. **`core/guards/`, `core/interceptors/`, `core/interfaces/` siguen vacías tras la migración de
-   `system/` a `pages/full-pages/`.** El nombre de la carpeta promete una capa que no existe —
-   los guards e interceptors reales viven ahora en `pages/full-pages/layout/guards|interceptors`
-   y `pages/full-pages/auth/guards`. La migración fue una oportunidad natural para resolver esto
-   (mover a `core/` en vez de a otra carpeta de features) y no se aprovechó. O se puebla `core/`
-   con lo que ya existe en `pages/full-pages/layout` (consolidando la capa transversal real en un
-   solo lugar), o se borran esas 3 carpetas vacías para no confundir a quien llegue nuevo al repo.
+9. **✅ RESUELTO (2026-07-30).** `core/guards/`, `core/interceptors/`, `core/interfaces/` seguían
+   vacías tras la migración de `system/` a `pages/full-pages/`. El nombre de la carpeta prometía
+   una capa que no existía — los guards e interceptors reales viven en
+   `pages/full-pages/layout/guards|interceptors` y `pages/full-pages/auth/guards`. Se optó por
+   borrar las 3 carpetas vacías (cero archivos afectados, cero imports que actualizar) en vez de
+   mover ahí la capa real: mover los guards/interceptors reales hubiera significado actualizar el
+   import path en cada routing module que los consume, un esfuerzo bastante mayor al "Bajo" que
+   sugería la tabla original.
 
-10. **`modules/shared/` (1 archivo: `modules-key.config.ts`) vs. `app/shared/` (26+9
-    subcarpetas).** El nombre `modules/shared/` sugiere lo mismo que `app/shared/` pero es un
-    config de rutas sin relación. Renombrar (p. ej. `modules/modules-routing-keys/` o mover el
-    archivo directo a `system/`) evita el choque cognitivo.
+10. **✅ RESUELTO / OBSOLETO — verificado con CodeGraph (2026-07-30), no requirió cambios.**
+    `modules/shared/` (que este informe describía con 1 archivo: `modules-key.config.ts`) ya no
+    existe en el repo. `modules-key.config.ts` no aparece en ningún lugar del código actual —
+    todo indica que quedó resuelto junto con la creación de `system-keys.config.ts` compartido en
+    `pages/full-pages/` (commit `896a664`), anterior a la revisión que originó este hallazgo. El
+    hallazgo estaba desactualizado al momento de escribirse.
 
 ## Calidad de código y consistencia
 
-11. **165 archivos llaman `console.log` directamente**, sin pasar por el wrapper
-    `printLog`/`debug.util.ts` que sí respeta `environment.production`. El wrapper existe
-    precisamente para que no se filtren logs en build de producción, pero se usa de forma
-    inconsistente — la mayoría del código lo evita. Barrido mecánico de bajo riesgo: reemplazar
-    `console.log` → `printLog` (y `console.warn/error` → `printWarn/printError`) donde no haya
-    razón específica para el `console.*` directo.
+11. **✅ RESUELTO (2026-07-30).** 165 archivos llamaban `console.log` directamente, sin pasar por
+    el wrapper `printLog`/`debug.util.ts` que sí respeta `environment.production`. El wrapper
+    existe precisamente para que no se filtren logs en build de producción, pero se usaba de
+    forma inconsistente.
+
+    Al recontar al momento de implementar, el número de archivos con al menos una llamada activa
+    (no comentada) a `console.log/warn/error` en `src/app/` era 98 (los ~52 archivos restantes de
+    los ~150 que matcheaban el grep solo tenían llamadas comentadas — código muerto, no tocado,
+    mismo criterio que el punto 1). Se hizo el barrido mecánico con un script (no a mano):
+    reemplazo de `console.log/warn/error/table` → `printLog/printWarn/printError/printTable` en
+    llamadas activas, dejando intactas las comentadas, con inserción/fusión automática del
+    import de `debug.util` en cada archivo. Verificado con `tsc --noEmit` antes y después del
+    barrido (mismos 4 errores preexistentes en specs, ninguno nuevo). No se tocó `backups/`
+    (código archivado, no compilado).
 
 12. **`tsconfig.json` sin `"strict": true`.** Con TypeScript no estricto, buena parte de los
     934 archivos probablemente usan `any` implícito o explícito sin que el compilador avise.
@@ -128,19 +159,19 @@
 
 ## Resumen priorizado
 
-| # | Hallazgo | Esfuerzo | Impacto | Bloqueado por negocio |
-|---|---|---|---|---|
-| 1 | `eval()` → `JSON.parse` (6 archivos) | Bajo | Alto (seguridad) | No |
-| 11 | `console.log` → `printLog` (165 archivos) | Bajo (mecánico) | Medio (higiene) | No |
-| 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | No |
-| 9 | Poblar o borrar `core/guards|interceptors|interfaces` | Bajo | Medio (claridad) | No |
-| 10 | Renombrar `modules/shared/` | Bajo | Bajo (claridad) | No |
-| 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad |
-| 4 | Consolidar `stg-table` v1-v4 | Alto | Alto (mantenibilidad) | No, pero requiere inventario cuidadoso |
-| 15 | Elevar cobertura de tests en capa `core`/`pages` | Alto | Alto (habilita todo lo demás) | No |
-| 5, 6 | Confirmar con negocio que `incentivos3`/`Kaypacha3` son la única versión vigente (ya se archivaron las otras) | Medio | Alto | Sí — vigencia de cada versión |
-| 7 | Retirar/migrar `reportes/legacy/` | Muy alto | Alto | Parcial |
-| 13, 14 | Migrar a ESLint / actualizar Angular | Alto | Medio-alto (largo plazo) | No |
+| # | Hallazgo | Esfuerzo | Impacto | Bloqueado por negocio | Estado |
+|---|---|---|---|---|---|
+| 1 | `eval()` → `JSON.parse` (6 archivos) | Bajo | Alto (seguridad) | No | ✅ Resuelto (2026-07-30) |
+| 11 | `console.log` → `printLog` (165 archivos) | Bajo (mecánico) | Medio (higiene) | No | ✅ Resuelto (2026-07-30) |
+| 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | No | 🟡 Extraído a gitignore; rotación y pipeline externo pendientes |
+| 9 | Poblar o borrar `core/guards|interceptors|interfaces` | Bajo | Medio (claridad) | No | ✅ Resuelto (2026-07-30) — se optó por borrar |
+| 10 | Renombrar `modules/shared/` | Bajo | Bajo (claridad) | No | ✅ Obsoleto — ya no existe `modules/shared/` |
+| 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad | Pendiente |
+| 4 | Consolidar `stg-table` v1-v4 | Alto | Alto (mantenibilidad) | No, pero requiere inventario cuidadoso | Pendiente |
+| 15 | Elevar cobertura de tests en capa `core`/`pages` | Alto | Alto (habilita todo lo demás) | No | Pendiente |
+| 5, 6 | Confirmar con negocio que `incentivos3`/`Kaypacha3` son la única versión vigente (ya se archivaron las otras) | Medio | Alto | Sí — vigencia de cada versión | Pendiente |
+| 7 | Retirar/migrar `reportes/legacy/` | Muy alto | Alto | Parcial | Pendiente |
+| 13, 14 | Migrar a ESLint / actualizar Angular | Alto | Medio-alto (largo plazo) | No | Pendiente |
 
 ## Nota
 
