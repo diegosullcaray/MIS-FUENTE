@@ -1,0 +1,11 @@
+// El overlay real de mat-menu (.mat-menu-panel) lo crea el CDK fuera del arbol
+// del componente, asi que un selector dentro de start-menu.component.scss
+// (encapsulado, ademas de estar en la direccion equivocada del DOM) nunca lo
+// alcanza. Se sobreescribe aca, global, acotado a .full (la clase que
+// header-top.component.html le pone al <mat-menu class="full" #startMenu>)
+// para no afectar otros mat-menu de la app (ej. el menu de perfil).
+.mat-menu-panel.full {
+  max-width: none !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
