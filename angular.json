@@ -58,9 +58,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/styles/app.scss",
               "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/driver.js/dist/driver.css"
+              "node_modules/driver.js/dist/driver.css",
+              "src/assets/styles/app.scss"
             ],
             "scripts": [],
             "vendorChunk": true,
