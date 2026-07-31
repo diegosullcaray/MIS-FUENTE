@@ -4,10 +4,10 @@
             <mat-sidenav [style]="calcWidth()" mode="side" [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk" >
                 <app-module-switcher currentModuleCod="A_MOD_PRES"></app-module-switcher>
                 <div class="sidenav-section-title">Líneas</div>
-                <stg-basic-tree-sidenav [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
+                <stg-basic-tree-sidenav class="sidenav-section-tree" [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
                 <ng-container *ngIf="activeGes">
                     <div class="sidenav-section-title">Gestión</div>
-                    <stg-basic-tree-sidenav [menuItems]="menuItems2" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
+                    <stg-basic-tree-sidenav class="sidenav-section-tree" [menuItems]="menuItems2" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
                 </ng-container>
             </mat-sidenav>
 
