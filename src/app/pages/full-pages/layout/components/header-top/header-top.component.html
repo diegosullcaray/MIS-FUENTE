@@ -10,7 +10,7 @@
         <div class="system-brand tour-start-menu-btn" *ngIf="!layoutConf.isMobile && moduleSidenav.active">
           <img style="height: 20px;width: auto;" src="assets/images/fc/logos/fc_blank.png" alt="" class="app-logo">
         </div>
-        <app-module-switcher class="tour-start-menu-btn" *ngIf="!layoutConf.isMobile && !moduleSidenav.active"></app-module-switcher>
+        <app-module-switcher class="tour-start-menu-btn" [iconOnly]="true" *ngIf="!layoutConf.isMobile && !moduleSidenav.active"></app-module-switcher>
       </div>
 
       <!-- Module sidenav toggle (reportes/actividades/corresponsales/presupuesto): sits right at the border between the sidebar header and the layout header -->

@@ -16,6 +16,9 @@ export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
   // Cod del modulo actual (ej. 'A_MOD_RCOM' para reportes). Si se pasa, se usa
   // para identificar el modulo activo en vez de intentar adivinarlo por la URL.
   @Input() currentModuleCod: string;
+  // Cuando es true, el trigger se muestra como boton de solo icono (uso en el header/desktop)
+  // en vez del boton estilo "select" (uso dentro del sidebar de cada modulo).
+  @Input() iconOnly = false;
 
   modules: IMenuItem[] = [];
   currentModule: IMenuItem;
@@ -54,10 +57,11 @@ export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  // Dentro de un modulo muestra el arbol de carpetas/reportes propio del modulo;
-  // en el desktop (sin modulo activo) muestra el listado de modulos disponibles.
+  // Siempre el listado completo de modulos (no el arbol del modulo activo: ese ya
+  // esta visible en el sidebar y duplicarlo ahi no aporta nada). El drill-down a
+  // las carpetas/reportes de cada modulo se hace mediante stg-hover-menu.
   get treeItems(): IChildItem[] | IMenuItem[] {
-    return this.currentModuleCod ? (this.currentModule?.sub || []) : this.modules;
+    return this.modules;
   }
 
   private updateCurrentModule(): void {
