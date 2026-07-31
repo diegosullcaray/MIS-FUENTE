@@ -2,9 +2,9 @@
 <div fxLayout="column" fxFill>
         <div fxFlex style="overflow-y: auto;height: 100%;">
             <mat-sidenav-container style="height: 100%;">
-                <mat-sidenav [style]="calcWidth()" mode="side" [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk" >
+                <mat-sidenav fxLayout="column" [style]="calcWidth()" mode="side" [(opened)]="layout.isMobile?openExplorerMob:openExplorerDesk" >
                     <app-module-switcher currentModuleCod="A_MOD_CORRE"></app-module-switcher>
-                    <mat-tab-group fxFlex style="overflow-y: auto;">
+                    <mat-tab-group fxFlex style="overflow-y: auto;min-height: 0;">
                         <mat-tab label="Corresponsales">
                             <ng-template matTabContent>
                                 <stg-basic-tree-sidenav [menuItems]="menuItems" (onSelectMenuItem)="selectSec($event)"></stg-basic-tree-sidenav>
