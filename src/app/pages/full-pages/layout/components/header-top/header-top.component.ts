@@ -8,6 +8,7 @@ import { AuthService } from 'app/pages/full-pages/auth/services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from 'environments/environment';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
+import { ModuleSidenavService } from 'app/pages/full-pages/layout/services/module-sidenav.service';
 
 @Component({
   selector: 'app-header-top',
@@ -36,7 +37,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     public user: UserService,
     public auth: AuthService,
     public router:Router,
-    private confirm: StgAppConfirmService
+    private confirm: StgAppConfirmService,
+    public moduleSidenav: ModuleSidenavService
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService
