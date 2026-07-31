@@ -71,8 +71,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
       {
         element: '.tour-start-menu-btn',
         popover: {
-          title: 'MIS',
-          description: 'Este es el sistema en el que estás. Dentro de cada módulo vas a encontrar, arriba del menú lateral, un selector para saltar a otro módulo.',
+          title: 'Módulos',
+          description: 'Hacé clic acá para ver el listado de módulos del sistema y saltar a cualquiera. Dentro de un módulo vas a encontrar este mismo selector arriba del menú lateral.',
           side: 'bottom',
           align: 'start'
         }
