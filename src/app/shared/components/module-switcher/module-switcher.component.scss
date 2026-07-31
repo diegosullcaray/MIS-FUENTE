@@ -37,3 +37,27 @@
   width: 18px;
   color: #8990a2;
 }
+
+.module-switcher-panel {
+  width: 430px;
+  box-sizing: border-box;
+
+  .mat-list-item {
+    font-size: 12px;
+    height: 32px;
+  }
+
+  .adj-name {
+    margin-left: 10px;
+  }
+
+  .dd-icon {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}
+
+.module-switcher-user-col {
+  border-left-style: groove;
+  padding: 5px;
+}

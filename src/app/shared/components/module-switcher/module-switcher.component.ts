@@ -2,7 +2,10 @@ import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { IMenuItem, NavigationService } from 'app/pages/full-pages/layout/services/navigation.service';
+import { IChildItem, IMenuItem, NavigationService } from 'app/pages/full-pages/layout/services/navigation.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
+import { AdminService } from 'app/pages/full-pages/layout/services/admin.service';
+import { LoginService } from 'app/pages/full-pages/auth/services/login.service';
 
 @Component({
   selector: 'app-module-switcher',
@@ -20,7 +23,13 @@ export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
   private menuItemsSub: Subscription;
   private routerEventsSub: Subscription;
 
-  constructor(private nav: NavigationService, private router: Router) { }
+  constructor(
+    private nav: NavigationService,
+    private router: Router,
+    public user: UserService,
+    public admin: AdminService,
+    public login: LoginService
+  ) { }
 
   ngOnInit(): void {
     this.menuItemsSub = this.nav.menuItems$.subscribe(items => {
@@ -43,6 +52,12 @@ export class ModuleSwitcherComponent implements OnInit, OnChanges, OnDestroy {
     if (this.routerEventsSub) {
       this.routerEventsSub.unsubscribe();
     }
+  }
+
+  // Dentro de un modulo muestra el arbol de carpetas/reportes propio del modulo;
+  // en el desktop (sin modulo activo) muestra el listado de modulos disponibles.
+  get treeItems(): IChildItem[] | IMenuItem[] {
+    return this.currentModuleCod ? (this.currentModule?.sub || []) : this.modules;
   }
 
   private updateCurrentModule(): void {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'app/material/material.module';
+import { StgHoverMenuComponent } from './components/stg-hover-menu/stg-hover-menu.component';
 import { StgTableComponent } from './components/stg-table/stg-table.component';
 import { StgLoading1 } from './components/stg-loading-1/stg-loading-1.component';
 import { StgWindowBarComponent } from './components/stg-window-bar/stg-window-bar.component';
@@ -50,6 +51,7 @@ import { ClientSummaryAntService } from './services/client-summary-ant.service';
 import { ClientSummaryService } from './services/client-summary.service';
 
 const components = [
+    StgHoverMenuComponent,
     StgTableComponent,
     StgLoading1,
     StgWindowBarComponent,
