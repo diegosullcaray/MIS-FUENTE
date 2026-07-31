@@ -46,7 +46,6 @@ export class PresupuestoComponent implements OnInit, OnDestroy {
             let b: any = items.filter(e => e.cod === 'A_MOD_PRES')[0];
             //this.menuItems = b.sub;
             let subItems: any[] = b.sub || [];
-            printLog('[presupuesto] hijos de A_MOD_PRES (b.sub):', subItems.map(s => ({ cod: s.cod, name: s.name })));
             // Se busca por nombre (no por posicion fija) para no depender del orden en que
             // el backend devuelva los hijos de Presupuesto.
             let lin = subItems.find(s => /l[ií]neas?/i.test(s.name || '')) || subItems[0];
