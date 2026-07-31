@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NavigationService } from "app/system/admin/services/navigation.service";
 import { AuthService } from "app/system/session/authentication/auth.service";
-import { LoginService } from "app/system/session/views/login/login.service";
 import { Subscription } from "rxjs";
-import { AdminService } from "../../services/admin.service";
 import { UserService } from "../../services/user.service";
 
 @Component({
@@ -19,9 +17,7 @@ export class StartMenuComponent implements OnInit,OnDestroy {
   constructor(
     public user: UserService,
     private navService: NavigationService,
-    public auth: AuthService,
-    public admin: AdminService,
-    public login:LoginService
+    public auth: AuthService
   ) { }
 
   ngOnDestroy(): void {

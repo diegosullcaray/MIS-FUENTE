@@ -8,7 +8,7 @@
     <!-- Icon menu items -->
     <div class="icon-menu-item" *ngFor="let item of menuItems">
       <button *ngIf="!item.disabled && item.type === 'icon'" mat-raised-button [matTooltip]="item.tooltip"
-        routerLink="/{{item.state}}" routerLinkActive="mat-bg-primary">
+        [routerLink]="item.state ? '/' + item.state : null" routerLinkActive="mat-bg-primary">
         <mat-icon *ngIf="item.icon" class="sidenav-mat-icon">{{item.icon}}</mat-icon>
         <mat-icon *ngIf="item.svgIcon" [svgIcon]="item.svgIcon" class="svgIcon"></mat-icon>
       </button>
@@ -23,7 +23,7 @@
         <span class="text-muted">{{item.name}}</span>
       </div>
       <div *ngIf="!item.disabled && item.type !== 'separator' && item.type !== 'icon'" class="lvl1">
-        <a routerLink="/{{item.state}}" appDropdownToggle matRipple *ngIf="item.type === 'link'">
+        <a [routerLink]="item.state ? '/' + item.state : null" appDropdownToggle matRipple *ngIf="item.type === 'link'">
           <mat-icon *ngIf="item.icon" class="sidenav-mat-icon">{{item.icon}}</mat-icon>
           <mat-icon *ngIf="item.svgIcon" [svgIcon]="item.svgIcon" class="svgIcon"></mat-icon>
           <span class="item-name lvl1">{{item.name}}</span>
@@ -54,7 +54,7 @@
           <li *ngFor="let itemLvL2 of item.sub" appDropdownLink routerLinkActive="open">
 
             <!--<a routerLink="{{item.state ? '/'+item.state : ''}}/{{itemLvL2.state}}" appDropdownToggle *ngIf="itemLvL2.type !== 'dropDown'"-->
-            <a routerLink="{{itemLvL2.state}}" appDropdownToggle *ngIf="itemLvL2.type !== 'dropDown'" matRipple>
+            <a [routerLink]="itemLvL2.state ? itemLvL2.state : null" appDropdownToggle *ngIf="itemLvL2.type !== 'dropDown'" matRipple>
               <span class="item-name lvl2">{{itemLvL2.name}}</span>
               <span fxFlex></span>
             </a>
@@ -69,7 +69,7 @@
             <ul class="submenu lvl3" appDropdown *ngIf="itemLvL2.type === 'dropDown'">
               <li *ngFor="let itemLvL3 of itemLvL2.sub" appDropdownLink routerLinkActive="open">
                 <!--<a routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}" appDropdownToggle-->
-                <a routerLink="{{itemLvL3.state}}" appDropdownToggle *ngIf="itemLvL3.type !== 'dropDown'" matRipple>
+                <a [routerLink]="itemLvL3.state ? itemLvL3.state : null" appDropdownToggle *ngIf="itemLvL3.type !== 'dropDown'" matRipple>
                   <span class="item-name lvl3">{{itemLvL3.name}}</span>
                 </a>
 
@@ -83,7 +83,7 @@
                 <ul class="submenu lvl4" appDropdown *ngIf="itemLvL3.type === 'dropDown'">
                   <li *ngFor="let itemLvL4 of itemLvL3.sub" appDropdownLink routerLinkActive="open">
                     <!--<a routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}" appDropdownToggle-->
-                    <a routerLink="{{itemLvL4.state}}" appDropdownToggle matRipple>
+                    <a [routerLink]="itemLvL4.state ? itemLvL4.state : null" appDropdownToggle matRipple>
                       <span class="item-name lvl4">{{itemLvL4.name}}</span>
                     </a>
                   </li>

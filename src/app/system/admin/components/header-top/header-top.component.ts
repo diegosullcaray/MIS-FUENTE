@@ -5,8 +5,6 @@ import { ThemeService } from 'app/system/admin/services/theme.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'app/system/session/authentication/auth.service';
 import { Router } from '@angular/router';
-import { AdminService } from '../../services/admin.service';
-import { LoginService } from 'app/system/session/views/login/login.service';
 import { environment } from 'environments/environment';
 
 @Component({
@@ -30,12 +28,10 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
   @Input() notificPanel;
   constructor(
     public layout: LayoutService,
-    public login: LoginService,
     public themeService: ThemeService,
     public user: UserService,
     public auth: AuthService,
-    public router:Router,
-    public admin:AdminService
+    public router:Router
     //public translate: TranslateService,
     //private renderer: Renderer2,
     //public jwtAuth: JwtAuthService

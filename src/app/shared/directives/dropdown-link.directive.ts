@@ -19,9 +19,9 @@ export class DropdownLinkDirective implements OnInit, OnDestroy {
 
   set open(value: boolean) {
     this._open = value;
-    // if (value) {
-    //   this.nav.closeOtherLinks(this);
-    // }
+    if (value) {
+      this.nav.closeOtherLinks(this);
+    }
   }
 
   public constructor(@Inject(AppDropdownDirective) nav: AppDropdownDirective) {

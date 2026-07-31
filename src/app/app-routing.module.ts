@@ -57,12 +57,26 @@ const routes: Routes = [
         data: { title: 'Incentivos' }
       },
       {
-        path: 'corresponsales',
-        //canActivate: [AuthGuard],
-        //loadChildren: () => import('app/modules/reportes/legacy/banca-electronica/banca-electronica.module').then(m => m.BancaElectronicaModule),
-        loadChildren: () => import('app/modules/corresponsales/corresponsales.module').then(m => m.CorresponsalesModule),
-        data: { title: 'Corresponsales' }
+        path: 'ranking-k',
+        loadChildren: () => import('app/modules/ranking-k/ranking-k.module').then(m => m.RankingKModule)
       },
+      {
+        path: 'dashboards',
+        loadChildren: () => import('app/modules/reportes-e/reportes-e.module').then(m => m.ReportesEModule)
+      },
+      {
+        path: 'esg',
+        loadChildren: () => import('app/modules/framework-esg/framework-esg.module').then(m => m.FrameworkEsgModule)
+      },
+      {
+        path: 'imparables',
+        component: DummyComponent
+      },
+      {
+        path: 'analista',
+        loadChildren: () => import('app/modules/analista/analista.module').then(m => m.AnalistaModule)
+      },
+      //categorizacion
       {
         path: 'presupuesto',
         canActivate: [RouteGuard],
@@ -70,8 +84,9 @@ const routes: Routes = [
         data: { title: 'Presupuesto' }
       },
       {
-        path: 'imparables',
-        component: DummyComponent
+        path: 'cons_base_negativa',
+        loadChildren: () => import('app/modules/basenegativa/basenegativa.module').then(m => m.BaseNegativaModule),
+        data: { title: 'Kaypacha' }
       },
       {
         path: 'actividades',
@@ -80,49 +95,21 @@ const routes: Routes = [
         data: { title: 'Actividades' }
       },
       {
-        path: 'administracion',
-        loadChildren: () => import('app/modules/administracion/administracion.module').then(m => m.AdministracionModule),
-        data: { title: 'Administracion' }
-      },
-      {
         path: 'Kaypacha__',
         // canActivate:[RouteGuard],
         loadChildren: () => import('app/modules/Kaypacha3/kaypacha3.module').then(m => m.Kaypacha3Module),
         data: { title: 'Kaypacha' }
       },
       {
-        path: 'cons_base_negativa',
-        // canActivate:[RouteGuard],
-        loadChildren: () => import('app/modules/basenegativa/basenegativa.module').then(m => m.BaseNegativaModule),
-        data: { title: 'Kaypacha' }
-      },
-      {
-        path: 'dashboards',
-        loadChildren: () => import('app/modules/reportes-e/reportes-e.module').then(m=> m.ReportesEModule)
-      },
-      {
-        path: 'ranking-k',
-        loadChildren: () => import('app/modules/ranking-k/ranking-k.module').then(m=> m.RankingKModule)
-      },
-      {
-        path: 'esg',
-        loadChildren: () => import('app/modules/framework-esg/framework-esg.module').then(m=> m.FrameworkEsgModule)
-      },
-      {
-        path: 'analista',
-        loadChildren: () => import('app/modules/analista/analista.module').then(m=> m.AnalistaModule)
-      },
-      {
-        path: 'sistematica',
-        loadChildren: () => import('app/modules/sistematica/sistematica.module').then(m=> m.SistematicaModule)
+        path: 'corresponsales',
+        //canActivate: [AuthGuard],
+        //loadChildren: () => import('app/modules/reportes/legacy/banca-electronica/banca-electronica.module').then(m => m.BancaElectronicaModule),
+        loadChildren: () => import('app/modules/corresponsales/corresponsales.module').then(m => m.CorresponsalesModule),
+        data: { title: 'Corresponsales' }
       },
       {
         path: 'prospecto',
-        loadChildren: () => import('app/modules/analista/prospecto/prospecto-cor.module').then(m=> m.ProspectoCorModule)
-      },
-      {
-        path: 'reasignacion-cart-cap',
-        loadChildren: () => import('app/modules/reasignacion-cart-cap/reasignacion-cart-cap.module').then(m=> m.ReasignacionCartCapModule)
+        loadChildren: () => import('app/modules/analista/prospecto/prospecto-cor.module').then(m => m.ProspectoCorModule)
       },
 
     ]

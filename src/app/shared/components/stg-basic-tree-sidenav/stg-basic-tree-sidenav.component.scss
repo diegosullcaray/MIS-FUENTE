@@ -19,3 +19,9 @@
     background-color: rgba(0, 162, 255, 0.1) !important;
 }
 
+.node.active {
+    background-color: rgba(29, 57, 110, 0.1) !important;
+    border-left: 3px solid #1d396e;
+    font-weight: 600;
+}
+

@@ -129,15 +129,6 @@
           <mat-icon class="material-icons-outlined" *ngIf="user.isAlt">supervised_user_circle</mat-icon>
         </button>
         <mat-menu #accountMenu="matMenu">
-          <button mat-menu-item [disabled]="admin.disableAltUserBtn()" fxLayoutAlign="start center" *ngIf="!user.isAlt"
-            (click)="admin.openAltUserDialog()">
-            <mat-icon>people_alt</mat-icon>
-            <span>Cambiar de Usuario</span>
-          </button>
-          <button mat-menu-item *ngIf="user.isAlt" fxLayoutAlign="start center" (click)="login.onOriLogin()">
-            <mat-icon>person</mat-icon>
-            <span>Mi Usuario</span>
-          </button>
           <mat-divider></mat-divider>
           <!--<button mat-menu-item [routerLink]="['/profile/settings']">
             <mat-icon>settings</mat-icon>

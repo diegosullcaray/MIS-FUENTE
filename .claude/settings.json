@@ -19,7 +19,9 @@
       "mcp__codegraph__codegraph_explore",
       "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('cli:',p.devDependencies['@angular/cli']\\); console.log\\('devkit:',p.devDependencies['@angular-devkit/build-angular']\\)\")",
       "PowerShell(cd \"C:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\"; New-Item -ItemType Directory -Force -Path \"backups\\\\modules\" | Out-Null; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos-a\" -Destination \"backups\\\\modules\\\\incentivos-a\" -ErrorAction Stop; \"OK\" } catch { \"ERR: $\\($_.Exception.Message\\)\" })",
-      "PowerShell(cd \"C:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\"; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos2\" -Destination \"backups\\\\modules\\\\incentivos2\" -ErrorAction Stop; \"OK incentivos2\" } catch { \"ERR incentivos2: $\\($_.Exception.Message\\)\" }; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos4\" -Destination \"backups\\\\modules\\\\incentivos4\" -ErrorAction Stop; \"OK incentivos4\" } catch { \"ERR incentivos4: $\\($_.Exception.Message\\)\" })"
+      "PowerShell(cd \"C:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\"; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos2\" -Destination \"backups\\\\modules\\\\incentivos2\" -ErrorAction Stop; \"OK incentivos2\" } catch { \"ERR incentivos2: $\\($_.Exception.Message\\)\" }; try { Move-Item -Path \"src\\\\app\\\\modules\\\\incentivos4\" -Destination \"backups\\\\modules\\\\incentivos4\" -ErrorAction Stop; \"OK incentivos4\" } catch { \"ERR incentivos4: $\\($_.Exception.Message\\)\" })",
+      "Bash(node -e \"const a=require\\('./angular.json'\\); const p=Object.keys\\(a.projects\\)[0]; console.log\\(JSON.stringify\\(a.projects[p].architect.build.options, null, 2\\).slice\\(0,800\\)\\); console.log\\('defaultConfig:', a.projects[p].architect.build.defaultConfiguration\\)\")",
+      "Bash(grep -n \"menuItems\\\\$\\\\|class NavigationService\" -A 5 \"c:\\\\Users\\\\24681\\\\Videos\\\\DD\\\\MIS-FUENTE\\\\src\\\\app\\\\system\\\\admin\\\\services\\\\navigation.service.ts\")"
     ]
   },
   "hooks": {

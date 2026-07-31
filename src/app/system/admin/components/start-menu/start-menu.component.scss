@@ -64,7 +64,7 @@
       background-color:$blue-base;
       color:white;
       padding:5px;
-      height: 40px;
+      height: 32px;
     }
     .mat-menu-panel{
         max-width: none;
@@ -76,22 +76,24 @@
     .mat-card-content{
       padding:0px;
       margin-bottom: 0px;
-      //height: 200px;
+      max-height: 50vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .mat-card .mat-divider-horizontal{
       position: relative;
     }
     .mat-card-title{
-        font-size: 14px;
+        font-size: 13px;
         //margin-top: 10px;
         //margin-left: -16px;
     }
     .mat-card{
-        width: 370px;
+        width: 230px;
         //height: 200px;
     }
     .mat-list-item{
       font-size: 12px;
-      height: 36px;
+      height: 32px;
     }
 }
