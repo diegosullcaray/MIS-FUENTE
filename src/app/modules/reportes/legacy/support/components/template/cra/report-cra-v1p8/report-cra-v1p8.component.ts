@@ -15,7 +15,7 @@ import { ComercialService } from 'app/modules/reportes/legacy/comercial/comercia
 import { cra } from 'app/modules/reportes/legacy/comercial/rda/administracion/cra-map';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 

@@ -4,7 +4,7 @@ import { DetalleBaseComponent } from './detalle-base.component';
 import { MonImrService } from '../compartido/servicios/mon-imr.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { MonImrAntService } from '../compartido/servicios/mon-imr-ant.service';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 
 
 @Component({

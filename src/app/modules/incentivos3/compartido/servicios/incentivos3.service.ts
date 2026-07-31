@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { composicionConfig } from '../../composicion/composicion.util';
 import { tablaConfig } from '../../tabla/tabla.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import { cloneObject, isNullOrUndefined, round, stringToDate1 } from 'app/core/helpers/functions.util';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,7 +23,7 @@ import { historicoConfig } from '../../historico/historico.util';
 import { StgAlertService } from 'app/shared/components/stg-alert/stg-alert.service';
 import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { Subscription } from 'rxjs';
 import { printLog } from 'app/core/helpers/debug.util';
 

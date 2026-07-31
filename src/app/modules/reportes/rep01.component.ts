@@ -1,7 +1,7 @@
 import { OnDestroy, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { LayoutService } from "app/system/admin/services/layout.service";
-import { IMenuItem, NavigationService } from "app/system/admin/services/navigation.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
+import { IMenuItem, NavigationService } from "app/pages/full-pages/layout/services/navigation.service";
 import { Subscription } from "rxjs";
 
 

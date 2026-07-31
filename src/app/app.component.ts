@@ -4,7 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { RoutePartsService } from 'app/core/services/route-parts.service';
 import { UILibIconService } from 'app/core/services/ui-lib-icon.service';
 import { filter } from 'rxjs/operators';
-import { LayoutService } from './system/admin/services/layout.service';
+import { LayoutService } from './pages/full-pages/layout/services/layout.service';
 import * as Highcharts from 'highcharts';
 
 @Component({

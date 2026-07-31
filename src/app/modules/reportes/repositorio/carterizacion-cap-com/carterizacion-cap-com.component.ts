@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service'; 
 import { cloneObject, isNullOrUndefined } from 'app/core/helpers/functions.util';

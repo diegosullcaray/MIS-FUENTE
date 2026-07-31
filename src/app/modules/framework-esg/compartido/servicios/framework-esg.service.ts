@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { InFormDialogService } from "app/shared/services/in-form-dialog.service";
-import { LayoutService } from "app/system/admin/services/layout.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { Subject } from "rxjs";
 
 @Injectable()

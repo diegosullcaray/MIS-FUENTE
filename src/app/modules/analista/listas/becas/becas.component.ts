@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { Subscription } from 'rxjs';
 import { AnalistaService } from '../../compartido/servicios/analista.service';
 import { ModSecService } from '../../compartido/servicios/mod-sec.service';

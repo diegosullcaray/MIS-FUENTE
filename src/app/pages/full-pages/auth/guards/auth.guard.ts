@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 
 import { AuthService } from '../services/auth.service';
 import { TokenService } from 'app/core/services/token.service';
-import { AdminService } from 'app/system/admin/services/admin.service';
+import { AdminService } from 'app/pages/full-pages/layout/services/admin.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

@@ -1,7 +1,7 @@
 
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { printLog } from "app/core/helpers/debug.util";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { ModBudgetService } from "../../servicios/mod-budget.service";
 import { loadingConf, tableConf } from "./pre-linea-simple.util";
 import * as moment from 'moment';

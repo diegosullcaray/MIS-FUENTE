@@ -4,7 +4,7 @@ import { AntService } from "app/core/data/remote/ant/ant-service.class";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { WinderService } from "app/core/data/remote/winder/winder.service";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { ReportType } from '../../legacy/support/data/ant-mod-rep.service';
 import { Strand } from 'app/core/data/remote/winder/strand.class';

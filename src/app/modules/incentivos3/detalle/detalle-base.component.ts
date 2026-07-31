@@ -4,7 +4,7 @@ import { detalleConfig } from "./detalle.util";
 import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { ModIncentivos3Service } from "../compartido/servicios/mod-incentivos3.service";
 import { formatNumber } from "@angular/common";
-import { LayoutService } from "app/system/admin/services/layout.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 
 export abstract class DetalleBaseComponent {
     config: any;

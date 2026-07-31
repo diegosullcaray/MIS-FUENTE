@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import * as Highcharts from 'highcharts';
 import { ModRepService } from '../../compartido/servicios/mod-rep.service';
 import { cloneObject, isNullOrUndefined } from 'app/core/helpers/functions.util';

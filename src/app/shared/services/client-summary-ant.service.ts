@@ -4,7 +4,7 @@ import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin
 import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { WinderService } from "app/core/data/remote/winder/winder.service";
 import { cloneObject } from "app/core/helpers/functions.util";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable, timer } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "environments/environment";

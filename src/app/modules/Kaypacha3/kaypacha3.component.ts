@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnInit, ChangeDetectorRef, AfterViewInit, EventEmitter, Output } from '@angular/core'; 
-import { LayoutService } from "app/system/admin/services/layout.service"; 
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service"; 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { tableConf, tableOptions, tableHeaders,  tableHeaders2 } from './kaypacha3.util';
 import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
 import { BuscadorKaypachaComponent } from './buscador/buscador.component';  

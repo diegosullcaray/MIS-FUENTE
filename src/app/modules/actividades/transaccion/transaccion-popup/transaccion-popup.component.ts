@@ -4,7 +4,7 @@ import { UntypedFormBuilder, Validators, UntypedFormGroup, UntypedFormControl } 
 //import { ModActividadesService } from '../../servicios/mod-actividades.service';
 import moment, { Moment } from 'moment';
 import { ModCorresponsalService } from '../../../corresponsales/servicio/mod-corresponsal.service';
-import { UserService } from '../../../../system/admin/services/user.service';
+import { UserService } from '../../../../pages/full-pages/layout/services/user.service';
 import { ComercialService } from '../../../reportes/legacy/comercial/comercial.service';
 import { isNull, isNullOrUndefined } from 'util';
 import { BehaviorSubject } from 'rxjs';

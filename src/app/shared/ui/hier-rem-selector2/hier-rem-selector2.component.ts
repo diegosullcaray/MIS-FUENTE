@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from "@an
 import { MatDialog } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { isNullOrUndefined } from "app/core/helpers/functions.util";
-import { LayoutService } from "app/system/admin/services/layout.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 
 @Component({
     selector: 'hier-rem-selector2',

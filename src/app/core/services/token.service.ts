@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { CypherService } from "./cypher.service";
 import { isNullOrUndefined, onNullOrUndefined } from "../helpers/functions.util";
 import { printLog } from "../helpers/debug.util";
-import { AdminService } from "app/system/admin/services/admin.service";
+import { AdminService } from "app/pages/full-pages/layout/services/admin.service";
 
 @Injectable({
     providedIn: 'root',

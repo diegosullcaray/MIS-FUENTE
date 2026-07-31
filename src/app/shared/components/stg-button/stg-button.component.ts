@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import { LayoutService } from "app/system/admin/services/layout.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 
 @Component({
     selector: 'stg-button',

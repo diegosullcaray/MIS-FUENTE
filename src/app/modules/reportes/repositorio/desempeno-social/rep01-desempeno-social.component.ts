@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf } from "./rep01-desempeno-social.util";
 import { isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';

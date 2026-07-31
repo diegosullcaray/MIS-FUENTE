@@ -4,8 +4,8 @@ import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin
 import { StgAppConfirmService } from "app/shared/components/stg-app-confirm/stg-app-confirm.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { isNullOrUndefined, mergeObjects } from "app/core/helpers/functions.util";
-import { LayoutService } from "app/system/admin/services/layout.service";
-import { UserService } from "app/system/admin/services/user.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Subscription } from "rxjs";
 import { AnalistaService } from "../compartido/servicios/analista.service";
 import { ModSecService } from "../compartido/servicios/mod-sec.service";

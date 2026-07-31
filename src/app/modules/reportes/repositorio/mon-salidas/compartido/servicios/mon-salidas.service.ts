@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { MonSalidasAntService } from "./mon-salidas-ant.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { principalConfig } from "../../principal/principal.util";

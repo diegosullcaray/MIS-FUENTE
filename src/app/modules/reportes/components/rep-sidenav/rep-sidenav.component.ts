@@ -3,8 +3,8 @@ import { EventEmitter, Host, OnDestroy, OnInit, Output } from "@angular/core";
 import { Component, Input } from "@angular/core";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { NavigationEnd, Router } from "@angular/router";
-import { LayoutService } from "app/system/admin/services/layout.service";
-import { IMenuItem } from "app/system/admin/services/navigation.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
+import { IMenuItem } from "app/pages/full-pages/layout/services/navigation.service";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
 

@@ -4,7 +4,7 @@ import { DetalleBaseComponent } from './detalle-base.component';
 import { MonSalidasService } from '../compartido/servicios/mon-salidas.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { MonSalidasAntService } from '../compartido/servicios/mon-salidas-ant.service';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 
 
 @Component({

@@ -10,7 +10,7 @@ import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, FormArray, Va
 import * as Moments from 'moment';
 import { dateArray, IDate } from '../../../../support/common/date.module'
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 @Component({

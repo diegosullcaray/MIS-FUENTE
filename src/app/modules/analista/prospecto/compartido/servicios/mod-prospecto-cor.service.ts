@@ -5,7 +5,7 @@ import { WinderService } from "app/core/data/remote/winder/winder.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { ReportType } from "app/modules/reportes/legacy/support/data/ant-mod-rep.service";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Observable } from "rxjs";
 import { environment } from "environments/environment";  
 import { ModRepService } from '../../../../reportes/compartido/servicios/mod-rep.service';

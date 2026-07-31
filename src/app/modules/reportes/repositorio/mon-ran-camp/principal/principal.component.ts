@@ -4,7 +4,7 @@ import { cloneObject } from "app/core/helpers/functions.util";
 import { tblOpts } from "./principal.util";
 import { ActivatedRoute, Router } from "@angular/router";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
-import { LayoutService } from "app/system/admin/services/layout.service";
+import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { StgPaginatorComponent } from "app/shared/components/stg-paginator/stg-paginator.component";
 
 @Component({

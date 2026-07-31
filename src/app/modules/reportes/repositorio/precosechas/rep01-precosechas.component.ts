@@ -4,7 +4,7 @@ import { StgPaginatorComponent } from "app/shared/components/stg-paginator/stg-p
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { prepareDataForPagination } from "app/shared/components/stg-table/stg-table.util";
 
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Subject } from "rxjs";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { ComercialService } from "../../legacy/comercial/comercial.service";

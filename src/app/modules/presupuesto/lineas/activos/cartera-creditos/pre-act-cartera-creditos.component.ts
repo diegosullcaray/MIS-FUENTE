@@ -2,7 +2,7 @@ import { OnDestroy, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { PreLineaSimpleComponent } from "app/modules/presupuesto/compartido/componentes/linea-simple/pre-linea-simple.component";
 import { ModBudgetService } from "app/modules/presupuesto/compartido/servicios/mod-budget.service";
-import { UserService } from "app/system/admin/services/user.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { tableHeaders, tableHeaders2, tableHeaders3, tableConf } from "./pre-act-cartera-creditos.util";
 import { Subject } from "rxjs";
 import { cloneObject } from "app/core/helpers/functions.util";

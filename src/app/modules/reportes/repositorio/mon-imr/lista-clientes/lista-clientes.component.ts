@@ -5,7 +5,7 @@ import { MonImrService } from '../compartido/servicios/mon-imr.service';
 import { MonImrAntService } from '../compartido/servicios/mon-imr-ant.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { headers1, headers2, tblOpts } from './lista-clientes.util';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 
 
 @Component({

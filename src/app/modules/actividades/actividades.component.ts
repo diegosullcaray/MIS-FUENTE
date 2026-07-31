@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';
-import { LayoutService } from 'app/system/admin/services/layout.service';
-import { IMenuItem, NavigationService } from 'app/system/admin/services/navigation.service';
-import { UserService } from 'app/system/admin/services/user.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
+import { IMenuItem, NavigationService } from 'app/pages/full-pages/layout/services/navigation.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { Subscription } from 'rxjs';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Incentivos3Service } from '../compartido/servicios/incentivos3.service';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 
 @Component({
   selector: 'app-perfil-incentivos3', 

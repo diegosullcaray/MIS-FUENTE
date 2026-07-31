@@ -2,7 +2,7 @@ import { Component, OnInit, Input, SimpleChanges,OnChanges, ViewChild, ChangeDet
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { isNullOrUndefined, isUndefined } from 'app/core/helpers/functions.util';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { ReplaySubject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 

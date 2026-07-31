@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.interface";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import {  loadingConf, tableOptions, headerDef, } from './usabilidadMis.util'; 
-import { UserService } from '../../../../system/admin/services/user.service';
+import { UserService } from '../../../../pages/full-pages/layout/services/user.service';
 import { Subject } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
 

@@ -6,8 +6,8 @@ import { ModSysLoginService } from "app/core/data/remote/instances/mod-sys-login
 import { IWinderResponse } from "app/core/data/remote/winder/winder.interface";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { printLog } from "app/core/helpers/debug.util";
-import { NavigationService } from "app/system/admin/services/navigation.service";
-import { UserService } from "app/system/admin/services/user.service";
+import { NavigationService } from "app/pages/full-pages/layout/services/navigation.service";
+import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { system_keys } from "app/pages/full-pages/system-keys.config";
 import { environment } from "environments/environment";
 import { Observable } from "rxjs";

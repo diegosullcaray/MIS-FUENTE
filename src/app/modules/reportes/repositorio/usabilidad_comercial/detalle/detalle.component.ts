@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleBaseComponent } from './detalle-base.component'; 
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { LayoutService } from 'app/system/admin/services/layout.service';
+import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 

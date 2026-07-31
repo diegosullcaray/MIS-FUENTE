@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ReportT } from '../../../../support/services/report';
 import { crs } from '../crs-map';
 import { SelectService } from '../../../../support/services/select.service';
-import { UserService } from 'app/system/admin/services/user.service';
+import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';
 
 @Component({
