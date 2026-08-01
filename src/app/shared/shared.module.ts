@@ -44,6 +44,7 @@ import { BlankLoaderComponent } from './ui/blank-loader/blank-loader.component';
 import { ClientSummaryComponent } from './ui/client-summary/client-summary.component';
 import { SessionLoaderComponent } from './components/session-loader/session-loader.component';
 import { ModuleSwitcherComponent } from './components/module-switcher/module-switcher.component';
+import { ExternalRedirectComponent } from './components/external-redirect/external-redirect.component';
 import { TblPickerDialogService } from './services/tbl-picker-dialog.service';
 import { SecPickerDialog2Service } from './services/sec-picker-dialog2.service';
 import { InFormDialogService } from './services/in-form-dialog.service';
@@ -84,7 +85,8 @@ const components = [
     BlankLoaderComponent,
     ClientSummaryComponent,
     SessionLoaderComponent,
-    ModuleSwitcherComponent
+    ModuleSwitcherComponent,
+    ExternalRedirectComponent
 ];
 
 const pipes = [

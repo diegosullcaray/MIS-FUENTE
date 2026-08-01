@@ -7,8 +7,13 @@ import { AuthLayoutComponent } from './pages/full-pages/auth/components/auth-lay
 import { LoginComponent } from './pages/full-pages/auth/components/login/login.component';
 import { SigninComponent } from './pages/full-pages/auth/components/signin/signin.component';
 import { DesktopComponent } from './pages/full-pages/layout/components/desktop/desktop.component';
-import { DummyComponent } from './pages/modules/reportes/components/dummy/dummy.component';
+import { ExternalRedirectComponent, ExternalRedirectRouteData } from './shared/components/external-redirect/external-redirect.component';
 import { RouteGuard } from './pages/full-pages/layout/guards/route-guard.guard';
+import { environment } from 'environments/environment';
+
+const IMPARABLES_DATA: ExternalRedirectRouteData = {
+  redirectUrl: environment.externalLinks.imparables
+};
 
 const routes: Routes = [
   {
@@ -82,7 +87,8 @@ const routes: Routes = [
       },
       {
         path: 'imparables',
-        component: DummyComponent
+        component: ExternalRedirectComponent,
+        data: IMPARABLES_DATA
       },
       {
         path: 'analista',

@@ -19,5 +19,9 @@ export const environment = {
   redirectUri:'https://stg.confianza.pe/login',
   googleOAuthClientId: '690217690558-7l16jg0u9r7udt2jjp6tjmtd3mhkgihu.apps.googleusercontent.com',
   requestConfigRootURL:'https://stg.confianza.pe/cores2/ant',
-  devUser:''
+  devUser:'',
+  externalLinks: {
+    imparables: 'https://sites.google.com/confianza.pe/imparables/p%C3%A1gina-principal?authuser=1&read_current=1',
+    jira: 'https://jira.tecnologiafm.org/servicedesk/customer/user/login?destination=portal%2F15&logout=true',
+  },
 }; 

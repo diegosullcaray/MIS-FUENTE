@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DummyComponent } from './components/dummy/dummy.component';
+import { ExternalRedirectComponent, ExternalRedirectRouteData } from 'app/shared/components/external-redirect/external-redirect.component';
 import { Rep01Component } from './rep01.component';
+import { environment } from 'environments/environment';
+
+const JIRA_DATA: ExternalRedirectRouteData = {
+    redirectUrl: environment.externalLinks.jira,
+    message: 'Redirigiendo a Jira...'
+};
 
 const routes: Routes = [
     {
@@ -34,7 +40,8 @@ const routes: Routes = [
             },
             {
                 path: "leg/dummy",
-                component: DummyComponent
+                component: ExternalRedirectComponent,
+                data: JIRA_DATA
             }
         ]
     }
