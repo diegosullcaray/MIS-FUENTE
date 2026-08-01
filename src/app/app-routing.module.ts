@@ -126,6 +126,14 @@ const routes: Routes = [
 
     ]
   },
+  {
+    path: 'error',
+    loadChildren: () => import('app/pages/full-pages/errors/errors.module').then(m => m.ErrorsModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'error/404'
+  },
 ];
 
 @NgModule({

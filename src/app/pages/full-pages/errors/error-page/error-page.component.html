@@ -1,0 +1,11 @@
+<div class="error-page" *ngIf="content">
+  <div class="error-page__card">
+    <div class="error-page__avatar-wrap">
+      <img class="error-page__avatar" src="assets/images/fc/avatars/mis_error.png" alt="">
+      <mat-icon class="error-page__badge">{{ content.icon }}</mat-icon>
+    </div>
+    <h1 class="error-page__title">{{ content.title }}</h1>
+    <p class="error-page__message">{{ content.message }}</p>
+    <button mat-raised-button color="primary" class="error-page__action" (click)="goHome()">Volver al inicio</button>
+  </div>
+</div>

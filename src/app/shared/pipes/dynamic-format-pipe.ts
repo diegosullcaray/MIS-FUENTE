@@ -3,7 +3,6 @@ import {
     Pipe,
     PipeTransform
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { isNullOrUndefined, mergeObjects } from 'app/core/helpers/functions.util';
 
@@ -42,7 +41,7 @@ export class DynamicFormatPipe implements PipeTransform {
         }
     }
 
-    constructor(private sanitizer: DomSanitizer, public router: Router) { }
+    constructor(public router: Router) { }
 
     private appendTrafficLight() {
 
@@ -67,7 +66,7 @@ export class DynamicFormatPipe implements PipeTransform {
 
     link(value: string, params: any) {
         let su = params && params.underline == true ? 'stg-link2' : 'stg-link';
-        return this.sanitizer.bypassSecurityTrustHtml('<span class="' + su + '">' + value + '</span>');
+        return '<span class="' + su + '">' + value + '</span>';
     }
 
     time(value: string): string {
@@ -93,7 +92,7 @@ export class DynamicFormatPipe implements PipeTransform {
             nv = 'S/. ' + formatNumber(v, 'en-US', '.0-2');
         }
         let html = '<div style="' + sc + '"><span style="' + st + '">' + nv + '</span></div>';
-        return this.sanitizer.bypassSecurityTrustHtml(html);
+        return html;
     }
 
     icon(value: string, params: any) {
@@ -112,10 +111,10 @@ export class DynamicFormatPipe implements PipeTransform {
             t = '-' + t;
         }
         if (p.src == 'google') {
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="material-icons' + t + '" style="font-size:' + p.size + ' !important;">' + v + '</span>');
+            return '<span class="material-icons' + t + '" style="font-size:' + p.size + ' !important;">' + v + '</span>';
         }
         else if (p.src == 'microsoft') {
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="ms-Icon ms-Icon--' + v + '" style="font-size:' + p.size + ' !important;"></span>');
+            return '<span class="ms-Icon ms-Icon--' + v + '" style="font-size:' + p.size + ' !important;"></span>';
         }
         return value;
     }
@@ -129,8 +128,7 @@ export class DynamicFormatPipe implements PipeTransform {
         let r = formatNumber(value, 'en-US', '.0-0');
         if (params && (params.link == true || params.link2 == true)) {
             let cls = params.link2 ? 'stg-link2' : 'stg-link';
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="' + cls + ' ">' + r + '</span>');
-            //return this.sanitizer.bypassSecurityTrustHtml('<div class="stg-table2-cell-container"><span class="material-icons stg-green-icon tl">lens</span><span class="'+cls+' ">' + r + '</span></div>');
+            return '<span class="' + cls + ' ">' + r + '</span>';
         }
         return r;
     }
@@ -145,7 +143,7 @@ export class DynamicFormatPipe implements PipeTransform {
         let r = formatNumber(value, 'en-US', '.' + d1 + '-' + d2);
         if (params && (params.link == true || params.link2 == true)) {
             let cls = params.link2 ? 'stg-link2' : 'stg-link';
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="' + cls + '">' + r + '</span>');
+            return '<span class="' + cls + '">' + r + '</span>';
         }
         return r;
     }
@@ -184,12 +182,12 @@ export class DynamicFormatPipe implements PipeTransform {
                 // - El segundo div (65%) contiene el span con el valor formateado (con link si corresponde)
                 const html = `<div class="stg-table2-cell-with-traffic"><div><span class="material-icons stg-${colorClass}-icon">lens</span></div><div>${secondSpan}</div></div>
       `;
-                return this.sanitizer.bypassSecurityTrustHtml(html);
+                return html;
             } else {
                 // Caso en que solo se indique link o link2 (sin trafficFn)
                 const cls = params.link2 ? 'stg-link2' : 'stg-link';
                 const html = `<span class="${cls}">${formatted}</span>`;
-                return this.sanitizer.bypassSecurityTrustHtml(html);
+                return html;
             }
         }
 
@@ -204,7 +202,7 @@ export class DynamicFormatPipe implements PipeTransform {
         }
         let color = (value == 0) ? 'stg-orange-icon' : (value == -1) ? 'stg-red-icon' : (value == 1) ? 'stg-green-icon' : false
         if (color) {
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="material-icons ' + color + '">lens</span>');
+            return '<span class="material-icons ' + color + '">lens</span>';
         } else {
             return '';
         }
@@ -229,7 +227,7 @@ export class DynamicFormatPipe implements PipeTransform {
         let r = value.length > l ? value.substr(0, l - p.ellipsis.length) + p.ellipsis : value;
         if (params && (params.link == true || params.link2 == true)) {
             let cls = params.link2 ? 'stg-link2' : 'stg-link';
-            return this.sanitizer.bypassSecurityTrustHtml('<span class="' + cls + ' ">' + r + '</span>');
+            return '<span class="' + cls + ' ">' + r + '</span>';
         }
         return r;
     }

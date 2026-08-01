@@ -11,7 +11,7 @@ import { LayoutModule } from './pages/full-pages/layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
-import { httpInterceptorProviders } from './pages/full-pages/layout/interceptors/http-interceptors';
+import { httpInterceptorProviders } from './core/interceptors/http-interceptors';
 import { RouteTrackerService } from './pages/full-pages/layout/services/route-tracker.service';
 import { DatePipe } from '@angular/common';
 import { RoutePartsService } from 'app/core/services/route-parts.service';

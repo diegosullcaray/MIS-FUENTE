@@ -4,12 +4,11 @@ import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { TokenService } from "app/core/services/token.service";
 import { environment } from "environments/environment";
 import { EMPTY, Observable } from "rxjs";
-import { AdminService } from "../services/admin.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-    constructor(private tokenService: TokenService, private adminService: AdminService) { }
+    constructor(private tokenService: TokenService) { }
 
     isAntDomain(url: string) {
         return url.startsWith(environment.requestConfigRootURL);

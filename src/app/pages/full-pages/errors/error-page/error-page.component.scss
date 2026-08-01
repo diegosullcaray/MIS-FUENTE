@@ -1,0 +1,75 @@
+@import "/src/assets/styles/scss/colors";
+
+// Coincide con el primary del tema Material activo (ver $default-primary-palette en
+// _init.scss: main #0081ff, darker #0064ff) — no está expuesto como variable reutilizable
+// fuera de los mixins de tema, así que se referencia el mismo valor acá.
+$primary-blue: #0081ff;
+$primary-blue-darker: #0064ff;
+
+.error-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, $blue-base 0%, $primary-blue-darker 100%);
+
+  &__card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(29, 57, 110, 0.35);
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__avatar-wrap {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 8px;
+  }
+
+  &__avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__badge {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    line-height: 36px;
+    border-radius: 50%;
+    background: $primary-blue;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(29, 57, 110, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__title {
+    margin: 8px 0 8px;
+    font-size: 22px;
+    font-weight: 500;
+    color: $blue-base;
+  }
+
+  &__message {
+    margin: 0 0 24px;
+    color: #757575;
+  }
+
+  &__action {
+    border-radius: 24px;
+  }
+}
