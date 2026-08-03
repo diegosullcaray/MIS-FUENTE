@@ -81,12 +81,18 @@ export class PrincipalComponent implements OnInit {
 
   private ds() {
     this.loader.open();
-    this.antService.getObjectList().subscribe(x => {
-      let r = x.body.resultado;
-      this.antRepE.reportList = r.list;
-      this.mod_admin= r.mod_admin==1?true:false;
-      this.set();
-      this.loader.close();
+    this.antService.getObjectList().subscribe({
+      next: x => {
+        let r = x.body.resultado;
+        this.antRepE.reportList = r.list;
+        this.mod_admin= r.mod_admin==1?true:false;
+        this.set();
+        this.loader.close();
+      },
+      error: () => {
+        this.flag = false;
+        this.optObs.next({ body: { loading: { enabled: false } } });
+      }
     });
   }
 

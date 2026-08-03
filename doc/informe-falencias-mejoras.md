@@ -500,15 +500,35 @@
     usuario mirando un diálogo genérico sobre una pantalla rota — lo sacan a una página que
     explica qué pasó y ofrece volver al inicio.
 
+    **✅ RESUELTO (2026-08-03) — barrido de loaders locales.** Se hizo el barrido manual,
+    sitio por sitio, que quedaba pendiente: cada flag de loading/spinner **local** (no el
+    `StgAppLoaderService` compartido) que solo se reseteaba en el callback de éxito de un
+    `.subscribe()` ahora usa `finalize()` (o un callback `error:` explícito cuando el reset
+    necesitaba lógica propia, como en `becas.component.ts`/`priorizacion-leads.component.ts`,
+    donde el reset empuja a un `Subject` compartido) para garantizar que el flag se apague
+    también si la request falla o hace timeout. ~35 archivos en 11 grupos:
+    `usuarios-base.component.ts` (reportes-e, framework-esg); `incentivos3.service.ts`
+    (7 flags en `setDs()`); `detalle-base.component.ts`/`detalle2-base.component.ts` de
+    incentivos3; 13 componentes de `reportes/repositorio/` con el patrón
+    `loading`/`firstload` + `combineLatest([loadN...])` (zplantilla, cmg-cartera-m, imr,
+    ranking-mujer, seguro-optativo, seguros-pasivos, tablero-digital-comercial,
+    poblacion-misional, agenda-comercial, panel-misionales, panel-supervision,
+    seguro-pasivos-graf, reasignado); 8 componentes con `loadingObs` atado a `stg-table`
+    (dashboard-clientes, desempeno-social, segui-incentivos-sec, esg, comite,
+    captacion-canal-comercial, captacion-canal-operacion, precosechas);
+    `Kaypacha3/buscador/buscador.component.ts`; `mon-salidas.service.ts` y
+    `mon-ran-camp.service.ts` (mismo patrón que `mon-imr.service.ts`, que ya estaba
+    corregido); el modulo `analista` (principal, cliente, becas, priorizacion-leads);
+    `reportes-e/principal/principal.component.ts`; `reporte-demo.component.ts`; y
+    `presupuesto/gestion/*` (responsables, tablero-verificacion). Verificado contra el
+    filesystem con el checker de imports (0 imports rotos nuevos) — no se pudo levantar
+    `ng serve`/Karma en este entorno (falta `node_modules`) para probar en navegador.
+
     **Lo que NO cubre — sigue pendiente:**
-    - Componentes/servicios con un flag de loading **local** (no el `StgAppLoaderService`
-      compartido) — ej. `mon-salidas.service.ts:103-139` (`selectMetric`, variable `spinn`): mi
-      fix no tiene forma de tocar ese estado local, porque no pasa por el servicio compartido.
-      Sigue quedando `true` para siempre ante un error.
     - Loader que no se cierra en el **camino de éxito** por un bug de lógica (no de manejo de
-      error) — ej. el mismo `mon-salidas.service.ts:41-100`, si la respuesta es `null`. Esto no
-      es un problema de HTTP error/timeout, así que un interceptor no lo puede arreglar; sigue
-      siendo un barrido manual, sitio por sitio, con `finalize()`.
+      error) — ej. `mon-salidas.service.ts`, si la respuesta es `null`. Esto no
+      es un problema de HTTP error/timeout, así que ni el interceptor ni `finalize()` lo
+      arreglan; es un bug de lógica de negocio aparte.
     - El timeout de 30s es un valor por defecto razonable para reportes pesados, pero no se
       ajustó por endpoint — si algún reporte específico legítimamente tarda más, va a cortar esa
       request también. Vale la pena revisarlo si aparece en producción.
@@ -582,7 +602,7 @@
 | 17 | AES-CBC con IV fijo en `CypherService` | Medio | Alto (seguridad) | Sí — coordinar con backend | 🔴 Nuevo (2026-07-31), pendiente |
 | 18 | XSS almacenado en `dynamic-format-pipe` (`bypassSecurityTrustHtml`) | Medio | Alto (seguridad, componente muy reusado) | No | ✅ Resuelto (2026-07-31) — hallazgos relacionados menores (`categorizacion`, `mon-imr`, `stg-window-bar`) siguen pendientes |
 | 19 | Dependencias con CVE (`npm audit`: swiper crítico, Angular XSS altas, uuid moderado) | Medio-Alto | Alto (seguridad) | No | 🔴 Nuevo (2026-07-31), pendiente |
-| 24 | Sin manejo de error/timeout en HTTP (91% subscribe sin error, loader huérfano) | Medio (fix central) | Alto (UX rota a diario) | No | 🟡 Parcial (2026-07-31) — interceptor + timeout + cierre de loader compartido + página de error 404/5xx resuelto; loaders con estado local y bugs de camino-de-éxito siguen pendientes |
+| 24 | Sin manejo de error/timeout en HTTP (91% subscribe sin error, loader huérfano) | Medio (fix central) | Alto (UX rota a diario) | No | ✅ Resuelto (2026-07-31 + 2026-08-03) — interceptor + timeout + cierre de loader compartido + página de error 404/5xx, y barrido de ~35 loaders locales con `finalize()`; solo quedan pendientes bugs de camino-de-éxito no relacionados a errores HTTP |
 | 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | Sí — ver punto 16, es más profundo de lo que parecía | 🟡 Extraído a gitignore; rotación, pipeline externo y rediseño del modelo (punto 16) pendientes |
 | 25 | `trackBy` en las 4 variantes de `stg-table` + adopción de `OnPush` | Bajo (trackBy) / Alto (OnPush) | Medio-Alto (rendimiento) | No | 🟠 Nuevo (2026-07-31), pendiente |
 | 20 | Guards rotos/no conectados (`AdminGuard`, `DummyGuard` con emails hardcodeados) | Bajo | Medio-Alto | No | 🟠 Nuevo (2026-07-31), pendiente |

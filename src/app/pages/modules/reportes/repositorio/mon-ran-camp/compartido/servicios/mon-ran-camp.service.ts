@@ -8,6 +8,7 @@ import { MonRanCampAntService } from './mon-ran-camp-ant.service';
 import { eventHeaders, principalConfig, scItems, tblHeaderCorr, tblHeaders, tblHeaderTerr, tblHeaderUni } from '../../principal/principal.util';
 import { Subject } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
+import { finalize } from 'rxjs/operators';
 
 @Injectable()
 export class MonRanCampService {
@@ -317,15 +318,17 @@ export class MonRanCampService {
     }
 
     private setDs(tip_cod: number, cod_rel: string) {
-        this.antRanCamp.getDataSources(tip_cod, cod_rel, this.curr_fec, this.curr_flag, this.curr_gru).subscribe(x => {
+        this.antRanCamp.getDataSources(tip_cod, cod_rel, this.curr_fec, this.curr_flag, this.curr_gru).pipe(
+            finalize(() => {
+                this.principal.loading = false;
+                this.loader.close();
+            })
+        ).subscribe(x => {
             let ds = x.body.resultado;
             this.principal.meta = ds.meta;
             //this.principal.dataTable = ds.table;
 
             this.evaluateTabs(tip_cod, ds);
-
-            this.principal.loading = false;
-            this.loader.close();
 
         });
     }

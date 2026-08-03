@@ -4,6 +4,7 @@ import { IStgTableHeader } from "app/shared/components/stg-table/stg-table.inter
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf,tableConf2 } from "./esg.util";
 import { printLog } from 'app/core/helpers/debug.util';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-esg',
@@ -40,20 +41,19 @@ export /*abstract*/ class EsgComponent {
         this.tableConf = tableConf;
         this.tableConf2 = tableConf2;
 
-        this.antRep.getRegularTableResult("RESG_01",{}).subscribe(
+        this.antRep.getRegularTableResult("RESG_01",{}).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x=>{
                 let d = x.body.resultado.data;
                 let h = x.body.resultado.headers;
-                
+
                 this.headerDefs =JSON.parse(h);
-                
+
                 this.dataSource1 = d.filter(x => x.RCODCAT === 1);
                 this.dataSource2 = d.filter(x => x.RCODCAT === 2);
                 this.dataSource3 = d.filter(x => x.RCODCAT === 3);
                 this.dataSource4 = d.filter(x => x.RCODCAT === 4);
-                 
-                
-                this.loadingObs = false;
             }
         );
     }

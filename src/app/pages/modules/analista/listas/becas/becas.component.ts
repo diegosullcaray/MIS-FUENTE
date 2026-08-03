@@ -126,10 +126,13 @@ export class BecasComponent implements OnInit, OnDestroy {
     }
 
     private ds() {
-        this.antSec.getListaBecas(this.analista.cod_bt).subscribe(x => {
-            this.dataSource = x.body.resultado;
-            this.currDataSource = x.body.resultado;
-            this.analista.doneLoadingDataSource$.next(x.body.resultado);
+        this.antSec.getListaBecas(this.analista.cod_bt).subscribe({
+            next: x => {
+                this.dataSource = x.body.resultado;
+                this.currDataSource = x.body.resultado;
+                this.analista.doneLoadingDataSource$.next(x.body.resultado);
+            },
+            error: () => this.analista.doneLoadingDataSource$.next([])
         });
     }
 

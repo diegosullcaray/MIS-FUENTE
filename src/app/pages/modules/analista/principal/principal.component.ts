@@ -6,6 +6,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { AnalistaService } from '../compartido/servicios/analista.service';
 import { ModSecService } from '../compartido/servicios/mod-sec.service';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
@@ -118,7 +119,12 @@ export class PrincipalComponent implements OnInit {
   changeG1(evt: any) {
     this.loader.open();
     this.loadingG1 = true;
-    this.antSec.getHistoricoVariable(this.analista.cod_bt, evt.value).subscribe((x: any) => {
+    this.antSec.getHistoricoVariable(this.analista.cod_bt, evt.value).pipe(
+      finalize(() => {
+        this.loadingG1 = false;
+        this.loader.close();
+      })
+    ).subscribe((x: any) => {
       let body = x.body.resultado;
       this.analista.graph1_opts.series = [
         {
@@ -134,8 +140,6 @@ export class PrincipalComponent implements OnInit {
           data: body.his_3
         }
       ];
-      this.loadingG1 = false;
-      this.loader.close();
     });
   }
 

@@ -11,6 +11,7 @@ import { ReportT } from '../../legacy/support/services/report';
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
 import { UntypedFormGroup } from '@angular/forms';
 import { printLog } from 'app/core/helpers/debug.util';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-captacion-canal-comercial-rep',
@@ -105,27 +106,28 @@ export class CaptacionCanalComercialComponent implements OnInit {
         this.currentDate_ = this.user.get('profile').curr_fec;
         this.loadingObs = true;
         this.showPaginator = false;
-        this.antRep.getRegularTableResult("CARACT_CARTERA_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel, fec: this.currentDate_ }).subscribe(
-            x => { 
-                // this.dataSource = x.body.result.data; 
-                // let h = x.body.result.headers;  
-                  
-                
-                 
+        this.antRep.getRegularTableResult("CARACT_CARTERA_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel, fec: this.currentDate_ }).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
+            x => {
+                // this.dataSource = x.body.result.data;
+                // let h = x.body.result.headers;
+
+
+
                 //console.log(d)
-               
+
                 let d = x.body.resultado.data;
                 let h = x.body.resultado.headers;
-                
+
                 this.headerDefs =JSON.parse(h);
-                
-                this.dataSource = d 
+
+                this.dataSource = d
                 //let ds = x.body.result.body;
                 // this.dataSourceLenght = ds.length;
                 // this.originalDataSource = ds;
                 // this.currentDataSource = ds;
                 // this.prepPagination();
-                 this.loadingObs = false;
             }
         );
     }

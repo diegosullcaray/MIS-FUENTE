@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, filter2, filter3, tableConfOPTS, tableConfOPTS2, tableHeaders, tableHeaders2, tableHeaders3 } from './panel-supervision.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 
@@ -226,30 +227,34 @@ export class PanelSupervisionComponent implements OnInit {
         //this.load3.next(true);
         this.preLoad();
 
-        this.antRep.getRegularTableResult("RS_AGE_COM_01", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 1, "fuga": fuga, "prop": prop }).subscribe(
+        this.antRep.getRegularTableResult("RS_AGE_COM_01", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 1, "fuga": fuga, "prop": prop }).pipe(
+            finalize(() => this.load0.next(true))
+        ).subscribe(
 
             x => {
                 let r = x.body.resultado;
                 this.dataSource = r.data;
                 this.headerDefs = tableHeaders //JSON.parse(r.headers);
-                this.load0.next(true);
             }
 
         );
-        // Segunda Tabla 
-        this.antRep.getRegularTableResult("RS_AGE_COM_01", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 2, "fuga": fuga, "prop": prop }).subscribe(
+        // Segunda Tabla
+        this.antRep.getRegularTableResult("RS_AGE_COM_01", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 2, "fuga": fuga, "prop": prop }).pipe(
+            finalize(() => this.load1.next(true))
+        ).subscribe(
 
             x => {
                 let r2 = x.body.resultado;
                 this.dataSource2 = r2.data;
                 this.headerDefs2 = tableHeaders2//JSON.parse(r2.headers);
-                this.load1.next(true);
             }
 
         );
 
-        // Tercera Tabla 
-        this.antRep.getRegularTableResult("RS_AGE_COM_02", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 1, "fuga": fuga, "prop": prop,"nom":rang }).subscribe(
+        // Tercera Tabla
+        this.antRep.getRegularTableResult("RS_AGE_COM_02", { "tip_cod": tipcod, "cod_rel": codrel, "fecha": this.currentDate, "mode": 1, "fuga": fuga, "prop": prop,"nom":rang }).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
 
             x => {
                 let r3 = x.body.resultado;
@@ -258,9 +263,8 @@ export class PanelSupervisionComponent implements OnInit {
                 this.dataSource3Ori = cloneObject(this.dataSource3);
                 this.dataSource3Page = cloneObject(this.dataSource3);
                 this.preparePagination();
-                this.load2.next(true);
                 //this.loading = false;
-                //this.loader.close(); 
+                //this.loader.close();
             }
 
         );

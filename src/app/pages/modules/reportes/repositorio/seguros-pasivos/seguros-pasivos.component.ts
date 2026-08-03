@@ -10,6 +10,7 @@ import { tableConf3 } from '../esg/esg.util';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import {  tableConfOPTS } from './seguros-pasivos.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { printLog } from 'app/core/helpers/debug.util';
@@ -146,49 +147,53 @@ export class SegurosPasivosComponent implements OnInit {
         //this.load3.next(true);
         this.preLoad();
 
-        this.antRep.getRegularTableResult("RS_SEG_PAS_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate}).subscribe(
+        this.antRep.getRegularTableResult("RS_SEG_PAS_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate}).pipe(
+            finalize(() => this.load0.next(true))
+        ).subscribe(
 
             x => {
-                
+
                 let r = x.body.resultado;
                 this.dataSource = r.data;
-                this.headerDefs = JSON.parse(r.headers); 
-                this.load0.next(true);
+                this.headerDefs = JSON.parse(r.headers);
             }
 
         );
-        // Segunda Tabla 
-        this.antRep.getRegularTableResult("RS_SEG_PAS_02", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).subscribe(
+        // Segunda Tabla
+        this.antRep.getRegularTableResult("RS_SEG_PAS_02", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).pipe(
+            finalize(() => this.load1.next(true))
+        ).subscribe(
 
             x => {
                 let r2 = x.body.resultado;
                 this.dataSource2 = r2.data;
                 this.headerDefs2 = JSON.parse(r2.headers);
-                this.load1.next(true);
                // this.load2.next(true);
             }
 
         );
 
-        this.antRep.getRegularTableResult("RS_SEG_PAS_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).subscribe(
+        this.antRep.getRegularTableResult("RS_SEG_PAS_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
 
             x => {
                 let r3 = x.body.resultado;
                 this.dataSource3 = r3.data;
                 this.headerDefs3 = JSON.parse(r3.headers);
-                this.load2.next(true);
                // this.load2.next(true);
             }
 
         );
 
-        this.antRep.getRegularTableResult("RS_SEG_PAS_04", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).subscribe(
+        this.antRep.getRegularTableResult("RS_SEG_PAS_04", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate  }).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
 
             x => {
                 let r4 = x.body.resultado;
                 this.dataSource4 = r4.data;
                 this.headerDefs4 = JSON.parse(r4.headers);
-                this.load2.next(true);
                // this.load2.next(true);
             }
 

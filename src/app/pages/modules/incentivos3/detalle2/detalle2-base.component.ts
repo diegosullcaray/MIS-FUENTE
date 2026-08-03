@@ -3,6 +3,7 @@ import { Incentivos3Service } from "../compartido/servicios/incentivos3.service"
 import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { ModIncentivos3Service } from "../compartido/servicios/mod-incentivos3.service";
 import { detalle2Config } from "./detalle2.util";
+import { finalize } from "rxjs/operators";
 
 export abstract class Detalle2BaseComponent {
     config: any;
@@ -34,14 +35,17 @@ export abstract class Detalle2BaseComponent {
         let params = this.inc3.detalle.params;
 
         this.item = detalle2Config.items[idx - 1];
-        this.ant[params.req](this.tip_cod, this.cod_rel,this.inc3.curr_fec).subscribe((x: any) => {
+        this.ant[params.req](this.tip_cod, this.cod_rel,this.inc3.curr_fec).pipe(
+            finalize(() => {
+                this.config.loading = false;
+                this.loader.close();
+            })
+        ).subscribe((x: any) => {
             let res = x.body.resultado;
             this.dataSource = res.det;
             if (!isNullOrUndefined(res.tot.tot_m)) {
                 this.totSource = res.tot;
             }
-            this.config.loading = false;
-            this.loader.close();
         });
     }
 

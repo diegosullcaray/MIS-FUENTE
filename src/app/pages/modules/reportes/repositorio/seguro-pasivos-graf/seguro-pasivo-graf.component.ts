@@ -10,7 +10,7 @@ import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-p
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
 import { ReportT } from '../../legacy/support/services/report';
 import { GraphicService } from '../../legacy/support/services/graphic.service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, finalize } from 'rxjs/operators';
 import { ComercialService } from '../../legacy/comercial/comercial.service';
 import * as Highcharts from "highcharts";  
 import { printLog } from 'app/core/helpers/debug.util';
@@ -247,7 +247,7 @@ export class SeguroPasivoGrafComponent implements OnInit {
          
         //let h =[49, 71, 106,129,144,176,135,148,216,194,95,54] 
         this.cs.getRegularData(report, params)
-          .pipe(takeUntil(this.destroy$))
+          .pipe(takeUntil(this.destroy$), finalize(() => this.load0.next(true)))
           .subscribe(
             (data) => {
               this.loader.close();
@@ -297,10 +297,9 @@ export class SeguroPasivoGrafComponent implements OnInit {
               this.chartEl.nativeElement.appendChild(e);
     
               Highcharts.chart(this.chartEl.nativeElement, opts);
-              this.load0.next(true);
             },
             () => {
-              
+
             });
             
       }
@@ -317,11 +316,11 @@ export class SeguroPasivoGrafComponent implements OnInit {
         const params ={ "tip_cod": tipcod, "cod_rel": codrel,"fec": this.currentDate}
         //let h =[49, 71, 106,129,144,176,135,148,216,194,95,54] 
         this.cs.getRegularData(report, params)
-          .pipe(takeUntil(this.destroy$))
+          .pipe(takeUntil(this.destroy$), finalize(() => this.load1.next(true)))
           .subscribe(
             (data) => {
-              let result = data.body['result']; 
-              let categoriesT = result.body[0].categories 
+              let result = data.body['result'];
+              let categoriesT = result.body[0].categories
               printLog(result.body[0].series)
               this.mapsschartOptions = { 
                 chart: {
@@ -351,10 +350,9 @@ export class SeguroPasivoGrafComponent implements OnInit {
               this.chartE2.nativeElement.appendChild(e);
     
               Highcharts.chart(this.chartE2.nativeElement, opts);
-              this.load1.next(true);
             },
             () => {
-              
+
             });
             
       }

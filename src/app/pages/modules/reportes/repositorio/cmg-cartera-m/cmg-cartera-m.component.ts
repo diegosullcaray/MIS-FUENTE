@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2, trafficFnMap } from './cmg-cartera-m.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { printLog } from 'app/core/helpers/debug.util';
@@ -559,8 +560,10 @@ loadData() {
       Fecha: this.fechaMensual.val,//this.currentDate,
       tipcod: tipcod,
       met: '1',
-      prod:fase     
-    }).subscribe(x => {
+      prod:fase
+    }).pipe(
+      finalize(() => this.load2.next(true))
+    ).subscribe(x => {
       const r = x.body.resultado;
       const semaforoKeys = ["8", "10","12"]; 
       printLog(r.data) 
@@ -657,11 +660,15 @@ loadData() {
         h => !(h.cellStyle?.display?.toLowerCase() === 'none')
       );
       printLog(headersProcesados)
-      this.headerDefs = headersProcesados; 
-      this.load2.next(true);
+      this.headerDefs = headersProcesados;
     });
 
-    this.antRep.getRegularTableResult("CMG_CARTERA_02", { "tipcod": tipcod, "cod_rel": codrel,tipmet: '1',prod:fase , fec: this.fechaMensual.val }).subscribe(
+    this.antRep.getRegularTableResult("CMG_CARTERA_02", { "tipcod": tipcod, "cod_rel": codrel,tipmet: '1',prod:fase , fec: this.fechaMensual.val }).pipe(
+        finalize(() => {
+            this.load3.next(true);
+            this.load0.next(true);
+        })
+    ).subscribe(
 
         x => {
             let r = x.body.resultado; 
@@ -678,11 +685,8 @@ loadData() {
               
               setTimeout(() => {
                 this.calcularYAnimarOpeAcu();
-              }, 100); 
-              this.load3.next(true);
-//
-this.load0.next(true);
-              setTimeout(() => { 
+              }, 100);
+              setTimeout(() => {
                          this.calcularYAnimarMontoAcu();
                         }, 100);
                         this.mostrarCard=true;

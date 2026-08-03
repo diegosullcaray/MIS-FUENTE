@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2 } from './reasignado.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 
@@ -230,12 +231,13 @@ export class reasignadoComponent implements OnInit {
         //this.load3.next(true);
         this.preLoad(); 
         //cuarta tabla 
-            this.antRep.getRegularTableResult("RS_MON_EFECREASIG_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "imp": fase}).subscribe(
+            this.antRep.getRegularTableResult("RS_MON_EFECREASIG_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "imp": fase}).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
             x => {
-                let r = x.body.resultado; 
+                let r = x.body.resultado;
                 this.dataSource = r.data;
-                this.headerDefs = JSON.parse(r.headers); 
-                this.load2.next(true); 
+                this.headerDefs = JSON.parse(r.headers);
             }
 
         );

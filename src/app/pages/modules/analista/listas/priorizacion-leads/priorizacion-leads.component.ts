@@ -42,10 +42,13 @@ export class PriorizacionLeadsComponent extends ListaBaseComponent implements On
   }
 
   private ds() {
-    this.antSec.getListaPrioLeads(this.analista.cod_bt).subscribe(x => {
-      this.dataSource = x.body.resultado;
-      this.currDataSource = x.body.resultado;
-      this.analista.doneLoadingDataSource$.next(x.body.resultado);
+    this.antSec.getListaPrioLeads(this.analista.cod_bt).subscribe({
+      next: x => {
+        this.dataSource = x.body.resultado;
+        this.currDataSource = x.body.resultado;
+        this.analista.doneLoadingDataSource$.next(x.body.resultado);
+      },
+      error: () => this.analista.doneLoadingDataSource$.next([])
     });
   }
 

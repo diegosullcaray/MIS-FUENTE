@@ -4,6 +4,7 @@ import { STG_GRID_STYLE } from "app/shared/components/stg-table/stg-table.util";
 import { cloneObject } from "app/core/helpers/functions.util";
 import { ModBudgetService } from "app/pages/modules/presupuesto/compartido/servicios/mod-budget.service";
 import moment from "moment";
+import { finalize } from "rxjs/operators";
 
 
 @Component({
@@ -120,11 +121,12 @@ export class PreGesSegTableroVerificacionComponent implements OnInit, OnDestroy 
             let tv: any = evt[1];
             this.loadingObs = true;
 
-            this.antBud.getLogVerificaciones(tv.cod_rel, lv.cod_rel).subscribe(
+            this.antBud.getLogVerificaciones(tv.cod_rel, lv.cod_rel).pipe(
+                finalize(() => this.loadingObs = false)
+            ).subscribe(
                 x => {
                     this.dataSource = x.body.resultado;
                     this.bdataSource = cloneObject(this.dataSource);
-                    this.loadingObs = false;
                 }
             );
         }else{

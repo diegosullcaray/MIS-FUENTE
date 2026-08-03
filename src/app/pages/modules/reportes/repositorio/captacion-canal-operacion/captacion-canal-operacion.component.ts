@@ -10,6 +10,7 @@ import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ReportT } from '../../legacy/support/services/report';
 import { cra } from '../../legacy/comercial/rda/administracion/cra-map';
 import { printLog } from 'app/core/helpers/debug.util';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-captacion-canal-operacion-rep',
@@ -95,7 +96,9 @@ export class CaptacionCanalOperacionComponent implements OnInit {
         this.currentDate_ = this.user.get('profile').curr_fec;
         this.loadingObs = true;
         this.showPaginator = false;
-        this.antRep.getRegularData("CARACT_pas_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel, fec: this.currentDate_ }).subscribe(
+        this.antRep.getRegularData("CARACT_pas_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel, fec: this.currentDate_ }).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x => {
 
                 this.dataSource = x.body.result.body;
@@ -105,7 +108,6 @@ export class CaptacionCanalOperacionComponent implements OnInit {
                 this.originalDataSource = ds;
                 this.currentDataSource = ds;
                 this.prepPagination();
-                this.loadingObs = false;
             }
         );
     }

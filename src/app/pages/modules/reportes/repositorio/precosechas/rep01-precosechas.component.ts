@@ -6,6 +6,7 @@ import { prepareDataForPagination } from "app/shared/components/stg-table/stg-ta
 
 import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { Subject } from "rxjs";
+import { finalize } from "rxjs/operators";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { ComercialService } from "../../legacy/comercial/comercial.service";
 import { SelectService } from "../../legacy/support/services/select.service";
@@ -86,7 +87,9 @@ export class Rep01PrecosechasComponent implements OnInit{
         let lv: any = evt[0];
         this.loadingObs = true;
         this.showPaginator = false;
-        this.antRep.getRegularData("PRECOSECHAS_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel }).subscribe(
+        this.antRep.getRegularData("PRECOSECHAS_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel }).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x => {
 
                 this.dataSource = x.body.result.body;
@@ -96,7 +99,6 @@ export class Rep01PrecosechasComponent implements OnInit{
                 this.originalDataSource = ds;
                 this.currentDataSource = ds;
                 this.prepPagination();
-                this.loadingObs = false;
             }
         );
     }

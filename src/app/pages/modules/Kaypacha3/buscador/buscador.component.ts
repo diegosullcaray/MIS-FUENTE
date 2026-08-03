@@ -6,6 +6,7 @@ import { prepareDataForPagination, STG_GRID_STYLE } from 'app/shared/components/
 import { printLog } from 'app/core/helpers/debug.util';
 import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
 import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';
+import { finalize } from 'rxjs/operators';
 
 export interface DialogData {
   filtro: string;
@@ -48,14 +49,15 @@ export class BuscadorKaypachaComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ant.getUserLists().subscribe(x => {
+    this.ant.getUserLists().pipe(
+      finalize(() => this.dataLoadObs = false)
+    ).subscribe(x => {
       let r: any = x.body;
       let ds = r.resultado;
       this.dataSourceLenght=ds.length;
       this.originalDataSource = ds;
       this.currentDataSource = ds;
       this.prepPagination();
-      this.dataLoadObs = false;
   });
   }
 

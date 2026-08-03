@@ -1,5 +1,6 @@
 import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { Subscription } from "rxjs";
+import { finalize } from "rxjs/operators";
 import { FrameworkEsgService } from "../compartido/servicios/framework-esg.service";
 import { ModFrameworkEsgService } from "../compartido/servicios/mod-framework-esg.service";
 
@@ -113,7 +114,13 @@ export abstract class UsuariosBaseComponent {
             this.disabledRefreshUser = false;
         } else {
             this.spinn = true;
-            this.antService.getMetUsers(evt.id).subscribe(x => {
+            this.antService.getMetUsers(evt.id).pipe(
+                finalize(() => {
+                    this.disabledAddUser = false;
+                    this.disabledRefreshUser = false;
+                    this.spinn = false;
+                })
+            ).subscribe(x => {
                 let res = x.body.resultado;
                 let u: string = res.row ? res.row['use_lis'] : undefined;
                 let dr = [];
@@ -125,9 +132,6 @@ export abstract class UsuariosBaseComponent {
                 this.usersDataSource.value = dr;
                 this.usersDataSourceA[evt.id] = dr;
                 this.usersDataSourceO[evt.id] = cloneObject(dr);
-                this.disabledAddUser = false;
-                this.disabledRefreshUser = false;
-                this.spinn = false;
                 if (dr.length == 0) {
                     this.alertSR();
                 }

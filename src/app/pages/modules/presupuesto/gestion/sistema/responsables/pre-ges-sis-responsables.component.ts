@@ -4,6 +4,7 @@ import { STG_GRID_STYLE, STG_INPUT_TABLE_BACKGROUND } from "app/shared/component
 import { printLog } from "app/core/helpers/debug.util";
 import { cloneObject } from "app/core/helpers/functions.util";
 import { ModBudgetService } from "app/pages/modules/presupuesto/compartido/servicios/mod-budget.service";
+import { finalize } from "rxjs/operators";
 
 
 @Component({
@@ -103,11 +104,12 @@ export class PreGesSisResponsablesComponent implements OnInit, OnDestroy {
 
     private getData(tip_cod: number) {
         this.loadingObs = true;
-        this.antBud.getRegResultados(tip_cod).subscribe(
+        this.antBud.getRegResultados(tip_cod).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x => {
                 this.dataSource = x.body.resultado;
                 this.bdataSource = cloneObject(this.dataSource);
-                this.loadingObs = false;
             }
         );
     }

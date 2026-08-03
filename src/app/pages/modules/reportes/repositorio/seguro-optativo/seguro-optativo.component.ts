@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2 } from './seguro-optativo.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 
@@ -222,57 +223,61 @@ export class SeguroOptativoComponent implements OnInit {
         //this.load3.next(true);
         this.preLoad();
 
-        this.antRep.getRegularTableResult("prod_misi_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod }).subscribe(
+        this.antRep.getRegularTableResult("prod_misi_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod }).pipe(
+            finalize(() => this.load0.next(true))
+        ).subscribe(
 
             x => {
                 let r = x.body.resultado;
-                
+
                 // console.log(r.data)
                 this.dataSource = r.data;
                 this.headerDefs = JSON.parse(r.headers);
-                this.load0.next(true);
             }
 
         );
-        // Segunda Tabla 
-        this.antRep.getRegularTableResult("prod_misi_02", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).subscribe(
+        // Segunda Tabla
+        this.antRep.getRegularTableResult("prod_misi_02", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).pipe(
+            finalize(() => this.load1.next(true))
+        ).subscribe(
 
             x => {
                 let r2 = x.body.resultado;
-                
+
                 this.dataSource2 = r2.data;
                 this.headerDefs2 = JSON.parse(r2.headers);
-                this.load1.next(true);
             }
 
         );
 
-        // Tercera Tabla 
-        this.antRep.getRegularTableResult("prod_misi_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).subscribe(
+        // Tercera Tabla
+        this.antRep.getRegularTableResult("prod_misi_03", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
 
             x => {
                 let r3 = x.body.resultado;
                 //console.log(r3)
                 this.dataSource3 = r3.data;
-                this.headerDefs3 = JSON.parse(r3.headers); 
-                this.load2.next(true);
+                this.headerDefs3 = JSON.parse(r3.headers);
                 //this.loading = false;
-                //this.loader.close(); 
+                //this.loader.close();
             }
 
         );
 
         //cuarta tabla
-        this.antRep.getRegularTableResult("prod_misi_04", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).subscribe(
+        this.antRep.getRegularTableResult("prod_misi_04", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
 
             x => {
                 let r4 = x.body.resultado;
                 //console.log(r3)
                 this.dataSource4 = r4.data;
-                this.headerDefs4 = JSON.parse(r4.headers); 
-                this.load2.next(true);
+                this.headerDefs4 = JSON.parse(r4.headers);
                 //this.loading = false;
-                //this.loader.close(); 
+                //this.loader.close();
             }
 
         );

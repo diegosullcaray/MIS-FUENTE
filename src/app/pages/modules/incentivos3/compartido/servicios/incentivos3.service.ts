@@ -25,6 +25,7 @@ import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { printLog } from 'app/core/helpers/debug.util';
 
 @Injectable()
@@ -277,9 +278,18 @@ export class Incentivos3Service {
       this.usuCfg = cla_usu==1? indCorCfg: gruUniCfg;
     }
 
-    this.antInc3.getDataSources(this.model, cla_usu, tip_cod, cod_rel, this.curr_fec).subscribe(x => {
-      this.perfil.loading = false;
-
+    this.antInc3.getDataSources(this.model, cla_usu, tip_cod, cod_rel, this.curr_fec).pipe(
+      finalize(() => {
+        this.perfil.loading = false;
+        this.composicion.loading = false;
+        this.avances.loading = false;
+        this.tabla.loading = false;
+        this.superPlus.loading = false;
+        this.aportes.loading = false;
+        this.monetizado.loading = false;
+        this.principal.loading = false;
+      })
+    ).subscribe(x => {
       //ds1 -> ds variables regulares (ajustan traslados)
       //ds2 -> ds efectividades
       //ds3 -> ds datos de variables y dinamizadores

@@ -6,6 +6,7 @@ import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { selEdadData, selEntData, selGenData, selPaisData, selUniData, tableConf, loadingConf } from "./rep01-dashboard-clientes.util";
 import { isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
 import { formatNumber } from '@angular/common';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-rep01-dashboard-clientes',
@@ -159,7 +160,9 @@ export class Rep01DashboardClientesComponent implements OnInit{
         let s = JSON.stringify(this.sel_cfg);
         this.showTable=true;
         this.loadingObs = true;
-        this.antRep.getRegularTableResult("DASHBOARD_CLIENTES_01",{uni_cfg:u,sel_cfg:s}).subscribe(
+        this.antRep.getRegularTableResult("DASHBOARD_CLIENTES_01",{uni_cfg:u,sel_cfg:s}).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x=>{
                 let d = x.body.resultado.data;
                 let h = x.body.resultado.headers;
@@ -173,10 +176,8 @@ export class Rep01DashboardClientesComponent implements OnInit{
                     d[i]["var_interanual"]=h1-m2;
                 }
                 this.headerDefs =JSON.parse(h);
-                
+
                 this.dataSource = d;
-                
-                this.loadingObs = false;
             }
         );
     }

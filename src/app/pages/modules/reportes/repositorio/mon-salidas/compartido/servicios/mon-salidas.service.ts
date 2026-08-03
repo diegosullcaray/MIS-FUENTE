@@ -8,6 +8,7 @@ import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { MonSalidasAntService } from "./mon-salidas-ant.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { principalConfig } from "../../principal/principal.util";
+import { finalize } from "rxjs/operators";
 
 @Injectable()
 export class MonSalidasService {
@@ -90,12 +91,15 @@ export class MonSalidasService {
             this.principal.loading = true;
             this.loader.open();
         }
-        this.antSali.getDataSources(tip_cod, cod_rel, this.curr_fec).subscribe(x => {
-            let ds = x.body.resultado; 
+        this.antSali.getDataSources(tip_cod, cod_rel, this.curr_fec).pipe(
+            finalize(() => {
+                this.principal.loading = false;
+                this.loader.close();
+            })
+        ).subscribe(x => {
+            let ds = x.body.resultado;
             this.principal.dataCards = ds.cards;
             this.principal.dataTable = ds.table;
-            this.principal.loading = false;
-            this.loader.close();
         });
     }
 

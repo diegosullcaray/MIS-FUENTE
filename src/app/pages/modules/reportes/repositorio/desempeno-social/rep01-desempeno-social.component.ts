@@ -6,6 +6,7 @@ import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf } from "./rep01-desempeno-social.util";
 import { isNullOrUndefined, onNullOrUndefined } from 'app/core/helpers/functions.util';
 import { formatNumber } from '@angular/common';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-rep01-desempeno-social',
@@ -135,8 +136,10 @@ export class Rep01DesempenoSocialComponent implements OnInit{
 
         //console.log(u);
 
-        this.antRep.getRegularTableResult("DESE_SOC_01",{uni_cfg:u}).subscribe(
-            
+        this.antRep.getRegularTableResult("DESE_SOC_01",{uni_cfg:u}).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
+
             x=>{
                 let d = x.body.resultado.data;
                 let h = x.body.resultado.headers;
@@ -163,10 +166,8 @@ export class Rep01DesempenoSocialComponent implements OnInit{
                     d[i]["tam"]=tam; 
                     d[i]["distancia"]=dm;  
                 }
-                this.headerDefs =JSON.parse(h); 
+                this.headerDefs =JSON.parse(h);
                  this.dataSource = d;
-                
-                this.loadingObs = false;
             }
         );
 

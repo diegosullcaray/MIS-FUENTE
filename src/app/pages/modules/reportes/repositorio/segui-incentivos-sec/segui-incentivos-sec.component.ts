@@ -6,6 +6,7 @@ import { prepareDataForPagination } from "app/shared/components/stg-table/stg-ta
 import { UserService } from "app/pages/full-pages/layout/services/user.service";
 import { ModRepService } from "../../compartido/servicios/mod-rep.service";
 import { tableConf, loadingConf, tableHeaders } from "./segui-incentivos-sec.util";
+import { finalize } from "rxjs/operators";
 
 @Component({
     selector: 'app-segui-incentivos-sec-rep',
@@ -65,7 +66,9 @@ export class SeguiIncentivosSecComponent implements OnInit {
         let lv: any = evt[0];
         this.loadingObs = true;
         this.showPaginator = false;
-        this.antRep.getRegularData("SEGUI_INC_SEC_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel }).subscribe(
+        this.antRep.getRegularData("SEGUI_INC_SEC_01", { tip_cod: lv.tip_cod, cod_rel: lv.cod_rel }).pipe(
+            finalize(() => this.loadingObs = false)
+        ).subscribe(
             x => {
 
                 this.dataSource = x.body.result.body;
@@ -75,7 +78,6 @@ export class SeguiIncentivosSecComponent implements OnInit {
                 this.originalDataSource = ds;
                 this.currentDataSource = ds;
                 this.prepPagination();
-                this.loadingObs = false;
             }
         );
     }

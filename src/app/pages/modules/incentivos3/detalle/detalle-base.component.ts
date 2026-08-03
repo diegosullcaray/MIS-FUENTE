@@ -5,6 +5,7 @@ import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util"
 import { ModIncentivos3Service } from "../compartido/servicios/mod-incentivos3.service";
 import { formatNumber } from "@angular/common";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
+import { finalize } from "rxjs/operators";
 
 export abstract class DetalleBaseComponent {
     config: any;
@@ -86,7 +87,12 @@ export abstract class DetalleBaseComponent {
         
 
         this.showCards= params.card;
-        this.ant[params.req](this.tip_cod, this.cod_rel, idx,this.inc3.curr_fec).subscribe((x:any) => {
+        this.ant[params.req](this.tip_cod, this.cod_rel, idx,this.inc3.curr_fec).pipe(
+            finalize(() => {
+                this.config.loading = false;
+                this.loader.close();
+            })
+        ).subscribe((x:any) => {
             let res = x.body.resultado;
             this.buffer[this.pointer] = {
                 event: 'dd',

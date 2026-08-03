@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2 } from './tablero-digital.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { printLog } from 'app/core/helpers/debug.util';
@@ -221,15 +222,16 @@ export class tableroDigitalComponent implements OnInit {
         //this.load3.next(true);
         this.preLoad();
 
-        this.antRep.getRegularTableResult("TABDIGITAL_COMERCIAL_01", { "tip_cod": tipcod, "cod_rel": codrel }).subscribe(
+        this.antRep.getRegularTableResult("TABDIGITAL_COMERCIAL_01", { "tip_cod": tipcod, "cod_rel": codrel }).pipe(
+            finalize(() => this.load0.next(true))
+        ).subscribe(
 
             x => {
                 let r = x.body.resultado;
-                
+
                  printLog((r.headers))
                 this.dataSource = r.data;
                 this.headerDefs = JSON.parse(r.headers);
-                this.load0.next(true);
             }
 
         );

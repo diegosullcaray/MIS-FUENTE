@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2 } from './imr.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { printLog } from 'app/core/helpers/debug.util';
@@ -225,12 +226,13 @@ export class imrComponent implements OnInit {
         this.preLoad(); 
         //cuarta tabla 
         //this.antRep.getRegularTableResult("RSIMR_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).subscribe(
-            this.antRep.getRegularTableResult("RSIMR_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate,"f_ase":fase}).subscribe(
+            this.antRep.getRegularTableResult("RSIMR_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate,"f_ase":fase}).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
             x => {
-                let r = x.body.resultado; 
+                let r = x.body.resultado;
                 this.dataSource = r.data;
-                this.headerDefs = JSON.parse(r.headers); 
-                this.load2.next(true); 
+                this.headerDefs = JSON.parse(r.headers);
             }
 
         );

@@ -6,6 +6,7 @@ import { cloneObject, isNullOrUndefined, onNullOrUndefined } from 'app/core/help
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
 import { filter1, tableConfOPTS, tableConfOPTS2 } from './zplantilla.util';
 import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 
@@ -219,12 +220,13 @@ export class zplantillaComponent implements OnInit {
         this.preLoad(); 
         //cuarta tabla
         //this.antRep.getRegularTableResult("RSzplantilla_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate, "prod": prod}).subscribe(
-            this.antRep.getRegularTableResult("RSTEST_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate}).subscribe(
+            this.antRep.getRegularTableResult("RSTEST_01", { "tip_cod": tipcod, "cod_rel": codrel, "fec": this.currentDate}).pipe(
+            finalize(() => this.load2.next(true))
+        ).subscribe(
             x => {
-                let r4 = x.body.resultado; 
+                let r4 = x.body.resultado;
                 this.dataSource4 = r4.data;
-                this.headerDefs4 = JSON.parse(r4.headers); 
-                this.load2.next(true); 
+                this.headerDefs4 = JSON.parse(r4.headers);
             }
 
         );
