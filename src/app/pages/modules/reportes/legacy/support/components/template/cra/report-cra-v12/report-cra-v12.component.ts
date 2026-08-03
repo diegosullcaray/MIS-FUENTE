@@ -18,8 +18,8 @@ import { ModRepService } from 'app/pages/modules/reportes/compartido/servicios/m
 
 @Component({
   selector: 'app-report-cra-V12',
-  templateUrl: './report-cra-V12.component.html',
-  styleUrls: ['./report-cra-V12.component.scss']
+  templateUrl: './report-cra-v12.component.html',
+  styleUrls: ['./report-cra-v12.component.scss']
 })
 export class ReportCraV12Component implements OnInit, OnDestroy {
   report: ReportT;

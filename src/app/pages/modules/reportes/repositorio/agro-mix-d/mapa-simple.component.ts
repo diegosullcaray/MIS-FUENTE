@@ -26,18 +26,16 @@ import { printError, printLog } from 'app/core/helpers/debug.util';
     :host ::ng-deep .leaflet-container img { max-width: none !important; }
     :host ::ng-deep .leaflet-tile { width: 256px !important; height: 256px !important; }
     :host ::ng-deep .leaflet-tile-container { width: 100% !important; height: 100% !important; }
-    :host ::ng-deep {
-        /* Asegúrate que el selector apunte al contenedor del mapa */
-        .map-frame .leaflet-container img.leaflet-tile {
-          max-width: none !important;
-          width: 256px !important;
-          height: 256px !important;
-          display: block !important; /* Asegura que sea visible */
-          visibility: visible !important;
-          opacity: 1 !important;
-          box-sizing: content-box !important;
-        }
-      }
+    /* Asegúrate que el selector apunte al contenedor del mapa */
+    :host ::ng-deep .map-frame .leaflet-container img.leaflet-tile {
+      max-width: none !important;
+      width: 256px !important;
+      height: 256px !important;
+      display: block !important; /* Asegura que sea visible */
+      visibility: visible !important;
+      opacity: 1 !important;
+      box-sizing: content-box !important;
+    }
   `]
 })
 export class MapaSimpleComponent implements OnInit {
