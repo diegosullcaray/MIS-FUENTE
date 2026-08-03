@@ -68,6 +68,108 @@ body{
  }
  
 
-   :host ::ng-deep .container-dynamic { 
-    height: 100%;min-height: 100%;min-width: 100%;width: 100%;background-color: #fff; 
+   :host ::ng-deep .container-dynamic {
+    height: 100%;min-height: 100%;min-width: 100%;width: 100%;background-color: #fff;
    }
+
+// Reemplazo de @angular/flex-layout (fxLayout/fxFlex/fxLayoutAlign), deprecado.
+// Equivalencias verificadas contra el codigo fuente de @angular/flex-layout 15.
+.kp-row {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+.kp-row-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.kp-flex-1 {
+    flex: 1;
+}
+.kp-flex-100 {
+    flex: 1 1 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.kp-flex-50 {
+    flex: 1 1 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+}
+.kp-flex-10 {
+    flex: 1 1 10%;
+    max-width: 10%;
+    box-sizing: border-box;
+}
+.kp-flex-40 {
+    flex: 1 1 40%;
+    max-width: 40%;
+    box-sizing: border-box;
+}
+.kp-flex-7 {
+    flex: 1 1 7%;
+    max-width: 7%;
+    box-sizing: border-box;
+}
+.kp-flex-43 {
+    flex: 1 1 43%;
+    max-width: 43%;
+    box-sizing: border-box;
+}
+.kp-flex-15 {
+    flex: 1 1 15%;
+    max-width: 15%;
+    box-sizing: border-box;
+}
+.kp-flex-35 {
+    flex: 1 1 35%;
+    max-width: 35%;
+    box-sizing: border-box;
+}
+.kp-align-start-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.kp-align-end-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.kp-align-center-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.kp-col-align-center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+// equivalente a fxFlex fxLayout="row" fxLayout.xs="column"
+.kp-table-row {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+@media (max-width: 599.98px) {
+    .kp-table-row {
+        flex-direction: column;
+    }
+}
+// equivalente a fxFlex="50" fxFlex.gt-xs="100" fxFlex.xs="100": el valor base
+// "50" nunca se aplica en la practica (xs y gt-xs cubren el 100% del rango de
+// anchos), por lo que el resultado final es 100% de flex-basis en todos los
+// tamaños; a >=600px, dos hijos con flex-basis:100% dentro de una fila sin
+// wrap se reparten el ancho disponible ~50/50 vía flex-shrink.
+.kp-table-col {
+    flex: 1 1 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}

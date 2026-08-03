@@ -1,0 +1,13 @@
+// Reemplazo de @angular/flex-layout (fxLayout/fxLayoutAlign/fxLayoutGap), deprecado.
+.kp-buscador-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+@media (min-width: 960px) {
+    .kp-buscador-actions {
+        justify-content: flex-end;
+    }
+}

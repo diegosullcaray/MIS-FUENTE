@@ -20,13 +20,15 @@
     font-size: 13px;
 }
 
-.node .mat-icon-button {
+.node .mat-icon-button,
+.node .mat-mdc-icon-button {
     width: 28px;
     height: 28px;
     line-height: 28px;
 }
 
-.node .mat-icon-button .mat-icon {
+.node .mat-icon-button .mat-icon,
+.node .mat-mdc-icon-button .mat-icon {
     font-size: 18px;
     width: 18px;
     height: 18px;
