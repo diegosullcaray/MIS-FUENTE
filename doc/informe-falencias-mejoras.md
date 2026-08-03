@@ -565,9 +565,9 @@
     forma amplia es alto (exige disciplina de inmutabilidad transversal) — mejor abordarlo junto
     con la consolidación de `stg-table` del punto 4, no antes.
 
-26. **🟠 NUEVO (2026-07-31) — sin resolver, severidad media.** Servicios de `SharedModule` sin
-    `providedIn: 'root'` se reinstancian una vez por cada uno de los 112 módulos lazy que
-    importan `SharedModule`, y ningún `Subject`/`BehaviorSubject` de la app se completa nunca.
+26. **✅ RESUELTO (2026-08-03).** Servicios de `SharedModule` sin
+    `providedIn: 'root'` se reinstanciaban una vez por cada uno de los 112 módulos lazy que
+    importan `SharedModule`, y ningún `Subject`/`BehaviorSubject` de la app se completaba nunca.
     `shared.module.ts:95-100` declara `providers: [TblPickerDialogService, SecPickerDialog2Service,
     InFormDialogService, ClientSummaryService]` sin `providedIn: 'root'` en la clase. Como
     `SharedModule` se importa en 112 módulos distintos (la mayoría lazy, cada uno con su propio
@@ -589,8 +589,22 @@
     familia de componentes `report-cra-v*`/`report-crs-v*` (~50 archivos), donde la
     infraestructura `takeUntil(destroy$)` existe pero no se aplica de forma consistente a todos
     los `.subscribe()` del mismo componente (ver ejemplo en `report-cra-v5.component.ts:63,71`
-    vs. `:233-236`). Esfuerzo: bajo (agregar `providedIn: 'root'` a los 4 servicios de
-    `SharedModule`, o proveerlos explícitamente solo donde se consumen). Impacto: medio.
+    vs. `:233-236`) — sigue pendiente, es un problema distinto (falta de limpieza de
+    suscripciones, no de scope del servicio).
+
+    **Fix aplicado:** se agregó `@Injectable({ providedIn: 'root' })` a los 5 servicios
+    (no 4 — `ClientSummaryAntService` tenía el mismo problema y no estaba mencionado en el
+    hallazgo original): `TblPickerDialogService`, `SecPickerDialog2Service`,
+    `InFormDialogService`, `ClientSummaryAntService`, `ClientSummaryService`. Se quitó el
+    array `services`/`providers` de `shared.module.ts` — dejarlos ahí habría seguido creando
+    una instancia nueva por cada módulo que importa `SharedModule`, ya que un `providers`
+    explícito en un `@NgModule` tiene prioridad sobre el registro tree-shakable de
+    `providedIn: 'root'`. Además se encontraron y corrigieron dos módulos lazy
+    (`analista.module.ts`, `incentivos3.module.ts`) que también registraban
+    `SecPickerDialog2Service` en su propio `providers`, por la misma razón. Verificado que
+    ningún otro módulo/componente registra estos 5 servicios en un `providers` propio (grep
+    exhaustivo). Imports verificados contra el filesystem (0 rotos nuevos); no se pudo
+    levantar `ng serve` en este entorno para confirmar en navegador.
 
 ## Resumen priorizado
 
@@ -606,7 +620,7 @@
 | 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | Sí — ver punto 16, es más profundo de lo que parecía | 🟡 Extraído a gitignore; rotación, pipeline externo y rediseño del modelo (punto 16) pendientes |
 | 25 | `trackBy` en las 4 variantes de `stg-table` + adopción de `OnPush` | Bajo (trackBy) / Alto (OnPush) | Medio-Alto (rendimiento) | No | 🟠 Nuevo (2026-07-31), pendiente |
 | 20 | Guards rotos/no conectados (`AdminGuard`, `DummyGuard` con emails hardcodeados) | Bajo | Medio-Alto | No | 🟠 Nuevo (2026-07-31), pendiente |
-| 26 | Servicios de `SharedModule` sin `providedIn:'root'` (duplicados por 112 módulos) | Bajo | Medio | No | 🟠 Nuevo (2026-07-31), pendiente |
+| 26 | Servicios de `SharedModule` sin `providedIn:'root'` (duplicados por 112 módulos) | Bajo | Medio | No | ✅ Resuelto (2026-08-03) — `providedIn:'root'` en los 5 servicios, quitados de `providers` en `shared.module.ts`, `analista.module.ts` e `incentivos3.module.ts` |
 | 21 | Migrar OAuth Implicit Flow → Authorization Code + PKCE | Medio | Medio (seguridad, hardening) | No, pero requiere acceso a Google Cloud Console | 🟠 Nuevo (2026-07-31), pendiente |
 | 22 | Unificar cifrado de `localStorage` (`StorageService` legacy sin cifrar) | Bajo | Bajo-Medio | No | 🟠 Nuevo (2026-07-31), pendiente |
 | 9 | Poblar o borrar `core/guards|interceptors|interfaces` | Bajo | Medio (claridad) | No | ✅ Resuelto — `interceptors` poblado (2026-07-31) con lo genuinamente transversal; `guards`/`interfaces` siguen vacíos a propósito |

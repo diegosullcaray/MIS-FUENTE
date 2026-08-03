@@ -14,7 +14,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { MonetizadoComponent } from './monetizado/monetizado.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { SelectorJerComponent } from './selector-jer/selector-jer.component';
-import { SecPickerDialog2Service } from 'app/shared/services/sec-picker-dialog2.service';
 import { ModIncentivos3Service } from './compartido/servicios/mod-incentivos3.service';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { CalculadoraDialogComponent } from './calculadora/calculadora-dialog.component';
@@ -50,6 +49,6 @@ import { Incentivos3Service } from './compartido/servicios/incentivos3.service';
         Detalle2DialogComponent,
         Detalle2Component
     ],
-    providers: [Incentivos3Service,SecPickerDialog2Service,ModIncentivos3Service]
+    providers: [Incentivos3Service,ModIncentivos3Service]
 })
 export class Incentivos3Module { }

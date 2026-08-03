@@ -6,7 +6,7 @@ import { Subject } from "rxjs";
 import { InFormDialogComponent } from "app/shared/ui/in-form-dialog/in-form-dialog.component";
 import { defaultInFormDialogOptions, defaultInFormFormOptions } from "app/shared/ui/in-form-dialog/in-form-dialog.util";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class InFormDialogService {
     private form: any;
     private dialog: any;

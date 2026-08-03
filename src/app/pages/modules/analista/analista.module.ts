@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "app/shared/shared.module";
-import { SecPickerDialog2Service } from "app/shared/services/sec-picker-dialog2.service";
 import { AnalistaRoutingModule } from "./analista-routing.module";
 import { AnalistaComponent } from "./analista.component";
 import { AnalistaService } from "./compartido/servicios/analista.service";
@@ -15,6 +14,6 @@ import { HighchartsChartModule } from "highcharts-angular";
         HighchartsChartModule
     ],
     declarations:[AnalistaComponent,PrincipalComponent],
-    providers:[ModSecService,AnalistaService,SecPickerDialog2Service]
+    providers:[ModSecService,AnalistaService]
 })
 export class AnalistaModule{}

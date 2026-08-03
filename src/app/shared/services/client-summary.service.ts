@@ -3,7 +3,7 @@ import { ClientSummaryAntService } from "./client-summary-ant.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { loadingConf } from 'app/pages/modules/actividades/transaccion/transaccion.util';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClientSummaryService {
     config: any;
 

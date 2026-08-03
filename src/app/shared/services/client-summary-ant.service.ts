@@ -9,7 +9,7 @@ import { Observable, timer } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "environments/environment";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClientSummaryAntService extends AntService {
     profile: any;
     cod_bt: string;

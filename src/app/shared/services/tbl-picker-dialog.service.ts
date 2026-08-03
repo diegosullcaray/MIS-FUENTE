@@ -5,7 +5,7 @@ import { ReplaySubject, Subject } from "rxjs";
 import { TblPickerDialogComponent } from "app/shared/ui/tbl-picker-dialog/tbl-picker-dialog.component";
 import { defaultTblPickerDialogOptions, defaultTblPickerTableOptions } from "app/shared/ui/tbl-picker-dialog/tbl-picker-dialog.util";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TblPickerDialogService {
     private table: any;
     private dialog: any;

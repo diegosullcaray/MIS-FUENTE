@@ -67,7 +67,7 @@ const headers=[
     }
 ];
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SecPickerDialog2Service {
     tip_cod:number;
     cod_rel:string;

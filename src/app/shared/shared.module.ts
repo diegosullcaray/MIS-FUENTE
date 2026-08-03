@@ -45,11 +45,6 @@ import { ClientSummaryComponent } from './ui/client-summary/client-summary.compo
 import { SessionLoaderComponent } from './components/session-loader/session-loader.component';
 import { ModuleSwitcherComponent } from './components/module-switcher/module-switcher.component';
 import { ExternalRedirectComponent } from './components/external-redirect/external-redirect.component';
-import { TblPickerDialogService } from './services/tbl-picker-dialog.service';
-import { SecPickerDialog2Service } from './services/sec-picker-dialog2.service';
-import { InFormDialogService } from './services/in-form-dialog.service';
-import { ClientSummaryAntService } from './services/client-summary-ant.service';
-import { ClientSummaryService } from './services/client-summary.service';
 
 const components = [
     StgHoverMenuComponent,
@@ -94,14 +89,6 @@ const pipes = [
     TruncatePipe
 ]
 
-const services = [
-    TblPickerDialogService,
-    SecPickerDialog2Service,
-    InFormDialogService,
-    ClientSummaryAntService,
-    ClientSummaryService
-]
-
 const libraries = [
     CommonModule,
     FormsModule,
@@ -125,6 +112,5 @@ const declarations = [...components,...pipes];
     imports:imports,
     declarations:declarations,
     exports:exports,
-    providers:services,
 })
 export class SharedModule {}
