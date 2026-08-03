@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StgAppConfirmService } from 'app/shared/components/stg-app-confirm/stg-app-confirm.service';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';

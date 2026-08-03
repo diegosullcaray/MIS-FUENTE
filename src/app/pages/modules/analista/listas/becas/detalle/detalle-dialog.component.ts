@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
 import { bottomAlert } from "app/shared/animations/animations.util";
 import { AnalistaService } from "app/pages/modules/analista/compartido/servicios/analista.service";
 import { ModSecService } from "app/pages/modules/analista/compartido/servicios/mod-sec.service";

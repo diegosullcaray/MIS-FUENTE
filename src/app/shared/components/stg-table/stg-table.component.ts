@@ -1,6 +1,6 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { copyFields, isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { IStgTableHeader } from "./stg-table.interface";

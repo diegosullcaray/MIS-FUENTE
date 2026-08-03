@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { TableModule } from '../../../support/components/table/table.module';
 import { SelectModule } from '../../../support/components/select/select.module';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 
 import { ReportCraV1P1Module } from '../../../support/components/template/cra/report-cra-v1p1/report-cra-v1p1.module';
 import { ReportCraV1P3Module } from '../../../support/components/template/cra/report-cra-v1p3/report-cra-v1p3.module';

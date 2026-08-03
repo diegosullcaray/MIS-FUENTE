@@ -12,7 +12,7 @@ import { ModSecService } from '../compartido/servicios/mod-sec.service';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { DetalleDialogComponent } from '../detalle/detalle-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-principal-analista',

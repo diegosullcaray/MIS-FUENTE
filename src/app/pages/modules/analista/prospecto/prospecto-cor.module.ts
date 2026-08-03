@@ -5,8 +5,8 @@ import { ModProspectoCorService } from './compartido/servicios/mod-prospecto-cor
 import { ProspectoCorRoutingModule } from './prospecto-cor-routing.module';
 import { ProspectoCorComponent } from './prospecto-cor.component';
 import { PrincipalComponent } from "./principal/principal.component"; 
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 //import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators'; 
 import { ModRepService } from '../../reportes/compartido/servicios/mod-rep.service';
  

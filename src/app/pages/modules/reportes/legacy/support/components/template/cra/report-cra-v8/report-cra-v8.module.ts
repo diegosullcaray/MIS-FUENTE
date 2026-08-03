@@ -8,7 +8,7 @@ import { SelectModule } from '../../../select/select.module';
 import { TableModule } from '../../../table/table.module';
 import { GraphicModule } from '../../../graphic/graphic.module';
 import { SharedModule } from 'app/shared/shared.module';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 const components = [
   ReportCraV8Component
 ]

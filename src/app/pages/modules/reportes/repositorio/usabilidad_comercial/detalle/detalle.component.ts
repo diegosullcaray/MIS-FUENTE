@@ -5,7 +5,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { animate, style, transition, trigger } from '@angular/animations';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { ModRepService } from 'app/pages/modules/reportes/compartido/servicios/mod-rep.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-detalle-usabilidad',

@@ -9,7 +9,7 @@ import { printError, printLog } from 'app/core/helpers/debug.util';
   import { BehaviorSubject, combineLatest } from 'rxjs'; 
   import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
   import * as Highcharts from 'highcharts';
-  import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+  import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
   import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
   import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { tableConfOPTS } from '../agenda-comercial/agenda-comercial.util';

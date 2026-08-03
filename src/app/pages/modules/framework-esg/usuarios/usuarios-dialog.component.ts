@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
 import { bottomAlert } from "app/shared/animations/animations.util";
 import { FrameworkEsgService } from "../compartido/servicios/framework-esg.service";
 import { ModFrameworkEsgService } from "../compartido/servicios/mod-framework-esg.service";

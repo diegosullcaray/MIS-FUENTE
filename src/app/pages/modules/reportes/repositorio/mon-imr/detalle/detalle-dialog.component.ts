@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { DetalleBaseComponent } from './detalle-base.component';
 import { MonImrService } from '../compartido/servicios/mon-imr.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';

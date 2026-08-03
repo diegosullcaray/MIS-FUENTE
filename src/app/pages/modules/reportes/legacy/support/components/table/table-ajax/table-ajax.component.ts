@@ -1,8 +1,8 @@
 import {Component, ViewChild, AfterViewInit, SimpleChanges, ChangeDetectorRef, Input, Output,EventEmitter, OnChanges, OnInit} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatLegacyPaginator as MatPaginator} from '@angular/material/legacy-paginator';
 import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 @Component({
   selector: 'app-table-ajax',

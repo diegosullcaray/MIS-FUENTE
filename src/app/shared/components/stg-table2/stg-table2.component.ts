@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { stgDefaultTable2Config } from './stg-table2.util';
 import { style } from '@angular/animations';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 @Component({
   selector: 'stg-table2',

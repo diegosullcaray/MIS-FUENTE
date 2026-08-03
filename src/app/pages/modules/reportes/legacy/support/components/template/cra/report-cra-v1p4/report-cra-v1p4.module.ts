@@ -4,7 +4,7 @@ import { ReportCraV1p4Component } from './report-cra-v1p4.component';
 import { SelectModule } from '../../../select/select.module';
 import { TableModule } from '../../../table/table.module';
 import { GraphicModule } from '../../../graphic/graphic.module';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { SharedModule } from 'app/shared/shared.module';
 
 const components = [

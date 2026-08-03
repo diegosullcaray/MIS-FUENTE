@@ -10,12 +10,12 @@ import { SelectService } from '../../../../support/services/select.service';
 import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, FormArray, Validators } from '@angular/forms';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
 import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from "@angular/material/dialog";
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef,
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA
+} from "@angular/material/legacy-dialog";
 import { printLog } from 'app/core/helpers/debug.util';
 import { AddProspecomponent } from './add-prospe.component'; 
 //import { RegistrarVisitaService } from '../../../../../services/registrar-visita.service';

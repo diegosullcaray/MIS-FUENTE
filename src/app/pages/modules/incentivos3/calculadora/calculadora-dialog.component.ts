@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { CalculadoraBaseComponent } from './calculadora-base.component';
 import { Incentivos3Service } from '../compartido/servicios/incentivos3.service';
 import { FormBuilder } from '@angular/forms';

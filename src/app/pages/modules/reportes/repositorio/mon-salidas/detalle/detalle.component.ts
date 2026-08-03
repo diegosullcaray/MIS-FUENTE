@@ -4,7 +4,7 @@ import { DetalleBaseComponent } from './detalle-base.component';
 import { MonSalidasService } from '../compartido/servicios/mon-salidas.service';
 import { MonSalidasAntService } from '../compartido/servicios/mon-salidas-ant.service';
 import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-app-loader.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 
 

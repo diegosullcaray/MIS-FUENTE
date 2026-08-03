@@ -5,7 +5,7 @@ import { ReplaySubject, Subject,combineLatest, concat } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../../support/services/select.service';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog'; 
+import { MatLegacyDialog as MatDialog,MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog'; 
 import { SecPickerDialogComponent } from 'app/shared/ui/sec-picker-dialog/sec-picker-dialog.component';
 import { isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModAppService } from 'app/core/data/remote/instances/mod-app-service';

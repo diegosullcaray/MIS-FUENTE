@@ -3,15 +3,24 @@
 @import 'egret.theme';
 
 /* Include the core styles */
-@include mat.core();
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
 
 /* Create style without colors */
-@include mat.all-component-themes(
+@include mat.all-legacy-component-themes(
   (
     color: null,
     density: -2,
     typography:
-      mat.define-typography-config(
+      mat.define-legacy-typography-config(
         $font-family: 'Archivo',
         $display-4: mat.define-typography-level(112px, 112px, 400, 'Archivo', -0.0134em),
         $display-3: mat.define-typography-level(56px, 56px, 400, 'Archivo', -0.0089em),
@@ -151,7 +160,7 @@ $default-theme-warn: mat.define-palette($default-warn-palette, main, lighter, da
     ),
   );
 
-  @include mat.all-component-colors($light-theme);
+  @include mat.all-legacy-component-colors($light-theme);
   @include egret-theme($light-theme);
 }
 
@@ -214,7 +223,7 @@ $default-theme-warn: mat.define-palette($default-warn-palette, main, lighter, da
     ),
   );
 
-  @include mat.all-component-colors($dark-theme);
+  @include mat.all-legacy-component-colors($dark-theme);
   @include egret-theme($dark-theme);
 
 }

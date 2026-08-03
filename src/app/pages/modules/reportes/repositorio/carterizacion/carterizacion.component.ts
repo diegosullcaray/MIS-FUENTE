@@ -13,7 +13,7 @@ import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { prepareDataForPagination } from 'app/shared/components/stg-paginator/stg-paginator.util';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { printLog } from 'app/core/helpers/debug.util';
 
 @Component({

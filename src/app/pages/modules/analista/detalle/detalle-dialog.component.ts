@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, OnInit } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from "@angular/material/legacy-dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { bottomAlert } from "app/shared/animations/animations.util";
 import { AnalistaService } from "../compartido/servicios/analista.service";

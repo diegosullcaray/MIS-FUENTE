@@ -1,5 +1,5 @@
 import { Component, ViewChild, TemplateRef, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DetalleDialogComponent } from "./detalle-dialog.component";
 import { StgWindowConfig } from "app/shared/components/stg-window/stg-window.config";

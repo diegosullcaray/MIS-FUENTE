@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from "@angular/material/legacy-dialog";
 import { cloneObject, isNullOrUndefined, mergeObjects } from "app/core/helpers/functions.util";
 import { ReplaySubject, Subject } from "rxjs";
 import { TblPickerDialogComponent } from "app/shared/ui/tbl-picker-dialog/tbl-picker-dialog.component";

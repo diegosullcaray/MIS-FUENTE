@@ -2,7 +2,7 @@ import { printError } from 'app/core/helpers/debug.util';
 // buscador.component.ts revisado
 
 import { Component, Inject, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef,ChangeDetectionStrategy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { ModRepService }  from "../../reportes/compartido/servicios/mod-rep.service";
 import { STG_GRID_STYLE, prepareDataForPagination } from 'app/shared/components/stg-table/stg-table.util';
 import { Subject } from 'rxjs'; //de RxJS para esperar a que el usuario deje de escribir por 300-500ms antes de disparar la petición.

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { isNullOrUndefined } from "app/core/helpers/functions.util";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";

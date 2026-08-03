@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 
 import { TableModule } from '../../../legacy/support/components/table/table.module';
 import { SelectModule } from '../../../legacy/support/components/select/select.module';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { SharedComponentsLegacyModule } from '../../../legacy/support/components/shared-components.module'; 
 import { Rep01ImrRoutingModule } from "./rep01-imr-routing.module";
 

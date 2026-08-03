@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges,OnChanges, ViewChild, ChangeDetectorRef, Output,EventEmitter } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { isNullOrUndefined, isUndefined } from 'app/core/helpers/functions.util';
 import { LayoutService } from 'app/pages/full-pages/layout/services/layout.service';
 import { ReplaySubject } from 'rxjs';

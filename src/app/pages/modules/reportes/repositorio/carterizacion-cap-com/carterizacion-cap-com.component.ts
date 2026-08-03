@@ -8,7 +8,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { tableConfOPTS, tblHeaders } from './carterizacion-cap-com.util';
 import { BehaviorSubject } from 'rxjs';
 import { StgPaginatorComponent } from 'app/shared/components/stg-paginator/stg-paginator.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { printError } from 'app/core/helpers/debug.util';
 
 @Component({

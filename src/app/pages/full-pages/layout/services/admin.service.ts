@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from "@angular/material/legacy-dialog";
 import { AdDialogComponent } from "../components/ad-dialog/ad-dialog.component";
 import { AltUserDialogComponent } from "../components/alt-user-dialog/alt-user-dialog.component";
 import { SessionEndDialogComponent } from "../components/session-end-dialog/session-end-dialog.component";

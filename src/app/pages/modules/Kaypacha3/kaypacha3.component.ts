@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, OnInit, ChangeDetectorRef, AfterViewInit, EventEmitter, Output } from '@angular/core'; 
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service"; 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog'; 
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { tableConf, tableOptions, tableHeaders,  tableHeaders2 } from './kaypacha3.util';
 import { ModKaypachaService } from 'app/core/data/remote/instances/mod-kaypacha.service';

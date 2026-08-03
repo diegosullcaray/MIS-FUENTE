@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
 import { StgMenuFilterItem } from './stg-menu-filter.util';
 
 @Component({

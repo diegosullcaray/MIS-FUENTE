@@ -3,7 +3,7 @@ import { MonImrService, } from "../compartido/servicios/mon-imr.service";
 import { formatNumber } from "@angular/common";
 import { cloneObject } from "app/core/helpers/functions.util";
 import { tblOpts,filter1 } from "./principal.util";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { LayoutService } from "app/pages/full-pages/layout/services/layout.service";
 import { ActivatedRoute, Router } from "@angular/router"; 
 import { DetalleDialogComponent } from "../detalle/detalle-dialog.component";

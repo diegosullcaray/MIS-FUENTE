@@ -5,7 +5,7 @@ import { StgAppLoaderService } from 'app/shared/components/stg-app-loader/stg-ap
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
 import { ModSysAdminService } from 'app/core/data/remote/instances/mod-sys-admin.service';
 import { cloneObject, isNullOrUndefined, round, stringToDate1 } from 'app/core/helpers/functions.util';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { SelectorJerComponent } from '../../selector-jer/selector-jer.component';
 import { StgWindowConfig } from 'app/shared/components/stg-window/stg-window.config';
 import { SecPickerDialog2Service } from 'app/shared/services/sec-picker-dialog2.service';

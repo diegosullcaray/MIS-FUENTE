@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { StgWindowConfig } from "app/shared/components/stg-window/stg-window.config";
 import { cloneObject, mergeObjects } from "app/core/helpers/functions.util";
 import { Subject } from "rxjs";

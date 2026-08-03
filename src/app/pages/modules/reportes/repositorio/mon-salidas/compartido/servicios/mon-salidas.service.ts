@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 import { Injectable } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { ModSysAdminService } from "app/core/data/remote/instances/mod-sys-admin.service";
 import { StgAppLoaderService } from "app/shared/components/stg-app-loader/stg-app-loader.service";
 import { cloneObject, isNullOrUndefined } from "app/core/helpers/functions.util";

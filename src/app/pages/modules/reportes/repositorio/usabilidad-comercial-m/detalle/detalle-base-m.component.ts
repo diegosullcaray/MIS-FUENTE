@@ -7,7 +7,7 @@ import { LayoutService } from "app/pages/full-pages/layout/services/layout.servi
 import { ModIncentivos3Service } from "app/pages/modules/incentivos3/compartido/servicios/mod-incentivos3.service";
 import { Incentivos3Service } from "app/pages/modules/incentivos3/compartido/servicios/incentivos3.service";
 import { ModRepService } from "app/pages/modules/reportes/compartido/servicios/mod-rep.service";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
 import { DetalleDialogMComponent } from "./detalle-dialog-m.component";
 
 export abstract class DetalleBaseMComponent {

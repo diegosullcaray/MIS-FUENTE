@@ -6,17 +6,17 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil, map, switchMap } from 'rxjs/operators';
 import { ReportT } from '../../../../services/report';
 import { SelectService } from '../../../../services/select.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { GraphicService } from '../../../../services/graphic.service';
 import { TableMHService } from '../../../../services/table.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort } from '@angular/material/sort';
 import { ComercialService } from 'app/pages/modules/reportes/legacy/comercial/comercial.service';
 import { cra } from 'app/pages/modules/reportes/legacy/comercial/rda/administracion/cra-map';
 import { isNull, isNullOrUndefined } from 'app/core/helpers/functions.util';
 import { ModRepService } from 'app/pages/modules/reportes/compartido/servicios/mod-rep.service';
 import { UserService } from 'app/pages/full-pages/layout/services/user.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
 import { printLog } from 'app/core/helpers/debug.util';
 
 

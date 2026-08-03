@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { cloneObject, isNullOrUndefined, mergeObjects } from 'app/core/helpers/functions.util';
 import { Subject } from 'rxjs';
 import { stgDefaultTable4Config } from './stg-table4.util'; 
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 @Component({
   selector: 'stg-table4',
