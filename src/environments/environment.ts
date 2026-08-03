@@ -33,7 +33,7 @@ export const environment = {
 
   //devUser:  'nilda.quilla@confianza.pe' // comercial
   //devUser:  'giomara.acevedo@confianza.pe' //operaciones  157
-  devUser: 'flor.garcia@confianza.pe' // asesor
-  //devUser:  'oscar.sanchez@confianza.pe'
+  //devUser: 'flor.garcia@confianza.pe' // asesor
+  devUser:  'oscar.sanchez@confianza.pe'
 };
 
