@@ -203,37 +203,48 @@
     - `stg-window-bar.component.ts:152/155` — mismo mecanismo pero sobre un `@Input` de
       configuración de UI de componentes padre, no fila de tabla. Severidad baja.
 
-19. **🔴 NUEVO (2026-07-31) — sin resolver, severidad alta/crítica.** Dependencias con
+19. **🟡 PARCIALMENTE RESUELTO (2026-08-03).** Dependencias con
     vulnerabilidades conocidas (CVE) — confirmado con `npm audit --omit=dev`, 16 vulnerabilidades
     (1 crítica, 14 altas, 1 moderada) sobre 102 paquetes de producción:
-    - **`swiper` 8.4.7 — crítica.** Prototype pollution
-      ([GHSA-hmx5-qpq5-p643](https://github.com/advisories/GHSA-hmx5-qpq5-p643)). Se usa en
-      `ad-dialog.component.ts` (carrusel de anuncios). Fix disponible pero es breaking change
-      (swiper 14).
-    - **`@angular/core`/`@angular/compiler` 14.2.5 — altas, múltiples CVE de XSS**, entre ellos
+    - **✅ RESUELTO. `swiper` 8.4.7 — crítica.** Prototype pollution
+      ([GHSA-hmx5-qpq5-p643](https://github.com/advisories/GHSA-hmx5-qpq5-p643)). Se confirmó
+      que el carrusel (`<swiper>` en `ad-dialog.component.html`) está comentado desde hace
+      tiempo — el popup de anuncios activo hoy es solo una imagen estática — así que el import
+      de `SwiperCore`/`Navigation`/`Pagination`/`EffectCoverflow` y el `SwiperCore.use([...])`
+      en `ad-dialog.component.ts` eran código muerto que igual quedaba en el bundle (el
+      `SwiperCore.use()` se ejecuta como side-effect al cargar el módulo, sin importar si el
+      template lo usa). Se elimina el import muerto y el paquete completo (`swiper` +
+      sus dependencias exclusivas `dom7`/`ssr-window`, verificado que ningún otro paquete las
+      usa) de `package.json`/`package-lock.json`. Sin breaking change: no había carrusel real
+      que migrar.
+    - **✅ RESUELTO. `uuid` &lt;11.1.1 — moderada.** Falta de chequeo de límites de buffer.
+      Se sube de `^9.0.1` a `^11.1.1` (recomendación del propio aviso de deprecación del
+      paquete: "para codebases CommonJS, usar uuid@11"). Los únicos 2 usos en el repo
+      (`stg-finput.component.ts`, `signin.component.ts`) son `import * as uuid from 'uuid'; uuid.v4()`
+      — API estable entre v9 y v11, sin cambios. `package-lock.json` actualizado a mano con la
+      versión/integrity/tarball reales de `uuid@11.1.1` (obtenidos de `registry.npmjs.org`, ya
+      que este entorno no tiene `node_modules` para correr `npm install`).
+    - **`@angular/core`/`@angular/compiler` 14.2.5 — altas, múltiples CVE de XSS** (pendiente,
+      requiere la migración a Angular 15+ — ver reporte de migración aparte), entre ellos
       *"Angular has XSS Vulnerability via Unsanitized SVG Script Attributes"*,
       *"Template and Attribute Namespace Sanitization Bypass (XSS)"* y
       *"Two-Way Property Binding Sanitization Bypass (XSS)"*. Estas son vulnerabilidades en el
       **propio sanitizador de Angular** — relevantes independientemente de si se usa SSR o no
       (a diferencia de otros CVE de este mismo paquete, como los de `HttpTransferCache`, que
-      requieren SSR y no aplican a esta app, que es SPA pura client-rendered). Refuerzan la
-      necesidad de actualizar Angular (ya señalada en el punto 14) también desde el ángulo de
-      seguridad, no solo de mantenibilidad.
-    - **`uuid` &lt;11.1.1 — moderada.** Falta de chequeo de límites de buffer.
+      requieren SSR y no aplican a esta app, que es SPA pura client-rendered).
     - El resto de las 14 altas son paquetes `@angular/*` que dependen transitivamente de
       `@angular/core`/`@angular/compiler` vulnerables (`@angular/forms`, `@angular/material`,
       `@angular/router`, etc.) — no son CVEs independientes, se resuelven junto con la
       actualización de Angular.
 
-    Nota sobre paquetes deprecados que no salieron en el audit pero valen la pena: `moment`
-    (58 archivos lo importan, en modo mantenimiento desde 2020, recomendado migrar a
-    `date-fns`/`luxon` a largo plazo), `protractor` (e2e, deprecado y descontinuado desde 2023,
-    sin usos de e2e reales encontrados en el repo — candidato a remover directamente del
-    `package.json`), `rxjs-compat` (usado en un solo archivo,
+    Nota sobre paquetes deprecados que no salieron en el audit pero valen la pena (sin tocar
+    en este fix): `moment` (58 archivos lo importan, en modo mantenimiento desde 2020,
+    recomendado migrar a `date-fns`/`luxon` a largo plazo), `protractor` (e2e, deprecado y
+    descontinuado desde 2023, sin usos de e2e reales encontrados en el repo — candidato a
+    remover directamente del `package.json`), `rxjs-compat` (usado en un solo archivo,
     `mon-ran-camp/principal/principal.util.ts`, peso extra en el bundle para un solo caso de
-    RxJS 5). Esfuerzo del punto 19: alto para Angular (breaking, incremental por versión — ver
-    punto 14), bajo para `uuid`, medio para `swiper` (evaluar si el carrusel de anuncios sigue en
-    uso). Impacto: alto (son CVEs con explotación conocida, no hipótesis).
+    RxJS 5). Pendiente: alto esfuerzo para Angular (breaking, incremental por versión — ver
+    punto 14 y el reporte de migración a Angular 15).
 
 20. **🟠 NUEVO (2026-07-31) — sin resolver, severidad media.** Guards de autorización rotos o no
     conectados a ninguna ruta.
@@ -280,7 +291,7 @@
     flujo en la consola de Google Cloud del proyecto. Esfuerzo: medio. Bloqueado por negocio: no,
     pero requiere acceso a la configuración OAuth en Google Cloud Console.
 
-22. **🟠 NUEVO (2026-07-31) — sin resolver, severidad media.** Postura de cifrado inconsistente
+22. **✅ RESUELTO (2026-08-03).** Postura de cifrado inconsistente
     en el almacenamiento local del navegador.
     `LocalStoreService` (`core/data/local/local-store.service.ts:10,17-18,20,25,28-29`) cifra
     cada valor que guarda en `localStorage` (token, perfil, menú, respuesta de auth) **solo si
@@ -289,11 +300,21 @@
     puede invocar el mismo `CypherService` — está en el mismo bundle — para descifrar lo que
     quiera), pero sí dificulta la lectura manual casual (DevTools → Application → Local Storage)
     y el copy-paste accidental de datos sensibles. Aparte, `StorageService`
-    (`modules/reportes/legacy/support/services/storage.service.ts:10,15`, usado por
-    `CacheService`) escribe directo a `localStorage` **sin cifrar**, cacheando datos jerárquicos
-    internos (`cod_rel`, `tip_cod`, `jerar`) — inconsistente con el resto de la app, aunque el
-    dato cacheado ahí parece menos sensible. Esfuerzo: bajo (alinear `StorageService` al mismo
-    wrapper que `LocalStoreService`, o documentar por qué no hace falta). Impacto: bajo-medio.
+    (`modules/reportes/legacy/support/services/storage.service.ts`, usado por
+    `CacheService`) escribía directo a `localStorage` **sin cifrar**, cacheando datos jerárquicos
+    internos (`cod_rel`, `tip_cod`, `jerar`) — inconsistente con el resto de la app.
+
+    **Fix aplicado:** `StorageService` ahora inyecta `CypherService` (ya provisto en
+    `app.module.ts`, alcanzable desde cualquier servicio root) y sigue exactamente el mismo
+    patrón que `LocalStoreService`: `setLocalItem` cifra el JSON solo si
+    `environment.production`, `getLocalItem` descifra igual y devuelve `null` si falla el
+    descifrado/parseo (mismo comportamiento que antes tenía para una clave inexistente —
+    `CacheService` ya trata `null` como "sin cache", así que datos viejos sin cifrar que queden
+    de una sesión anterior en producción simplemente se leen como cache vacío en vez de
+    fallar). `CacheService` no accede a `localStorage` directamente en ningún lado — todo pasa
+    por `StorageService`, así que el cambio es transparente para sus 3 únicos usos
+    (`isCache`/`loadCache`/`selected`/`isResult`/`saveFilterv2`). Verificado con el checker de
+    imports (0 rotos nuevos); no se pudo levantar `ng serve` en este entorno.
 
 23. **⚪ NUEVO (2026-07-31) — informativo/bajo.** Otros puntos menores relacionados a HTML/URL sin
     validar, sin evidencia de explotación activa hoy:
@@ -615,14 +636,14 @@
 | 16 | Login no verifica `id_token` de Google server-side (solo posesión del secreto) | Alto | Alto (seguridad) | Sí — cambio de protocolo backend | 🔴 Nuevo (2026-07-31), pendiente |
 | 17 | AES-CBC con IV fijo en `CypherService` | Medio | Alto (seguridad) | Sí — coordinar con backend | 🔴 Nuevo (2026-07-31), pendiente |
 | 18 | XSS almacenado en `dynamic-format-pipe` (`bypassSecurityTrustHtml`) | Medio | Alto (seguridad, componente muy reusado) | No | ✅ Resuelto (2026-07-31) — hallazgos relacionados menores (`categorizacion`, `mon-imr`, `stg-window-bar`) siguen pendientes |
-| 19 | Dependencias con CVE (`npm audit`: swiper crítico, Angular XSS altas, uuid moderado) | Medio-Alto | Alto (seguridad) | No | 🔴 Nuevo (2026-07-31), pendiente |
+| 19 | Dependencias con CVE (`npm audit`: swiper crítico, Angular XSS altas, uuid moderado) | Medio-Alto | Alto (seguridad) | No | 🟡 Parcial (2026-08-03) — swiper (código muerto) y uuid resueltos; Angular XSS pendiente de la migración a v15+ |
 | 24 | Sin manejo de error/timeout en HTTP (91% subscribe sin error, loader huérfano) | Medio (fix central) | Alto (UX rota a diario) | No | ✅ Resuelto (2026-07-31 + 2026-08-03) — interceptor + timeout + cierre de loader compartido + página de error 404/5xx, y barrido de ~35 loaders locales con `finalize()`; solo quedan pendientes bugs de camino-de-éxito no relacionados a errores HTTP |
 | 2 | Secretos hardcodeados → env/vault + rotación | Medio | Alto (seguridad) | Sí — ver punto 16, es más profundo de lo que parecía | 🟡 Extraído a gitignore; rotación, pipeline externo y rediseño del modelo (punto 16) pendientes |
 | 25 | `trackBy` en las 4 variantes de `stg-table` + adopción de `OnPush` | Bajo (trackBy) / Alto (OnPush) | Medio-Alto (rendimiento) | No | 🟠 Nuevo (2026-07-31), pendiente |
 | 20 | Guards rotos/no conectados (`AdminGuard`, `DummyGuard` con emails hardcodeados) | Bajo | Medio-Alto | No | 🟠 Nuevo (2026-07-31), pendiente |
 | 26 | Servicios de `SharedModule` sin `providedIn:'root'` (duplicados por 112 módulos) | Bajo | Medio | No | ✅ Resuelto (2026-08-03) — `providedIn:'root'` en los 5 servicios, quitados de `providers` en `shared.module.ts`, `analista.module.ts` e `incentivos3.module.ts` |
 | 21 | Migrar OAuth Implicit Flow → Authorization Code + PKCE | Medio | Medio (seguridad, hardening) | No, pero requiere acceso a Google Cloud Console | 🟠 Nuevo (2026-07-31), pendiente |
-| 22 | Unificar cifrado de `localStorage` (`StorageService` legacy sin cifrar) | Bajo | Bajo-Medio | No | 🟠 Nuevo (2026-07-31), pendiente |
+| 22 | Unificar cifrado de `localStorage` (`StorageService` legacy sin cifrar) | Bajo | Bajo-Medio | No | ✅ Resuelto (2026-08-03) — `StorageService` cifra igual que `LocalStoreService` |
 | 9 | Poblar o borrar `core/guards|interceptors|interfaces` | Bajo | Medio (claridad) | No | ✅ Resuelto — `interceptors` poblado (2026-07-31) con lo genuinamente transversal; `guards`/`interfaces` siguen vacíos a propósito |
 | 10 | Renombrar `modules/shared/` | Bajo | Bajo (claridad) | No | ✅ Obsoleto — ya no existe `modules/shared/` |
 | 3 | Decidir sobre `Authorization` header comentado | Bajo (código) | Alto (si es bug real) | Sí — arquitectura de seguridad | 🟡 Analizado, ver punto 16 para el análisis completo; sin cambios de código |

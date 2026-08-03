@@ -1,18 +1,34 @@
 import { Injectable } from '@angular/core';
 import { isUndefined, isNull } from 'util';
+import { CypherService } from 'app/core/services/cypher.service';
+import { environment } from 'environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
     private keys:Set<string> = new Set<string>();
 
+    constructor(private cypherService: CypherService) { }
+
     public setLocalItem(key: string, value: any) {
-        localStorage.setItem(key, JSON.stringify(value));
+        let str = JSON.stringify(value);
+        if (environment.production) {
+            str = this.cypherService.encrypt(str);
+        }
+        localStorage.setItem(key, str);
         this.keys.add(key);
     }
 
     public getLocalItem<T = unknown>(key: string):T{
-        return JSON.parse(localStorage.getItem(key));
+        let str = localStorage.getItem(key);
+        try {
+            if (environment.production) {
+                str = this.cypherService.decrypt(str);
+            }
+            return JSON.parse(str);
+        } catch (e) {
+            return null;
+        }
     }
 
     public removeLocalItem(key:string){
