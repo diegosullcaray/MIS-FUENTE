@@ -2,12 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { RiegosFenComponent } from './riegos-fen.component';
+import { ModRiegosFenService } from './compartido/servicios/mod-riegos-fen.service';
 
 describe('RiegosFenComponent', () => {
   let component: RiegosFenComponent;
   let fixture: ComponentFixture<RiegosFenComponent>;
+  let service: jasmine.SpyObj<ModRiegosFenService>;
 
   beforeEach(async () => {
+    service = jasmine.createSpyObj('ModRiegosFenService', ['getResultados']);
     await TestBed.configureTestingModule({
       declarations: [ RiegosFenComponent ],
       imports: [ FormsModule ]

@@ -17,13 +17,11 @@ export class ModRiegosFenService extends AntService {
     }, winderService);
   }
 
-  /**
-   * Obtiene el listado de riesgos fenológicos
-   * @param payload objeto con parámetros de búsqueda (fecha, etc.)
-   * @returns Observable con la respuesta del backend
-   */
-  public getResultados(payload: any): Observable<IWinderResponse> {
-    return this.getSimpleResponseString('riegos_fen.resultados', payload, 'resultado');
+  public getResultados(col: 0 | 1 | 2 | 3, val: string): Observable<IWinderResponse> {
+    return this.getSimpleResponseString('mod_rep.com.[REXPAGRO01]', {
+      '@col': col,
+      '@val': val
+    }, 'resultado');
   }
 
   /**
