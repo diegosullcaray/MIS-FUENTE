@@ -24,7 +24,7 @@ export class RiegosFenComponent implements OnDestroy {
   searchValue = '';
   searchMessage = '';
   selected: RiskDistrict | null = null;
-  loading = false;
+  state: ViewState = 'idle';
   errorMessage = '';
 
   private reportSubscription?: Subscription;
@@ -78,7 +78,11 @@ export class RiegosFenComponent implements OnDestroy {
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
         return EMPTY;
       }),
-      finalize(() => this.loading = false)
+      finalize(() => {
+        if (this.state === 'loading') {
+          this.state = this.rows.length ? 'data' : 'empty';
+        }
+      })
     ).subscribe(rows => {
       this.rows = rows;
       this.searchMessage = rows.length ? '' : 'No se encontraron distritos para la búsqueda.';
