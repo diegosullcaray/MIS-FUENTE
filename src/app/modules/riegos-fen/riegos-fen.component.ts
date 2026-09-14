@@ -10,7 +10,7 @@ import { parseRiskRow, RiskDistrict, RiskLevel, riskTableHeaders, riskTableOptio
   styleUrls: ['./riegos-fen.component.scss']
 })
 export class RiegosFenComponent implements OnDestroy {
-  readonly tableHeaders = riskTableHeaders;
+  tableHeaders: any[] = [];
   readonly tableOptions = riskTableOptions;
   readonly searchOptions: Array<{ col: 0 | 1 | 2 | 3; label: string }> = [
     { col: 0, label: 'UBIGEO' },
@@ -45,6 +45,10 @@ export class RiegosFenComponent implements OnDestroy {
     return ['Ingrese el código', 'Ingrese el departamento', 'Ingrese la provincia', 'Ingrese el distrito'][this.searchColumn];
   }
 
+  get loading(): boolean {
+    return this.state === 'loading';
+  }
+
   setSearchColumn(column: 0 | 1 | 2 | 3): void {
     this.searchColumn = column;
     this.searchValue = '';
@@ -62,8 +66,9 @@ export class RiegosFenComponent implements OnDestroy {
       this.reportSubscription.unsubscribe();
     }
 
-    this.loading = true;
+    this.state = 'loading';
     this.rows = [];
+    this.tableHeaders = [];
     this.selected = null;
     this.errorMessage = '';
     this.searchMessage = '';
@@ -75,6 +80,9 @@ export class RiegosFenComponent implements OnDestroy {
       take(1),
       map(response => this.readRows(response && response.body && response.body.resultado)),
       catchError(() => {
+        this.rows = [];
+        this.selected = null;
+        this.state = 'error';
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
         return EMPTY;
       }),
@@ -84,7 +92,9 @@ export class RiegosFenComponent implements OnDestroy {
         }
       })
     ).subscribe(rows => {
+      this.tableHeaders = riskTableHeaders.map(header => ({ ...header }));
       this.rows = rows;
+      this.state = rows.length ? 'data' : 'empty';
       this.searchMessage = rows.length ? '' : 'No se encontraron distritos para la búsqueda.';
     });
   }
@@ -104,9 +114,10 @@ export class RiegosFenComponent implements OnDestroy {
   }
 
   private readRows(result: unknown): RiskDistrict[] {
-    const data = result && Array.isArray((result as { data?: unknown[] }).data)
-      ? (result as { data: unknown[] }).data
-      : Array.isArray(result) ? result : [];
+    if (!result || !Array.isArray((result as { data?: unknown[] }).data)) {
+      throw new Error('Respuesta inválida de CON_AGRO_FEN');
+    }
+    const data = (result as { data: unknown[] }).data;
 
     return data.map(row => parseRiskRow(row));
   }

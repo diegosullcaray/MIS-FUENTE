@@ -71,21 +71,22 @@
       <p>Selecciona una fila para consultar sus indicadores.</p>
     </header>
 
-    <div class="table-status" role="status" *ngIf="loading">Cargando matriz de riesgos…</div>
+    <div class="table-status" role="status" *ngIf="state === 'loading'">Cargando matriz de riesgos…</div>
+    <div class="empty-state" role="status" *ngIf="state === 'idle'">
+      Realiza una consulta para cargar la matriz de riesgos.
+    </div>
+    <div class="empty-state" role="status" *ngIf="state === 'empty'">
+      No se encontraron distritos para la búsqueda.
+    </div>
+    <div class="empty-state error" role="alert" *ngIf="state === 'error'">{{ errorMessage }}</div>
 
-    <div class="table-wrap" *ngIf="!loading && rows.length; else emptyState">
-      <stg-table2 [options]="tableOptions" [headers]="tableHeaders" [dataSource]="rows"
+    <div class="table-container" fxFlex fxLayout="column" *ngIf="state === 'data' && rows.length">
+      <stg-table2 fxFlex [options]="tableOptions" [dataSource]="rows" [headers]="tableHeaders"
         (onSelectRow)="selectRow($event)">
       </stg-table2>
     </div>
 
-    <ng-template #emptyState>
-      <div class="empty-state" role="status" *ngIf="!loading">
-        {{ errorMessage || 'Realiza una consulta para cargar la matriz de riesgos.' }}
-      </div>
-    </ng-template>
-
-    <footer class="table-summary" *ngIf="!loading && rows.length">
+    <footer class="table-summary" *ngIf="state === 'data' && rows.length">
       Mostrando {{ rows.length }} distritos
     </footer>
   </section>

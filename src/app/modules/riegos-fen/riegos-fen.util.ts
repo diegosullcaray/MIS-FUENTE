@@ -61,8 +61,6 @@ export const riskTableHeaders: any[] = [
 ];
 
 export const riskTableOptions = createStgLightTable2Config({
-  columns: riskTableHeaders,
-  headers: riskTableHeaders,
   style: {
     'min-width': '970px',
     'font-size': '12px'
