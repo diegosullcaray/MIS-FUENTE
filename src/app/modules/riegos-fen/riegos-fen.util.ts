@@ -12,16 +12,6 @@ export interface RiskDistrict {
   exp_inu: RiskLevel;
   exp_seq: RiskLevel;
   exp_pre: RiskLevel;
-
-  // Propiedades mapeadas opcionales para la tarjeta superior
-  ubigeo?: string;
-  department?: string;
-  province?: string;
-  district?: string;
-  massRisk?: RiskLevel;
-  floodRisk?: RiskLevel;
-  droughtRisk?: RiskLevel;
-  mainRisk?: RiskLevel;
 }
 
 export const VALID_RISK_LEVELS: RiskLevel[] = ['Muy Alto', 'Alto', 'Medio', 'Bajo', 'Muy Bajo'];
@@ -71,8 +61,6 @@ export const riskTableHeaders: any[] = [
 ];
 
 export const riskTableOptions = createStgLightTable2Config({
-  columns: riskTableHeaders,
-  headers: riskTableHeaders,
   style: {
     'min-width': '970px',
     'font-size': '12px'
@@ -114,32 +102,16 @@ export function parseRiskLevel(value: unknown): RiskLevel {
 }
 
 export function parseRiskRow(row: any): RiskDistrict {
-  const cod_ubi = sanitizeText(row.cod_ubi || row[0]);
-  const des_dep = sanitizeText(row.des_dep || row[1]);
-  const des_prov = sanitizeText(row.des_prov || row[2]);
-  const des_dist = sanitizeText(row.des_dist || row[3]);
-  const exp_mas = parseRiskLevel(row.exp_mas || row[4]);
-  const exp_inu = parseRiskLevel(row.exp_inu || row[5]);
-  const exp_seq = parseRiskLevel(row.exp_seq || row[6]);
-  const exp_pre = parseRiskLevel(row.exp_pre || row[7]);
+  const source = row || {};
 
   return {
-    cod_ubi,
-    des_dep,
-    des_prov,
-    des_dist,
-    exp_mas,
-    exp_inu,
-    exp_seq,
-    exp_pre,
-    // Propiedades adicionales para compatibilidad con la vista
-    ubigeo: cod_ubi,
-    department: des_dep,
-    province: des_prov,
-    district: des_dist,
-    massRisk: exp_mas,
-    floodRisk: exp_inu,
-    droughtRisk: exp_seq,
-    mainRisk: exp_pre
+    cod_ubi: sanitizeText(source.cod_ubi != null ? source.cod_ubi : source[0]),
+    des_dep: sanitizeText(source.des_dep != null ? source.des_dep : source[1]),
+    des_prov: sanitizeText(source.des_prov != null ? source.des_prov : source[2]),
+    des_dist: sanitizeText(source.des_dist != null ? source.des_dist : source[3]),
+    exp_mas: parseRiskLevel(source.exp_mas != null ? source.exp_mas : source[4]),
+    exp_inu: parseRiskLevel(source.exp_inu != null ? source.exp_inu : source[5]),
+    exp_seq: parseRiskLevel(source.exp_seq != null ? source.exp_seq : source[6]),
+    exp_pre: parseRiskLevel(source.exp_pre != null ? source.exp_pre : source[7])
   };
 }
