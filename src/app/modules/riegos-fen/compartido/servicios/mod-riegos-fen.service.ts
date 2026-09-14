@@ -19,8 +19,8 @@ export class ModRiegosFenService extends AntService {
 
   public getResultados(col: 0 | 1 | 2 | 3, val: string): Observable<IWinderResponse> {
     return this.getSimpleResponseString('riegos_fen.resultados', {
-      '@col': col,
-      '@val': val
+      col,
+      val
     }, 'resultado');
   }
 }
