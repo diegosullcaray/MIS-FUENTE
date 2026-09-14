@@ -1,70 +1,90 @@
 <main class="risk-page">
   <header class="page-heading">
-    <h1>Calculadora de riesgo CENEPRED</h1>
+    <h1>Consulta Riesgo FEN - CENEPRED</h1>
     <p>Consulta el nivel de exposición territorial antes de completar la evaluación.</p>
   </header>
 
-  <section class="card calculator" aria-label="Consulta rápida de riesgo">
-    <div class="search-row">
-      <label class="search-type" for="searchColumn">
-        <span class="sr-only">Tipo de búsqueda</span>
-        <select id="searchColumn" name="searchColumn" [(ngModel)]="searchColumn"
-          (ngModelChange)="setSearchColumn($event)">
-          <option *ngFor="let option of searchOptions" [ngValue]="option.col">Por {{ option.label }}</option>
-        </select>
-      </label>
+  <!-- CONTENEDOR DE DOS COLUMNAS -->
+  <div class="top-panels">
+    
+    <!-- COLUMNA 1: Filtro -->
+    <section class="card calculator" aria-label="Consulta rápida de riesgo">
+      <div class="search-row">
+        <label class="search-type" for="searchColumn">
+          <span class="sr-only">Tipo de búsqueda</span>
+          <select id="searchColumn" name="searchColumn" [(ngModel)]="searchColumn"
+            (ngModelChange)="setSearchColumn($event)">
+            <option *ngFor="let option of searchOptions" [ngValue]="option.col">Por {{ option.label }}</option>
+          </select>
+        </label>
 
-      <label class="input-wrap" for="quickSearch">
-        <span class="sr-only">{{ searchColumnLabel }}</span>
-        <input id="quickSearch" [(ngModel)]="searchValue" (keyup.enter)="consult()"
-          [attr.inputmode]="searchColumn === 0 ? 'numeric' : 'text'" [placeholder]="searchPlaceholder"
-          autocomplete="off">
-      </label>
+        <label class="input-wrap" for="quickSearch">
+          <span class="sr-only">{{ searchColumnLabel }}</span>
+          <input id="quickSearch" [(ngModel)]="searchValue" (keyup.enter)="consult()"
+            [attr.inputmode]="searchColumn === 0 ? 'numeric' : 'text'" [placeholder]="searchPlaceholder"
+            autocomplete="off">
+        </label>
 
-      <button type="button" class="primary" [disabled]="loading" (click)="consult()">
-        {{ loading ? 'Consultando…' : 'Consultar' }}
-      </button>
-    </div>
-    <p class="search-message" aria-live="polite">{{ searchMessage }}</p>
-  </section>
-
-  <section class="card result-panel" aria-live="polite" *ngIf="selected">
-    <div class="result-head">
-      <div class="location">
-        <span class="pin" aria-hidden="true">⌖</span>
-        <div>
-          <strong>{{ selected.des_dist }}</strong>
-          <small>{{ selected.des_dep }} · {{ selected.des_prov }}</small>
-        </div>
+        <button type="button" class="primary" [disabled]="loading" (click)="consult()">
+          {{ loading ? 'Consultando…' : 'Consultar' }}
+        </button>
       </div>
-      <span class="ubigeo">UBIGEO {{ selected.cod_ubi }}</span>
-    </div>
+      <p class="search-message" aria-live="polite">{{ searchMessage }}</p>
+    </section>
 
-    <div class="risk-cards">
-      <article class="risk" [ngClass]="riskClass(selected.exp_mas)">
-        <small>Movimiento en masa</small>
-        <strong>{{ selected.exp_mas }}</strong>
-      </article>
-      <article class="risk" [ngClass]="riskClass(selected.exp_inu)">
-        <small>Inundación</small>
-        <strong>{{ selected.exp_inu }}</strong>
-      </article>
-      <article class="risk" [ngClass]="riskClass(selected.exp_seq)">
-        <small>Sequía</small>
-        <strong>{{ selected.exp_seq }}</strong>
-      </article>
-      <article class="risk" [ngClass]="riskClass(selected.exp_pre)">
-        <small>Riesgo predominante</small>
-        <strong>{{ selected.exp_pre }}</strong>
-      </article>
-    </div>
+    <!-- COLUMNA 2: KPIs de Riesgo (Siempre visible) -->
+    <section class="card result-panel" aria-live="polite">
+      
+      <!-- Se muestra si hay un distrito seleccionado -->
+      <ng-container *ngIf="selected; else emptySelection">
+        <div class="result-head">
+          <div class="location">
+            <span class="pin" aria-hidden="true">⌖</span>
+            <div>
+              <strong>{{ selected.des_dist }}</strong>
+              <small>{{ selected.des_dep }} · {{ selected.des_prov }}</small>
+            </div>
+          </div>
+          <span class="ubigeo">UBIGEO {{ selected.cod_ubi }}</span>
+        </div>
 
-    <div class="alert" *ngIf="selected.exp_pre === 'Muy Alto' || selected.exp_pre === 'Alto'">
-      <span aria-hidden="true">⚠</span>
-      <strong>Zona de Alto Riesgo CENEPRED: Ofrecer Seguro Agrícola / Multirriesgo.</strong>
-    </div>
-  </section>
+        <div class="risk-cards">
+          <article class="risk" [ngClass]="riskClass(selected.exp_mas)">
+            <small>Movimiento en masa</small>
+            <strong>{{ selected.exp_mas }}</strong>
+          </article>
+          <article class="risk" [ngClass]="riskClass(selected.exp_inu)">
+            <small>Inundación</small>
+            <strong>{{ selected.exp_inu }}</strong>
+          </article>
+          <article class="risk" [ngClass]="riskClass(selected.exp_seq)">
+            <small>Sequía</small>
+            <strong>{{ selected.exp_seq }}</strong>
+          </article>
+          <article class="risk" [ngClass]="riskClass(selected.exp_pre)">
+            <small>Riesgo predominante</small>
+            <strong>{{ selected.exp_pre }}</strong>
+          </article>
+        </div>
 
+        <div class="alert" *ngIf="selected.exp_pre === 'Muy Alto' || selected.exp_pre === 'Alto'">
+          <span aria-hidden="true">⚠</span>
+          <strong>Zona de Alto Riesgo CENEPRED: Ofrecer Seguro Agrícola / Multirriesgo.</strong>
+        </div>
+      </ng-container>
+
+      <!-- Se muestra si NO hay datos (mantiene el cuadro de la tarjeta intacto) -->
+      <ng-template #emptySelection>
+        <div class="empty-selection">
+          <p>Realiza una búsqueda o selecciona una fila en la tabla para ver el detalle de exposición.</p>
+        </div>
+      </ng-template>
+
+    </section>
+  </div>
+  <!-- FIN CONTENEDOR DE DOS COLUMNAS -->
+
+  <!-- TABLA (Siempre visible su tarjeta) -->
   <section class="card results">
     <header class="results-head">
       <h2>Matriz de riesgos por distrito</h2>

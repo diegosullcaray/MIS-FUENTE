@@ -68,7 +68,7 @@ export const riskTableOptions = createStgLightTable2Config({
   header: {
     style: {
       'background': '#f8fbfd',
-      'color': '#40566a',
+      'color': '#222fb9',
       'font-size': '10px',
       'letter-spacing': '.04em',
       'text-transform': 'uppercase',

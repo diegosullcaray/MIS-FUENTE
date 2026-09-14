@@ -4,13 +4,16 @@ import { catchError, finalize, map, take } from 'rxjs/operators';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { parseRiskRow, RiskDistrict, RiskLevel, riskTableHeaders, riskTableOptions } from './riegos-fen.util';
 
+// 1. Declaramos el tipo ViewState aquí mismo
+type ViewState = 'idle' | 'loading' | 'data' | 'empty' | 'error';
+
 @Component({
   selector: 'app-riegos-fen',
   templateUrl: './riegos-fen.component.html',
   styleUrls: ['./riegos-fen.component.scss']
 })
 export class RiegosFenComponent implements OnDestroy {
-  tableHeaders: any[] = [];
+  readonly tableHeaders = riskTableHeaders;
   readonly tableOptions = riskTableOptions;
   readonly searchOptions: Array<{ col: 0 | 1 | 2 | 3; label: string }> = [
     { col: 0, label: 'UBIGEO' },
@@ -24,7 +27,10 @@ export class RiegosFenComponent implements OnDestroy {
   searchValue = '';
   searchMessage = '';
   selected: RiskDistrict | null = null;
+  
+  // 2. Declaramos la variable state con su valor inicial
   state: ViewState = 'idle';
+  loading = false;
   errorMessage = '';
 
   private reportSubscription?: Subscription;
@@ -45,10 +51,6 @@ export class RiegosFenComponent implements OnDestroy {
     return ['Ingrese el código', 'Ingrese el departamento', 'Ingrese la provincia', 'Ingrese el distrito'][this.searchColumn];
   }
 
-  get loading(): boolean {
-    return this.state === 'loading';
-  }
-
   setSearchColumn(column: 0 | 1 | 2 | 3): void {
     this.searchColumn = column;
     this.searchValue = '';
@@ -66,9 +68,10 @@ export class RiegosFenComponent implements OnDestroy {
       this.reportSubscription.unsubscribe();
     }
 
+    // 3. Cambiamos el estado a loading al iniciar la consulta
     this.state = 'loading';
+    this.loading = true;
     this.rows = [];
-    this.tableHeaders = [];
     this.selected = null;
     this.errorMessage = '';
     this.searchMessage = '';
@@ -80,22 +83,18 @@ export class RiegosFenComponent implements OnDestroy {
       take(1),
       map(response => this.readRows(response && response.body && response.body.resultado)),
       catchError(() => {
-        this.rows = [];
-        this.selected = null;
-        this.state = 'error';
+        // 4. Cambiamos a error si algo falla
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
+        this.state = 'error';
         return EMPTY;
       }),
       finalize(() => {
-        if (this.state === 'loading') {
-          this.state = this.rows.length ? 'data' : 'empty';
-        }
+        this.loading = false;
       })
     ).subscribe(rows => {
-      this.tableHeaders = riskTableHeaders.map(header => ({ ...header }));
       this.rows = rows;
-      this.state = rows.length ? 'data' : 'empty';
-      this.searchMessage = rows.length ? '' : 'No se encontraron distritos para la búsqueda.';
+      // 5. Asignamos el estado 'data' si hay filas, o 'empty' si no hay nada
+      this.state = rows.length > 0 ? 'data' : 'empty';
     });
   }
 
@@ -114,10 +113,9 @@ export class RiegosFenComponent implements OnDestroy {
   }
 
   private readRows(result: unknown): RiskDistrict[] {
-    if (!result || !Array.isArray((result as { data?: unknown[] }).data)) {
-      throw new Error('Respuesta inválida de CON_AGRO_FEN');
-    }
-    const data = (result as { data: unknown[] }).data;
+    const data = result && Array.isArray((result as { data?: unknown[] }).data)
+      ? (result as { data: unknown[] }).data
+      : Array.isArray(result) ? result : [];
 
     return data.map(row => parseRiskRow(row));
   }
