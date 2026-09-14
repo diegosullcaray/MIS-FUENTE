@@ -4,8 +4,6 @@ import { catchError, finalize, map, take } from 'rxjs/operators';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { parseRiskRow, RiskDistrict, RiskLevel, riskTableHeaders, riskTableOptions } from './riegos-fen.util';
 
-type ViewState = 'idle' | 'loading' | 'empty' | 'data' | 'error';
-
 @Component({
   selector: 'app-riegos-fen',
   templateUrl: './riegos-fen.component.html',
