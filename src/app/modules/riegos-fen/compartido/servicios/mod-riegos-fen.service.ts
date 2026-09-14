@@ -18,19 +18,9 @@ export class ModRiegosFenService extends AntService {
   }
 
   public getResultados(col: 0 | 1 | 2 | 3, val: string): Observable<IWinderResponse> {
-    return this.getSimpleResponseString('mod_rep.com.[REXPAGRO01]', {
+    return this.getSimpleResponseString('riegos_fen.resultados', {
       '@col': col,
       '@val': val
     }, 'resultado');
-  }
-
-
-  /**
-   * Obtiene el detalle de un riesgo fenológico específico
-   * @param payload objeto con identificador y parámetros
-   * @returns Observable con la respuesta del backend
-   */
-  public getDetalle(payload: any): Observable<IWinderResponse> {
-    return this.getSimpleResponseString('riegos_fen.detalle', payload, 'resultado');
   }
 }

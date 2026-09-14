@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { EMPTY } from 'rxjs';
 import { catchError, finalize, map, take } from 'rxjs/operators';
 import { ModRiegosFenService } from './compartido/servicios/mod-riegos-fen.service';
@@ -24,7 +24,7 @@ export class RiegosFenComponent {
   searchValue = '';
   searchMessage = 'Ingresa los 6 dígitos del código UBIGEO.';
   selected: RiskDistrict | null = null;
-   loading = false;
+  loading = false;
   errorMessage = '';
   departmentFilter = '';
   provinceFilter = '';
@@ -95,7 +95,7 @@ export class RiegosFenComponent {
     ).subscribe(rows => {
       this.rows = rows;
       this.filteredRows = rows.map(row => ({ ...row }));
-      this.selected = null;
+      this.selected = rows[0] || null;
       this.searchMessage = rows.length
         ? 'Consulta completada con la matriz CENEPRED.'
         : 'No se encontraron distritos para la búsqueda.';
@@ -150,21 +150,46 @@ export class RiegosFenComponent {
       throw new Error('Respuesta inválida de REXPAGRO01');
     }
 
-    return data.map(item => {
-      if (!Array.isArray(item) || item.length < 8) {
-        throw new Error('Fila inválida de REXPAGRO01');
-      }
-      return {
-        ubigeo: String(item[0] == null ? '' : item[0]),
-        department: String(item[1] == null ? '' : item[1]),
-        province: String(item[2] == null ? '' : item[2]),
-        district: String(item[3] == null ? '' : item[3]),
-        massRisk: this.readRisk(item[4]),
-        floodRisk: this.readRisk(item[5]),
-        droughtRisk: this.readRisk(item[6]),
-        mainRisk: this.readRisk(item[7])
-      };
-    });
+    return data.map(item => this.readRow(item));
+  }
+
+  private readRow(item: unknown): RiskDistrict {
+    if (Array.isArray(item) && item.length >= 8) {
+      return this.toRiskDistrict(item);
+    }
+
+    if (item && typeof item === 'object') {
+      const row = item as { [key: string]: unknown };
+      return this.toRiskDistrict([
+        row.cod_ubi,
+        row.des_dep,
+        row.des_prov,
+        row.des_dist,
+        row.exp_mas,
+        row.exp_inu,
+        row.exp_seq,
+        row.exp_pre
+      ]);
+    }
+
+    throw new Error('Fila inválida de REXPAGRO01');
+  }
+
+  private toRiskDistrict(item: unknown[]): RiskDistrict {
+    if (item.some(value => value == null || String(value).trim() === '')) {
+      throw new Error('Fila incompleta de REXPAGRO01');
+    }
+
+    return {
+      ubigeo: String(item[0]),
+      department: String(item[1]),
+      province: String(item[2]),
+      district: String(item[3]),
+      massRisk: this.readRisk(item[4]),
+      floodRisk: this.readRisk(item[5]),
+      droughtRisk: this.readRisk(item[6]),
+      mainRisk: this.readRisk(item[7])
+    };
   }
 
   private readRisk(value: unknown): RiskLevel {
