@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { RiegosFenComponent } from './riegos-fen.component';
 
@@ -8,7 +9,8 @@ describe('RiegosFenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RiegosFenComponent ]
+      declarations: [ RiegosFenComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
 
@@ -19,5 +21,21 @@ describe('RiegosFenComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should consult a district by ubigeo', () => {
+    component.searchValue = '220901';
+    component.consult();
+
+    expect(component.selected.district).toBe('Tarapoto');
+  });
+
+  it('should apply all selected filters', () => {
+    component.departmentFilter = 'Lima';
+    component.districtFilter = 'Chaclacayo';
+    component.riskFilter = 'Alto';
+    component.applyFilters();
+
+    expect(component.filteredRows.map(row => row.ubigeo)).toEqual(['150108']);
   });
 });
