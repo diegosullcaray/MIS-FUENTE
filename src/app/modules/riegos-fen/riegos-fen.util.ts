@@ -2,18 +2,31 @@ import { createStgLightTable2Config } from 'app/core/screen/base/stg-table2-pres
 
 export type RiskLevel = 'Muy Alto' | 'Alto' | 'Medio' | 'Bajo' | 'Muy Bajo';
 
+// Interfaz alineada a los campos que retorna la API/Procedimiento
 export interface RiskDistrict {
-  ubigeo: string;
-  department: string;
-  province: string;
-  district: string;
-  massRisk: RiskLevel;
-  floodRisk: RiskLevel;
-  droughtRisk: RiskLevel;
-  mainRisk: RiskLevel;
+  cod_ubi: string;
+  des_dep: string;
+  des_prov: string;
+  des_dist: string;
+  exp_mas: RiskLevel;
+  exp_inu: RiskLevel;
+  exp_seq: RiskLevel;
+  exp_pre: RiskLevel;
+
+  // Propiedades mapeadas opcionales para la tarjeta superior
+  ubigeo?: string;
+  department?: string;
+  province?: string;
+  district?: string;
+  massRisk?: RiskLevel;
+  floodRisk?: RiskLevel;
+  droughtRisk?: RiskLevel;
+  mainRisk?: RiskLevel;
 }
 
-const riskColors: { [key: string]: { background: string; color: string } } = {
+export const VALID_RISK_LEVELS: RiskLevel[] = ['Muy Alto', 'Alto', 'Medio', 'Bajo', 'Muy Bajo'];
+
+const riskColors: { [key in RiskLevel]?: { background: string; color: string } } = {
   'Muy Alto': { background: '#fdebea', color: '#a9221b' },
   'Alto': { background: '#fff0e3', color: '#a94d08' },
   'Medio': { background: '#fff8d9', color: '#6d5700' },
@@ -35,7 +48,7 @@ function riskColumn(label: string, key: keyof RiskDistrict): any {
     key,
     cellStyle: { 'min-width': '118px', 'padding': '9px 12px', 'text-align': 'center' },
     cellStyleFn: (params: { value: RiskLevel }) => {
-      const colors = riskColors[params && params.value] || { background: '#f4f6f9', color: '#40566a' };
+      const colors = (params && riskColors[params.value]) || { background: '#f4f6f9', color: '#40566a' };
       return {
         'background': colors.background,
         'color': colors.color,
@@ -45,18 +58,21 @@ function riskColumn(label: string, key: keyof RiskDistrict): any {
   };
 }
 
+// Configuración de cabeceras alineadas a las claves originales del JSON
 export const riskTableHeaders: any[] = [
-  textColumn('UBIGEO', 'ubigeo', '90px'),
-  textColumn('Departamento', 'department', '130px'),
-  textColumn('Provincia', 'province', '130px'),
-  textColumn('Distrito', 'district', '140px'),
-  riskColumn('Mov. en masa', 'massRisk'),
-  riskColumn('Inundación', 'floodRisk'),
-  riskColumn('Sequía', 'droughtRisk'),
-  riskColumn('Predominante', 'mainRisk')
+  textColumn('UBIGEO', 'cod_ubi', '90px'),
+  textColumn('Departamento', 'des_dep', '130px'),
+  textColumn('Provincia', 'des_prov', '130px'),
+  textColumn('Distrito', 'des_dist', '140px'),
+  riskColumn('Mov. en masa', 'exp_mas'),
+  riskColumn('Inundación', 'exp_inu'),
+  riskColumn('Sequía', 'exp_seq'),
+  riskColumn('Predominante', 'exp_pre')
 ];
 
 export const riskTableOptions = createStgLightTable2Config({
+  columns: riskTableHeaders,
+  headers: riskTableHeaders,
   style: {
     'min-width': '970px',
     'font-size': '12px'
@@ -79,3 +95,51 @@ export const riskTableOptions = createStgLightTable2Config({
     cellStyle: { 'height': '38px' }
   }
 });
+
+export function sanitizeText(val: unknown): string {
+  if (val == null) return '-';
+  let str = String(val).trim();
+  if (!str) return '-';
+  try {
+    str = decodeURIComponent(escape(str));
+  } catch {
+    str = str.replace(/Ã‘/g, 'Ñ').replace(/Ã‘E/g, 'ÑE');
+  }
+  return str;
+}
+
+export function parseRiskLevel(value: unknown): RiskLevel {
+  const cleanValue = sanitizeText(value) as RiskLevel;
+  return VALID_RISK_LEVELS.indexOf(cleanValue) !== -1 ? cleanValue : 'Bajo';
+}
+
+export function parseRiskRow(row: any): RiskDistrict {
+  const cod_ubi = sanitizeText(row.cod_ubi || row[0]);
+  const des_dep = sanitizeText(row.des_dep || row[1]);
+  const des_prov = sanitizeText(row.des_prov || row[2]);
+  const des_dist = sanitizeText(row.des_dist || row[3]);
+  const exp_mas = parseRiskLevel(row.exp_mas || row[4]);
+  const exp_inu = parseRiskLevel(row.exp_inu || row[5]);
+  const exp_seq = parseRiskLevel(row.exp_seq || row[6]);
+  const exp_pre = parseRiskLevel(row.exp_pre || row[7]);
+
+  return {
+    cod_ubi,
+    des_dep,
+    des_prov,
+    des_dist,
+    exp_mas,
+    exp_inu,
+    exp_seq,
+    exp_pre,
+    // Propiedades adicionales para compatibilidad con la vista
+    ubigeo: cod_ubi,
+    department: des_dep,
+    province: des_prov,
+    district: des_dist,
+    massRisk: exp_mas,
+    floodRisk: exp_inu,
+    droughtRisk: exp_seq,
+    mainRisk: exp_pre
+  };
+}

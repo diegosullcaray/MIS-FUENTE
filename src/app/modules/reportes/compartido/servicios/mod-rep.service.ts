@@ -19,9 +19,9 @@ export class ModRepService extends AntService {
 
     constructor(private winderService: WinderService, private user: UserService, private antAdmin: ModSysAdminService) {
         super({
-            port: 6302,
-            secret: "CCAFE0F473E9B66F2EA57D46C5C3047E",
-            appId: "app"
+            port: 5304,
+            secret: "B0ECE459601D3577F7408D5C8DEA314A",
+            appId: "reporting"
         }, winderService);
         let profile = this.user.get('profile');
         this.cod_bt = profile.cod_bt;

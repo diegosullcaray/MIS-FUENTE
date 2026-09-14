@@ -1,25 +1,32 @@
-import { Component } from '@angular/core';
-import { EMPTY } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { EMPTY, Subscription } from 'rxjs';
 import { catchError, finalize, map, take } from 'rxjs/operators';
-import { ModRiegosFenService } from './compartido/servicios/mod-riegos-fen.service';
-import { RiskDistrict, RiskLevel, riskTableHeaders, riskTableOptions } from './riegos-fen.util';
+import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
+import {
+  parseRiskRow,
+  RiskDistrict,
+  RiskLevel,
+  riskTableHeaders,
+  riskTableOptions
+} from './riegos-fen.util';
 
 @Component({
   selector: 'app-riegos-fen',
   templateUrl: './riegos-fen.component.html',
   styleUrls: ['./riegos-fen.component.scss']
 })
-export class RiegosFenComponent {
+export class RiegosFenComponent implements OnInit, OnDestroy {
   readonly tableHeaders = riskTableHeaders;
-  readonly tableOptions = riskTableOptions;
+  tableOptions = { ...riskTableOptions };
+
   readonly searchOptions: Array<{ col: 0 | 1 | 2 | 3; label: string }> = [
     { col: 0, label: 'UBIGEO' },
     { col: 1, label: 'departamento' },
     { col: 2, label: 'provincia' },
     { col: 3, label: 'distrito' }
   ];
-  rows: RiskDistrict[] = [];
 
+  rows: RiskDistrict[] = [];
   searchColumn: 0 | 1 | 2 | 3 = 0;
   searchValue = '';
   searchMessage = 'Ingresa los 6 dígitos del código UBIGEO.';
@@ -30,37 +37,18 @@ export class RiegosFenComponent {
   provinceFilter = '';
   districtFilter = '';
   riskFilter = '';
-  filteredRows: RiskDistrict[] = [...this.rows];
+  filteredRows: RiskDistrict[] = [];
 
-  constructor(private riesgosFenService: ModRiegosFenService) { }
+  private reportSubscription!: Subscription;
 
-  get departments(): string[] {
-    return this.unique(this.rows.map(row => row.department));
-  }
+  constructor(private antRep: ModRepService) { }
 
-  get riskLevels(): RiskLevel[] {
-    return this.unique(this.rows.map(row => row.mainRisk)) as RiskLevel[];
-  }
+  ngOnInit(): void { }
 
-  get provinces(): string[] {
-    return this.unique(this.rows
-      .filter(row => !this.departmentFilter || row.department === this.departmentFilter)
-      .map(row => row.province));
-  }
-
-  get districts(): string[] {
-    return this.unique(this.rows
-      .filter(row => !this.departmentFilter || row.department === this.departmentFilter)
-      .filter(row => !this.provinceFilter || row.province === this.provinceFilter)
-      .map(row => row.district));
-  }
-
-  setSearchColumn(column: 0 | 1 | 2 | 3): void {
-    this.searchColumn = column;
-    this.searchValue = '';
-    this.searchMessage = column === 0
-      ? 'Ingresa los 6 dígitos del código UBIGEO.'
-      : `Escribe el nombre de ${this.searchColumnLabel.toLocaleLowerCase('es')}.`;
+  ngOnDestroy(): void {
+    if (this.reportSubscription) {
+      this.reportSubscription.unsubscribe();
+    }
   }
 
   get searchColumnLabel(): string {
@@ -71,6 +59,39 @@ export class RiegosFenComponent {
     return ['Ingrese el código', 'Ingrese el departamento', 'Ingrese la provincia', 'Ingrese el distrito'][this.searchColumn];
   }
 
+  get departments(): string[] {
+    return this.unique(this.rows.map(row => row.des_dep || row.department || ''));
+  }
+
+  get riskLevels(): RiskLevel[] {
+    return this.unique(this.rows.map(row => row.exp_pre || row.mainRisk || '')) as RiskLevel[];
+  }
+
+  get provinces(): string[] {
+    return this.unique(
+      this.rows
+        .filter(row => !this.departmentFilter || (row.des_dep || row.department) === this.departmentFilter)
+        .map(row => row.des_prov || row.province || '')
+    );
+  }
+
+  get districts(): string[] {
+    return this.unique(
+      this.rows
+        .filter(row => !this.departmentFilter || (row.des_dep || row.department) === this.departmentFilter)
+        .filter(row => !this.provinceFilter || (row.des_prov || row.province) === this.provinceFilter)
+        .map(row => row.des_dist || row.district || '')
+    );
+  }
+
+  setSearchColumn(column: 0 | 1 | 2 | 3): void {
+    this.searchColumn = column;
+    this.searchValue = '';
+    this.searchMessage = column === 0
+      ? 'Ingresa los 6 dígitos del código UBIGEO.'
+      : `Escribe el nombre de ${this.searchColumnLabel.toLocaleLowerCase('es')}.`;
+  }
+
   consult(): void {
     const term = this.searchValue.trim();
     if (!term) {
@@ -78,15 +99,28 @@ export class RiegosFenComponent {
       return;
     }
 
+    if (this.reportSubscription) {
+      this.reportSubscription.unsubscribe();
+    }
+
     this.loading = true;
     this.errorMessage = '';
     this.searchMessage = 'Consultando la matriz CENEPRED…';
-    this.riesgosFenService.getResultados(this.searchColumn, term).pipe(
+
+    this.reportSubscription = this.antRep.getRegularTableResult('CON_AGRO_FEN', {
+      col: this.searchColumn,
+      val: term
+    }).pipe(
       take(1),
-      map(response => this.readRows(response && response.body && response.body.resultado)),
-      catchError(() => {
+      map(response => {
+        const result = response && response.body && response.body.resultado;
+        const rawData = result && Array.isArray(result.data) ? result.data : result;
+        return this.readRows(rawData);
+      }),
+      catchError(error => {
+        console.error('Error al consultar matriz CENEPRED:', error);
         this.rows = [];
-        this.filteredRows = [];
+        this.updateTableData([]);
         this.selected = null;
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
         return EMPTY;
@@ -94,8 +128,11 @@ export class RiegosFenComponent {
       finalize(() => this.loading = false)
     ).subscribe(rows => {
       this.rows = rows;
-      this.filteredRows = rows.map(row => ({ ...row }));
-      this.selected = rows[0] || null;
+      this.updateTableData(rows);
+      
+      // FIX 1: Se mantiene en null para NO seleccionar automáticamente la primera fila
+      this.selected = null; 
+
       this.searchMessage = rows.length
         ? 'Consulta completada con la matriz CENEPRED.'
         : 'No se encontraron distritos para la búsqueda.';
@@ -103,12 +140,19 @@ export class RiegosFenComponent {
   }
 
   applyFilters(): void {
-    this.filteredRows = this.rows.filter(row =>
-      (!this.departmentFilter || row.department === this.departmentFilter) &&
-      (!this.provinceFilter || row.province === this.provinceFilter) &&
-      (!this.districtFilter || row.district === this.districtFilter) &&
-      (!this.riskFilter || row.mainRisk === this.riskFilter))
-      .map(row => ({ ...row }));
+    const filtered = this.rows.filter(row => {
+      const dep = row.des_dep || row.department;
+      const prov = row.des_prov || row.province;
+      const dist = row.des_dist || row.district;
+      const risk = row.exp_pre || row.mainRisk;
+
+      return (!this.departmentFilter || dep === this.departmentFilter) &&
+        (!this.provinceFilter || prov === this.provinceFilter) &&
+        (!this.districtFilter || dist === this.districtFilter) &&
+        (!this.riskFilter || risk === this.riskFilter);
+    });
+
+    this.updateTableData(filtered);
     this.selected = null;
   }
 
@@ -132,71 +176,27 @@ export class RiegosFenComponent {
       'Medio': 'medium',
       'Bajo': 'low',
       'Muy Bajo': 'very-low'
-    }[level];
+    }[level] || 'low';
+  }
+
+  // FIX 2: Recreación completa de las opciones e inyección directa de datos cargados
+  private updateTableData(data: RiskDistrict[]): void {
+    this.filteredRows = data.map(row => ({ ...row }));
+    
+    this.tableOptions = Object.assign({}, riskTableOptions, {
+      data: [...this.filteredRows],
+      dataSource: [...this.filteredRows]
+    });
   }
 
   private unique(values: string[]): string[] {
-    return Array.from(new Set(values));
+    return Array.from(new Set(values.filter(v => !!v && v !== '-')));
   }
 
-  private readRows(result: unknown): RiskDistrict[] {
-    const data = Array.isArray(result)
-      ? result
-      : result && Array.isArray((result as { data?: unknown[] }).data)
-        ? (result as { data: unknown[] }).data
-        : null;
-
-    if (!data) {
-      throw new Error('Respuesta inválida de REXPAGRO01');
+  private readRows(data: unknown): RiskDistrict[] {
+    if (!Array.isArray(data)) {
+      return [];
     }
-
-    return data.map(item => this.readRow(item));
-  }
-
-  private readRow(item: unknown): RiskDistrict {
-    if (Array.isArray(item) && item.length >= 8) {
-      return this.toRiskDistrict(item);
-    }
-
-    if (item && typeof item === 'object') {
-      const row = item as { [key: string]: unknown };
-      return this.toRiskDistrict([
-        row.cod_ubi,
-        row.des_dep,
-        row.des_prov,
-        row.des_dist,
-        row.exp_mas,
-        row.exp_inu,
-        row.exp_seq,
-        row.exp_pre
-      ]);
-    }
-
-    throw new Error('Fila inválida de REXPAGRO01');
-  }
-
-  private toRiskDistrict(item: unknown[]): RiskDistrict {
-    if (item.some(value => value == null || String(value).trim() === '')) {
-      throw new Error('Fila incompleta de REXPAGRO01');
-    }
-
-    return {
-      ubigeo: String(item[0]),
-      department: String(item[1]),
-      province: String(item[2]),
-      district: String(item[3]),
-      massRisk: this.readRisk(item[4]),
-      floodRisk: this.readRisk(item[5]),
-      droughtRisk: this.readRisk(item[6]),
-      mainRisk: this.readRisk(item[7])
-    };
-  }
-
-  private readRisk(value: unknown): RiskLevel {
-    const risk = String(value == null ? '' : value) as RiskLevel;
-    if (['Muy Alto', 'Alto', 'Medio', 'Bajo', 'Muy Bajo'].indexOf(risk) === -1) {
-      throw new Error('Nivel de riesgo inválido de REXPAGRO01');
-    }
-    return risk;
+    return data.map(item => parseRiskRow(item));
   }
 }
