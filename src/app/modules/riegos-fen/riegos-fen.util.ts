@@ -17,11 +17,11 @@ export interface RiskDistrict {
 export const VALID_RISK_LEVELS: RiskLevel[] = ['Muy Alto', 'Alto', 'Medio', 'Bajo', 'Muy Bajo'];
 
 const riskColors: { [key in RiskLevel]?: { background: string; color: string } } = {
-  'Muy Alto': { background: '#ef4444', color: '#ffffff' },
-  'Alto': { background: '#f97316', color: '#ffffff' },
-  'Medio': { background: '#eab308', color: '#1e293b' },
-  'Bajo': { background: '#84cc16', color: '#1e293b' },
-  'Muy Bajo': { background: '#22c55e', color: '#ffffff' }
+  'Muy Alto': { background: '#f8eceb', color: '#913b36' },
+  'Alto': { background: '#faf1e8', color: '#925126' },
+  'Medio': { background: '#faf6e7', color: '#75611f' },
+  'Bajo': { background: '#f0f5ed', color: '#48683f' },
+  'Muy Bajo': { background: '#eaf4ef', color: '#32684f' }
 };
 
 function textColumn(label: string, key: keyof RiskDistrict, width: string): any {
@@ -38,11 +38,11 @@ function riskColumn(label: string, key: keyof RiskDistrict): any {
     key,
     cellStyle: { 'min-width': '118px', 'padding': '9px 12px', 'text-align': 'center' },
     cellStyleFn: (params: { value: RiskLevel }) => {
-      const colors = (params && riskColors[params.value]) || { background: '#64748b', color: '#ffffff' };
+      const colors = (params && riskColors[params.value]) || { background: '#f1f3f5', color: '#526272' };
       return {
         'background': colors.background,
         'color': colors.color,
-        'font-weight': '800'
+        'font-weight': '700'
       };
     }
   };
@@ -67,8 +67,8 @@ export const riskTableOptions = createStgLightTable2Config({
   },
   header: {
     style: {
-      'background': '#004b8d',
-      'color': '#ffffff',
+      'background': '#eef2f5',
+      'color': '#344b5d',
       'font-size': '10px',
       'letter-spacing': '.04em',
       'text-transform': 'uppercase',

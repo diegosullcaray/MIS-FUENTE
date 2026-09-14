@@ -86,7 +86,6 @@ export class RiegosFenComponent implements OnDestroy {
         this.selected = null;
         this.state = 'error';
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
-        this.state = 'error';
         return EMPTY;
       }),
       finalize(() => {
