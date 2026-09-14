@@ -17,25 +17,26 @@
       </div>
 
       <div class="tabs" role="tablist" aria-label="Tipo de búsqueda">
-        <button type="button" class="tab" *ngFor="let option of searchOptions"
-          [class.active]="searchColumn === option.col" role="tab" [attr.aria-selected]="searchColumn === option.col"
-          (click)="setSearchColumn(option.col)">Por {{ option.label }}</button>
+        <button type="button" class="tab" [class.active]="searchMode === 'ubigeo'" role="tab"
+          [attr.aria-selected]="searchMode === 'ubigeo'" (click)="setSearchMode('ubigeo')">Por UBIGEO</button>
+        <button type="button" class="tab" [class.active]="searchMode === 'district'" role="tab"
+          [attr.aria-selected]="searchMode === 'district'" (click)="setSearchMode('district')">Por distrito</button>
       </div>
 
-      <label class="field-label" for="quickSearch">{{ searchColumnLabel }}</label>
+      <label class="field-label" for="quickSearch">{{ searchMode === 'ubigeo' ? 'Código UBIGEO' : 'Distrito' }}</label>
       <div class="search-row">
         <div class="input-wrap">
           <span aria-hidden="true">⌕</span>
           <input id="quickSearch" [(ngModel)]="searchValue" (keyup.enter)="consult()"
-            [attr.inputmode]="searchColumn === 0 ? 'numeric' : 'text'"
-            [placeholder]="searchPlaceholder" autocomplete="off">
+            [attr.inputmode]="searchMode === 'ubigeo' ? 'numeric' : 'text'"
+            [placeholder]="searchMode === 'ubigeo' ? 'Ej. 150101' : 'Ej. Tarapoto'" autocomplete="off">
         </div>
-        <button type="button" class="primary" [disabled]="loading" (click)="consult()">{{ loading ? 'Consultando…' : 'Consultar' }}</button>
+        <button type="button" class="primary" (click)="consult()">Consultar</button>
       </div>
       <p class="hint" aria-live="polite">{{ searchMessage }}</p>
     </div>
 
-    <div class="result-panel" aria-live="polite" *ngIf="selected; else initialResult">
+    <div class="result-panel" aria-live="polite">
       <div class="result-head">
         <div class="location"><span class="pin" aria-hidden="true">⌖</span><div>
           <strong>{{ selected.district }}</strong><small>{{ selected.department }} · {{ selected.province }}</small>
@@ -52,11 +53,6 @@
         <span aria-hidden="true">⚠</span><strong>Zona de Alto Riesgo CENEPRED: Ofrecer Seguro Agrícola / Multirriesgo.</strong>
       </div>
     </div>
-    <ng-template #initialResult>
-      <div class="result-panel result-placeholder" aria-live="polite">
-        <strong>{{ errorMessage || 'Realiza una consulta para ver el nivel de riesgo territorial.' }}</strong>
-      </div>
-    </ng-template>
   </section>
 
   <section class="card results">
