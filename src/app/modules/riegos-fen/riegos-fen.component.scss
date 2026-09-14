@@ -48,7 +48,7 @@ h2 { margin: 0 0 3px; font-size: 16px; }
 .card-title { display: flex; gap: 11px; align-items: center; margin-bottom: 18px; }
 .card-title small, .location small { color: var(--muted); }
 .title-icon { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 8px; color: var(--brand); background: #e8f4fa; font-size: 25px; font-weight: 700; }
-.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
 .tab { padding: 8px 13px 10px; border: 0; border-bottom: 2px solid transparent; color: var(--muted); background: none; }
 .tab.active { color: var(--brand); border-bottom-color: var(--brand); font-weight: 700; }
 .field-label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 700; }
@@ -60,11 +60,9 @@ input, select { width: 100%; height: 40px; padding: 0 11px; border: 1px solid #c
 input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(1, 145, 206, .12); }
 .primary { height: 40px; padding: 0 18px; border: 0; border-radius: 6px; color: #fff; background: var(--brand); box-shadow: 0 3px 8px rgba(29, 57, 110, .18); font-weight: 700; }
 .primary:hover, .primary:focus-visible { background: var(--brand-dark); }
-.primary:disabled { cursor: wait; opacity: .65; }
 .hint { min-height: 15px; margin: 9px 0 0; color: #7a8596; font-size: 11px; }
 
 .result-panel { padding: 24px 26px; background: #fbfcfd; }
-.result-placeholder { display: grid; min-height: 190px; place-items: center; color: var(--muted); text-align: center; }
 .result-head { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; margin-bottom: 17px; }
 .location { display: flex; gap: 11px; }
 .location .pin { color: var(--brand); font-size: 27px; line-height: 1; }
@@ -89,13 +87,19 @@ input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px r
 .export-actions { display: flex; gap: 8px; }
 .secondary { height: 36px; padding: 0 13px; border: 1px solid #cdd4de; border-radius: 6px; color: #465267; background: #fff; font-size: 12px; font-weight: 700; }
 .secondary:hover, .secondary:focus-visible { border-color: var(--brand); color: var(--brand); }
-.secondary:disabled { cursor: not-allowed; opacity: .5; }
 .filters { display: grid; grid-template-columns: repeat(4, minmax(130px, 1fr)) auto; gap: 11px; padding: 15px 22px; border-block: 1px solid var(--line); background: #f8f9fb; }
 .filters label span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; font-weight: 700; text-transform: uppercase; }
 .filters select { height: 36px; font-size: 12px; }
 .filter-button { align-self: end; height: 36px; }
-.table-wrap { min-height: 240px; overflow: hidden; }
-.table-status { padding: 38px 22px; color: var(--muted); text-align: center; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 960px; border-collapse: collapse; }
+th { padding: 12px 13px; border-bottom: 1px solid var(--line); color: #687386; background: #fff; text-align: left; font-size: 10px; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+td { padding: 13px; border-bottom: 1px solid #edf0f4; font-size: 12px; white-space: nowrap; }
+tbody tr:hover { background: #f3f9fc; }
+.code { color: #657084; font-weight: 700; }
+.badge { display: inline-flex; min-width: 67px; justify-content: center; padding: 5px 8px; border-radius: 12px; color: #fff; background: var(--risk-color); font-size: 10px; font-weight: 700; }
+.badge.medium { color: #594700; }
+.badge.low { color: #204c18; }
 .empty-state { padding: 38px 22px; color: var(--muted); text-align: center; }
 .pagination { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; color: var(--muted); font-size: 11px; }
 
@@ -121,5 +125,5 @@ input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px r
   .calculator, .filters, .export-actions, .pagination, .breadcrumb { display: none !important; }
   .risk-page { min-height: 0; padding: 0; }
   .card { border: 0; box-shadow: none; }
-  .table-wrap { overflow: visible; }
+  table { min-width: 0; }
 }

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { of } from 'rxjs';
 
 import { RiegosFenComponent } from './riegos-fen.component';
 import { ModRiegosFenService } from './compartido/servicios/mod-riegos-fen.service';
@@ -14,8 +13,7 @@ describe('RiegosFenComponent', () => {
     service = jasmine.createSpyObj('ModRiegosFenService', ['getResultados']);
     await TestBed.configureTestingModule({
       declarations: [ RiegosFenComponent ],
-      imports: [ FormsModule ],
-      providers: [{ provide: ModRiegosFenService, useValue: service }]
+      imports: [ FormsModule ]
     })
     .compileComponents();
 
@@ -28,36 +26,19 @@ describe('RiegosFenComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load rows without selecting KPI data automatically', () => {
-    service.getResultados.and.returnValue(of({ body: { resultado: [[
-      '220901', 'San Martín', 'San Martín', 'Tarapoto', 'Bajo', 'Muy Bajo', 'Bajo', 'Bajo'
-    ]] } } as any));
+  it('should consult a district by ubigeo', () => {
     component.searchValue = '220901';
     component.consult();
 
-    expect(component.filteredRows[0].district).toBe('Tarapoto');
-    expect(component.selected).toBeNull();
-    expect(service.getResultados).toHaveBeenCalledWith(0, '220901');
-  });
-
-  it('should show KPI data only after selecting a table row', () => {
-    const row = { ubigeo: '220901', district: 'Tarapoto' } as any;
-
-    component.selectRow(row);
-
-    expect(component.selected).toBe(row);
+    expect(component.selected.district).toBe('Tarapoto');
   });
 
   it('should apply all selected filters', () => {
-    component.rows = [
-      { ubigeo: '150108', department: 'Lima', province: 'Lima', district: 'Chaclacayo', massRisk: 'Alto', floodRisk: 'Alto', droughtRisk: 'Bajo', mainRisk: 'Alto' } as any
-    ];
     component.departmentFilter = 'Lima';
     component.districtFilter = 'Chaclacayo';
     component.riskFilter = 'Alto';
     component.applyFilters();
 
     expect(component.filteredRows.map(row => row.ubigeo)).toEqual(['150108']);
-    expect(component.selected).toBeNull();
   });
 });
