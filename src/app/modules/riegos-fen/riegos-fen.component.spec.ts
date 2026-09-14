@@ -80,4 +80,28 @@ describe('RiegosFenComponent', () => {
     expect(component.selected && component.selected.cod_ubi).toBe('090103');
     expect(component.selected && component.selected.exp_pre).toBe('Alto');
   });
+
+  it('uses the system traffic palette with readable contrast in risk columns', () => {
+    const massRiskColumn = componentHeader('exp_mas');
+
+    expect(massRiskColumn.cellStyleFn({ value: 'Muy Alto' })).toEqual({
+      background: '#ef4444', color: '#ffffff', 'font-weight': '800'
+    });
+    expect(massRiskColumn.cellStyleFn({ value: 'Medio' })).toEqual({
+      background: '#eab308', color: '#1e293b', 'font-weight': '800'
+    });
+    expect(massRiskColumn.cellStyleFn({ value: 'Muy Bajo' })).toEqual({
+      background: '#22c55e', color: '#ffffff', 'font-weight': '800'
+    });
+  });
+
+  function componentHeader(key: string): any {
+    const { component, service } = createComponent();
+    service.getRegularTableResult.and.returnValue(of({
+      body: { resultado: { data: [backendRow] } }
+    }));
+    component.searchValue = '090103';
+    component.consult();
+    return component.tableHeaders.find(header => header.key === key);
+  }
 });

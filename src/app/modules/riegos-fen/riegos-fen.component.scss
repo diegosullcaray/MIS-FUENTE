@@ -6,11 +6,11 @@
   --muted: #677489;
   --line: #e3e8ef;
   --canvas: #f4f6f9;
-  --very-high: #d9342b;
-  --high: #ed7b22;
-  --medium: #eabf27;
-  --low: #8fcf72;
-  --very-low: #299f5a;
+  --very-high: #ef4444;
+  --high: #f97316;
+  --medium: #eab308;
+  --low: #84cc16;
+  --very-low: #22c55e;
   display: block;
   min-width: 0;
   color: var(--ink);
@@ -27,24 +27,21 @@ button, input, select {
   font: inherit;
 }
 
-/* === CONTENEDOR PRINCIPAL FIJO === */
 .risk-page {
   width: 100%;
   min-width: 0;
-  /* Fija la altura al tamaño de la pantalla menos el header del sistema */
-  height: calc(100vh - 64px); 
-  padding: 16px clamp(12px, 2vw, 20px) 16px; /* Paddings reducidos */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Oculta el scroll de la página completa */
+  min-height: calc(100vh - 64px);
+  padding: 24px clamp(12px, 2vw, 28px) 40px;
 }
 
 .page-heading {
-  margin-bottom: 12px; /* Reducido */
-  flex-shrink: 0;
+  margin-bottom: 18px;
 }
 
-h1, h2, .page-heading p, .results-head p {
+h1,
+h2,
+.page-heading p,
+.results-head p {
   margin: 0;
 }
 
@@ -55,66 +52,40 @@ h1 {
 }
 
 h2 {
-  font-size: 15px;
+  font-size: 16px;
 }
 
-.page-heading p, .results-head p, .location small {
+.page-heading p,
+.results-head p,
+.location small {
   color: var(--muted);
 }
 
 .page-heading p {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .card {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(31, 41, 56, .05);
-}
-
-/* === LAYOUT DE DOS COLUMNAS PROPORCIONALES === */
-.top-panels {
-  display: flex;
-  flex-wrap: nowrap; /* Evita que se bajen de línea */
-  align-items: stretch; /* Obliga a ambas tarjetas a tener la misma altura */
-  gap: 12px;
-  margin-bottom: 12px;
-  flex-shrink: 0; /* Evita que se aplasten si la tabla crece */
+  border-radius: 10px;
+  box-shadow: 0 3px 13px rgba(31, 41, 56, .055);
 }
 
 .calculator {
-  flex: 0 0 300px; /* Ancho fijo para el filtro */
-  padding: 14px 16px;
-}
-
-.result-panel {
-  flex: 1; /* Toma todo el resto del espacio horizontal disponible */
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.empty-selection {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: var(--muted);
-  text-align: center;
-  font-size: 13px;
+  margin-bottom: 16px;
+  padding: 18px 20px 12px;
 }
 
 .search-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; /* Reducido */
+  display: grid;
+  grid-template-columns: minmax(180px, .35fr) minmax(260px, 1fr) auto;
+  gap: 10px;
 }
 
-.search-type, .input-wrap {
+.search-type,
+.input-wrap {
   min-width: 0;
-  width: 100%;
 }
 
 input, select {
@@ -128,19 +99,20 @@ input, select {
   background: #fff;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(1, 145, 206, .12);
 }
 
 .primary {
-  width: 100%;
-  height: 36px; /* Altura reducida */
-  padding: 0 16px;
+  height: 40px;
+  padding: 0 22px;
   border: 0;
   border-radius: 6px;
   color: #fff;
   background: var(--brand);
+  box-shadow: 0 3px 8px rgba(29, 57, 110, .18);
   cursor: pointer;
   font-weight: 700;
   margin-top: 4px;
@@ -156,14 +128,27 @@ input:focus, select:focus {
 }
 
 .search-message {
-  min-height: 14px;
-  margin: 4px 0 0;
+  min-height: 16px;
+  margin: 7px 0 0;
   color: #9d221c;
   font-size: 11px;
 }
 
 .sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.result-panel {
+  margin-bottom: 16px;
+  padding: 20px 22px;
 }
 
 .result-head {
@@ -204,36 +189,38 @@ input:focus, select:focus {
 
 .risk-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 kpis en una sola línea siempre */
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .risk {
   min-width: 0;
-  padding: 8px 10px; /* Paddings reducidos en los kpis */
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--risk-color);
-  border-radius: 6px;
-  background: #fff;
+  padding: 14px 12px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--risk-text);
+  background: var(--risk-color);
+  box-shadow: 0 3px 8px rgba(30, 41, 59, .16);
 }
 
 .risk small {
   display: block;
-  color: var(--muted);
-  font-size: 10px; /* Reducido */
-  margin-bottom: 2px;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .9;
 }
 
 .risk strong {
-  color: var(--risk-color);
-  font-size: 13px;
+  color: inherit;
+  font-size: 16px;
 }
 
-.very-high { --risk-color: var(--very-high); }
-.high { --risk-color: var(--high); }
-.medium { --risk-color: var(--medium); }
-.low { --risk-color: var(--low); }
-.very-low { --risk-color: var(--very-low); }
+.very-high { --risk-color: var(--very-high); --risk-text: #fff; }
+.high { --risk-color: var(--high); --risk-text: #fff; }
+.medium { --risk-color: var(--medium); --risk-text: #1e293b; }
+.low { --risk-color: var(--low); --risk-text: #1e293b; }
+.very-low { --risk-color: var(--very-low); --risk-text: #fff; }
 
 .alert {
   display: flex;
@@ -245,31 +232,32 @@ input:focus, select:focus {
   border-radius: 6px;
   color: #9d221c;
   background: #fff1ef;
-  font-size: 11px; /* Reducido */
+  font-size: 12px;
 }
 
-/* === CONTENEDOR DE LA TABLA ESTIRABLE === */
 .results {
   display: flex;
   flex-direction: column;
-  flex: 1; /* Toma todo el espacio sobrante de la pantalla verticalmente */
   min-height: 0;
   overflow: hidden;
 }
 
 .results-head {
-  padding: 12px 16px 10px; /* Reducido */
+  padding: 18px 20px 14px;
   border-bottom: 1px solid var(--line);
-  flex-shrink: 0;
+  color: #ffffff;
+  background: #004b8d;
 }
 
 .results-head p {
-  margin-top: 2px;
-  font-size: 11px;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 12px;
 }
 
-.table-status, .empty-state {
-  padding: 24px 22px;
+.table-status,
+.empty-state {
+  padding: 38px 22px;
   color: var(--muted);
   text-align: center;
 }
@@ -282,40 +270,58 @@ input:focus, select:focus {
 .table-container {
   width: 100%;
   display: flex;
-  flex: 1; /* Expande al máximo dentro de su tarjeta */
+  flex: 1 1 auto;
   flex-direction: column;
   min-width: 0;
-  min-height: 0; /* Permite que el div se encoja y habilite el scroll interno */
+  min-height: 320px;
+  height: min(55vh, 560px);
   overflow: hidden;
 }
 
 .table-container stg-table2 {
   display: block;
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
-  height: 100%; /* Pasa la altura directamente al scrollbar de la tabla */
+  height: 100%;
 }
 
 .table-summary {
-  padding: 8px 16px;
+  padding: 13px 20px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 11px;
-  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .risk-page {
+    padding: 18px 10px 30px;
+  }
+
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
   .top-panels {
     flex-wrap: wrap;
   }
-  .calculator, .result-panel {
-    flex: 1 1 100%;
+
+  .calculator,
+  .table-summary {
+    display: none !important;
   }
   .risk-page {
-    height: auto;
-    overflow: visible;
+    min-height: 0;
+    padding: 0;
   }
-  .table-container {
-    min-height: 400px;
+
+  .card {
+    border: 0;
+    box-shadow: none;
   }
 }
