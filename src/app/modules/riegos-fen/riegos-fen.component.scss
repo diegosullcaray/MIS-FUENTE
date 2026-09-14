@@ -260,27 +260,10 @@ select:focus {
   text-align: center;
 }
 
-.empty-state.error {
-  color: #a32020;
-  border-left: 4px solid #d9534f;
-}
-
-.table-container {
-  width: 100%;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 320px;
-  height: min(55vh, 560px);
-  overflow: hidden;
-}
-
-.table-container stg-table2 {
+.table-wrap,
+.table-wrap stg-table2 {
   display: block;
-  flex: 1 1 auto;
-  min-height: 0;
-  height: 100%;
+  width: 100%;
 }
 
 .table-summary {

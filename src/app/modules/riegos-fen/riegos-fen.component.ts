@@ -4,8 +4,6 @@ import { catchError, finalize, map, take } from 'rxjs/operators';
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 import { parseRiskRow, RiskDistrict, RiskLevel, riskTableHeaders, riskTableOptions } from './riegos-fen.util';
 
-type ViewState = 'idle' | 'loading' | 'empty' | 'data' | 'error';
-
 @Component({
   selector: 'app-riegos-fen',
   templateUrl: './riegos-fen.component.html',
@@ -47,10 +45,6 @@ export class RiegosFenComponent implements OnDestroy {
     return ['Ingrese el código', 'Ingrese el departamento', 'Ingrese la provincia', 'Ingrese el distrito'][this.searchColumn];
   }
 
-  get loading(): boolean {
-    return this.state === 'loading';
-  }
-
   setSearchColumn(column: 0 | 1 | 2 | 3): void {
     this.searchColumn = column;
     this.searchValue = '';
@@ -68,7 +62,7 @@ export class RiegosFenComponent implements OnDestroy {
       this.reportSubscription.unsubscribe();
     }
 
-    this.state = 'loading';
+    this.loading = true;
     this.rows = [];
     this.selected = null;
     this.errorMessage = '';
@@ -81,9 +75,6 @@ export class RiegosFenComponent implements OnDestroy {
       take(1),
       map(response => this.readRows(response && response.body && response.body.resultado)),
       catchError(() => {
-        this.rows = [];
-        this.selected = null;
-        this.state = 'error';
         this.errorMessage = 'No se pudo consultar la matriz. Intenta nuevamente.';
         return EMPTY;
       }),
@@ -94,7 +85,6 @@ export class RiegosFenComponent implements OnDestroy {
       })
     ).subscribe(rows => {
       this.rows = rows;
-      this.state = rows.length ? 'data' : 'empty';
       this.searchMessage = rows.length ? '' : 'No se encontraron distritos para la búsqueda.';
     });
   }
@@ -114,10 +104,9 @@ export class RiegosFenComponent implements OnDestroy {
   }
 
   private readRows(result: unknown): RiskDistrict[] {
-    if (!result || !Array.isArray((result as { data?: unknown[] }).data)) {
-      throw new Error('Respuesta inválida de CON_AGRO_FEN');
-    }
-    const data = (result as { data: unknown[] }).data;
+    const data = result && Array.isArray((result as { data?: unknown[] }).data)
+      ? (result as { data: unknown[] }).data
+      : Array.isArray(result) ? result : [];
 
     return data.map(row => parseRiskRow(row));
   }
