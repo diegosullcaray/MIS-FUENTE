@@ -81,17 +81,17 @@ describe('RiegosFenComponent', () => {
     expect(component.selected && component.selected.exp_pre).toBe('Alto');
   });
 
-  it('uses the system traffic palette with readable contrast in risk columns', () => {
+  it('uses a subdued status palette with readable contrast in risk columns', () => {
     const massRiskColumn = componentHeader('exp_mas');
 
     expect(massRiskColumn.cellStyleFn({ value: 'Muy Alto' })).toEqual({
-      background: '#ef4444', color: '#ffffff', 'font-weight': '800'
+      background: '#f8eceb', color: '#913b36', 'font-weight': '700'
     });
     expect(massRiskColumn.cellStyleFn({ value: 'Medio' })).toEqual({
-      background: '#eab308', color: '#1e293b', 'font-weight': '800'
+      background: '#faf6e7', color: '#75611f', 'font-weight': '700'
     });
     expect(massRiskColumn.cellStyleFn({ value: 'Muy Bajo' })).toEqual({
-      background: '#22c55e', color: '#ffffff', 'font-weight': '800'
+      background: '#eaf4ef', color: '#32684f', 'font-weight': '700'
     });
   });
 
