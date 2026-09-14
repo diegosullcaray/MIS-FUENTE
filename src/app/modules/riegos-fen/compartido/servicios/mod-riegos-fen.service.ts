@@ -12,8 +12,8 @@ export class ModRiegosFenService extends AntService {
   constructor(private winderService: WinderService) {
     super({
       port: 5304,
-      secret: 'B0ECE459601D3577F7408D5C8DEA314A',
-      appId: 'riesgos'
+      secret: "B0ECE459601D3577F7408D5C8DEA314A",
+      appId: "reporting"
     }, winderService);
   }
 
@@ -23,6 +23,7 @@ export class ModRiegosFenService extends AntService {
       '@val': val
     }, 'resultado');
   }
+
 
   /**
    * Obtiene el detalle de un riesgo fenológico específico

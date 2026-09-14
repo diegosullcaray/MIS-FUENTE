@@ -6,7 +6,6 @@
       <h1>Calculadora de riesgo CENEPRED</h1>
       <p>Consulta el nivel de exposición territorial antes de completar la evaluación.</p>
     </div>
-    <div class="source"><i aria-hidden="true"></i> Matriz actualizada: {{ updatedAt }}</div>
   </header>
 
   <section class="card calculator" aria-label="Consulta rápida de riesgo">
@@ -17,26 +16,25 @@
       </div>
 
       <div class="tabs" role="tablist" aria-label="Tipo de búsqueda">
-        <button type="button" class="tab" [class.active]="searchMode === 'ubigeo'" role="tab"
-          [attr.aria-selected]="searchMode === 'ubigeo'" (click)="setSearchMode('ubigeo')">Por UBIGEO</button>
-        <button type="button" class="tab" [class.active]="searchMode === 'district'" role="tab"
-          [attr.aria-selected]="searchMode === 'district'" (click)="setSearchMode('district')">Por distrito</button>
+        <button type="button" class="tab" *ngFor="let option of searchOptions"
+          [class.active]="searchColumn === option.col" role="tab" [attr.aria-selected]="searchColumn === option.col"
+          (click)="setSearchColumn(option.col)">Por {{ option.label }}</button>
       </div>
 
-      <label class="field-label" for="quickSearch">{{ searchMode === 'ubigeo' ? 'Código UBIGEO' : 'Distrito' }}</label>
+      <label class="field-label" for="quickSearch">{{ searchColumnLabel }}</label>
       <div class="search-row">
         <div class="input-wrap">
           <span aria-hidden="true">⌕</span>
           <input id="quickSearch" [(ngModel)]="searchValue" (keyup.enter)="consult()"
-            [attr.inputmode]="searchMode === 'ubigeo' ? 'numeric' : 'text'"
-            [placeholder]="searchMode === 'ubigeo' ? 'Ej. 150101' : 'Ej. Tarapoto'" autocomplete="off">
+            [attr.inputmode]="searchColumn === 0 ? 'numeric' : 'text'"
+            [placeholder]="searchPlaceholder" autocomplete="off">
         </div>
-        <button type="button" class="primary" (click)="consult()">Consultar</button>
+        <button type="button" class="primary" [disabled]="loading" (click)="consult()">{{ loading ? 'Consultando…' : 'Consultar' }}</button>
       </div>
       <p class="hint" aria-live="polite">{{ searchMessage }}</p>
     </div>
 
-    <div class="result-panel" aria-live="polite">
+    <div class="result-panel" aria-live="polite" *ngIf="selected; else initialResult">
       <div class="result-head">
         <div class="location"><span class="pin" aria-hidden="true">⌖</span><div>
           <strong>{{ selected.district }}</strong><small>{{ selected.department }} · {{ selected.province }}</small>
@@ -53,15 +51,16 @@
         <span aria-hidden="true">⚠</span><strong>Zona de Alto Riesgo CENEPRED: Ofrecer Seguro Agrícola / Multirriesgo.</strong>
       </div>
     </div>
+    <ng-template #initialResult>
+      <div class="result-panel result-placeholder" aria-live="polite">
+        <strong>{{ errorMessage || (filteredRows.length ? 'Selecciona una fila de la tabla para ver sus indicadores.' : 'Realiza una consulta para cargar la matriz de riesgo territorial.') }}</strong>
+      </div>
+    </ng-template>
   </section>
 
   <section class="card results">
     <header class="results-head">
-      <div><h2>Matriz de riesgos por distrito</h2><p>Consulta, filtra y descarga la información para seguimiento comercial.</p></div>
-      <div class="export-actions">
-        <button type="button" class="secondary" (click)="exportCsv()">↓ Exportar Excel</button>
-        <button type="button" class="secondary" (click)="print()">↓ Exportar PDF</button>
-      </div>
+      <div><h2>Matriz de riesgos por distrito</h2><p>Consulta y filtra la información para seguimiento comercial.</p></div>
     </header>
 
     <form class="filters" (ngSubmit)="applyFilters()">
@@ -80,19 +79,12 @@
       <button type="submit" class="primary filter-button">Filtrar</button>
     </form>
 
-    <div class="table-wrap" *ngIf="filteredRows.length; else emptyState">
-      <table>
-        <thead><tr><th>Ubigeo</th><th>Departamento</th><th>Provincia</th><th>Distrito</th><th>Mov. en masa</th><th>Inundación</th><th>Sequía</th><th>Predominante</th></tr></thead>
-        <tbody><tr *ngFor="let row of filteredRows; trackBy: trackByUbigeo">
-          <td class="code">{{ row.ubigeo }}</td><td>{{ row.department }}</td><td>{{ row.province }}</td><td>{{ row.district }}</td>
-          <td><span class="badge" [ngClass]="riskClass(row.massRisk)">{{ row.massRisk }}</span></td>
-          <td><span class="badge" [ngClass]="riskClass(row.floodRisk)">{{ row.floodRisk }}</span></td>
-          <td><span class="badge" [ngClass]="riskClass(row.droughtRisk)">{{ row.droughtRisk }}</span></td>
-          <td><span class="badge" [ngClass]="riskClass(row.mainRisk)">{{ row.mainRisk }}</span></td>
-        </tr></tbody>
-      </table>
+    <div class="table-status" role="status" *ngIf="loading">Cargando matriz de riesgos…</div>
+    <div class="table-wrap" *ngIf="!loading && filteredRows.length; else emptyState">
+      <stg-table2 [options]="tableOptions" [dataSource]="filteredRows" [headers]="tableHeaders"
+        (onSelectRow)="selectRow($event)"></stg-table2>
     </div>
-    <ng-template #emptyState><div class="empty-state" role="status">No hay distritos que coincidan con los filtros seleccionados.</div></ng-template>
+    <ng-template #emptyState><div class="empty-state" role="status" *ngIf="!loading">{{ errorMessage || 'No hay distritos que coincidan con la consulta o los filtros seleccionados.' }}</div></ng-template>
     <footer class="pagination"><span>Mostrando {{ filteredRows.length }} de {{ rows.length }} distritos</span><span>Página 1 de 1</span></footer>
   </section>
 </main>
