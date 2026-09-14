@@ -8,7 +8,6 @@ import { SharedMaterialModule } from 'app/core/screen/components/shared-material
 import { RiegosFenComponent } from './riegos-fen.component';
 import { RiegosFenRoutingModule } from './riegos-fen-routing.module';
 
-// 1. Importa el servicio
 import { ModRepService } from 'app/modules/reportes/compartido/servicios/mod-rep.service';
 
 @NgModule({
